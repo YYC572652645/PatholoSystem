@@ -7,5 +7,22 @@
         <file>image/fail.png</file>
         <file>image/happy.png</file>
         <file>image/ok.png</file>
+        <file>image/about.png</file>
+        <file>image/add.png</file>
+        <file>image/copy.png</file>
+        <file>image/critical.png</file>
+        <file>image/edit-clear.png</file>
+        <file>image/excel.png</file>
+        <file>image/exit.png</file>
+        <file>image/filenew.png</file>
+        <file>image/information.png</file>
+        <file>image/newmore.png</file>
+        <file>image/open.png</file>
+        <file>image/question.png</file>
+        <file>image/save.png</file>
+        <file>image/serch.png</file>
+        <file>image/printmore.jpg</file>
+        <file>image/tempalte.jpg</file>
+        <file>image/print.jpg</file>
     </qresource>
 </RCC>

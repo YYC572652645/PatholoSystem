@@ -71,43 +71,8 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>-1</number>
         </property>
-        <widget class="QWidget" name="tabRegister">
-         <attribute name="title">
-          <string>登记</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabMaterial">
-         <attribute name="title">
-          <string>取材</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabRegularSlices">
-         <attribute name="title">
-          <string>常规切片</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabImmuneSlices">
-         <attribute name="title">
-          <string>免疫组化切片</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabSpecialSlices">
-         <attribute name="title">
-          <string>特染切片</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabDrawStatics">
-         <attribute name="title">
-          <string>取材统计</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tabSystemSettings">
-         <attribute name="title">
-          <string>系统设置</string>
-         </attribute>
-        </widget>
        </widget>
       </item>
      </layout>

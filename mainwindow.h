@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "tabregister/tabregister.h"
 
 #pragma execution_character_set("utf-8")
 
@@ -22,6 +23,10 @@ private:
     Ui::MainWindow *ui;
 
     void initControl(); //初始化控件
+
+
+private:
+    TabRegister tabRegister;
 };
 
 #endif // MAINWINDOW_H

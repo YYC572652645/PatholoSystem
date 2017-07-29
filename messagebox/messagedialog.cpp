@@ -69,14 +69,7 @@ MessageDialog::MessageDialog(QWidget *parent) :
 /****************************************析构函数*******************************/
 MessageDialog::~MessageDialog()
 {
-    delete closeButton;
-    delete titleLabel;
-    delete imgLabel;
-    delete msgLabel;
-    delete cancelButton;
-    delete okButton;
     delete ui;
-
 }
 
 
@@ -108,8 +101,6 @@ void MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, boo
     cancelButton->setFocus();
 
     this->move((parent->width() - this->width()) / 2 , (parent->height()- this->height()) / 2);
-
-    this->exec();
 }
 
 
@@ -143,7 +134,6 @@ void MessageDialog::mouseReleaseEvent(QMouseEvent *event)
 {
     mousePress=false;
 }
-
 
 /****************************************鼠标移动*******************************/
 void MessageDialog::mouseMoveEvent(QMouseEvent *event)

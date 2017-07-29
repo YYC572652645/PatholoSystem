@@ -36,13 +36,6 @@ public:
     QLabel *labelIcoImage;
     QSpacerItem *horizontalSpacer;
     QTabWidget *tabWidgetTotal;
-    QWidget *tabRegister;
-    QWidget *tabMaterial;
-    QWidget *tabRegularSlices;
-    QWidget *tabImmuneSlices;
-    QWidget *tabSpecialSlices;
-    QWidget *tabDrawStatics;
-    QWidget *tabSystemSettings;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -82,27 +75,6 @@ public:
         tabWidgetTotal->setObjectName(QStringLiteral("tabWidgetTotal"));
         tabWidgetTotal->setMinimumSize(QSize(0, 0));
         tabWidgetTotal->setMaximumSize(QSize(16777215, 16777215));
-        tabRegister = new QWidget();
-        tabRegister->setObjectName(QStringLiteral("tabRegister"));
-        tabWidgetTotal->addTab(tabRegister, QString());
-        tabMaterial = new QWidget();
-        tabMaterial->setObjectName(QStringLiteral("tabMaterial"));
-        tabWidgetTotal->addTab(tabMaterial, QString());
-        tabRegularSlices = new QWidget();
-        tabRegularSlices->setObjectName(QStringLiteral("tabRegularSlices"));
-        tabWidgetTotal->addTab(tabRegularSlices, QString());
-        tabImmuneSlices = new QWidget();
-        tabImmuneSlices->setObjectName(QStringLiteral("tabImmuneSlices"));
-        tabWidgetTotal->addTab(tabImmuneSlices, QString());
-        tabSpecialSlices = new QWidget();
-        tabSpecialSlices->setObjectName(QStringLiteral("tabSpecialSlices"));
-        tabWidgetTotal->addTab(tabSpecialSlices, QString());
-        tabDrawStatics = new QWidget();
-        tabDrawStatics->setObjectName(QStringLiteral("tabDrawStatics"));
-        tabWidgetTotal->addTab(tabDrawStatics, QString());
-        tabSystemSettings = new QWidget();
-        tabSystemSettings->setObjectName(QStringLiteral("tabSystemSettings"));
-        tabWidgetTotal->addTab(tabSystemSettings, QString());
 
         verticalLayout->addWidget(tabWidgetTotal);
 
@@ -120,7 +92,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidgetTotal->setCurrentIndex(0);
+        tabWidgetTotal->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -130,13 +102,6 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         labelIcoImage->setText(QString());
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabRegister), QApplication::translate("MainWindow", "\347\231\273\350\256\260", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabMaterial), QApplication::translate("MainWindow", "\345\217\226\346\235\220", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabRegularSlices), QApplication::translate("MainWindow", "\345\270\270\350\247\204\345\210\207\347\211\207", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabImmuneSlices), QApplication::translate("MainWindow", "\345\205\215\347\226\253\347\273\204\345\214\226\345\210\207\347\211\207", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabSpecialSlices), QApplication::translate("MainWindow", "\347\211\271\346\237\223\345\210\207\347\211\207", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabDrawStatics), QApplication::translate("MainWindow", "\345\217\226\346\235\220\347\273\237\350\256\241", 0));
-        tabWidgetTotal->setTabText(tabWidgetTotal->indexOf(tabSystemSettings), QApplication::translate("MainWindow", "\347\263\273\347\273\237\350\256\276\347\275\256", 0));
     } // retranslateUi
 
 };

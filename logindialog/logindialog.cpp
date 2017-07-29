@@ -35,5 +35,5 @@ void LoginDialog::on_pushButtonOk_clicked()
 
 void LoginDialog::on_pushButtonCancel_clicked()
 {
-    qApp->quit();
+   this->close();
 }

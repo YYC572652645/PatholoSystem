@@ -1,10 +1,10 @@
-﻿#include "logindata.h"
+﻿#include "registerdata.h"
 #include "config/qreadini.h"
 #include "databasedef.h"
 #include "globaldef.h"
 
 /***************************构造函数***********************/
-LoginData::LoginData()
+RegisterData::RegisterData()
 {   
     if(!dataCnn())
     {
@@ -12,8 +12,9 @@ LoginData::LoginData()
     }
 }
 
+
 /***************************连接数据库*********************/
-bool LoginData::dataCnn()
+bool RegisterData::dataCnn()
 {
     //是否为默认连接
     if(QSqlDatabase::contains("qt_sql_default_connection"))
@@ -39,7 +40,7 @@ bool LoginData::dataCnn()
 }
 
 /***************************插入数据***********************/
-bool LoginData::insertData()
+bool RegisterData::insertData()
 {
     if(!db.isOpen())
     {
@@ -55,40 +56,44 @@ bool LoginData::insertData()
 }
 
 /***************************查询数据***********************/
-bool LoginData::selectData(QString userName, QString passWord)
-{
-    if(!db.isOpen()) db.open();
-
+int RegisterData::selectData()
+{ 
+    int count = 0;
+    if(!db.isOpen())
+    {
+        db.open();
+    }
     QSqlQuery query;
-    QString str = "select * from User where UserName = '"  + userName + "';";
 
-    if(!query.exec(str)) return false;
+    QString str = QString("select * from Reg;");
 
-    int Count = 0;
+    bool success = query.exec(str);  //执行sql语句
+
+    if(!success)  return GLOBALDEF::ERROR;
+
     while(query.next())        //挨个遍历数据
     {
-        userInfo.userId = query.value(DAtABASEDEF::USERID).toString();
-        userInfo.userNo = query.value(DAtABASEDEF::USERNO).toString();
-        userInfo.userName = query.value(DAtABASEDEF::USERNAME).toString();
-        userInfo.passWord = query.value(DAtABASEDEF::PASSWORD).toString();
-        userInfo.isAdministrator = query.value(DAtABASEDEF::ISADMINISTRATOR).toString();
-        userInfo.unused = query.value(DAtABASEDEF::UNUSED).toString();
-        userInfo.remark = query.value(DAtABASEDEF::REMARK).toString();
-        Count ++;
+        RegisterInfo data;
+        data.id = query.value(DAtABASEDEF::REGID).toString();
+        data.pCode = query.value(DAtABASEDEF::REGPCODE).toString();
+        data.sn = query.value(DAtABASEDEF::REGSN).toString();
+        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
+        data.printed = query.value(DAtABASEDEF::REGPRINTED).toString();
+        data.createTime = query.value(DAtABASEDEF::REGCREATETIME).toString();
+        data.userId = query.value(DAtABASEDEF::REGUSERID).toString();
+
+        registerInfo<<data;
+
+        count ++;
     }
 
     db.close();
 
-    if(userInfo.unused == GLOBALDEF::UNUSED)
-    {
-        return true;
-    }
-
-    return Count > 0 ? true : false;
+    return count;
 }
 
 /***************************更改数据***********************/
-bool LoginData::updateData()
+bool RegisterData::updateData()
 {
     if(!db.isOpen())
     {
@@ -104,7 +109,7 @@ bool LoginData::updateData()
 }
 
 /***************************删除数据***********************/
-bool LoginData::deleteData()
+bool RegisterData::deleteData()
 {
     if(!db.isOpen())
     {

@@ -1,5 +1,5 @@
-﻿#ifndef DATABASE_H
-#define DATABASE_H
+﻿#ifndef LOGINDATA_H
+#define LOGINDATA_H
 #include<QString>
 #include<QSqlDriver>
 #include<QSqlRecord>
@@ -63,4 +63,4 @@ private:
     UserInfo userInfo;             //用户信息
 };
 
-#endif // DATABASE_H
+#endif // LOGINDATA_H

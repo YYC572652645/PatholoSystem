@@ -18,7 +18,10 @@ SOURCES += main.cpp\
     config/qreadini.cpp \
     logindialog/logindata.cpp \
     messagebox/messagedialog.cpp \
-    singleton/singleton.cpp
+    singleton/singleton.cpp \
+    tabregister/tabregister.cpp \
+    tabregister/registerdata.cpp \
+    tabregister/newslices.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -27,11 +30,16 @@ HEADERS  += mainwindow.h \
     databasedef.h \
     messagebox/messagedialog.h \
     singleton/singleton.h \
-    globaldef.h
+    globaldef.h \
+    tabregister/tabregister.h \
+    tabregister/registerdata.h \
+    tabregister/newslices.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
-    messagebox/messagedialog.ui
+    messagebox/messagedialog.ui \
+    tabregister/tabregister.ui \
+    tabregister/newslices.ui
 
 RESOURCES += \
     res.qrc

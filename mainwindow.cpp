@@ -19,5 +19,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::initControl()
 {
+    ui->tabWidgetTotal->addTab(&tabRegister, "登记");
 
 }

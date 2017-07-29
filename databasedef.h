@@ -25,6 +25,18 @@ namespace DAtABASEDEF
     };
 
 
+    enum REG
+    {
+        REGID,
+        REGPCODE,
+        REGSN,
+        REGPRINTQUANTITY,
+        REGPRINTED,
+        REGCREATETIME,
+        REGUSERID,
+    };
+
+
 
 
 
