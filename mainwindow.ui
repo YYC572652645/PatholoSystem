@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1038</width>
+    <height>719</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="labelIcoImage">
+          <property name="minimumSize">
+           <size>
+            <width>491</width>
+            <height>78</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>78</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image: url(:/image/image/header.png);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidgetTotal">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tabRegister">
+         <attribute name="title">
+          <string>登记</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabMaterial">
+         <attribute name="title">
+          <string>取材</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabRegularSlices">
+         <attribute name="title">
+          <string>常规切片</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabImmuneSlices">
+         <attribute name="title">
+          <string>免疫组化切片</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabSpecialSlices">
+         <attribute name="title">
+          <string>特染切片</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabDrawStatics">
+         <attribute name="title">
+          <string>取材统计</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabSystemSettings">
+         <attribute name="title">
+          <string>系统设置</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1038</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
