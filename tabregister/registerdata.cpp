@@ -23,7 +23,7 @@ bool RegisterData::dataCnn()
     }
     else
     {
-        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);         //设置数据库类型
+        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);      //设置数据库类型
     }
 
     db.setHostName(DATACONFIG.ip);                                        //设置数据库主机名

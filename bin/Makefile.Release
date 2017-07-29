@@ -446,6 +446,20 @@ release\moc_mainwindow.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWid
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
 		..\tabregister\tabregister.h \
+		..\tabregister\registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		..\mainwindow.h
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\mainwindow.h -o release\moc_mainwindow.cpp
 
@@ -812,6 +826,20 @@ release\moc_tabregister.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWi
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		..\tabregister\registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		..\tabregister\tabregister.h
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\tabregister\tabregister.h -o release\moc_tabregister.cpp
 
@@ -920,6 +948,20 @@ release\moc_newslices.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidg
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
+		..\tabregister\registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		..\tabregister\newslices.h
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\tabregister\newslices.h -o release\moc_newslices.cpp
 
@@ -1064,17 +1106,7 @@ release\main.obj: ..\main.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
 		../tabregister/tabregister.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
-		../logindialog/logindialog.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
-		../logindialog/logindata.h \
+		../tabregister/registerdata.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
@@ -1087,7 +1119,18 @@ release\main.obj: ..\main.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
+		../logindialog/logindialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
+		../logindialog/logindata.h
 
 release\mainwindow.obj: ..\mainwindow.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QMainWindow \
@@ -1198,6 +1241,20 @@ release\mainwindow.obj: ..\mainwindow.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
 		../tabregister/tabregister.h \
+		../tabregister/registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		ui_mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
@@ -1931,6 +1988,20 @@ release\tabregister.obj: ..\tabregister\tabregister.cpp ../tabregister/tabregist
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		../tabregister/registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		ui_tabregister.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
@@ -1989,7 +2060,9 @@ release\tabregister.obj: ..\tabregister\tabregister.cpp ../tabregister/tabregist
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QToolBar \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtoolbar.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QVBoxLayout \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QWidget
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QWidget \
+		../databasedef.h \
+		../globaldef.h
 
 release\registerdata.obj: ..\tabregister\registerdata.cpp ../tabregister/registerdata.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
@@ -2076,7 +2149,8 @@ release\registerdata.obj: ..\tabregister\registerdata.cpp ../tabregister/registe
 		../config/qreadini.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QSettings \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsettings.h \
-		../databasedef.h
+		../databasedef.h \
+		../globaldef.h
 
 release\newslices.obj: ..\tabregister\newslices.cpp ../tabregister/newslices.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
@@ -2184,7 +2258,73 @@ release\newslices.obj: ..\tabregister\newslices.cpp ../tabregister/newslices.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
-		ui_newslices.h
+		../tabregister/registerdata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		ui_newslices.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qaction.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qactiongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QButtonGroup \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qbuttongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QCheckBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qcheckbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QComboBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qcombobox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvalidator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregularexpression.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyle.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabbar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qrubberband.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qframe.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QGroupBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qgroupbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlayout.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QHeaderView \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qheaderview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QLabel \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlabel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QPushButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QSpacerItem \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QSpinBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qspinbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QVBoxLayout
 
 release\qrc_res.obj: release\qrc_res.cpp 
 

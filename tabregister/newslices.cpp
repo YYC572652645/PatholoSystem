@@ -12,3 +12,8 @@ newslices::~newslices()
 {
     delete ui;
 }
+
+void newslices::on_pushButtonOk_clicked()
+{
+    registerData.insertData();
+}
