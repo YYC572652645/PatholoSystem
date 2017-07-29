@@ -217,6 +217,7 @@ Makefile: ..\PatholoSystem.pro ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32
 		..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmain.prl \
 		..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgets.prl \
 		..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Gui.prl \
+		..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Sql.prl \
 		..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2013 -o Makefile ..\PatholoSystem.pro
 ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\spec_pre.prf:
@@ -363,6 +364,7 @@ Makefile: ..\PatholoSystem.pro ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32
 ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmain.prl:
 ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgets.prl:
 ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Gui.prl:
+..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Sql.prl:
 ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2013 -o Makefile ..\PatholoSystem.pro

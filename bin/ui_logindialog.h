@@ -25,12 +25,12 @@ class Ui_logindialog
 {
 public:
     QLabel *labelDialog;
-    QLineEdit *lineEdit_2;
+    QLineEdit *lineEditPassWord;
     QPushButton *pushButtonCancel;
     QLabel *label_2;
     QLabel *label;
     QPushButton *pushButtonOk;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEditUserName;
 
     void setupUi(QDialog *logindialog)
     {
@@ -42,12 +42,14 @@ public:
         logindialog->setStyleSheet(QStringLiteral(""));
         labelDialog = new QLabel(logindialog);
         labelDialog->setObjectName(QStringLiteral("labelDialog"));
-        labelDialog->setGeometry(QRect(9, 9, 597, 332));
+        labelDialog->setGeometry(QRect(-1, -1, 616, 351));
         labelDialog->setStyleSheet(QStringLiteral("border-image: url(:/image/image/login.png);"));
-        lineEdit_2 = new QLineEdit(logindialog);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(430, 220, 150, 22));
-        lineEdit_2->setMinimumSize(QSize(150, 0));
+        labelDialog->setScaledContents(true);
+        lineEditPassWord = new QLineEdit(logindialog);
+        lineEditPassWord->setObjectName(QStringLiteral("lineEditPassWord"));
+        lineEditPassWord->setGeometry(QRect(430, 220, 150, 22));
+        lineEditPassWord->setMinimumSize(QSize(150, 0));
+        lineEditPassWord->setEchoMode(QLineEdit::Password);
         pushButtonCancel = new QPushButton(logindialog);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(500, 289, 75, 23));
@@ -64,10 +66,13 @@ public:
         pushButtonOk = new QPushButton(logindialog);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(413, 289, 75, 23));
-        lineEdit = new QLineEdit(logindialog);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(430, 190, 150, 22));
-        lineEdit->setMinimumSize(QSize(150, 0));
+        lineEditUserName = new QLineEdit(logindialog);
+        lineEditUserName->setObjectName(QStringLiteral("lineEditUserName"));
+        lineEditUserName->setGeometry(QRect(430, 190, 150, 22));
+        lineEditUserName->setMinimumSize(QSize(150, 0));
+        QWidget::setTabOrder(pushButtonOk, pushButtonCancel);
+        QWidget::setTabOrder(pushButtonCancel, lineEditPassWord);
+        QWidget::setTabOrder(lineEditPassWord, lineEditUserName);
 
         retranslateUi(logindialog);
 

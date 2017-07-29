@@ -2,5 +2,10 @@
     <qresource prefix="/image">
         <file>image/header.png</file>
         <file>image/login.png</file>
+        <file>image/background.png</file>
+        <file>image/color.png</file>
+        <file>image/fail.png</file>
+        <file>image/happy.png</file>
+        <file>image/ok.png</file>
     </qresource>
 </RCC>

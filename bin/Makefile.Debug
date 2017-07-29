@@ -11,19 +11,19 @@ MAKEFILE      = Makefile.Debug
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zi -MDd -W3 /Fddebug\PatholoSystem.vc.pdb $(DEFINES)
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zi -MDd -GR -W3 -w34100 -w34189 -w44996 -EHsc /Fddebug\PatholoSystem.vc.pdb $(DEFINES)
-INCPATH       = -I..\..\PatholoSystem -I. -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtANGLE -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore -Idebug -I. -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32-msvc2013 
+INCPATH       = -I..\..\PatholoSystem -I. -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtANGLE -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore -Idebug -I. -I..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32-msvc2013 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\Qt5.6.2\5.6\msvc2013\lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmaind.lib shell32.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgetsd.lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Guid.lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:D:\Qt\Qt5.6.2\5.6\msvc2013\lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmaind.lib shell32.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgetsd.lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Guid.lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Sqld.lib D:\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Cored.lib debug\myapp.res 
 QMAKE         = D:\Qt\Qt5.6.2\5.6\msvc2013\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\myapp.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -45,21 +45,40 @@ OBJECTS_DIR   = debug
 
 SOURCES       = ..\main.cpp \
 		..\mainwindow.cpp \
-		..\logindialog\logindialog.cpp debug\qrc_res.cpp \
+		..\logindialog\logindialog.cpp \
+		..\config\qreadini.cpp \
+		..\logindialog\logindata.cpp \
+		..\messagebox\messagedialog.cpp \
+		..\singleton\singleton.cpp debug\qrc_res.cpp \
 		debug\moc_mainwindow.cpp \
-		debug\moc_logindialog.cpp
+		debug\moc_logindialog.cpp \
+		debug\moc_messagedialog.cpp
 OBJECTS       = debug\main.obj \
 		debug\mainwindow.obj \
 		debug\logindialog.obj \
+		debug\qreadini.obj \
+		debug\logindata.obj \
+		debug\messagedialog.obj \
+		debug\singleton.obj \
 		debug\qrc_res.obj \
 		debug\moc_mainwindow.obj \
-		debug\moc_logindialog.obj
+		debug\moc_logindialog.obj \
+		debug\moc_messagedialog.obj
 
 DIST          =  ..\mainwindow.h \
-		..\globaldef.hpp \
-		..\logindialog\logindialog.h ..\main.cpp \
+		..\logindialog\logindialog.h \
+		..\config\qreadini.h \
+		..\logindialog\logindata.h \
+		..\databasedef.h \
+		..\messagebox\messagedialog.h \
+		..\singleton\singleton.h \
+		..\globaldef.h ..\main.cpp \
 		..\mainwindow.cpp \
-		..\logindialog\logindialog.cpp
+		..\logindialog\logindialog.cpp \
+		..\config\qreadini.cpp \
+		..\logindialog\logindata.cpp \
+		..\messagebox\messagedialog.cpp \
+		..\singleton\singleton.cpp
 QMAKE_TARGET  = PatholoSystem
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = PatholoSystem.exe
@@ -68,6 +87,26 @@ DESTDIR_TARGET = debug\PatholoSystem.exe
 ####### Implicit rules
 
 .SUFFIXES: .c .cpp .cc .cxx
+
+{..\singleton}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\singleton}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\singleton}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\singleton}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
 
 {debug}.cpp{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
@@ -85,6 +124,46 @@ DESTDIR_TARGET = debug\PatholoSystem.exe
 <<
 
 {debug}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\config}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\config}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\config}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\config}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\messagebox}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\messagebox}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\messagebox}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\messagebox}.c{debug\}.obj::
 	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
@@ -154,10 +233,13 @@ DESTDIR_TARGET = debug\PatholoSystem.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_logindialog.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h ui_logindialog.h ui_messagedialog.h $(OBJECTS) debug\myapp.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 $(OBJECTS) $(LIBS)
 <<
+
+debug\myapp.res: ..\myapp.rc
+	rc -D_DEBUG $(DEFINES) -fo debug\myapp.res ..\myapp.rc
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2013 -o Makefile.Debug ..\PatholoSystem.pro
@@ -165,11 +247,12 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) PatholoSystem.zip $(SOURCES) $(DIST) ..\PatholoSystem.pro ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\angle.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\msvc-base.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\qconfig.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_labscontrols_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_labstemplates_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\qt_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32-msvc2013\qmake.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\spec_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\default_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\default_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\build_pass.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\rtti.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\warn_on.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\resources.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\moc.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\uic.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\file_copies.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exceptions.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\yacc.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\lex.prf ..\PatholoSystem.pro ..\res.qrc ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmaind.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgetsd.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Guid.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) PatholoSystem.zip $(SOURCES) $(DIST) ..\PatholoSystem.pro ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\angle.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\msvc-base.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\qconfig.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_labscontrols_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_labstemplates_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\qt_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\win32-msvc2013\qmake.conf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\spec_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\default_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\default_post.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\build_pass.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\rtti.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\warn_on.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\qt.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\resources.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\moc.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\uic.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\file_copies.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\exceptions.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\yacc.prf ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\mkspecs\features\lex.prf ..\PatholoSystem.pro ..\res.qrc ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\qtmaind.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Widgetsd.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Guid.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Sqld.prl ..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\logindialog.obj debug\qrc_res.obj debug\moc_mainwindow.obj debug\moc_logindialog.obj
+	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\logindialog.obj debug\qreadini.obj debug\logindata.obj debug\messagedialog.obj debug\singleton.obj debug\qrc_res.obj debug\moc_mainwindow.obj debug\moc_logindialog.obj debug\moc_messagedialog.obj
 	-$(DEL_FILE) debug\PatholoSystem.exp debug\PatholoSystem.vc.pdb debug\PatholoSystem.ilk debug\PatholoSystem.idb
+	-$(DEL_FILE) debug\myapp.res
 
 distclean: clean 
 	-$(DEL_FILE) debug\PatholoSystem.lib debug\PatholoSystem.pdb
@@ -190,13 +273,18 @@ compiler_rcc_make_all: debug\qrc_res.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_res.cpp
 debug\qrc_res.cpp: ..\res.qrc \
+		..\image\ok.png \
 		..\image\login.png \
+		..\image\background.png \
+		..\image\color.png \
+		..\image\fail.png \
+		..\image\happy.png \
 		..\image\header.png
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\rcc.exe -name res ..\res.qrc -o debug\qrc_res.cpp
 
-compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_logindialog.cpp
+compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_logindialog.cpp debug\moc_messagedialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_logindialog.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_logindialog.cpp debug\moc_messagedialog.cpp
 debug\moc_mainwindow.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QMainWindow \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qmainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qwidget.h \
@@ -304,11 +392,8 @@ debug\moc_mainwindow.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidge
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
-		..\logindialog\logindialog.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
 		..\mainwindow.h
-	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\mainwindow.h -o debug\moc_mainwindow.cpp
+	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug\moc_logindialog.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
@@ -415,19 +500,170 @@ debug\moc_logindialog.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidg
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
+		..\logindialog\logindata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
 		..\logindialog\logindialog.h
-	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\logindialog\logindialog.h -o debug\moc_logindialog.cpp
+	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\logindialog\logindialog.h -o debug\moc_logindialog.cpp
+
+debug\moc_messagedialog.cpp: ..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qwindowdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobal.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qconfig.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfeatures.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsystemdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qprocessordetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypeinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypetraits.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qisenum.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsysinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlogging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qflags.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbasicatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qgenericatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_gcc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv7.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv6.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv5.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_ia64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_x86.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_unix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobalstatic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmutex.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnumeric.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qversiontagging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnamespace.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstring.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qchar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrefcount.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qarraydata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringbuilder.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qalgorithms.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiterator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhashfunctions.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpair.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearraylist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregexp.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringmatcher.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qscopedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmetatype.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmargins.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpaintdevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrect.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsize.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpoint.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpalette.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qcolor.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qrgb.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qrgba64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qbrush.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvector.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qmatrix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpolygon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qregion.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdatastream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiodevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qline.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtransform.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpainterpath.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qimage.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpixelformat.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpixmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsharedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qshareddata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhash.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfont.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfontmetrics.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfontinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qcursor.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qkeysequence.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvariant.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdebug.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtextstream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlocale.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qset.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qurl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qurlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfile.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QToolButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtoolbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QPushButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QLabel \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlabel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qframe.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QCheckBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qcheckbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPainter \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpainter.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtextoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpen.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPaintEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPixmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QBitmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qbitmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QMouseEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QStyle \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyle.h \
+		..\singleton\singleton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QMutex \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QScopedPointer \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		..\messagebox\messagedialog.h
+	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -ID:/Qt/Qt5.6.2/5.6/msvc2013/mkspecs/win32-msvc2013 -ID:/Program/Qt/PatholoSystem -ID:/Qt/Qt5.6.2/5.6/msvc2013/include -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtWidgets -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtGui -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtANGLE -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtSql -ID:/Qt/Qt5.6.2/5.6/msvc2013/include/QtCore -I. ..\messagebox\messagedialog.h -o debug\moc_messagedialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_logindialog.h
+compiler_uic_make_all: ui_mainwindow.h ui_logindialog.h ui_messagedialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_logindialog.h
+	-$(DEL_FILE) ui_mainwindow.h ui_logindialog.h ui_messagedialog.h
 ui_mainwindow.h: ..\mainwindow.ui
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\uic.exe ..\mainwindow.ui -o ui_mainwindow.h
 
 ui_logindialog.h: ..\logindialog\logindialog.ui
 	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\uic.exe ..\logindialog\logindialog.ui -o ui_logindialog.h
+
+ui_messagedialog.h: ..\messagebox\messagedialog.ui
+	D:\Qt\Qt5.6.2\5.6\msvc2013\bin\uic.exe ..\messagebox\messagedialog.ui -o ui_messagedialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -549,16 +785,30 @@ debug\main.obj: ..\main.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
-		../logindialog/logindialog.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
+		../logindialog/logindialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
+		../logindialog/logindata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug
 
 debug\mainwindow.obj: ..\mainwindow.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QMainWindow \
@@ -668,9 +918,6 @@ debug\mainwindow.obj: ..\mainwindow.cpp ../mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
-		../logindialog/logindialog.h \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
-		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
 		ui_mainwindow.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
@@ -826,13 +1073,483 @@ debug\logindialog.obj: ..\logindialog\logindialog.cpp ../logindialog/logindialog
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
 		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
-		ui_logindialog.h
+		../logindialog/logindata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		ui_logindialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qaction.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qactiongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QButtonGroup \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qbuttongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QHeaderView \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qheaderview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qframe.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvalidator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregularexpression.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyle.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabbar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qrubberband.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QLabel \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlabel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QLineEdit \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlineedit.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtextcursor.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtextformat.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpen.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtextoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QPushButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractbutton.h \
+		../messagebox/messagedialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QToolButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtoolbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QCheckBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qcheckbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPainter \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpainter.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPaintEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPixmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QBitmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qbitmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QMouseEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QStyle \
+		../singleton/singleton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QMutex \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QScopedPointer \
+		../globaldef.h
+
+debug\qreadini.obj: ..\config\qreadini.cpp ../config/qreadini.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QSettings \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsettings.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnamespace.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobal.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qconfig.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfeatures.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsystemdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qprocessordetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypeinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypetraits.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qisenum.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsysinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlogging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qflags.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbasicatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qgenericatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_gcc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv7.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv6.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv5.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_ia64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_x86.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_unix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobalstatic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmutex.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnumeric.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qversiontagging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstring.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qchar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrefcount.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qarraydata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringbuilder.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qalgorithms.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiterator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhashfunctions.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpair.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearraylist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregexp.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringmatcher.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qscopedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmetatype.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvariant.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdebug.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhash.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtextstream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiodevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlocale.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qshareddata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvector.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpoint.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qset.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontiguouscache.h
+
+debug\logindata.obj: ..\logindialog\logindata.cpp ../logindialog/logindata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstring.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qchar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobal.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qconfig.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfeatures.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsystemdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qprocessordetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypeinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypetraits.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qisenum.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsysinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlogging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qflags.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbasicatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qgenericatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_gcc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv7.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv6.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv5.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_ia64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_x86.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_unix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobalstatic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmutex.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnumeric.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qversiontagging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrefcount.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnamespace.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qarraydata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringbuilder.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDriver \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldriver.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qalgorithms.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiterator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhashfunctions.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpair.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearraylist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregexp.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringmatcher.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qscopedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmetatype.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsql.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlRecord \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlrecord.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlQuery \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\qsqldatabase.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtSql\QSqlDatabase \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QFile \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfile.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiodevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QIODevice \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdebug.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhash.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtextstream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlocale.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvariant.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qshareddata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvector.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpoint.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qset.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontiguouscache.h \
+		../config/qreadini.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QSettings \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsettings.h \
+		../databasedef.h \
+		../globaldef.h
+
+debug\messagedialog.obj: ..\messagebox\messagedialog.cpp ../messagebox/messagedialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QDialog \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qwindowdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobal.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qconfig.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfeatures.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsystemdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qprocessordetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypeinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypetraits.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qisenum.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsysinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlogging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qflags.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbasicatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qgenericatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_gcc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv7.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv6.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv5.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_ia64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_x86.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_unix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobalstatic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmutex.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnumeric.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qversiontagging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnamespace.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstring.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qchar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrefcount.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qarraydata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringbuilder.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qalgorithms.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiterator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhashfunctions.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpair.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearraylist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregexp.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringmatcher.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qscopedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmetatype.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmargins.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpaintdevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrect.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsize.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpoint.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpalette.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qcolor.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qrgb.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qrgba64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qbrush.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvector.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qmatrix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpolygon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qregion.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdatastream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiodevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qline.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtransform.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpainterpath.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qimage.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpixelformat.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpixmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsharedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qshareddata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhash.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfont.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfontmetrics.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qfontinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qcursor.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qkeysequence.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvariant.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdebug.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtextstream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlocale.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qset.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qurl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qurlquery.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfile.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfiledevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvector2d.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtouchdevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QToolButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtoolbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qicon.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QPushButton \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QLabel \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qlabel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qframe.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QCheckBox \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qcheckbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPainter \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpainter.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qtextoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qpen.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPaintEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QPixmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QBitmap \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qbitmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\QMouseEvent \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QStyle \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyle.h \
+		../singleton/singleton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QMutex \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QScopedPointer \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		ui_messagedialog.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QVariant \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QAction \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qaction.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qactiongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QApplication \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qeventloop.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qguiapplication.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qinputmethod.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QButtonGroup \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qbuttongroup.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\QHeaderView \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qheaderview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtGui\qvalidator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregularexpression.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabbar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtWidgets\qrubberband.h \
+		../globaldef.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QString
+
+debug\singleton.obj: ..\singleton\singleton.cpp ../singleton/singleton.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QMutex \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmutex.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobal.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qconfig.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qfeatures.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsystemdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qprocessordetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypeinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtypetraits.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qisenum.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qsysinfo.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlogging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qflags.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbasicatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qgenericatomic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_gcc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv7.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv6.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_armv5.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_ia64.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_x86.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qatomic_unix.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qglobalstatic.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnumeric.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qversiontagging.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QScopedPointer \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qscopedpointer.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\QDebug \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qdebug.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qalgorithms.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhash.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qchar.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiterator.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qrefcount.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qarraydata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qhashfunctions.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpair.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearraylist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qbytearray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qnamespace.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstring.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringbuilder.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringlist.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qregexp.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qstringmatcher.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmap.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qtextstream.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qiodevice.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcoreevent.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qmetatype.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qobject_impl.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qlocale.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvariant.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qshareddata.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qvector.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qpoint.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qset.h \
+		..\..\..\..\..\Qt\Qt5.6.2\5.6\msvc2013\include\QtCore\qcontiguouscache.h
 
 debug\qrc_res.obj: debug\qrc_res.cpp 
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 
 debug\moc_logindialog.obj: debug\moc_logindialog.cpp 
+
+debug\moc_messagedialog.obj: debug\moc_messagedialog.cpp 
 
 ####### Install
 

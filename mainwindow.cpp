@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->initControl();//初始化控件
+    this->setWindowTitle("病理科专用打码软件 ");
+    this->initControl();                         //初始化控件
 }
 
 MainWindow::~MainWindow()
@@ -18,6 +19,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::initControl()
 {
-    loginDialog.setParent(this);
-    loginDialog.show();
+
 }

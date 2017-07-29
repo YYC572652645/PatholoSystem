@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "logindialog/logindialog.h"
+
+#pragma execution_character_set("utf-8")
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -19,9 +22,6 @@ private:
     Ui::MainWindow *ui;
 
     void initControl(); //初始化控件
-
-
-    LoginDialog loginDialog;
 };
 
 #endif // MAINWINDOW_H
