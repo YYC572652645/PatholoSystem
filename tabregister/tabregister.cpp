@@ -18,8 +18,6 @@ TabRegister::~TabRegister()
     delete ui;
 }
 
-
-
 /*******************   初始化控件    ***********************/
 void TabRegister::initControl()
 {
@@ -36,9 +34,16 @@ void TabRegister::initControl()
     headerView=ui->tableWidget->verticalHeader();
     headerView->setHidden(true);
 
-    ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
-}
+    //设置为不可编辑
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
+
+    //添加界面
+    QVBoxLayout *vBoxLayout = new QVBoxLayout();
+    vBoxLayout->addWidget(&patientInfo);
+    ui->widgetInfo->setLayout(vBoxLayout);
+}
 
 /*******************   初始化数据    ***********************/
 void TabRegister::initData()
@@ -54,7 +59,30 @@ void TabRegister::initData()
         ui->tableWidget->setItem(i, 0, DATA(registerData.registerInfo.at(i).pCode));          //序号
         ui->tableWidget->setItem(i, 1, DATA(registerData.registerInfo.at(i).sn));             //病理号
         ui->tableWidget->setItem(i, 2, DATA(registerData.registerInfo.at(i).printQuantity));  //打印数量
-        ui->tableWidget->setItem(i, 3, DATA(registerData.registerInfo.at(i).printed));        //是否打印
+
+        {
+            QWidget *widget = new QWidget();
+            QCheckBox *checkBox = new QCheckBox();
+            QHBoxLayout *hboxLayout = new QHBoxLayout();
+            checkBox->setMinimumHeight(16);
+            hboxLayout->addWidget(checkBox);
+            hboxLayout->setAlignment(checkBox, Qt::AlignCenter);
+            widget->setLayout(hboxLayout);
+            ui->tableWidget->setCellWidget(i, 3, widget);
+
+            if(registerData.registerInfo.at(i).printed == GLOBALDEF::PRINTFLAGE)
+            {
+                checkBox->setChecked(true);
+            }
+            checkBox->setEnabled(false);
+        }
+
         ui->tableWidget->setItem(i, 4, DATA(registerData.registerInfo.at(i).createTime));     //创建时间
     }
+
+}
+
+void TabRegister::on_actionNewNumber_triggered()
+{
+    newSlices.show();
 }

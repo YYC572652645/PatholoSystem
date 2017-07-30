@@ -2,6 +2,7 @@
 #include "ui_logindialog.h"
 #include "logindata.h"
 #include "messagebox/messagedialog.h"
+#include "config/qreadini.h"
 #include "globaldef.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
@@ -11,6 +12,11 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+
+    this->setWindowTitle("登录");
+
+    ui->lineEditUserName->setText(INICONFIG->getLoginConfig().userName);
+    ui->lineEditPassWord->setText(INICONFIG->getLoginConfig().passWord);
 }
 
 LoginDialog::~LoginDialog()
@@ -23,17 +29,18 @@ void LoginDialog::on_pushButtonOk_clicked()
     QString userName = ui->lineEditUserName->text();
     QString passWord = ui->lineEditPassWord->text();
 
-    if(loginData.selectData(userName,passWord))
+    if(loginData.selectData(userName, passWord))
     {
         accept();
+        INICONFIG->writeIni(userName, passWord);
     }
     else
     {
-        MESSAGEBOX->setInfo(GLOBALDEF::SYSTEMINFO, "请检查账号密码是否正确 ", QPixmap(GLOBALDEF::FAILIMAGE), false, this);
+        MESSAGEBOX->setInfo(GLOBALDEF::SYSTEMINFO, "请检查账号密码是否正确 ", QPixmap(GLOBALDEF::FAILIMAGE), true, this);
     }
 }
 
 void LoginDialog::on_pushButtonCancel_clicked()
 {
-   this->close();
+    this->close();
 }

@@ -4,6 +4,7 @@
 
 const QString okText="确定";
 const QString cancelText="取消";
+MessageDialog* MessageDialog::m_staticInstance = NULL;//静态对象
 
 /****************************************构造函数*******************************/
 MessageDialog::MessageDialog(QWidget *parent) :
@@ -101,6 +102,8 @@ void MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, boo
     cancelButton->setFocus();
 
     this->move((parent->width() - this->width()) / 2 , (parent->height()- this->height()) / 2);
+
+    this->exec();
 }
 
 

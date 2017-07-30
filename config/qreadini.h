@@ -10,9 +10,11 @@
    创建时间:2017-7-29
 **************************************************************/
 
-#define DATACONFIG  QReadIni::getInstance()->getIniConfig()
+#define DATACONFIG  QReadIni::getInstance()->getDataConfig()
+#define INICONFIG   QReadIni::getInstance()
 
-typedef struct IniConfig
+
+typedef struct DataConfig
 {
     QString ip;                //IP地址
     QString port;              //端口
@@ -20,23 +22,34 @@ typedef struct IniConfig
     QString dataBaseName;      //数据库名称
     QString userName;          //用户名
     QString passWord;          //密码
-}IniConfig;
+}DataConfig;
+
+typedef struct LoginConfig
+{
+    QString userName;          //登录用户名
+    QString passWord;          //登录密码
+}LoginConfig;
 
 class QReadIni
 {
 public:
     static QReadIni*getInstance();
 
-    void readIni();
+    void readIni();                                     //读取配置文件
+    void writeIni(QString userName, QString passWord);  //写入配置文件
 
-    const IniConfig &getIniConfig();
+    const DataConfig &getDataConfig();
+
+    LoginConfig getLoginConfig() const;
 
 private:
     QReadIni();
 
-    IniConfig iniConfig;
+    DataConfig dataConfig;
+    LoginConfig loginConfig;
 
     static QReadIni*instance;
+
 };
 
 #endif // QREADINI_H

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'logindialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.6.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -55,12 +55,12 @@ public:
         pushButtonCancel->setGeometry(QRect(500, 289, 75, 23));
         label_2 = new QLabel(logindialog);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(374, 220, 70, 22));
+        label_2->setGeometry(QRect(370, 220, 70, 22));
         label_2->setMinimumSize(QSize(50, 22));
         label_2->setStyleSheet(QStringLiteral(""));
         label = new QLabel(logindialog);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(374, 190, 70, 22));
+        label->setGeometry(QRect(370, 190, 70, 22));
         label->setMinimumSize(QSize(50, 22));
         label->setStyleSheet(QStringLiteral(""));
         pushButtonOk = new QPushButton(logindialog);

@@ -7,16 +7,18 @@ namespace Ui {
 class newslices;
 }
 
-class newslices : public QDialog
+class NewSlices : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit newslices(QWidget *parent = 0);
-    ~newslices();
+    explicit NewSlices(QWidget *parent = 0);
+    ~NewSlices();
 
 private slots:
     void on_pushButtonOk_clicked();
+
+    void on_pushButtonCancel_clicked();
 
 private:
     Ui::newslices *ui;

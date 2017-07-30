@@ -83,8 +83,12 @@ bool LoginData::selectData(QString userName, QString passWord)
     {
         return true;
     }
+    else if(userInfo.passWord == passWord && !userInfo.passWord.isEmpty())
+    {
+        return true;
+    }
 
-    return Count > 0 ? true : false;
+    return false;
 }
 
 /***************************更改数据***********************/

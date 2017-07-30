@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'tabregister.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.6.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -21,7 +21,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -53,7 +52,6 @@ public:
     QSpacerItem *horizontalSpacer;
     QTableWidget *tableWidget;
     QWidget *widgetInfo;
-    QStatusBar *statusbar;
     QToolBar *toolBar;
 
     void setupUi(QMainWindow *tabregister)
@@ -107,6 +105,11 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         splitter = new QSplitter(centralwidget);
         splitter->setObjectName(QStringLiteral("splitter"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
+        splitter->setSizePolicy(sizePolicy);
         splitter->setOrientation(Qt::Horizontal);
         widgetTable = new QWidget(splitter);
         widgetTable->setObjectName(QStringLiteral("widgetTable"));
@@ -174,9 +177,6 @@ public:
         verticalLayout->addWidget(splitter);
 
         tabregister->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(tabregister);
-        statusbar->setObjectName(QStringLiteral("statusbar"));
-        tabregister->setStatusBar(statusbar);
         toolBar = new QToolBar(tabregister);
         toolBar->setObjectName(QStringLiteral("toolBar"));
         tabregister->addToolBar(Qt::TopToolBarArea, toolBar);

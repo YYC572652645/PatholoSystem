@@ -1,19 +1,30 @@
 #include "newslices.h"
 #include "ui_newslices.h"
 
-newslices::newslices(QWidget *parent) :
+NewSlices::NewSlices(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::newslices)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle("标本登记");
+
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 }
 
-newslices::~newslices()
+NewSlices::~NewSlices()
 {
     delete ui;
 }
 
-void newslices::on_pushButtonOk_clicked()
+void NewSlices::on_pushButtonOk_clicked()
 {
     registerData.insertData();
+
+    this->close();
+}
+
+void NewSlices::on_pushButtonCancel_clicked()
+{
+    this->close();
 }

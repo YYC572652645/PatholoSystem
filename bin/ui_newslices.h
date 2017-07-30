@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newslices.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.6.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -33,21 +33,25 @@ public:
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
+    QSpacerItem *horizontalSpacer_9;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
     QComboBox *comboBoxType;
     QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label_2;
     QSpinBox *spinBoxPrintNumber;
     QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_8;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_5;
     QLabel *label_3;
     QCheckBox *checkBoxPrint;
     QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_10;
     QPushButton *pushButtonOk;
     QPushButton *pushButtonCancel;
 
@@ -55,14 +59,26 @@ public:
     {
         if (newslices->objectName().isEmpty())
             newslices->setObjectName(QStringLiteral("newslices"));
-        newslices->resize(338, 261);
+        newslices->resize(232, 228);
+        newslices->setMinimumSize(QSize(232, 228));
+        newslices->setMaximumSize(QSize(232, 228));
         groupBox = new QGroupBox(newslices);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(20, 0, 291, 211));
+        groupBox->setGeometry(QRect(10, 10, 211, 161));
+        groupBox->setStyleSheet(QLatin1String("QGroupBox {\n"
+"     border-width:1px;  \n"
+"   border-style:solid;\n"
+"   border-color:darkCyan;  \n"
+"\n"
+"}"));
         verticalLayout_2 = new QVBoxLayout(groupBox);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout->addItem(horizontalSpacer_9);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -88,6 +104,10 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout->addItem(horizontalSpacer_7);
+
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -112,6 +132,10 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_2);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout->addItem(horizontalSpacer_8);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -140,13 +164,17 @@ public:
 
         verticalLayout_2->addLayout(verticalLayout);
 
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_2->addItem(horizontalSpacer_10);
+
         pushButtonOk = new QPushButton(newslices);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
-        pushButtonOk->setGeometry(QRect(60, 220, 80, 30));
+        pushButtonOk->setGeometry(QRect(20, 190, 80, 30));
         pushButtonOk->setMinimumSize(QSize(0, 30));
         pushButtonCancel = new QPushButton(newslices);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
-        pushButtonCancel->setGeometry(QRect(190, 220, 80, 30));
+        pushButtonCancel->setGeometry(QRect(130, 190, 80, 30));
         pushButtonCancel->setMinimumSize(QSize(0, 30));
 
         retranslateUi(newslices);

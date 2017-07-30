@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     singleton/singleton.cpp \
     tabregister/tabregister.cpp \
     tabregister/registerdata.cpp \
-    tabregister/newslices.cpp
+    tabregister/newslices.cpp \
+    tabregister/patientinfo.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -33,13 +34,15 @@ HEADERS  += mainwindow.h \
     globaldef.h \
     tabregister/tabregister.h \
     tabregister/registerdata.h \
-    tabregister/newslices.h
+    tabregister/newslices.h \
+    tabregister/patientinfo.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
     messagebox/messagedialog.ui \
     tabregister/tabregister.ui \
-    tabregister/newslices.ui
+    tabregister/newslices.ui \
+    tabregister/patientinfo.ui
 
 RESOURCES += \
     res.qrc

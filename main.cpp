@@ -7,9 +7,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     LoginDialog login;
+
+    a.setFont(QFont("ZYSong", 10));
+    login.setFont(QFont("ZYSong", 10));
+
     if(login.exec() == QDialog::Accepted)
     {
-        w.show();
+        w.showMaximized();
         return a.exec();
     }
     else

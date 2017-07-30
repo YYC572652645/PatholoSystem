@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>261</height>
+    <width>232</width>
+    <height>228</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>232</width>
+    <height>228</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>232</width>
+    <height>228</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -16,11 +28,19 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>0</y>
-     <width>291</width>
-     <height>211</height>
+     <x>10</x>
+     <y>10</y>
+     <width>211</width>
+     <height>161</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+     border-width:1px;  
+   border-style:solid;
+   border-color:darkCyan;  
+
+}</string>
    </property>
    <property name="title">
     <string/>
@@ -28,6 +48,19 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
@@ -80,6 +113,19 @@
          </spacer>
         </item>
        </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -135,6 +181,19 @@
        </layout>
       </item>
       <item>
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <spacer name="horizontalSpacer_5">
@@ -186,13 +245,26 @@
       </item>
      </layout>
     </item>
+    <item>
+     <spacer name="horizontalSpacer_10">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QPushButton" name="pushButtonOk">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>220</y>
+     <x>20</x>
+     <y>190</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -210,8 +282,8 @@
   <widget class="QPushButton" name="pushButtonCancel">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>220</y>
+     <x>130</x>
+     <y>190</y>
      <width>80</width>
      <height>30</height>
     </rect>
