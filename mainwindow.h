@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 #include "tabregister/tabregister.h"
-
-#pragma execution_character_set("utf-8")
-
+#include "tabsystemset/tabsystemset.h"
+#include "tabmaterial/tabmaterial.h"
+#include "tabnormalslice/tabnormalslice.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,7 +26,10 @@ private:
 
 
 private:
-    TabRegister tabRegister;
+    TabRegister tabRegister;        //登记
+    TabSystemSet tabSystemSet;      //系统设置
+    TabMaterial tabMaterial;        //取材
+    TabNormalSlice tabNormalSlice;  //常规切片
 };
 
 #endif // MAINWINDOW_H

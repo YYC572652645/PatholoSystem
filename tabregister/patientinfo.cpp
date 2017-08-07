@@ -94,6 +94,8 @@ void PatientInfo::initControl()
 
     ui->dateTimeEditJieShou->setDateTime(QDateTime::currentDateTime());
     ui->dateTimeEditSongJian->setDateTime(QDateTime::currentDateTime());
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 

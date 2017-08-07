@@ -4,6 +4,15 @@
 
 #define  DATA(str)   new QTableWidgetItem(str)
 
+#define SETCENTRALWIDGET(widget)               \
+{                                              \
+    if(this->centralWidget())                  \
+    {                                          \
+        this->centralWidget()->setParent(NULL);\
+    }                                          \
+    this->setCentralWidget(widget);            \
+}
+
 namespace GLOBALDEF
 {
 const static int ERROR = -1;                                 //数据库查询失败

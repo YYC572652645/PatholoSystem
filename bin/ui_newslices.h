@@ -94,6 +94,7 @@ public:
         comboBoxType = new QComboBox(groupBox);
         comboBoxType->setObjectName(QStringLiteral("comboBoxType"));
         comboBoxType->setMinimumSize(QSize(90, 0));
+        comboBoxType->setEditable(true);
 
         horizontalLayout->addWidget(comboBoxType);
 
@@ -187,6 +188,11 @@ public:
         newslices->setWindowTitle(QApplication::translate("newslices", "Dialog", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("newslices", "\347\261\273    \345\210\253:", 0));
+        comboBoxType->clear();
+        comboBoxType->insertItems(0, QStringList()
+         << QApplication::translate("newslices", "F \345\206\260\345\206\273", 0)
+         << QApplication::translate("newslices", "A \345\270\270\350\247\204", 0)
+        );
         label_2->setText(QApplication::translate("newslices", "\346\211\223\345\215\260\346\225\260\351\207\217:", 0));
         label_3->setText(QString());
         checkBoxPrint->setText(QApplication::translate("newslices", "\347\241\256\345\256\232\345\220\214\346\227\266\346\211\223\345\215\260", 0));

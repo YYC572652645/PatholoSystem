@@ -97,6 +97,19 @@
             <height>0</height>
            </size>
           </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>F 冰冻</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>A 常规</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>

@@ -172,6 +172,8 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/exclusive_builds.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/default_pre.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/default_pre.prf \
+		../printtemplate/qtpropertybrowser/common.pri \
+		../printtemplate/qtpropertybrowser/src/qtpropertybrowser.pri \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/resolve_config.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/exclusive_builds_post.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/default_post.prf \
@@ -183,6 +185,7 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/moc.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/opengl.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/uic.prf \
+		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/dumpcpp.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/file_copies.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/windows.prf \
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/testcase_targets.prf \
@@ -191,6 +194,9 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 		../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/lex.prf \
 		../PatholoSystem.pro \
 		../../../../SoftWare/QT/5.6/mingw49_32/lib/qtmain.prl \
+		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5PrintSupport.prl \
+		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5AxContainer.prl \
+		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5AxBase.prl \
 		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Widgets.prl \
 		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Gui.prl \
 		../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Sql.prl \
@@ -309,6 +315,8 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/exclusive_builds.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/default_pre.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/default_pre.prf:
+../printtemplate/qtpropertybrowser/common.pri:
+../printtemplate/qtpropertybrowser/src/qtpropertybrowser.pri:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/resolve_config.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/exclusive_builds_post.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/default_post.prf:
@@ -320,6 +328,7 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/moc.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/opengl.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/uic.prf:
+../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/dumpcpp.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/file_copies.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/win32/windows.prf:
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/testcase_targets.prf:
@@ -328,6 +337,9 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/wi
 ../../../../SoftWare/QT/5.6/mingw49_32/mkspecs/features/lex.prf:
 ../PatholoSystem.pro:
 ../../../../SoftWare/QT/5.6/mingw49_32/lib/qtmain.prl:
+../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5PrintSupport.prl:
+../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5AxContainer.prl:
+../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5AxBase.prl:
 ../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Widgets.prl:
 ../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Gui.prl:
 ../../../../SoftWare/QT/5.6/mingw49_32/lib/Qt5Sql.prl:

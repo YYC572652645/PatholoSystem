@@ -121,24 +121,20 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label = new QLabel(widgetTable);
         label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(0, 26));
 
         horizontalLayout->addWidget(label);
 
         lineEdit = new QLineEdit(widgetTable);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 26));
 
         horizontalLayout->addWidget(lineEdit);
 
         pushButtonFind = new QPushButton(widgetTable);
         pushButtonFind->setObjectName(QStringLiteral("pushButtonFind"));
-        pushButtonFind->setMinimumSize(QSize(100, 0));
         pushButtonFind->setStyleSheet(QStringLiteral(""));
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/image/image/serch.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButtonFind->setIcon(icon8);
-        pushButtonFind->setIconSize(QSize(20, 20));
 
         horizontalLayout->addWidget(pushButtonFind);
 
@@ -179,6 +175,8 @@ public:
         tabregister->setCentralWidget(centralwidget);
         toolBar = new QToolBar(tabregister);
         toolBar->setObjectName(QStringLiteral("toolBar"));
+        toolBar->setMovable(false);
+        toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         tabregister->addToolBar(Qt::TopToolBarArea, toolBar);
 
         toolBar->addAction(actionNewNumber);

@@ -34,35 +34,16 @@
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>26</height>
-               </size>
-              </property>
               <property name="text">
                <string>病理号：</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>26</height>
-               </size>
-              </property>
-             </widget>
+             <widget class="QLineEdit" name="lineEdit"/>
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonFind">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
@@ -72,12 +53,6 @@
               <property name="icon">
                <iconset resource="../res.qrc">
                 <normaloff>:/image/image/serch.png</normaloff>:/image/image/serch.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
               </property>
              </widget>
             </item>
@@ -137,6 +112,12 @@
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>

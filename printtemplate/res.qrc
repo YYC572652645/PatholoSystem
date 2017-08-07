@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>image/delete.ico</file>
+        <file>image/plus.ico</file>
+        <file>image/delete.jpg</file>
+    </qresource>
+</RCC>

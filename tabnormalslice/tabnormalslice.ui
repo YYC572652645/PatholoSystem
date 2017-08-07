@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>tabnormalslice</class>
+ <widget class="QMainWindow" name="tabnormalslice">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1207</width>
+    <height>705</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="widgetTable" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>编号：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEditNumber"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonFind">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>    查找</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../res.qrc">
+                <normaloff>:/image/image/serch.png</normaloff>:/image/image/serch.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>扫描时打印数量;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxPrintNumber"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxDyeingType">
+              <property name="text">
+               <string>染色类型</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDyeingType"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxDyeingIndex">
+              <property name="text">
+               <string>染色指标</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDyeingIndex"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxSlicePerson">
+              <property name="text">
+               <string>切片人</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxSlicePerson"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxDyeingPerson">
+              <property name="text">
+               <string>染色人</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDyeingPerson"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxOther">
+              <property name="text">
+               <string>其他</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEditOther"/>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget">
+            <column>
+             <property name="text">
+              <string>编号</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>其他</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>组织名称</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>已打印</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>打印数量</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>染色类型</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>染色指标</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>取材人</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>切片日期</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>切片人</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>染色日期</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNewSlice"/>
+   <addaction name="actionNewMore"/>
+   <addaction name="actionImportTxt"/>
+   <addaction name="separator"/>
+   <addaction name="actionPrintLabel"/>
+   <addaction name="actionPrintMoreLabel"/>
+   <addaction name="separator"/>
+   <addaction name="actionDeleteInfo"/>
+   <addaction name="actionClearInfo"/>
+   <addaction name="separator"/>
+   <addaction name="actionExtendExcel"/>
+   <addaction name="actionPrintTemplate"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="actionNewSlice">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/filenew.png</normaloff>:/image/image/filenew.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建切片</string>
+   </property>
+   <property name="toolTip">
+    <string>新建切片</string>
+   </property>
+  </action>
+  <action name="actionNewMore">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/newmore.png</normaloff>:/image/image/newmore.png</iconset>
+   </property>
+   <property name="text">
+    <string>批量新增</string>
+   </property>
+   <property name="toolTip">
+    <string>批量新增</string>
+   </property>
+  </action>
+  <action name="actionPrintLabel">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/print.jpg</normaloff>:/image/image/print.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>打印标签</string>
+   </property>
+   <property name="toolTip">
+    <string>打印标签</string>
+   </property>
+  </action>
+  <action name="actionPrintMoreLabel">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/printmore.jpg</normaloff>:/image/image/printmore.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>批量打印</string>
+   </property>
+   <property name="toolTip">
+    <string>批量打印</string>
+   </property>
+  </action>
+  <action name="actionDeleteInfo">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/critical.png</normaloff>:/image/image/critical.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="toolTip">
+    <string>删除</string>
+   </property>
+  </action>
+  <action name="actionClearInfo">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/edit-clear.png</normaloff>:/image/image/edit-clear.png</iconset>
+   </property>
+   <property name="text">
+    <string>清空</string>
+   </property>
+   <property name="toolTip">
+    <string>清空</string>
+   </property>
+  </action>
+  <action name="actionExtendExcel">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/excel.png</normaloff>:/image/image/excel.png</iconset>
+   </property>
+   <property name="text">
+    <string>导出</string>
+   </property>
+   <property name="toolTip">
+    <string>导出</string>
+   </property>
+  </action>
+  <action name="actionPrintTemplate">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/tempalte.jpg</normaloff>:/image/image/tempalte.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>打印模板</string>
+   </property>
+   <property name="toolTip">
+    <string>打印模板</string>
+   </property>
+  </action>
+  <action name="actionImportTxt">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/txt.jpg</normaloff>:/image/image/txt.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>导入</string>
+   </property>
+   <property name="toolTip">
+    <string>导入</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

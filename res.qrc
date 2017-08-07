@@ -24,5 +24,6 @@
         <file>image/printmore.jpg</file>
         <file>image/tempalte.jpg</file>
         <file>image/print.jpg</file>
+        <file>image/txt.jpg</file>
     </qresource>
 </RCC>

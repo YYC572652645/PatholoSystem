@@ -6,6 +6,8 @@
 #include "registerdata.h"
 #include "newslices.h"
 #include "patientinfo.h"
+#include "newmoreslices.h"
+#include "printtemplate/templatesetup.h"
 namespace Ui {
 class tabregister;
 }
@@ -22,6 +24,10 @@ public:
 private slots:
     void on_actionNewNumber_triggered();
 
+    void on_actionNewMoreNumber_triggered();
+
+    void on_actionPrintTemplate_triggered();
+
 private:
     Ui::tabregister *ui;
 
@@ -30,9 +36,12 @@ private:
     void initData();    //初始化数据
 
 private:
-    RegisterData registerData;  //登记数据库
-    NewSlices newSlices;        //新编号
-    PatientInfo patientInfo;    //患者信息
+    RegisterData registerData;   //登记数据库
+    PatientInfo patientInfo;     //患者信息
+
+    NewSlices newSlices;         //新编号
+    NewMoreSlices newMoreSlices; //批量编号
+    TemplateSetUp templateSetUp; //打印模板
 
 };
 

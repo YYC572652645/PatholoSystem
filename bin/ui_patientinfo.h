@@ -183,7 +183,7 @@ public:
     {
         if (patientinfo->objectName().isEmpty())
             patientinfo->setObjectName(QStringLiteral("patientinfo"));
-        patientinfo->resize(594, 600);
+        patientinfo->resize(494, 600);
         actionSavePatientInfo = new QAction(patientinfo);
         actionSavePatientInfo->setObjectName(QStringLiteral("actionSavePatientInfo"));
         QIcon icon;
@@ -200,6 +200,11 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
+        tabWidget->setSizePolicy(sizePolicy);
         tabBaseInfo = new QWidget();
         tabBaseInfo->setObjectName(QStringLiteral("tabBaseInfo"));
         verticalLayout_3 = new QVBoxLayout(tabBaseInfo);
@@ -233,6 +238,7 @@ public:
         comboBoxSex->setObjectName(QStringLiteral("comboBoxSex"));
         comboBoxSex->setMinimumSize(QSize(150, 0));
         comboBoxSex->setMaximumSize(QSize(150, 16777215));
+        comboBoxSex->setEditable(true);
 
         horizontalLayout->addWidget(comboBoxSex);
 
@@ -328,6 +334,7 @@ public:
         comboBoxNation->setObjectName(QStringLiteral("comboBoxNation"));
         comboBoxNation->setMinimumSize(QSize(150, 0));
         comboBoxNation->setMaximumSize(QSize(150, 16777215));
+        comboBoxNation->setEditable(true);
 
         horizontalLayout_4->addWidget(comboBoxNation);
 
@@ -365,6 +372,7 @@ public:
         comboBoxMarry->setObjectName(QStringLiteral("comboBoxMarry"));
         comboBoxMarry->setMinimumSize(QSize(150, 0));
         comboBoxMarry->setMaximumSize(QSize(150, 16777215));
+        comboBoxMarry->setEditable(true);
 
         horizontalLayout_12->addWidget(comboBoxMarry);
 
@@ -402,6 +410,7 @@ public:
         comboBoxMoneyType->setObjectName(QStringLiteral("comboBoxMoneyType"));
         comboBoxMoneyType->setMinimumSize(QSize(150, 0));
         comboBoxMoneyType->setMaximumSize(QSize(150, 16777215));
+        comboBoxMoneyType->setEditable(true);
 
         horizontalLayout_5->addWidget(comboBoxMoneyType);
 
@@ -907,6 +916,7 @@ public:
         patientinfo->setCentralWidget(centralwidget);
         toolBar = new QToolBar(patientinfo);
         toolBar->setObjectName(QStringLiteral("toolBar"));
+        toolBar->setMovable(false);
         patientinfo->addToolBar(Qt::TopToolBarArea, toolBar);
 
         toolBar->addAction(actionSavePatientInfo);
@@ -914,7 +924,7 @@ public:
 
         retranslateUi(patientinfo);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(patientinfo);

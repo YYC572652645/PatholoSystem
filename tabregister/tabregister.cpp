@@ -11,6 +11,8 @@ TabRegister::TabRegister(QWidget *parent) :
 
     this->initControl();
     this->initData();
+
+    newSlices.setParent(parent);
 }
 
 TabRegister::~TabRegister()
@@ -40,9 +42,10 @@ void TabRegister::initControl()
     ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
 
     //添加界面
-    QVBoxLayout *vBoxLayout = new QVBoxLayout();
+    QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->addWidget(&patientInfo);
     ui->widgetInfo->setLayout(vBoxLayout);
+
 }
 
 /*******************   初始化数据    ***********************/
@@ -79,10 +82,19 @@ void TabRegister::initData()
 
         ui->tableWidget->setItem(i, 4, DATA(registerData.registerInfo.at(i).createTime));     //创建时间
     }
-
 }
 
 void TabRegister::on_actionNewNumber_triggered()
 {
     newSlices.show();
+}
+
+void TabRegister::on_actionNewMoreNumber_triggered()
+{
+    newMoreSlices.show();
+}
+
+void TabRegister::on_actionPrintTemplate_triggered()
+{
+    templateSetUp.show();
 }
