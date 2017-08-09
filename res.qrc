@@ -26,4 +26,7 @@
         <file>image/print.jpg</file>
         <file>image/txt.jpg</file>
     </qresource>
+    <qresource prefix="/qss">
+        <file>qss/style.qss</file>
+    </qresource>
 </RCC>

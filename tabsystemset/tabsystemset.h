@@ -5,7 +5,8 @@
 #include <QListWidget>
 #include <QAction>
 #include "otherwidget/typeset.h"
-
+#include "otherwidget/coderole.h"
+#include "tabsystemdata.h"
 namespace Ui {
 class tabsystemset;
 }
@@ -37,6 +38,8 @@ private:
 
 private:
     TypeSet typeSet;
+    CodeRole codeRole;
+
 };
 
 #endif // TABSYSTEMSET_H

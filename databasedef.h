@@ -12,32 +12,44 @@
 namespace DAtABASEDEF
 {
 
-    //user数据库表
-    enum USER
-    {
-        USERID,
-        USERNO,
-        USERNAME,
-        PASSWORD,
-        ISADMINISTRATOR,
-        UNUSED,
-        REMARK,
-    };
+//用户数据库表
+enum USER
+{
+    USERID,
+    USERNO,
+    USERNAME,
+    PASSWORD,
+    ISADMINISTRATOR,
+    UNUSED,
+    REMARK,
+};
 
+//登记数据库表
+enum REG
+{
+    REGID,
+    REGPCODE,
+    REGSN,
+    REGPRINTQUANTITY,
+    REGPRINTED,
+    REGCREATETIME,
+    REGUSERID,
+};
 
-    enum REG
-    {
-        REGID,
-        REGPCODE,
-        REGSN,
-        REGPRINTQUANTITY,
-        REGPRINTED,
-        REGCREATETIME,
-        REGUSERID,
-    };
+//起始病理号设置数据库表
+enum CODEBEGINSET
+{
+    CODEBEGINNAME,
+    CODEBEGINVALUE,
+};
 
-
-
+//标本类别设置
+enum CODETYPESET
+{
+    CODETYPEID,
+    CODETYPEABBR,
+    CODETYPENAME,
+};
 
 
 }

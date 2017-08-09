@@ -23,6 +23,12 @@ const static QString FAILIMAGE = ":/image/image/fail.png";   //失败图片
 const static QString SYSTEMINFO = "系统提示";                 //系统提示
 
 
+enum DATATYPE
+{
+    TYPEINSERT,
+    TYPEUPDATE,
+};
+
 
 }
 

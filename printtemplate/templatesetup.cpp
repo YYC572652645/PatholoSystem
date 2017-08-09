@@ -12,6 +12,8 @@ TemplateSetUp::TemplateSetUp(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("打印模板");
+
     this->initWidgetPaint();      //初始化绘图控件
     this->initWidgetProperty();   //初始化属性页
     this->initConnect();          //连接信号与槽

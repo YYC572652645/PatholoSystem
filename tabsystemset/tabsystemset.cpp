@@ -39,8 +39,6 @@ void TabSystemSet::initControl()
 
     listWidget->setFont(QFont("ZYSong", 12)); //设置字体大小
 
-    listWidget->setStyleSheet("QListWidget{background-color: rgb(134,183,200);}");
-
     //连接信号和槽
     connect(listWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(listWidgetClicked(QModelIndex)));
 }
@@ -49,22 +47,24 @@ void TabSystemSet::listWidgetClicked(const QModelIndex &index)
 {
     switch(index.row())
     {
-    case 0: SETCENTRALWIDGET(ui->centralwidget); ui->centralwidget->show(); break;
-    case 1: SETCENTRALWIDGET(&typeSet);break;
-    case 2: break;
-    case 3: break;
-    case 4: break;
-    case 5: break;
-    case 6: break;
-    case 7: break;
-    case 8: break;
+    case 0: SETCENTRALWIDGET(ui->centralwidget); ui->centralwidget->show(); break;  //起始病理号设置
+    case 1: SETCENTRALWIDGET(&typeSet) typeSet.showDialog();                break;  //标本类别设置
+    case 2:                                                                 break;  //打印参数设置
+    case 3: SETCENTRALWIDGET(&codeRole);                                    break;  //编码规则设置
+    case 4:                                                                 break;  //免疫组化染色类型设置
+    case 5:                                                                 break;  //免疫组化染色指标设置
+    case 6:                                                                 break;  //特染染色类型设置
+    case 7:                                                                 break;  //特染染色指标设置
+    case 8:                                                                 break;  //用户设置
     }
 
 }
 
 void TabSystemSet::on_pushButtonOk_clicked()
 {
-    ui->centralwidget->hide();
+    SYSTEMDATA->codeBeginUpdateData("PCodeBeginSn", QString::number(ui->spinBox->value()));  //更新数据库数据
+
+    ui->centralwidget->hide();                                                                //将该界面隐藏
 }
 
 void TabSystemSet::on_pushButtonCancel_clicked()

@@ -16,7 +16,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -147,9 +146,7 @@ public:
     QLabel *label_27;
     QLineEdit *lineEditAgo;
     QSpacerItem *horizontalSpacer_31;
-    QSpacerItem *horizontalSpacer_32;
-    QGroupBox *groupBox;
-    QVBoxLayout *verticalLayout_5;
+    QSpacerItem *horizontalSpacer_41;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_18;
     QLabel *label_32;
@@ -163,6 +160,7 @@ public:
     QLabel *label_34;
     QLineEdit *lineEditBornHistory;
     QSpacerItem *horizontalSpacer_39;
+    QHBoxLayout *horizontalLayout_21;
     QSpacerItem *horizontalSpacer_35;
     QHBoxLayout *horizontalLayout_16;
     QLabel *label_28;
@@ -177,6 +175,7 @@ public:
     QLabel *label_30;
     QTextEdit *textEditTiZheng;
     QSpacerItem *horizontalSpacer_40;
+    QSpacerItem *horizontalSpacer_32;
     QToolBar *toolBar;
 
     void setupUi(QMainWindow *patientinfo)
@@ -761,25 +760,20 @@ public:
 
         verticalLayout_6->addLayout(horizontalLayout_15);
 
-        horizontalSpacer_32 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_41 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_6->addItem(horizontalSpacer_32);
+        verticalLayout_6->addItem(horizontalSpacer_41);
 
-        groupBox = new QGroupBox(tabIllnessHistory);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setStyleSheet(QStringLiteral(""));
-        verticalLayout_5 = new QVBoxLayout(groupBox);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         horizontalLayout_18 = new QHBoxLayout();
         horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
-        label_32 = new QLabel(groupBox);
+        label_32 = new QLabel(tabIllnessHistory);
         label_32->setObjectName(QStringLiteral("label_32"));
 
         horizontalLayout_18->addWidget(label_32);
 
-        lineEditChuCao = new QLineEdit(groupBox);
+        lineEditChuCao = new QLineEdit(tabIllnessHistory);
         lineEditChuCao->setObjectName(QStringLiteral("lineEditChuCao"));
         lineEditChuCao->setMinimumSize(QSize(300, 0));
 
@@ -794,12 +788,12 @@ public:
 
         horizontalLayout_19 = new QHBoxLayout();
         horizontalLayout_19->setObjectName(QStringLiteral("horizontalLayout_19"));
-        label_33 = new QLabel(groupBox);
+        label_33 = new QLabel(tabIllnessHistory);
         label_33->setObjectName(QStringLiteral("label_33"));
 
         horizontalLayout_19->addWidget(label_33);
 
-        lineEditLast = new QLineEdit(groupBox);
+        lineEditLast = new QLineEdit(tabIllnessHistory);
         lineEditLast->setObjectName(QStringLiteral("lineEditLast"));
         lineEditLast->setMinimumSize(QSize(300, 0));
 
@@ -814,12 +808,12 @@ public:
 
         horizontalLayout_20 = new QHBoxLayout();
         horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
-        label_34 = new QLabel(groupBox);
+        label_34 = new QLabel(tabIllnessHistory);
         label_34->setObjectName(QStringLiteral("label_34"));
 
         horizontalLayout_20->addWidget(label_34);
 
-        lineEditBornHistory = new QLineEdit(groupBox);
+        lineEditBornHistory = new QLineEdit(tabIllnessHistory);
         lineEditBornHistory->setObjectName(QStringLiteral("lineEditBornHistory"));
         lineEditBornHistory->setMinimumSize(QSize(300, 0));
 
@@ -833,10 +827,12 @@ public:
         verticalLayout_4->addLayout(horizontalLayout_20);
 
 
-        verticalLayout_5->addLayout(verticalLayout_4);
+        verticalLayout_6->addLayout(verticalLayout_4);
 
+        horizontalLayout_21 = new QHBoxLayout();
+        horizontalLayout_21->setObjectName(QStringLiteral("horizontalLayout_21"));
 
-        verticalLayout_6->addWidget(groupBox);
+        verticalLayout_6->addLayout(horizontalLayout_21);
 
         horizontalSpacer_35 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -909,6 +905,10 @@ public:
 
         verticalLayout_7->addLayout(verticalLayout_6);
 
+        horizontalSpacer_32 = new QSpacerItem(451, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_7->addItem(horizontalSpacer_32);
+
         tabWidget->addTab(tabIllnessHistory, QString());
 
         verticalLayout->addWidget(tabWidget);
@@ -924,7 +924,7 @@ public:
 
         retranslateUi(patientinfo);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(patientinfo);
@@ -982,13 +982,12 @@ public:
         label_21->setText(QApplication::translate("patientinfo", "\346\240\207\346\234\254\344\273\266\346\225\260\357\274\232", 0));
         label_22->setText(QApplication::translate("patientinfo", "\345\233\272\345\256\232\346\226\271\345\274\217\357\274\232", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabBaseInfo), QApplication::translate("patientinfo", "\345\237\272\346\234\254\344\277\241\346\201\257", 0));
-        label_25->setText(QApplication::translate("patientinfo", "      \345\256\266\346\227\217\347\227\205\345\217\262\357\274\232", 0));
-        label_26->setText(QApplication::translate("patientinfo", "      \344\274\240\346\237\223\347\227\205\345\217\262\357\274\232", 0));
-        label_27->setText(QApplication::translate("patientinfo", "      \346\227\242\345\276\200\347\227\205\345\217\262\357\274\232", 0));
-        groupBox->setTitle(QApplication::translate("patientinfo", "\346\234\210\347\273\217\345\217\262", 0));
-        label_32->setText(QApplication::translate("patientinfo", "        \345\210\235\346\275\256\357\274\232", 0));
-        label_33->setText(QApplication::translate("patientinfo", "    \346\234\253\346\254\241\346\234\210\347\273\217\357\274\232", 0));
-        label_34->setText(QApplication::translate("patientinfo", "      \347\224\237\350\202\262\345\217\262\357\274\232", 0));
+        label_25->setText(QApplication::translate("patientinfo", "     \345\256\266\346\227\217\347\227\205\345\217\262\357\274\232", 0));
+        label_26->setText(QApplication::translate("patientinfo", "     \344\274\240\346\237\223\347\227\205\345\217\262\357\274\232", 0));
+        label_27->setText(QApplication::translate("patientinfo", "     \346\227\242\345\276\200\347\227\205\345\217\262\357\274\232", 0));
+        label_32->setText(QApplication::translate("patientinfo", "         \345\210\235\346\275\256\357\274\232", 0));
+        label_33->setText(QApplication::translate("patientinfo", "     \346\234\253\346\254\241\346\234\210\347\273\217\357\274\232", 0));
+        label_34->setText(QApplication::translate("patientinfo", "       \347\224\237\350\202\262\345\217\262\357\274\232", 0));
         label_28->setText(QApplication::translate("patientinfo", "         \344\270\273\350\257\211\357\274\232", 0));
         label_29->setText(QApplication::translate("patientinfo", "       \347\216\260\347\227\205\345\217\262\357\274\232", 0));
         label_30->setText(QApplication::translate("patientinfo", "\344\275\223\345\276\201\345\217\212\344\270\264\345\272\212\346\243\200\346\237\245\357\274\232", 0));

@@ -1,8 +1,6 @@
 ﻿#ifndef MESSAGEDIALOG_H
 #define MESSAGEDIALOG_H
 
-#pragma execution_character_set("utf-8")
-
 #include <QDialog>
 #include <QToolButton>
 #include <QPushButton>

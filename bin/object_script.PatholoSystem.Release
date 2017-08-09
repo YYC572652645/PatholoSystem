@@ -37,6 +37,9 @@ INPUT(
 ./release\rscode.o
 ./release\split.o
 ./release\qselectwidget.o
+./release\tabsystemdata.o
+./release\coderole.o
+./release\typesetdialog.o
 ./release\qrc_qtpropertybrowser.o
 ./release\qrc_res.o
 ./release\moc_qtpropertybrowserutils_p.o
@@ -55,4 +58,6 @@ INPUT(
 ./release\moc_movewidgetcontrol.o
 ./release\moc_qcustomplot.o
 ./release\moc_qselectwidget.o
+./release\moc_coderole.o
+./release\moc_typesetdialog.o
 );

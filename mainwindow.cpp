@@ -23,5 +23,4 @@ void MainWindow::initControl()
     ui->tabWidgetTotal->addTab(&tabMaterial,  "取材");
     ui->tabWidgetTotal->addTab(&tabNormalSlice,"常规切片");
     ui->tabWidgetTotal->addTab(&tabSystemSet, "系统设置");
-
 }

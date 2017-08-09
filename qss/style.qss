@@ -1,0 +1,99 @@
+QTableWidget::item:selected:active
+{
+background-color: rgb(20,150,200);
+color:black;
+}
+
+QTableWidget::item:selected:!active
+{
+background-color: rgb(20,150,200);
+color:black;
+}
+
+QTableView QHeaderView::section
+{
+background-color:#EAE9EE
+}
+
+QGroupBox
+{
+border-radius: 5px;
+border-width: 1px;
+border-style: solid;
+border-color: darkCyan;
+}
+
+QGroupBox::title
+{
+subcontrol-origin: margin;
+subcontrol-position: top center;
+padding: 0 3px;
+}
+
+QListWidget
+{
+background-color: rgb(134,183,200);
+}
+
+QProgressBar
+{
+border: 2px solid grey;
+border-radius: 5px;
+text-align: center;
+}
+
+QProgressBar::chunk
+{
+background-color: #CD96CD;
+width: 10px;
+margin: 0.5px;
+}
+
+QMenuBar
+{
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 lightgray, stop:1 darkgray);
+}
+
+QMenuBar::item
+{
+spacing: 3px;
+padding: 1px 4px;
+background: transparent;
+border-radius: 4px;
+}
+
+QMenuBar::item:selected
+{
+background: #a8a8a8;
+}
+
+QMenuBar::item:pressed
+{
+background: #888888;
+}
+
+QStatusBar
+{
+background: brown;
+}
+
+QStatusBar::item
+{
+border: 1px solid #05B8CC;
+border-radius: 3px;
+}
+
+QToolBar
+{
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0.7, y2: 0.7,stop: 0.3 rgb(40,150,200,160),stop: 0.6 rgb(40,150,200,220),stop:1 rgb(40,150,200,255));
+}
+
+QMenu
+{
+background-color:qlineargradient(x1: 0, y1: 0, x2: 0.7, y2: 0.7,stop: 0.5 #FF92BB, stop: 1 white);
+}
+
+QMenu::item:selected
+{
+background-color:rgb(40,150,200);
+}

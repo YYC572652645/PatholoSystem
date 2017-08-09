@@ -44,7 +44,10 @@ SOURCES += main.cpp\
     printtemplate/QRcode/qrspec.c \
     printtemplate/QRcode/rscode.c \
     printtemplate/QRcode/split.c \
-    printtemplate/qselectwidget/qselectwidget.cpp
+    printtemplate/qselectwidget/qselectwidget.cpp \
+    tabsystemset/tabsystemdata.cpp \
+    tabsystemset/otherwidget/coderole.cpp \
+    tabsystemset/otherwidget/typesetdialog.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -99,7 +102,10 @@ HEADERS  += mainwindow.h \
     printtemplate/QRcode/qrspec.h \
     printtemplate/QRcode/rscode.h \
     printtemplate/QRcode/split.h \
-    printtemplate/qselectwidget/qselectwidget.h
+    printtemplate/qselectwidget/qselectwidget.h \
+    tabsystemset/tabsystemdata.h \
+    tabsystemset/otherwidget/coderole.h \
+    tabsystemset/otherwidget/typesetdialog.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -112,7 +118,9 @@ FORMS  += mainwindow.ui \
     tabsystemset/otherwidget/typeset.ui \
     tabmaterial/tabmaterial.ui \
     tabnormalslice/tabnormalslice.ui \
-    printtemplate/templatesetup.ui
+    printtemplate/templatesetup.ui \
+    tabsystemset/otherwidget/coderole.ui \
+    tabsystemset/otherwidget/typesetdialog.ui
 
 RESOURCES += \
     res.qrc
