@@ -7,8 +7,8 @@ CodeRole::CodeRole(QWidget *parent) :
 {
     ui->setupUi(this);
 
-     ui->groupBoxBingLi->setFont(QFont("ZYSong", 12)); //设置字体大小
-     ui->groupBoxQuCai->setFont(QFont("ZYSong", 12));  //设置字体大小
+    ui->groupBoxBingLi->setFont(QFont("ZYSong", 12)); //设置字体大小
+    ui->groupBoxQuCai->setFont(QFont("ZYSong", 12));  //设置字体大小
 }
 
 CodeRole::~CodeRole()
@@ -25,6 +25,8 @@ void CodeRole::controlChanged()
 /****************   初始化信号和槽   *******************/
 void CodeRole::initConnect()
 {
- connect(ui->lineEditPrefix, SIGNAL(textChanged(QString)), this,SLOT(controlChanged())) ;
+    connect(ui->lineEditPrefix, SIGNAL(textChanged(QString)), this,SLOT(controlChanged()));
+    connect(ui->lineEditPrefix, SIGNAL(textChanged(QString)), this,SLOT(controlChanged()));
+    connect(ui->lineEditPrefix, SIGNAL(textChanged(QString)), this,SLOT(controlChanged()));
 }
 
