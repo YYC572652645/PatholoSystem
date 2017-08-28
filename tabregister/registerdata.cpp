@@ -40,19 +40,48 @@ bool RegisterData::dataCnn()
 }
 
 /***************************插入数据***********************/
-bool RegisterData::insertData()
+bool RegisterData::insertData(RegisterInfo & data)
 {
     if(!db.isOpen())
     {
         db.open();
     }
     QSqlQuery query;
-    QString Str = QString("insert into table values('','');");
-    bool success = query.exec(Str);  //执行sql语句
+
+    QString str = QString("insert into Reg values('");
+    str +=  data.id            + "','";
+    str +=  data.pCode         + "','";
+    str +=  data.sn            + "','";
+    str +=  data.printQuantity + "','";
+    str +=  data.printed       + "','";
+    str +=  data.createTime    + "','";
+    str +=  data.userId        + "');";
+
+    bool success = query.exec(str);  //执行sql语句
 
     db.close();
 
     return success;
+}
+
+int RegisterData::selectMaxId()
+{
+    int maxId = 0;
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("select max(Id) from Reg;");
+
+    bool success = query.exec(str);  //执行sql语句
+
+    if(!success)  return GLOBALDEF::ERROR;
+
+    if(query.next()) maxId = query.value(0).toInt();
+
+    db.close();
+
+    return maxId;
 }
 
 /***************************查询数据***********************/
@@ -74,15 +103,16 @@ int RegisterData::selectData()
     while(query.next())        //挨个遍历数据
     {
         RegisterInfo data;
-        data.id = query.value(DAtABASEDEF::REGID).toString();
-        data.pCode = query.value(DAtABASEDEF::REGPCODE).toString();
-        data.sn = query.value(DAtABASEDEF::REGSN).toString();
-        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
-        data.printed = query.value(DAtABASEDEF::REGPRINTED).toString();
-        data.createTime = query.value(DAtABASEDEF::REGCREATETIME).toString();
-        data.userId = query.value(DAtABASEDEF::REGUSERID).toString();
 
-        registerInfo<<data;
+        data.id            = query.value(DAtABASEDEF::REGID).toString();
+        data.pCode         = query.value(DAtABASEDEF::REGPCODE).toString();
+        data.sn            = query.value(DAtABASEDEF::REGSN).toString();
+        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
+        data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
+        data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
+        data.userId        = query.value(DAtABASEDEF::REGUSERID).toString();
+
+        registerInfo << data;
 
         count ++;
     }

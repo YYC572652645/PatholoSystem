@@ -102,7 +102,7 @@ public:
     {
         if (coderole->objectName().isEmpty())
             coderole->setObjectName(QStringLiteral("coderole"));
-        coderole->resize(1062, 613);
+        coderole->resize(1062, 639);
         verticalLayout_8 = new QVBoxLayout(coderole);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         horizontalLayout_12 = new QHBoxLayout();
@@ -148,6 +148,7 @@ public:
 
         checkBoxType = new QCheckBox(groupBoxBingLi);
         checkBoxType->setObjectName(QStringLiteral("checkBoxType"));
+        checkBoxType->setChecked(true);
 
         horizontalLayout_6->addWidget(checkBoxType);
 
@@ -161,11 +162,13 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         checkBoxYear = new QCheckBox(groupBox_2);
         checkBoxYear->setObjectName(QStringLiteral("checkBoxYear"));
+        checkBoxYear->setChecked(true);
 
         horizontalLayout->addWidget(checkBoxYear);
 
         radioButtonTwo = new QRadioButton(groupBox_2);
         radioButtonTwo->setObjectName(QStringLiteral("radioButtonTwo"));
+        radioButtonTwo->setChecked(true);
 
         horizontalLayout->addWidget(radioButtonTwo);
 
@@ -187,11 +190,13 @@ public:
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         checkBoxMonth = new QCheckBox(groupBoxBingLi);
         checkBoxMonth->setObjectName(QStringLiteral("checkBoxMonth"));
+        checkBoxMonth->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBoxMonth);
 
         checkBoxDay = new QCheckBox(groupBoxBingLi);
         checkBoxDay->setObjectName(QStringLiteral("checkBoxDay"));
+        checkBoxDay->setChecked(true);
 
         horizontalLayout_5->addWidget(checkBoxDay);
 
@@ -285,11 +290,13 @@ public:
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         checkBoxBingLiNumber = new QCheckBox(groupBoxQuCai);
         checkBoxBingLiNumber->setObjectName(QStringLiteral("checkBoxBingLiNumber"));
+        checkBoxBingLiNumber->setChecked(true);
 
         horizontalLayout_9->addWidget(checkBoxBingLiNumber);
 
         checkBoxHyphen = new QCheckBox(groupBoxQuCai);
         checkBoxHyphen->setObjectName(QStringLiteral("checkBoxHyphen"));
+        checkBoxHyphen->setChecked(true);
 
         horizontalLayout_9->addWidget(checkBoxHyphen);
 
@@ -409,6 +416,7 @@ public:
         coderole->setWindowTitle(QApplication::translate("coderole", "Form", 0));
         groupBoxBingLi->setTitle(QApplication::translate("coderole", "\347\227\205\347\220\206\345\217\267\347\274\226\347\240\201\350\247\204\345\210\231\357\274\232", 0));
         label->setText(QApplication::translate("coderole", "\345\211\215\347\274\200\357\274\232", 0));
+        lineEditPrefix->setText(QApplication::translate("coderole", "F", 0));
         checkBoxType->setText(QApplication::translate("coderole", "\347\261\273\345\210\253", 0));
         groupBox_2->setTitle(QString());
         checkBoxYear->setText(QApplication::translate("coderole", "\345\271\264\344\273\275", 0));
@@ -417,6 +425,7 @@ public:
         checkBoxMonth->setText(QApplication::translate("coderole", "\346\234\210\344\273\275", 0));
         checkBoxDay->setText(QApplication::translate("coderole", "\346\227\245", 0));
         label_2->setText(QApplication::translate("coderole", "\351\227\264\351\232\224\347\254\246\357\274\232", 0));
+        lineEditSpin->setText(QApplication::translate("coderole", "-", 0));
         label_3->setText(QApplication::translate("coderole", "\346\265\201\346\260\264\345\217\267\351\225\277\345\272\246\357\274\232", 0));
         label_4->setText(QApplication::translate("coderole", "\347\274\226\347\240\201\346\240\267\344\276\213\357\274\232", 0));
         groupBoxQuCai->setTitle(QApplication::translate("coderole", "\345\217\226\346\235\220\347\274\226\347\240\201\350\247\204\345\210\231\357\274\232", 0));

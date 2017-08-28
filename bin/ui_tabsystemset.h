@@ -50,12 +50,15 @@ public:
         spinBox = new QSpinBox(centralwidget);
         spinBox->setObjectName(QStringLiteral("spinBox"));
         spinBox->setGeometry(QRect(170, 100, 121, 22));
+        spinBox->setMaximum(1000000000);
         pushButtonOk = new QPushButton(centralwidget);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
-        pushButtonOk->setGeometry(QRect(80, 170, 80, 20));
+        pushButtonOk->setGeometry(QRect(80, 170, 100, 20));
+        pushButtonOk->setMinimumSize(QSize(100, 0));
         pushButtonCancel = new QPushButton(centralwidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
-        pushButtonCancel->setGeometry(QRect(200, 170, 80, 20));
+        pushButtonCancel->setGeometry(QRect(200, 170, 100, 20));
+        pushButtonCancel->setMinimumSize(QSize(100, 0));
         tabsystemset->setCentralWidget(centralwidget);
         toolBar = new QToolBar(tabsystemset);
         toolBar->setObjectName(QStringLiteral("toolBar"));

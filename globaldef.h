@@ -13,6 +13,15 @@
     this->setCentralWidget(widget);            \
 }
 
+#define SAFEDELETE(pointer) \
+{                           \
+    if(pointer)             \
+    {                       \
+        delete pointer;     \
+    }                       \
+    pointer = NULL;         \
+}
+
 namespace GLOBALDEF
 {
 const static int ERROR = -1;                                 //数据库查询失败

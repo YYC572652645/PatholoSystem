@@ -7,6 +7,8 @@
 #include "otherwidget/typeset.h"
 #include "otherwidget/coderole.h"
 #include "tabsystemdata.h"
+
+
 namespace Ui {
 class tabsystemset;
 }
@@ -29,16 +31,20 @@ private slots:
 private:
     Ui::tabsystemset *ui;
 
-    void initControl();
-
+    void initControl();      //初始化控件
 
 private:
-    QListWidget *listWidget;
-
+    QListWidget *listWidget; //列表控件
 
 private:
     TypeSet typeSet;
     CodeRole codeRole;
+
+
+    //显示窗口
+    void showCentralwidget();
+    void showTypeSet();
+    void showCodeRule();
 
 };
 

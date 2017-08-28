@@ -51,7 +51,6 @@ enum CODETYPESET
     CODETYPENAME,
 };
 
-
 }
 
 

@@ -339,6 +339,7 @@ release/qrc_qtpropertybrowser.cpp: ../printtemplate/qtpropertybrowser/src/qtprop
 	D:\SoftWare\QT\5.6\mingw49_32\bin\rcc.exe -name qtpropertybrowser ..\printtemplate\qtpropertybrowser\src\qtpropertybrowser.qrc -o release\qrc_qtpropertybrowser.cpp
 
 release/qrc_res.cpp: ../res.qrc \
+		../qss/style.qss \
 		../image/background.png \
 		../image/color.png \
 		../image/open.png \
@@ -7118,8 +7119,6 @@ release/patientinfo.o: ../tabregister/patientinfo.cpp ../tabregister/patientinfo
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qdatetimeedit.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qdatetime.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QFrame \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QGroupBox \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qgroupbox.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlayout.h \
@@ -9495,7 +9494,71 @@ release/coderole.o: ../tabsystemset/otherwidget/coderole.cpp ../tabsystemset/oth
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qfiledevice.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
-		ui_coderole.h
+		ui_coderole.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QVariant \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QAction \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qaction.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qicon.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QApplication \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qcoreapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qeventloop.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qguiapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qinputmethod.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QButtonGroup \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QCheckBox \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qcheckbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QComboBox \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qvalidator.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qregularexpression.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qslider.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qstyle.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QGroupBox \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qgroupbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QHeaderView \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QLabel \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlabel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QLineEdit \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlineedit.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextcursor.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextformat.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qpen.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextoption.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QRadioButton \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qradiobutton.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QSpacerItem \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QDateTime \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qdatetime.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QDate \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\coderole.o ..\tabsystemset\otherwidget\coderole.cpp
 
 release/typesetdialog.o: ../tabsystemset/otherwidget/typesetdialog.cpp ../tabsystemset/otherwidget/typesetdialog.h \
@@ -9605,29 +9668,70 @@ release/typesetdialog.o: ../tabsystemset/otherwidget/typesetdialog.cpp ../tabsys
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
 		ui_typesetdialog.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QVariant \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QAction \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qaction.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qicon.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QApplication \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qcoreapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qeventloop.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qguiapplication.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qinputmethod.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QButtonGroup \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QGroupBox \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qgroupbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QHeaderView \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qvalidator.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/qregularexpression.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qslider.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qstyle.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QLabel \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlabel.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QLineEdit \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlineedit.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextcursor.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextformat.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qpen.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextoption.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QWidget \
 		../messagebox/messagedialog.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QToolButton \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qtoolbutton.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qicon.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QPushButton \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QLabel \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qframe.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QCheckBox \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qcheckbox.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/QPainter \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qpainter.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qtextoption.h \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qpen.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/QPaintEvent \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/QPixmap \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/QBitmap \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/qbitmap.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtGui/QMouseEvent \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/QStyle \
-		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtWidgets/qstyle.h \
 		../singleton/singleton.h \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QMutex \
 		../../../../../SoftWare/QT/5.6/mingw49_32/include/QtCore/QScopedPointer \

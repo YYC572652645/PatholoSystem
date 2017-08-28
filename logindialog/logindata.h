@@ -57,7 +57,6 @@ public:
     /************删除数据*************/
     bool deleteData();
 
-
 private:
     QSqlDatabase db;               //定义数据库对象
     UserInfo userInfo;             //用户信息

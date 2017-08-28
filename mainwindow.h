@@ -26,10 +26,10 @@ private:
 
 
 private:
-    TabRegister tabRegister;        //登记
-    TabSystemSet tabSystemSet;      //系统设置
-    TabMaterial tabMaterial;        //取材
-    TabNormalSlice tabNormalSlice;  //常规切片
+    TabRegister *tabRegister;        //登记
+    TabSystemSet *tabSystemSet;      //系统设置
+    TabMaterial *tabMaterial;        //取材
+    TabNormalSlice *tabNormalSlice;  //常规切片
 };
 
 #endif // MAINWINDOW_H

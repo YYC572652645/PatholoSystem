@@ -12,11 +12,16 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initControl();
     this->initData();
 
-    newSlices.setParent(parent);
+    newSlices = new NewSlices();         //新编号
+    newMoreSlices = new NewMoreSlices(); //批量编号
+    templateSetUp = new TemplateSetUp(); //打印模板
 }
 
 TabRegister::~TabRegister()
 {
+    delete newSlices;
+    delete newMoreSlices;
+    delete templateSetUp;
     delete ui;
 }
 
@@ -64,9 +69,9 @@ void TabRegister::initData()
         ui->tableWidget->setItem(i, 2, DATA(registerData.registerInfo.at(i).printQuantity));  //打印数量
 
         {
-            QWidget *widget = new QWidget();
-            QCheckBox *checkBox = new QCheckBox();
-            QHBoxLayout *hboxLayout = new QHBoxLayout();
+            QWidget *widget = new QWidget(this);
+            QCheckBox *checkBox = new QCheckBox(this);
+            QHBoxLayout *hboxLayout = new QHBoxLayout(this);
             checkBox->setMinimumHeight(16);
             hboxLayout->addWidget(checkBox);
             hboxLayout->setAlignment(checkBox, Qt::AlignCenter);
@@ -86,15 +91,15 @@ void TabRegister::initData()
 
 void TabRegister::on_actionNewNumber_triggered()
 {
-    newSlices.show();
+    newSlices->showDialog();
 }
 
 void TabRegister::on_actionNewMoreNumber_triggered()
 {
-    newMoreSlices.show();
+    newMoreSlices->show();
 }
 
 void TabRegister::on_actionPrintTemplate_triggered()
 {
-    templateSetUp.show();
+    templateSetUp->show();
 }

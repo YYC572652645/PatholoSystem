@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1062</width>
-    <height>613</height>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,7 +79,11 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEditPrefix"/>
+                   <widget class="QLineEdit" name="lineEditPrefix">
+                    <property name="text">
+                     <string>F</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -87,6 +91,9 @@
                  <widget class="QCheckBox" name="checkBoxType">
                   <property name="text">
                    <string>类别</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -105,12 +112,18 @@
                          <property name="text">
                           <string>年份</string>
                          </property>
+                         <property name="checked">
+                          <bool>true</bool>
+                         </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QRadioButton" name="radioButtonTwo">
                          <property name="text">
                           <string>2位</string>
+                         </property>
+                         <property name="checked">
+                          <bool>true</bool>
                          </property>
                         </widget>
                        </item>
@@ -135,12 +148,18 @@
                     <property name="text">
                      <string>月份</string>
                     </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QCheckBox" name="checkBoxDay">
                     <property name="text">
                      <string>日</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -152,7 +171,11 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEditSpin"/>
+                   <widget class="QLineEdit" name="lineEditSpin">
+                    <property name="text">
+                     <string>-</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -297,12 +320,18 @@
                   <property name="text">
                    <string>病理号</string>
                   </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkBoxHyphen">
                   <property name="text">
                    <string>连字符</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>

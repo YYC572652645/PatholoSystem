@@ -39,9 +39,9 @@ private:
     RegisterData registerData;   //登记数据库
     PatientInfo patientInfo;     //患者信息
 
-    NewSlices newSlices;         //新编号
-    NewMoreSlices newMoreSlices; //批量编号
-    TemplateSetUp templateSetUp; //打印模板
+    NewSlices *newSlices;         //新编号
+    NewMoreSlices *newMoreSlices; //批量编号
+    TemplateSetUp *templateSetUp; //打印模板
 
 };
 

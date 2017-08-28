@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
     LoginDialog login;
 
     a.setFont(QFont("ZYSong", 10));
-    login.setFont(QFont("ZYSong", 10));
 
     if(login.exec() == QDialog::Accepted)
     {

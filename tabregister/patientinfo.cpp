@@ -92,7 +92,10 @@ void PatientInfo::initControl()
     ui->comboBoxNation->addItem(tr("珞巴族"));
     ui->comboBoxNation->addItem(tr("基诺族"));
 
+    ui->dateTimeEditJieShou->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
     ui->dateTimeEditJieShou->setDateTime(QDateTime::currentDateTime());
+
+    ui->dateTimeEditSongJian->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
     ui->dateTimeEditSongJian->setDateTime(QDateTime::currentDateTime());
 
     ui->tabWidget->setCurrentIndex(0);

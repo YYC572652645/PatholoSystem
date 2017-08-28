@@ -19,8 +19,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::initControl()
 {
-    ui->tabWidgetTotal->addTab(&tabRegister,  "登记");
-    ui->tabWidgetTotal->addTab(&tabMaterial,  "取材");
-    ui->tabWidgetTotal->addTab(&tabNormalSlice,"常规切片");
-    ui->tabWidgetTotal->addTab(&tabSystemSet, "系统设置");
+    tabRegister = new TabRegister(this);        //登记
+    tabSystemSet = new TabSystemSet(this);      //系统设置
+    tabMaterial = new TabMaterial(this);        //取材
+    tabNormalSlice = new TabNormalSlice(this);  //常规切片
+
+
+    ui->tabWidgetTotal->addTab(tabRegister,  "登记");
+    ui->tabWidgetTotal->addTab(tabMaterial,  "取材");
+    ui->tabWidgetTotal->addTab(tabNormalSlice,"常规切片");
+    ui->tabWidgetTotal->addTab(tabSystemSet, "系统设置");
 }

@@ -47,7 +47,7 @@ SOURCES += main.cpp\
     printtemplate/qselectwidget/qselectwidget.cpp \
     tabsystemset/tabsystemdata.cpp \
     tabsystemset/otherwidget/coderole.cpp \
-    tabsystemset/otherwidget/typesetdialog.cpp
+    tabsystemset/otherwidget/typesetdialog.cpp \
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -105,7 +105,7 @@ HEADERS  += mainwindow.h \
     printtemplate/qselectwidget/qselectwidget.h \
     tabsystemset/tabsystemdata.h \
     tabsystemset/otherwidget/coderole.h \
-    tabsystemset/otherwidget/typesetdialog.h
+    tabsystemset/otherwidget/typesetdialog.h \
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \

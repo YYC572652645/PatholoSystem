@@ -2,6 +2,8 @@
 #include "ui_typeset.h"
 #include "globaldef.h"
 
+
+/****************     构造函数      **********************/
 TypeSet::TypeSet(QWidget *parent) :
     QWidget(parent),nowRow(-1),
     ui(new Ui::typeset)
@@ -13,12 +15,13 @@ TypeSet::TypeSet(QWidget *parent) :
     this->initValue();    //初始化值
 }
 
+/****************     析构函数      **********************/
 TypeSet::~TypeSet()
 {
     delete ui;
 }
 
-/****************     显示对话框  **********************/
+/****************     显示对话框    **********************/
 void TypeSet::showDialog()
 {
     this->initValue();
@@ -34,7 +37,7 @@ void TypeSet::showDialog()
     this->show();
 }
 
-/****************     初始化控件  **********************/
+/****************     初始化控件    **********************/
 void TypeSet::initControl()
 {
     //设置单行选中
@@ -57,7 +60,7 @@ void TypeSet::initControl()
     connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
 }
 
-/****************     初始化值  **********************/
+/****************     初始化值      **********************/
 void TypeSet::initValue()
 {
     bool success = SYSTEMDATA->codeTypeSelectData();  //查询标本类别信息
@@ -73,7 +76,7 @@ void TypeSet::initValue()
     }
 }
 
-/****************     接收数据  **********************/
+/****************     接收数据      **********************/
 void TypeSet::receiveData(QString typeAbbreviation, QString typeName, int type)
 {
     if(type ==  GLOBALDEF::TYPEINSERT)
@@ -90,13 +93,13 @@ void TypeSet::receiveData(QString typeAbbreviation, QString typeName, int type)
     this->initValue();
 }
 
-/****************     新建  **********************/
+/****************     新建         **********************/
 void TypeSet::on_pushButtonNew_clicked()
 {
     typeSetDialog.showNewDialog();
 }
 
-/****************     删除  **********************/
+/****************     删除         **********************/
 void TypeSet::on_pushButtonDelete_clicked()
 {
     if(nowRow < 0) return;
@@ -110,8 +113,7 @@ void TypeSet::on_pushButtonDelete_clicked()
     ui->tableWidget->removeRow(nowRow); //移除删除的一行
 }
 
-
-/****************     更新  **********************/
+/****************     更新         **********************/
 void TypeSet::on_pushButtonUpdate_clicked()
 {
     QString codeTypeAbbr = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeAbbr;
@@ -120,13 +122,13 @@ void TypeSet::on_pushButtonUpdate_clicked()
     typeSetDialog.showUpdateDialog(codeTypeAbbr, codeTypeName);
 }
 
-
-/****************     退出  **********************/
+/****************     退出         **********************/
 void TypeSet::on_pushButtonExit_clicked()
 {
     this->close();
 }
 
+/****************     点击列表控件  **********************/
 void TypeSet::on_tableWidget_clicked(const QModelIndex &index)
 {
     nowRow = index.row();

@@ -63,7 +63,6 @@ public:
 
 public:
     QMap<QString, QString> getCodeBeginSnSetInfo() const;  //获取起始病理号设置信息
-
     QList<CodeTypeInfo> getCodeTypeInfo() const;           //获取标本类别设置信息
 
 private:
