@@ -9,7 +9,7 @@ namespace Ui {
 class coderole;
 }
 
-enum NUMBERTYPE
+enum NUMBERTYPEENUM
 {
     NUMBER,
     SMALLLETTER,

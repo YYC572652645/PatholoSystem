@@ -259,7 +259,6 @@ void TemplateSetUp::propertyValueChanged(QtProperty *property, const QVariant &v
         case BARCODETYPE: barCodeLabel[selectIndex]->setMinimumSize(size);  break;
         case QRCODETYPE:  qrCodeLabel[selectIndex]->setMinimumSize(size);   break;
         }
-
     }
 
     if(typeFlage == TEXTTYPE && property == propertyList.first())

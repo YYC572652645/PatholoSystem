@@ -127,6 +127,7 @@ public:
         spinBoxPrintNumber = new QSpinBox(groupBox);
         spinBoxPrintNumber->setObjectName(QStringLiteral("spinBoxPrintNumber"));
         spinBoxPrintNumber->setMinimumSize(QSize(90, 0));
+        spinBoxPrintNumber->setValue(1);
 
         horizontalLayout_2->addWidget(spinBoxPrintNumber);
 
@@ -159,6 +160,7 @@ public:
         spinBoxBianMaNumber = new QSpinBox(groupBox);
         spinBoxBianMaNumber->setObjectName(QStringLiteral("spinBoxBianMaNumber"));
         spinBoxBianMaNumber->setMinimumSize(QSize(90, 0));
+        spinBoxBianMaNumber->setValue(1);
 
         horizontalLayout_4->addWidget(spinBoxBianMaNumber);
 
@@ -189,11 +191,6 @@ public:
         pushButtonCancel->setText(QApplication::translate("newmoreslices", "\345\217\226\346\266\210", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("newmoreslices", "\347\261\273    \345\210\253:", 0));
-        comboBoxType->clear();
-        comboBoxType->insertItems(0, QStringList()
-         << QApplication::translate("newmoreslices", "F \345\206\260\345\206\273", 0)
-         << QApplication::translate("newmoreslices", "A \345\270\270\350\247\204", 0)
-        );
         label_2->setText(QApplication::translate("newmoreslices", "\346\211\223\345\215\260\346\225\260\351\207\217:", 0));
         label_4->setText(QApplication::translate("newmoreslices", "\347\274\226\347\240\201\346\225\260\351\207\217:", 0));
         pushButtonOk->setText(QApplication::translate("newmoreslices", "\347\241\256\345\256\232", 0));

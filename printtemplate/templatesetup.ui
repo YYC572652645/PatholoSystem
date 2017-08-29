@@ -182,26 +182,6 @@ padding: 0 3px;
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonPrint">
-               <property name="text">
-                <string>打印</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <spacer name="horizontalSpacer_3">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -465,8 +445,8 @@ QListWidget::item:selected
   </widget>
   <action name="actionDelete">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/image/delete.jpg</normaloff>:/image/image/delete.jpg</iconset>
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/image/critical.png</normaloff>:/image/image/critical.png</iconset>
    </property>
    <property name="text">
     <string>删除</string>
@@ -497,6 +477,8 @@ QListWidget::item:selected
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

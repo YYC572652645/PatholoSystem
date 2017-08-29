@@ -124,6 +124,7 @@ public:
         spinBoxPrintNumber = new QSpinBox(groupBox);
         spinBoxPrintNumber->setObjectName(QStringLiteral("spinBoxPrintNumber"));
         spinBoxPrintNumber->setMinimumSize(QSize(90, 0));
+        spinBoxPrintNumber->setValue(1);
 
         horizontalLayout_2->addWidget(spinBoxPrintNumber);
 

@@ -18,6 +18,9 @@ public:
 
     void showDialog();                  //显示对话框
 
+signals:
+    void signalSelect(int);                //查询信号
+
 private slots:
     void on_pushButtonOk_clicked();     //确定按钮
     void on_pushButtonCancel_clicked(); //取消按钮

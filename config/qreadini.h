@@ -37,16 +37,20 @@ public:
 
     void readIni();                                     //读取配置文件
     void writeIni(QString userName, QString passWord);  //写入配置文件
+    void writeIni(QString startNumber);                 //写入配置文件
 
     const DataConfig &getDataConfig();
 
     LoginConfig getLoginConfig() const;
+
+    QString getStartNumber() const;
 
 private:
     QReadIni();
 
     DataConfig dataConfig;
     LoginConfig loginConfig;
+    QString startNumber;
 
     static QReadIni*instance;
 

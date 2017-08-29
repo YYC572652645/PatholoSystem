@@ -24,11 +24,8 @@ void TabMaterial::initControl()
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
 
-    //等宽显示
-    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
-    headerView->setSectionResizeMode(QHeaderView::Stretch);
-
     //纵向隐藏序号
+    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
     headerView=ui->tableWidget->verticalHeader();
     headerView->setHidden(true);
 
@@ -41,6 +38,20 @@ void TabMaterial::initControl()
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->addWidget(&patientInfo);
     ui->widgetInfo->setLayout(vBoxLayout);
+
+
+    //设置表头点击禁止塌陷
+    ui->tableWidget->horizontalHeader()->setHighlightSections(false);
+
+    //设置点击表头排序
+    ui->tableWidget->setSortingEnabled(true);
+
+    //设置根据内容调整列宽
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+
+    //设置水平伸展策略
+    ui->splitter->setStretchFactor(1, 0);
 }
 
 /*******************   初始化数据    ***********************/

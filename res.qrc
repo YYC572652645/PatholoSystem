@@ -25,6 +25,9 @@
         <file>image/tempalte.jpg</file>
         <file>image/print.jpg</file>
         <file>image/txt.jpg</file>
+        <file>image/refresh.png</file>
+        <file>image/refresh.gif</file>
+        <file>image/addto.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/style.qss</file>

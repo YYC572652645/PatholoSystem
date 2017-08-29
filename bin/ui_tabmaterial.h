@@ -68,7 +68,7 @@ public:
         actionAddBaoMai = new QAction(tabmaterial);
         actionAddBaoMai->setObjectName(QStringLiteral("actionAddBaoMai"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/image/image/add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/image/image/addto.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionAddBaoMai->setIcon(icon1);
         actionPrintLabel = new QAction(tabmaterial);
         actionPrintLabel->setObjectName(QStringLiteral("actionPrintLabel"));
@@ -102,7 +102,9 @@ public:
         actionPrintTemplate->setIcon(icon7);
         actionAddBingLiNumber = new QAction(tabmaterial);
         actionAddBingLiNumber->setObjectName(QStringLiteral("actionAddBingLiNumber"));
-        actionAddBingLiNumber->setIcon(icon1);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/image/image/add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAddBingLiNumber->setIcon(icon8);
         centralwidget = new QWidget(tabmaterial);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -117,6 +119,11 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         widgetTable = new QWidget(splitter);
         widgetTable->setObjectName(QStringLiteral("widgetTable"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(2);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widgetTable->sizePolicy().hasHeightForWidth());
+        widgetTable->setSizePolicy(sizePolicy1);
         verticalLayout_3 = new QVBoxLayout(widgetTable);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_2 = new QVBoxLayout();
@@ -136,9 +143,9 @@ public:
         pushButtonFind = new QPushButton(widgetTable);
         pushButtonFind->setObjectName(QStringLiteral("pushButtonFind"));
         pushButtonFind->setStyleSheet(QStringLiteral(""));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/image/image/serch.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonFind->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/image/image/serch.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonFind->setIcon(icon9);
 
         horizontalLayout->addWidget(pushButtonFind);
 

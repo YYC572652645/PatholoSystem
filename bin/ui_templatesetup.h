@@ -52,8 +52,6 @@ public:
     QPushButton *pushButtonOk;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButtonCancel;
-    QSpacerItem *horizontalSpacer;
-    QPushButton *pushButtonPrint;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_8;
@@ -79,7 +77,7 @@ public:
         actionDelete = new QAction(templatesetup);
         actionDelete->setObjectName(QStringLiteral("actionDelete"));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/image/image/delete.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/image/image/critical.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionDelete->setIcon(icon);
         centralWidget = new QWidget(templatesetup);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -184,15 +182,6 @@ public:
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
 
         horizontalLayout_2->addWidget(pushButtonCancel);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer);
-
-        pushButtonPrint = new QPushButton(groupBox_3);
-        pushButtonPrint->setObjectName(QStringLiteral("pushButtonPrint"));
-
-        horizontalLayout_2->addWidget(pushButtonPrint);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -386,7 +375,6 @@ public:
         groupBox_3->setTitle(QString());
         pushButtonOk->setText(QApplication::translate("templatesetup", "\347\241\256\345\256\232", 0));
         pushButtonCancel->setText(QApplication::translate("templatesetup", "\345\217\226\346\266\210", 0));
-        pushButtonPrint->setText(QApplication::translate("templatesetup", "\346\211\223\345\215\260", 0));
         groupBox->setTitle(QString());
         pushButtonAdd->setText(QApplication::translate("templatesetup", "  \346\267\273\345\212\240\346\250\241\346\235\277", 0));
         pushButtonSub->setText(QApplication::translate("templatesetup", "  \345\210\240\351\231\244\346\250\241\346\235\277", 0));

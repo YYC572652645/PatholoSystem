@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_NewSlices_t {
-    QByteArrayData data[4];
-    char stringdata0[63];
+    QByteArrayData data[5];
+    char stringdata0[76];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,12 +30,13 @@ struct qt_meta_stringdata_NewSlices_t {
 static const qt_meta_stringdata_NewSlices_t qt_meta_stringdata_NewSlices = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "NewSlices"
-QT_MOC_LITERAL(1, 10, 23), // "on_pushButtonOk_clicked"
-QT_MOC_LITERAL(2, 34, 0), // ""
-QT_MOC_LITERAL(3, 35, 27) // "on_pushButtonCancel_clicked"
+QT_MOC_LITERAL(1, 10, 12), // "signalSelect"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 23), // "on_pushButtonOk_clicked"
+QT_MOC_LITERAL(4, 48, 27) // "on_pushButtonCancel_clicked"
 
     },
-    "NewSlices\0on_pushButtonOk_clicked\0\0"
+    "NewSlices\0signalSelect\0\0on_pushButtonOk_clicked\0"
     "on_pushButtonCancel_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -46,16 +47,22 @@ static const uint qt_meta_data_NewSlices[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x08 /* Private */,
-       3,    0,   25,    2, 0x08 /* Private */,
+       3,    0,   32,    2, 0x08 /* Private */,
+       4,    0,   33,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Int,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -70,12 +77,22 @@ void NewSlices::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         NewSlices *_t = static_cast<NewSlices *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_pushButtonOk_clicked(); break;
-        case 1: _t->on_pushButtonCancel_clicked(); break;
+        case 0: _t->signalSelect((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->on_pushButtonOk_clicked(); break;
+        case 2: _t->on_pushButtonCancel_clicked(); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (NewSlices::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&NewSlices::signalSelect)) {
+                *result = 0;
+                return;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject NewSlices::staticMetaObject = {
@@ -103,14 +120,21 @@ int NewSlices::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void NewSlices::signalSelect(int _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

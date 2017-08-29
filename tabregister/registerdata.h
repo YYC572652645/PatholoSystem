@@ -8,17 +8,7 @@
 #include<QFile>
 #include<QIODevice>
 #include<QDebug>
-
-typedef struct RegisterInfo
-{
-    QString id;           //id号
-    QString pCode;        //序号
-    QString sn;           //病理号
-    QString printQuantity;//打印数量
-    QString printed;      //是否打印
-    QString createTime;   //创建时间
-    QString userId;       //用户id
-}RegisterInfo;
+#include "globaldef.h"
 
 class RegisterData
 {
@@ -30,7 +20,7 @@ public:
     bool dataCnn();
 
     /************插入数据*************/
-    bool insertData(RegisterInfo & data);
+    bool insertRegData(RegisterInfo & data);
 
     /************查询最大Id号*************/
     int selectMaxId();
@@ -38,11 +28,17 @@ public:
     /************查询数据*************/
     int selectData();
 
+    /************查询数据*************/
+    int selectBLData(QString blNumber);
+
     /************更改数据*************/
     bool updateData();
 
     /************删除数据*************/
-    bool deleteData();
+    bool deleteAllData();
+
+    /************删除数据*************/
+    bool deleteRowData(QString id);
 
     QList<RegisterInfo>registerInfo; //存储数据
 

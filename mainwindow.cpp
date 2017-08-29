@@ -24,7 +24,6 @@ void MainWindow::initControl()
     tabMaterial = new TabMaterial(this);        //取材
     tabNormalSlice = new TabNormalSlice(this);  //常规切片
 
-
     ui->tabWidgetTotal->addTab(tabRegister,  "登记");
     ui->tabWidgetTotal->addTab(tabMaterial,  "取材");
     ui->tabWidgetTotal->addTab(tabNormalSlice,"常规切片");

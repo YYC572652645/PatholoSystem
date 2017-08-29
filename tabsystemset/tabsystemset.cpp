@@ -1,6 +1,7 @@
 #include "tabsystemset.h"
 #include "ui_tabsystemset.h"
 #include "globaldef.h"
+#include "config/qreadini.h"
 #include <QDebug>
 
 /***************************               构造函数                 ***********************/
@@ -24,7 +25,6 @@ TabSystemSet::~TabSystemSet()
 /***************************               初始化控件                 ***********************/
 void TabSystemSet::initControl()
 {
-
     ui->centralwidget->hide();
 
     listWidget = new QListWidget(this);
@@ -41,6 +41,7 @@ void TabSystemSet::initControl()
     listWidget->addItem(new QListWidgetItem("用户设置"));
 
     listWidget->setGridSize(QSize(80, 30));   //设置显示间隔
+    listWidget->setFrameStyle(QFrame::NoFrame);
 
     listWidget->setFont(QFont("ZYSong", 12)); //设置字体大小
 
@@ -67,6 +68,7 @@ void TabSystemSet::listWidgetClicked(const QModelIndex &index)
 
 void TabSystemSet::on_pushButtonOk_clicked()
 {
+    INICONFIG->writeIni(QString::number(ui->spinBox->value()));
     SYSTEMDATA->codeBeginUpdateData("PCodeBeginSn", QString::number(ui->spinBox->value()));  //更新数据库数据
 
     ui->centralwidget->hide();                                                                //将该界面隐藏
@@ -86,6 +88,7 @@ void TabSystemSet::showCentralwidget()
     ui->spinBox->setValue(mapData["PCodeBeginSn"].toInt());
 
     SETCENTRALWIDGET(ui->centralwidget);
+
     ui->centralwidget->show();
 }
 

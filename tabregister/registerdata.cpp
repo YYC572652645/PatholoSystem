@@ -3,7 +3,8 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
-/***************************构造函数***********************/
+
+/********************         构造函数       ******************/
 RegisterData::RegisterData()
 {   
     if(!dataCnn())
@@ -12,8 +13,7 @@ RegisterData::RegisterData()
     }
 }
 
-
-/***************************连接数据库*********************/
+/********************         连接数据库       ******************/
 bool RegisterData::dataCnn()
 {
     //是否为默认连接
@@ -39,8 +39,9 @@ bool RegisterData::dataCnn()
     return db.open();
 }
 
-/***************************插入数据***********************/
-bool RegisterData::insertData(RegisterInfo & data)
+
+/********************         插入数据       ******************/
+bool RegisterData::insertRegData(RegisterInfo & data)
 {
     if(!db.isOpen())
     {
@@ -48,15 +49,15 @@ bool RegisterData::insertData(RegisterInfo & data)
     }
     QSqlQuery query;
 
-    QString str = QString("insert into Reg values('");
-    str +=  data.id            + "','";
+    QString str = QString("insert into Reg(PCode,Sn,PrintQuantity,Printed,CreateTime) values('");
     str +=  data.pCode         + "','";
     str +=  data.sn            + "','";
     str +=  data.printQuantity + "','";
     str +=  data.printed       + "','";
-    str +=  data.createTime    + "','";
-    str +=  data.userId        + "');";
+    str +=  data.createTime    + "');";
 
+
+    qDebug()<<str;
     bool success = query.exec(str);  //执行sql语句
 
     db.close();
@@ -64,6 +65,8 @@ bool RegisterData::insertData(RegisterInfo & data)
     return success;
 }
 
+
+/********************         查询最大ID       ******************/
 int RegisterData::selectMaxId()
 {
     int maxId = 0;
@@ -71,7 +74,7 @@ int RegisterData::selectMaxId()
 
     QSqlQuery query;
 
-    QString str = QString("select max(Id) from Reg;");
+    QString str = QString("select PCode from Reg where Id in( select max(Id) from Reg);");
 
     bool success = query.exec(str);  //执行sql语句
 
@@ -84,7 +87,8 @@ int RegisterData::selectMaxId()
     return maxId;
 }
 
-/***************************查询数据***********************/
+
+/********************         查询数据       ******************/
 int RegisterData::selectData()
 { 
     int count = 0;
@@ -100,6 +104,8 @@ int RegisterData::selectData()
 
     if(!success)  return GLOBALDEF::ERROR;
 
+    registerInfo.clear();
+
     while(query.next())        //挨个遍历数据
     {
         RegisterInfo data;
@@ -110,7 +116,6 @@ int RegisterData::selectData()
         data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
         data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
         data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
-        data.userId        = query.value(DAtABASEDEF::REGUSERID).toString();
 
         registerInfo << data;
 
@@ -122,7 +127,46 @@ int RegisterData::selectData()
     return count;
 }
 
-/***************************更改数据***********************/
+/********************         根据病理号查询数据       ******************/
+int RegisterData::selectBLData(QString blNumber)
+{
+    int count = 0;
+    if(!db.isOpen())
+    {
+        db.open();
+    }
+    QSqlQuery query;
+
+    QString str = QString("select * from Reg where Sn like '%%1%';").arg(blNumber);
+
+    bool success = query.exec(str);  //执行sql语句
+
+    if(!success)  return GLOBALDEF::ERROR;
+
+    registerInfo.clear();
+
+    while(query.next())        //挨个遍历数据
+    {
+        RegisterInfo data;
+
+        data.id            = query.value(DAtABASEDEF::REGID).toString();
+        data.pCode         = query.value(DAtABASEDEF::REGPCODE).toString();
+        data.sn            = query.value(DAtABASEDEF::REGSN).toString();
+        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
+        data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
+        data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
+
+        registerInfo << data;
+
+        count ++;
+    }
+
+    db.close();
+
+    return count;
+}
+
+/********************         更改数据       ******************/
 bool RegisterData::updateData()
 {
     if(!db.isOpen())
@@ -138,15 +182,30 @@ bool RegisterData::updateData()
     return success;
 }
 
-/***************************删除数据***********************/
-bool RegisterData::deleteData()
+/********************         删除数据       ******************/
+bool RegisterData::deleteAllData()
 {
     if(!db.isOpen())
     {
         db.open();
     }
     QSqlQuery query;
-    QString Str = QString("delete from table where ;");
+    QString Str = QString("delete from Reg");
+    bool success = query.exec(Str);  //执行sql语句
+
+    db.close();
+
+    return success;
+}
+
+bool RegisterData::deleteRowData(QString id)
+{
+    if(!db.isOpen())
+    {
+        db.open();
+    }
+    QSqlQuery query;
+    QString Str = QString("delete from Reg where Id = '%1'").arg(id);
     bool success = query.exec(Str);  //执行sql语句
 
     db.close();

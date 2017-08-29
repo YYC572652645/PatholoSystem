@@ -1,6 +1,7 @@
 #include "newslices.h"
 #include "ui_newslices.h"
 #include <QDateTime>
+#include "config/qreadini.h"
 
 /*******************   构造函数    ***********************/
 NewSlices::NewSlices(QWidget *parent) :
@@ -30,17 +31,19 @@ void NewSlices::on_pushButtonOk_clicked()
 
     //序号
     {
-        int setBeginNumber = mapData["PCodeBeginSn"].toInt();
+        int setBeginNumber = mapData[PCODEBEGINSN].toInt();
         int maxId = registerData.selectMaxId();
 
-        if(maxId >= setBeginNumber)
-        {
-            data.pCode = QString::number(maxId + 1);
-        }
-        else
+        if(INICONFIG->getStartNumber().toInt() != maxId)
         {
             data.pCode = QString::number(setBeginNumber);
         }
+        else
+        {
+            data.pCode = QString::number(maxId + 1);
+        }
+
+        INICONFIG->writeIni(data.pCode);
     }
 
     //病理号
@@ -48,17 +51,17 @@ void NewSlices::on_pushButtonOk_clicked()
         QDate date = QDate::currentDate();
 
         QString str;
-        str += mapData["CustomPrefix"];
-        if(0 != mapData["UsePrefix"].toInt())
+        str += mapData[CUSTOMPREFIX];
+        if(0 != mapData[USERPREFIX].toInt())
         {
             if(ui->comboBoxType->currentIndex() >= dataInfo.size()) return;
             str += dataInfo[ui->comboBoxType->currentIndex()].codeTypeAbbr;
         }
 
         const static int HUNDREDTIME = 100;
-        if(0 != mapData["UseYear"].toInt())
+        if(0 != mapData[USEYEAR].toInt())
         {
-            if(mapData["YearType"].toInt() == 2)
+            if(mapData[YEARTYPE].toInt() == 2)
             {
                 str += QString::number((date.year() % HUNDREDTIME));
             }
@@ -68,20 +71,19 @@ void NewSlices::on_pushButtonOk_clicked()
             }
         }
 
-        if(0 != mapData["UseMonth"].toInt());
+        if(0 != mapData[USEMONTH].toInt());
         {
             str += QString::number((date.month()));
         }
 
-        if(0 != mapData["UseDay"].toInt());
+        if(0 != mapData[USEDAY].toInt());
         {
             str += QString::number((date.day()));
         }
 
-        str += mapData["Spin"];
+        str += mapData[SPIN];
 
-
-        for(int i = 0; i < mapData["SnLength"].toInt() - data.pCode.length(); i++)
+        for(int i = 0; i < mapData[SNLENGTH].toInt() - data.pCode.length(); i++)
         {
             str += "0";
         }
@@ -91,13 +93,22 @@ void NewSlices::on_pushButtonOk_clicked()
         data.sn = str;
     }
 
+    //打印数量
     data.printQuantity = QString::number(ui->spinBoxPrintNumber->value());
+
+    //是否打印
     data.printed       = QString::number(ui->checkBoxPrint->isChecked());
+
+    //打印时间
     data.createTime    = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-    data.userId        = "1111";
 
-    registerData.insertData(data);
+    //录入数据库
+    registerData.insertRegData(data);
 
+    //发送更新信号
+    emit signalSelect(ALLDATA);
+
+    //关闭窗口
     this->close();
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
-    <height>600</height>
+    <width>523</width>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabBaseInfo">
        <attribute name="title">
@@ -46,13 +46,13 @@
              <widget class="QLineEdit" name="lineEditID">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -82,13 +82,13 @@
              <widget class="QComboBox" name="comboBoxSex">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -135,13 +135,13 @@
              <widget class="QLineEdit" name="lineEditSex">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -171,13 +171,13 @@
              <widget class="QLineEdit" name="lineEditAge">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -211,13 +211,13 @@
              <widget class="QLineEdit" name="lineEditPhone">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -247,13 +247,13 @@
              <widget class="QLineEdit" name="lineEditAddress">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -287,13 +287,13 @@
              <widget class="QComboBox" name="comboBoxNation">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -326,13 +326,13 @@
              <widget class="QLineEdit" name="lineEditNative">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -366,13 +366,13 @@
              <widget class="QComboBox" name="comboBoxMarry">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -420,13 +420,13 @@
              <widget class="QLineEdit" name="lineEditWork">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -460,13 +460,13 @@
              <widget class="QComboBox" name="comboBoxMoneyType">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -509,13 +509,13 @@
              <widget class="QLineEdit" name="lineEditIDCard">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -591,13 +591,13 @@
              <widget class="QLineEdit" name="lineEditMenZhen">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -627,13 +627,13 @@
              <widget class="QLineEdit" name="lineEditZhuYuan">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -667,13 +667,13 @@
              <widget class="QLineEdit" name="lineEditBingQu">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -703,13 +703,13 @@
              <widget class="QLineEdit" name="lineEditBedNumber">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -776,13 +776,13 @@
              <widget class="QLineEdit" name="lineEditJianKe">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -812,13 +812,13 @@
              <widget class="QLineEdit" name="lineEditJianDoctor">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -852,13 +852,13 @@
              <widget class="QDateTimeEdit" name="dateTimeEditSongJian">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -888,13 +888,13 @@
              <widget class="QDateTimeEdit" name="dateTimeEditJieShou">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -928,13 +928,13 @@
              <widget class="QLineEdit" name="lineEditJieShouPeople">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -964,13 +964,13 @@
              <widget class="QLineEdit" name="lineEditQuCaiBuWei">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1004,13 +1004,13 @@
              <widget class="QLineEdit" name="lineEditBiaoBenNumber">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1040,13 +1040,13 @@
              <widget class="QLineEdit" name="lineEditGuDing">
               <property name="minimumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
+                <width>160</width>
                 <height>16777215</height>
                </size>
               </property>

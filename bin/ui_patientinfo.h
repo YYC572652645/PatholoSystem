@@ -182,7 +182,7 @@ public:
     {
         if (patientinfo->objectName().isEmpty())
             patientinfo->setObjectName(QStringLiteral("patientinfo"));
-        patientinfo->resize(494, 600);
+        patientinfo->resize(523, 603);
         actionSavePatientInfo = new QAction(patientinfo);
         actionSavePatientInfo->setObjectName(QStringLiteral("actionSavePatientInfo"));
         QIcon icon;
@@ -219,8 +219,8 @@ public:
 
         lineEditID = new QLineEdit(tabBaseInfo);
         lineEditID->setObjectName(QStringLiteral("lineEditID"));
-        lineEditID->setMinimumSize(QSize(150, 0));
-        lineEditID->setMaximumSize(QSize(150, 16777215));
+        lineEditID->setMinimumSize(QSize(160, 0));
+        lineEditID->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout->addWidget(lineEditID);
 
@@ -235,8 +235,8 @@ public:
 
         comboBoxSex = new QComboBox(tabBaseInfo);
         comboBoxSex->setObjectName(QStringLiteral("comboBoxSex"));
-        comboBoxSex->setMinimumSize(QSize(150, 0));
-        comboBoxSex->setMaximumSize(QSize(150, 16777215));
+        comboBoxSex->setMinimumSize(QSize(160, 0));
+        comboBoxSex->setMaximumSize(QSize(160, 16777215));
         comboBoxSex->setEditable(true);
 
         horizontalLayout->addWidget(comboBoxSex);
@@ -257,8 +257,8 @@ public:
 
         lineEditSex = new QLineEdit(tabBaseInfo);
         lineEditSex->setObjectName(QStringLiteral("lineEditSex"));
-        lineEditSex->setMinimumSize(QSize(150, 0));
-        lineEditSex->setMaximumSize(QSize(150, 16777215));
+        lineEditSex->setMinimumSize(QSize(160, 0));
+        lineEditSex->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_2->addWidget(lineEditSex);
 
@@ -273,8 +273,8 @@ public:
 
         lineEditAge = new QLineEdit(tabBaseInfo);
         lineEditAge->setObjectName(QStringLiteral("lineEditAge"));
-        lineEditAge->setMinimumSize(QSize(150, 0));
-        lineEditAge->setMaximumSize(QSize(150, 16777215));
+        lineEditAge->setMinimumSize(QSize(160, 0));
+        lineEditAge->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_2->addWidget(lineEditAge);
 
@@ -294,8 +294,8 @@ public:
 
         lineEditPhone = new QLineEdit(tabBaseInfo);
         lineEditPhone->setObjectName(QStringLiteral("lineEditPhone"));
-        lineEditPhone->setMinimumSize(QSize(150, 0));
-        lineEditPhone->setMaximumSize(QSize(150, 16777215));
+        lineEditPhone->setMinimumSize(QSize(160, 0));
+        lineEditPhone->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_3->addWidget(lineEditPhone);
 
@@ -310,8 +310,8 @@ public:
 
         lineEditAddress = new QLineEdit(tabBaseInfo);
         lineEditAddress->setObjectName(QStringLiteral("lineEditAddress"));
-        lineEditAddress->setMinimumSize(QSize(150, 0));
-        lineEditAddress->setMaximumSize(QSize(150, 16777215));
+        lineEditAddress->setMinimumSize(QSize(160, 0));
+        lineEditAddress->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_3->addWidget(lineEditAddress);
 
@@ -331,8 +331,8 @@ public:
 
         comboBoxNation = new QComboBox(tabBaseInfo);
         comboBoxNation->setObjectName(QStringLiteral("comboBoxNation"));
-        comboBoxNation->setMinimumSize(QSize(150, 0));
-        comboBoxNation->setMaximumSize(QSize(150, 16777215));
+        comboBoxNation->setMinimumSize(QSize(160, 0));
+        comboBoxNation->setMaximumSize(QSize(160, 16777215));
         comboBoxNation->setEditable(true);
 
         horizontalLayout_4->addWidget(comboBoxNation);
@@ -348,8 +348,8 @@ public:
 
         lineEditNative = new QLineEdit(tabBaseInfo);
         lineEditNative->setObjectName(QStringLiteral("lineEditNative"));
-        lineEditNative->setMinimumSize(QSize(150, 0));
-        lineEditNative->setMaximumSize(QSize(150, 16777215));
+        lineEditNative->setMinimumSize(QSize(160, 0));
+        lineEditNative->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_4->addWidget(lineEditNative);
 
@@ -369,8 +369,8 @@ public:
 
         comboBoxMarry = new QComboBox(tabBaseInfo);
         comboBoxMarry->setObjectName(QStringLiteral("comboBoxMarry"));
-        comboBoxMarry->setMinimumSize(QSize(150, 0));
-        comboBoxMarry->setMaximumSize(QSize(150, 16777215));
+        comboBoxMarry->setMinimumSize(QSize(160, 0));
+        comboBoxMarry->setMaximumSize(QSize(160, 16777215));
         comboBoxMarry->setEditable(true);
 
         horizontalLayout_12->addWidget(comboBoxMarry);
@@ -386,8 +386,8 @@ public:
 
         lineEditWork = new QLineEdit(tabBaseInfo);
         lineEditWork->setObjectName(QStringLiteral("lineEditWork"));
-        lineEditWork->setMinimumSize(QSize(150, 0));
-        lineEditWork->setMaximumSize(QSize(150, 16777215));
+        lineEditWork->setMinimumSize(QSize(160, 0));
+        lineEditWork->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_12->addWidget(lineEditWork);
 
@@ -407,8 +407,8 @@ public:
 
         comboBoxMoneyType = new QComboBox(tabBaseInfo);
         comboBoxMoneyType->setObjectName(QStringLiteral("comboBoxMoneyType"));
-        comboBoxMoneyType->setMinimumSize(QSize(150, 0));
-        comboBoxMoneyType->setMaximumSize(QSize(150, 16777215));
+        comboBoxMoneyType->setMinimumSize(QSize(160, 0));
+        comboBoxMoneyType->setMaximumSize(QSize(160, 16777215));
         comboBoxMoneyType->setEditable(true);
 
         horizontalLayout_5->addWidget(comboBoxMoneyType);
@@ -424,8 +424,8 @@ public:
 
         lineEditIDCard = new QLineEdit(tabBaseInfo);
         lineEditIDCard->setObjectName(QStringLiteral("lineEditIDCard"));
-        lineEditIDCard->setMinimumSize(QSize(150, 0));
-        lineEditIDCard->setMaximumSize(QSize(150, 16777215));
+        lineEditIDCard->setMinimumSize(QSize(160, 0));
+        lineEditIDCard->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_5->addWidget(lineEditIDCard);
 
@@ -462,8 +462,8 @@ public:
 
         lineEditMenZhen = new QLineEdit(tabBaseInfo);
         lineEditMenZhen->setObjectName(QStringLiteral("lineEditMenZhen"));
-        lineEditMenZhen->setMinimumSize(QSize(150, 0));
-        lineEditMenZhen->setMaximumSize(QSize(150, 16777215));
+        lineEditMenZhen->setMinimumSize(QSize(160, 0));
+        lineEditMenZhen->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_6->addWidget(lineEditMenZhen);
 
@@ -478,8 +478,8 @@ public:
 
         lineEditZhuYuan = new QLineEdit(tabBaseInfo);
         lineEditZhuYuan->setObjectName(QStringLiteral("lineEditZhuYuan"));
-        lineEditZhuYuan->setMinimumSize(QSize(150, 0));
-        lineEditZhuYuan->setMaximumSize(QSize(150, 16777215));
+        lineEditZhuYuan->setMinimumSize(QSize(160, 0));
+        lineEditZhuYuan->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_6->addWidget(lineEditZhuYuan);
 
@@ -499,8 +499,8 @@ public:
 
         lineEditBingQu = new QLineEdit(tabBaseInfo);
         lineEditBingQu->setObjectName(QStringLiteral("lineEditBingQu"));
-        lineEditBingQu->setMinimumSize(QSize(150, 0));
-        lineEditBingQu->setMaximumSize(QSize(150, 16777215));
+        lineEditBingQu->setMinimumSize(QSize(160, 0));
+        lineEditBingQu->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_7->addWidget(lineEditBingQu);
 
@@ -515,8 +515,8 @@ public:
 
         lineEditBedNumber = new QLineEdit(tabBaseInfo);
         lineEditBedNumber->setObjectName(QStringLiteral("lineEditBedNumber"));
-        lineEditBedNumber->setMinimumSize(QSize(150, 0));
-        lineEditBedNumber->setMaximumSize(QSize(150, 16777215));
+        lineEditBedNumber->setMinimumSize(QSize(160, 0));
+        lineEditBedNumber->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_7->addWidget(lineEditBedNumber);
 
@@ -551,8 +551,8 @@ public:
 
         lineEditJianKe = new QLineEdit(tabBaseInfo);
         lineEditJianKe->setObjectName(QStringLiteral("lineEditJianKe"));
-        lineEditJianKe->setMinimumSize(QSize(150, 0));
-        lineEditJianKe->setMaximumSize(QSize(150, 16777215));
+        lineEditJianKe->setMinimumSize(QSize(160, 0));
+        lineEditJianKe->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_9->addWidget(lineEditJianKe);
 
@@ -567,8 +567,8 @@ public:
 
         lineEditJianDoctor = new QLineEdit(tabBaseInfo);
         lineEditJianDoctor->setObjectName(QStringLiteral("lineEditJianDoctor"));
-        lineEditJianDoctor->setMinimumSize(QSize(150, 0));
-        lineEditJianDoctor->setMaximumSize(QSize(150, 16777215));
+        lineEditJianDoctor->setMinimumSize(QSize(160, 0));
+        lineEditJianDoctor->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_9->addWidget(lineEditJianDoctor);
 
@@ -588,8 +588,8 @@ public:
 
         dateTimeEditSongJian = new QDateTimeEdit(tabBaseInfo);
         dateTimeEditSongJian->setObjectName(QStringLiteral("dateTimeEditSongJian"));
-        dateTimeEditSongJian->setMinimumSize(QSize(150, 0));
-        dateTimeEditSongJian->setMaximumSize(QSize(150, 16777215));
+        dateTimeEditSongJian->setMinimumSize(QSize(160, 0));
+        dateTimeEditSongJian->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_8->addWidget(dateTimeEditSongJian);
 
@@ -604,8 +604,8 @@ public:
 
         dateTimeEditJieShou = new QDateTimeEdit(tabBaseInfo);
         dateTimeEditJieShou->setObjectName(QStringLiteral("dateTimeEditJieShou"));
-        dateTimeEditJieShou->setMinimumSize(QSize(150, 0));
-        dateTimeEditJieShou->setMaximumSize(QSize(150, 16777215));
+        dateTimeEditJieShou->setMinimumSize(QSize(160, 0));
+        dateTimeEditJieShou->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_8->addWidget(dateTimeEditJieShou);
 
@@ -625,8 +625,8 @@ public:
 
         lineEditJieShouPeople = new QLineEdit(tabBaseInfo);
         lineEditJieShouPeople->setObjectName(QStringLiteral("lineEditJieShouPeople"));
-        lineEditJieShouPeople->setMinimumSize(QSize(150, 0));
-        lineEditJieShouPeople->setMaximumSize(QSize(150, 16777215));
+        lineEditJieShouPeople->setMinimumSize(QSize(160, 0));
+        lineEditJieShouPeople->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_11->addWidget(lineEditJieShouPeople);
 
@@ -641,8 +641,8 @@ public:
 
         lineEditQuCaiBuWei = new QLineEdit(tabBaseInfo);
         lineEditQuCaiBuWei->setObjectName(QStringLiteral("lineEditQuCaiBuWei"));
-        lineEditQuCaiBuWei->setMinimumSize(QSize(150, 0));
-        lineEditQuCaiBuWei->setMaximumSize(QSize(150, 16777215));
+        lineEditQuCaiBuWei->setMinimumSize(QSize(160, 0));
+        lineEditQuCaiBuWei->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_11->addWidget(lineEditQuCaiBuWei);
 
@@ -662,8 +662,8 @@ public:
 
         lineEditBiaoBenNumber = new QLineEdit(tabBaseInfo);
         lineEditBiaoBenNumber->setObjectName(QStringLiteral("lineEditBiaoBenNumber"));
-        lineEditBiaoBenNumber->setMinimumSize(QSize(150, 0));
-        lineEditBiaoBenNumber->setMaximumSize(QSize(150, 16777215));
+        lineEditBiaoBenNumber->setMinimumSize(QSize(160, 0));
+        lineEditBiaoBenNumber->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_10->addWidget(lineEditBiaoBenNumber);
 
@@ -678,8 +678,8 @@ public:
 
         lineEditGuDing = new QLineEdit(tabBaseInfo);
         lineEditGuDing->setObjectName(QStringLiteral("lineEditGuDing"));
-        lineEditGuDing->setMinimumSize(QSize(150, 0));
-        lineEditGuDing->setMaximumSize(QSize(150, 16777215));
+        lineEditGuDing->setMinimumSize(QSize(160, 0));
+        lineEditGuDing->setMaximumSize(QSize(160, 16777215));
 
         horizontalLayout_10->addWidget(lineEditGuDing);
 
@@ -924,7 +924,7 @@ public:
 
         retranslateUi(patientinfo);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(patientinfo);

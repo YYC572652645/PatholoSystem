@@ -33,7 +33,6 @@ enum REG
     REGPRINTQUANTITY,
     REGPRINTED,
     REGCREATETIME,
-    REGUSERID,
 };
 
 //起始病理号设置数据库表

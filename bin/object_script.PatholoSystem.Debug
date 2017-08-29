@@ -40,6 +40,7 @@ INPUT(
 ./debug\tabsystemdata.o
 ./debug\coderole.o
 ./debug\typesetdialog.o
+./debug\exceloperate.o
 ./debug\qrc_qtpropertybrowser.o
 ./debug\qrc_res.o
 ./debug\moc_qtpropertybrowserutils_p.o

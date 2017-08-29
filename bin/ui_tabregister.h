@@ -49,6 +49,9 @@ public:
     QLabel *label;
     QLineEdit *lineEdit;
     QPushButton *pushButtonFind;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *labelMovie;
+    QPushButton *pushButtonRefresh;
     QSpacerItem *horizontalSpacer;
     QTableWidget *tableWidget;
     QWidget *widgetInfo;
@@ -113,6 +116,11 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         widgetTable = new QWidget(splitter);
         widgetTable->setObjectName(QStringLiteral("widgetTable"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(2);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widgetTable->sizePolicy().hasHeightForWidth());
+        widgetTable->setSizePolicy(sizePolicy1);
         verticalLayout_3 = new QVBoxLayout(widgetTable);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_2 = new QVBoxLayout();
@@ -138,6 +146,31 @@ public:
 
         horizontalLayout->addWidget(pushButtonFind);
 
+        horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        labelMovie = new QLabel(widgetTable);
+        labelMovie->setObjectName(QStringLiteral("labelMovie"));
+        labelMovie->setPixmap(QPixmap(QString::fromUtf8(":/image/image/refresh.png")));
+
+        horizontalLayout->addWidget(labelMovie);
+
+        pushButtonRefresh = new QPushButton(widgetTable);
+        pushButtonRefresh->setObjectName(QStringLiteral("pushButtonRefresh"));
+        pushButtonRefresh->setMinimumSize(QSize(40, 0));
+        pushButtonRefresh->setMaximumSize(QSize(40, 16777215));
+        pushButtonRefresh->setStyleSheet(QLatin1String("QPushButton:hover\n"
+"{\n"
+"    color:skyblue;\n"
+"}\n"
+"QPushButton\n"
+"{\n"
+"background-color:transparent;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonRefresh);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
@@ -159,11 +192,8 @@ public:
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
-        tableWidget->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy);
 
         verticalLayout_2->addWidget(tableWidget);
 
@@ -173,6 +203,8 @@ public:
         splitter->addWidget(widgetTable);
         widgetInfo = new QWidget(splitter);
         widgetInfo->setObjectName(QStringLiteral("widgetInfo"));
+        sizePolicy1.setHeightForWidth(widgetInfo->sizePolicy().hasHeightForWidth());
+        widgetInfo->setSizePolicy(sizePolicy1);
         splitter->addWidget(widgetInfo);
 
         verticalLayout->addWidget(splitter);
@@ -239,6 +271,8 @@ public:
 #endif // QT_NO_TOOLTIP
         label->setText(QApplication::translate("tabregister", "\347\227\205\347\220\206\345\217\267\357\274\232", 0));
         pushButtonFind->setText(QApplication::translate("tabregister", "    \346\237\245\346\211\276", 0));
+        labelMovie->setText(QString());
+        pushButtonRefresh->setText(QApplication::translate("tabregister", "\345\210\267\346\226\260", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("tabregister", "\345\272\217\345\217\267", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);

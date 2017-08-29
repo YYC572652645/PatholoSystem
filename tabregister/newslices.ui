@@ -166,6 +166,9 @@
             <height>0</height>
            </size>
           </property>
+          <property name="value">
+           <number>1</number>
+          </property>
          </widget>
         </item>
         <item>

@@ -4,6 +4,7 @@
 #include <QDate>
 #include <QDebug>
 #include "tabsystemset/tabsystemdata.h"
+#include "globaldef.h"
 
 /****************      构造函数               *******************/
 CodeRole::CodeRole(QWidget *parent) :
@@ -190,11 +191,11 @@ void CodeRole::initCodeRule()
     SYSTEMDATA->codeBeginSelectData();
     QMap<QString, QString> mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
-    ui->lineEditPrefix->setText(mapData["CustomPrefix"]);
-    ui->checkBoxType->setChecked(mapData["UsePrefix"].toInt());
-    ui->checkBoxYear->setChecked(mapData["UseYear"].toInt());
+    ui->lineEditPrefix->setText(mapData[CUSTOMPREFIX]);
+    ui->checkBoxType->setChecked(mapData[USERPREFIX].toInt());
+    ui->checkBoxYear->setChecked(mapData[USEYEAR].toInt());
 
-    if(mapData["YearType"].toInt() == 2)
+    if(mapData[YEARTYPE].toInt() == 2)
     {
         ui->radioButtonTwo->setChecked(true);
     }
@@ -203,13 +204,13 @@ void CodeRole::initCodeRule()
         ui->radioButtonFour->setChecked(true);
     }
 
-    ui->checkBoxMonth->setChecked(mapData["UseMonth"].toInt());
-    ui->checkBoxDay->setChecked(mapData["UseDay"].toInt());
-    ui->lineEditSpin->setText(mapData["Spin"]);
-    ui->spinBoxLength->setValue(mapData["SnLength"].toInt());
-    ui->checkBoxBingLiNumber->setChecked(mapData["BLNumber"].toInt());
-    ui->checkBoxHyphen->setChecked(mapData["Hyphen"].toInt());
-    ui->comboBoxNumberType->setCurrentIndex(mapData["NumberType"].toInt());
+    ui->checkBoxMonth->setChecked(mapData[USEMONTH].toInt());
+    ui->checkBoxDay->setChecked(mapData[USEDAY].toInt());
+    ui->lineEditSpin->setText(mapData[SPIN]);
+    ui->spinBoxLength->setValue(mapData[SNLENGTH].toInt());
+    ui->checkBoxBingLiNumber->setChecked(mapData[BLNUMBER].toInt());
+    ui->checkBoxHyphen->setChecked(mapData[HYPHEN].toInt());
+    ui->comboBoxNumberType->setCurrentIndex(mapData[NUMBERTYPE].toInt());
 }
 
 /****************       确定按钮                *******************/
@@ -220,16 +221,16 @@ void CodeRole::on_pushButtonOk_clicked()
     InsertThread *insertThread = new InsertThread();
 
     insertThread->customPrefix = ui->lineEditPrefix->text();
-    insertThread->usePrefix = QString::number(ui->checkBoxType->isChecked());
-    insertThread->useYear =  QString::number(ui->checkBoxYear->isChecked());
-    insertThread->yearType = ui->radioButtonTwo->isChecked() ? "2" : "4";
-    insertThread->useMonth = QString::number(ui->checkBoxMonth->isChecked());
-    insertThread->useDay = QString::number(ui->checkBoxDay->isChecked());
-    insertThread->spin = ui->lineEditSpin->text();
-    insertThread->snLength = QString::number(ui->spinBoxLength->value());
-    insertThread->bLNumber = QString::number(ui->checkBoxBingLiNumber->isChecked());
-    insertThread->hyphen = QString::number(ui->checkBoxHyphen->isChecked());
-    insertThread->numberType = QString::number(ui->comboBoxNumberType->currentIndex());
+    insertThread->usePrefix    = QString::number(ui->checkBoxType->isChecked());
+    insertThread->useYear      =  QString::number(ui->checkBoxYear->isChecked());
+    insertThread->yearType     = ui->radioButtonTwo->isChecked() ? "2" : "4";
+    insertThread->useMonth     = QString::number(ui->checkBoxMonth->isChecked());
+    insertThread->useDay       = QString::number(ui->checkBoxDay->isChecked());
+    insertThread->spin         = ui->lineEditSpin->text();
+    insertThread->snLength     = QString::number(ui->spinBoxLength->value());
+    insertThread->bLNumber     = QString::number(ui->checkBoxBingLiNumber->isChecked());
+    insertThread->hyphen       = QString::number(ui->checkBoxHyphen->isChecked());
+    insertThread->numberType   = QString::number(ui->comboBoxNumberType->currentIndex());
 
     insertThread->start();
 
@@ -252,16 +253,17 @@ InsertThread::InsertThread()
 void InsertThread::run()
 {
     mutex.lock();
-    SYSTEMDATA->codeBeginUpdateData("CustomPrefix", customPrefix);
-    SYSTEMDATA->codeBeginUpdateData("UsePrefix"   , usePrefix);
-    SYSTEMDATA->codeBeginUpdateData("UseYear"     ,useYear);
-    SYSTEMDATA->codeBeginUpdateData("YearType"    , yearType);
-    SYSTEMDATA->codeBeginUpdateData("UseMonth"    , useMonth);
-    SYSTEMDATA->codeBeginUpdateData("UseDay"      , useDay);
-    SYSTEMDATA->codeBeginUpdateData("Spin"        , spin);
-    SYSTEMDATA->codeBeginUpdateData("SnLength"    , snLength);
-    SYSTEMDATA->codeBeginUpdateData("BLNumber"    , bLNumber);
-    SYSTEMDATA->codeBeginUpdateData("Hyphen"      , hyphen);
-    SYSTEMDATA->codeBeginUpdateData("NumberType"  , numberType);
+
+    SYSTEMDATA->codeBeginUpdateData(CUSTOMPREFIX, customPrefix);
+    SYSTEMDATA->codeBeginUpdateData(USERPREFIX  , usePrefix);
+    SYSTEMDATA->codeBeginUpdateData(USEYEAR     ,useYear);
+    SYSTEMDATA->codeBeginUpdateData(YEARTYPE    , yearType);
+    SYSTEMDATA->codeBeginUpdateData(USEMONTH    , useMonth);
+    SYSTEMDATA->codeBeginUpdateData(USEDAY      , useDay);
+    SYSTEMDATA->codeBeginUpdateData(SPIN        , spin);
+    SYSTEMDATA->codeBeginUpdateData(SNLENGTH    , snLength);
+    SYSTEMDATA->codeBeginUpdateData(BLNUMBER    , bLNumber);
+    SYSTEMDATA->codeBeginUpdateData(HYPHEN      , hyphen);
+    SYSTEMDATA->codeBeginUpdateData(NUMBERTYPE  , numberType);
     mutex.unlock();
 }
