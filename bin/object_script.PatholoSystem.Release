@@ -1,12 +1,4 @@
 INPUT(
-./release\qtpropertybrowser.o
-./release\qtpropertymanager.o
-./release\qteditorfactory.o
-./release\qtvariantproperty.o
-./release\qttreepropertybrowser.o
-./release\qtbuttonpropertybrowser.o
-./release\qtgroupboxpropertybrowser.o
-./release\qtpropertybrowserutils.o
 ./release\main.o
 ./release\mainwindow.o
 ./release\logindialog.o
@@ -25,7 +17,6 @@ INPUT(
 ./release\tabnormalslice.o
 ./release\templatesetup.o
 ./release\movewidgetcontrol.o
-./release\qcustomplot.o
 ./release\bitstream.o
 ./release\mask.o
 ./release\mmask.o
@@ -41,9 +32,7 @@ INPUT(
 ./release\coderole.o
 ./release\typesetdialog.o
 ./release\exceloperate.o
-./release\qrc_qtpropertybrowser.o
 ./release\qrc_res.o
-./release\moc_qtpropertybrowserutils_p.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
 ./release\moc_messagedialog.o
@@ -57,7 +46,6 @@ INPUT(
 ./release\moc_tabnormalslice.o
 ./release\moc_templatesetup.o
 ./release\moc_movewidgetcontrol.o
-./release\moc_qcustomplot.o
 ./release\moc_qselectwidget.o
 ./release\moc_coderole.o
 ./release\moc_typesetdialog.o

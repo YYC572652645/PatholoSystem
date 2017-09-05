@@ -21,12 +21,11 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "printtemplate/movewidgetcontrol/movewidgetcontrol.h"
-#include "printtemplate/qcustomplot/qcustomplot.h"
-#include "qttreepropertybrowser.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -40,11 +39,8 @@ public:
     QVBoxLayout *verticalLayout_5;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_7;
-    QCustomPlot *widgetPaint;
-    QVBoxLayout *verticalLayout_3;
     MoveWidgetControl *widgetControl;
     QVBoxLayout *verticalLayout_9;
-    QSpacerItem *verticalSpacer;
     QGroupBox *groupBox_3;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_2;
@@ -64,16 +60,17 @@ public:
     QListWidget *listWidgetTemplate;
     QLabel *labelTitle;
     QListWidget *listWidgetControl;
-    QtTreePropertyBrowser *widgetProperty;
+    QLabel *labelTitle_2;
+    QTableWidget *tableWidget;
     QToolBar *toolBar;
 
     void setupUi(QMainWindow *templatesetup)
     {
         if (templatesetup->objectName().isEmpty())
             templatesetup->setObjectName(QStringLiteral("templatesetup"));
-        templatesetup->resize(899, 612);
-        templatesetup->setMinimumSize(QSize(899, 612));
-        templatesetup->setMaximumSize(QSize(899, 612));
+        templatesetup->resize(899, 630);
+        templatesetup->setMinimumSize(QSize(899, 630));
+        templatesetup->setMaximumSize(QSize(899, 630));
         actionDelete = new QAction(templatesetup);
         actionDelete->setObjectName(QStringLiteral("actionDelete"));
         QIcon icon;
@@ -112,31 +109,17 @@ public:
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        widgetPaint = new QCustomPlot(groupBox_2);
-        widgetPaint->setObjectName(QStringLiteral("widgetPaint"));
-        widgetPaint->setMinimumSize(QSize(625, 500));
-        widgetPaint->setMaximumSize(QSize(625, 500));
-        verticalLayout_3 = new QVBoxLayout(widgetPaint);
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        widgetControl = new MoveWidgetControl(widgetPaint);
+        widgetControl = new MoveWidgetControl(groupBox_2);
         widgetControl->setObjectName(QStringLiteral("widgetControl"));
         widgetControl->setMinimumSize(QSize(625, 500));
         widgetControl->setMaximumSize(QSize(625, 500));
+        widgetControl->setStyleSheet(QStringLiteral("background-color:white"));
         verticalLayout_9 = new QVBoxLayout(widgetControl);
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
-        verticalSpacer = new QSpacerItem(20, 479, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_9->addItem(verticalSpacer);
-
-
-        verticalLayout_3->addWidget(widgetControl);
-
-
-        verticalLayout_7->addWidget(widgetPaint);
+        verticalLayout_7->addWidget(widgetControl);
 
 
         verticalLayout_5->addWidget(groupBox_2);
@@ -334,10 +317,47 @@ public:
 
         verticalLayout->addWidget(listWidgetControl);
 
-        widgetProperty = new QtTreePropertyBrowser(groupBox);
-        widgetProperty->setObjectName(QStringLiteral("widgetProperty"));
+        labelTitle_2 = new QLabel(groupBox);
+        labelTitle_2->setObjectName(QStringLiteral("labelTitle_2"));
+        labelTitle_2->setMinimumSize(QSize(0, 25));
+        labelTitle_2->setStyleSheet(QLatin1String("background-color:#2c3e50;\n"
+"\n"
+"color:white;\n"
+"\n"
+"\n"
+"QLabel\n"
+"{\n"
+"    height:40px;\n"
+"    font-size:28px;\n"
+"}"));
+        labelTitle_2->setLineWidth(1);
+        labelTitle_2->setAlignment(Qt::AlignCenter);
+        labelTitle_2->setWordWrap(false);
 
-        verticalLayout->addWidget(widgetProperty);
+        verticalLayout->addWidget(labelTitle_2);
+
+        tableWidget = new QTableWidget(groupBox);
+        if (tableWidget->columnCount() < 2)
+            tableWidget->setColumnCount(2);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        if (tableWidget->rowCount() < 5)
+            tableWidget->setRowCount(5);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(2, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(3, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(4, __qtablewidgetitem6);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+
+        verticalLayout->addWidget(tableWidget);
 
 
         verticalLayout_2->addLayout(verticalLayout);
@@ -393,6 +413,21 @@ public:
         ___qlistwidgetitem3->setText(QApplication::translate("templatesetup", "\344\272\214\347\273\264\346\235\241\347\240\201", 0));
         listWidgetControl->setSortingEnabled(__sortingEnabled);
 
+        labelTitle_2->setText(QApplication::translate("templatesetup", "\350\256\276\347\275\256", 0));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\345\210\227", 0));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\345\210\227", 0));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->verticalHeaderItem(0);
+        ___qtablewidgetitem2->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->verticalHeaderItem(1);
+        ___qtablewidgetitem3->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->verticalHeaderItem(2);
+        ___qtablewidgetitem4->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->verticalHeaderItem(3);
+        ___qtablewidgetitem5->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->verticalHeaderItem(4);
+        ___qtablewidgetitem6->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
         toolBar->setWindowTitle(QApplication::translate("templatesetup", "toolBar", 0));
     } // retranslateUi
 

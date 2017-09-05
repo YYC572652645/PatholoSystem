@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include "QRcode/qrencode.h"
-#include "qtvariantproperty.h"
+#include <QFontComboBox>
 
 namespace Ui {
 class templatesetup;
@@ -22,9 +22,6 @@ signals:
     void sendType(int);
 
 private slots:
-
-    void propertyValueChanged(QtProperty*property, const QVariant &value);
-
     void on_pushButtonAdd_clicked();
 
     void on_pushButtonSub_clicked();
@@ -38,22 +35,22 @@ private slots:
 private:
     Ui::templatesetup *ui;
 
+    QFontComboBox *fontBox;                            //字体下拉框
+    QComboBox *fontSizeBox;                            //字号下拉框
+    QFrame    *colorFrame;                             //颜色
+    QLineEdit *widthEdit;                              //宽度
+    QLineEdit *heightEdit;                             //高度
     QRcode *qrcode;                                    //生成二维码对象
     QList<QLabel*>textLabel;                           //文字
     QList<QLabel*>bingLiLabel;                         //病理号
     QList<QLabel*>barCodeLabel;                        //条形码
     QList<QLabel*>qrCodeLabel;                         //二维码
-    QtVariantPropertyManager * varManager;             //声明属性页对象
-    QtVariantEditorFactory * varFactory;               //属性页可编辑
-    QMap<QtProperty*,QString>propertyData;             //属性页值
-    QList<QtProperty*>propertyList;                    //属性项列表
     int selectLabelIndex;                              //被选中的下标
     int selectIndex;                                   //被选中的下标
     int typeFlage;                                     //被选中的类型
 
  private:
-    void initWidgetPaint();                             //初始化绘图框
-    void initWidgetProperty();                          //初始化属性框
+    void initControl();                                 //初始化控件
     void initConnect();                                 //连接信号与槽
     bool eventFilter(QObject *watched, QEvent *event);  //事件过滤
     void generateBarCode(QString number);               //生成条形码

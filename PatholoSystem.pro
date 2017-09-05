@@ -13,8 +13,6 @@ TEMPLATE = app
 DEFINES += HAVE_CONFIG_H
 INCLUDEPATH += printtemplate/include
 
-include($$PWD/printtemplate/qtpropertybrowser/src/qtpropertybrowser.pri)
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     logindialog/logindialog.cpp \
@@ -33,7 +31,6 @@ SOURCES += main.cpp\
     tabnormalslice/tabnormalslice.cpp \
     printtemplate/templatesetup.cpp \
     printtemplate/movewidgetcontrol/movewidgetcontrol.cpp \
-    printtemplate/qcustomplot/qcustomplot.cpp \
     printtemplate/QRcode/bitstream.c \
     printtemplate/QRcode/mask.c \
     printtemplate/QRcode/mmask.c \
@@ -90,7 +87,6 @@ HEADERS  += mainwindow.h \
     printtemplate/include/zlib.h \
     printtemplate/include/zutil.h \
     printtemplate/movewidgetcontrol/movewidgetcontrol.h \
-    printtemplate/qcustomplot/qcustomplot.h \
     printtemplate/QRcode/bitstream.h \
     printtemplate/QRcode/config.h \
     printtemplate/QRcode/mask.h \

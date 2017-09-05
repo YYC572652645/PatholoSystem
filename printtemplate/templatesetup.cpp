@@ -3,6 +3,10 @@
 #include "QInputDialog"
 #include "globaldef.h"
 #include <QDebug>
+#include <QPrinter>
+#include <QPainter>
+#include <QFontDialog>
+#include <QFontDatabase>
 
 /*****************      构造函数               ******************/
 TemplateSetUp::TemplateSetUp(QWidget *parent) :
@@ -14,9 +18,8 @@ TemplateSetUp::TemplateSetUp(QWidget *parent) :
 
     this->setWindowTitle("打印模板");
 
-    this->initWidgetPaint();      //初始化绘图控件
-    this->initWidgetProperty();   //初始化属性页
-    this->initConnect();          //连接信号与槽
+    this->initControl();     //初始化属性页
+    this->initConnect();     //连接信号与槽
 }
 
 /*****************      析构函数               ******************/
@@ -36,93 +39,103 @@ void TemplateSetUp::on_pushButtonAdd_clicked()
         ui->listWidgetTemplate->addItem(text);
     }
 
-    ui->widgetPaint->show();
+    ui->widgetControl->show();
 }
 
 /*****************      删除               ******************/
 void TemplateSetUp::on_pushButtonSub_clicked()
 {
     ui->listWidgetTemplate->removeItemWidget(ui->listWidgetTemplate->currentItem());
-
-    ui->widgetPaint->hide();    //初始将画图区域隐藏
-}
-
-/*****************      初始化绘图控件      ******************/
-void TemplateSetUp::initWidgetPaint()
-{
-    ui->widgetPaint->axisRect()->setupFullAxesBox(true);  //显示为四周坐标框
-    ui->widgetPaint->setBackground(Qt::white);            //设置背景色为白色
-    ui->widgetPaint->xAxis->grid()->setVisible(false);    //去掉背景网格虚线
-    ui->widgetPaint->yAxis->grid()->setVisible(false);    //去掉背景网格虚线
-
-    //设置坐标隐藏
-    ui->widgetPaint->yAxis->setTicks(false);
-    ui->widgetPaint->xAxis->setTicks(false);
-    ui->widgetPaint->yAxis2->setTicks(false);
-    ui->widgetPaint->xAxis2->setTicks(false);
-
-    //设置控件无边框
-    ui->listWidgetControl->setFrameShape(QFrame::NoFrame);
-    ui->labelTitle->setFrameShape(QFrame::NoFrame);
-    ui->labelTemplateTitle->setFrameShape(QFrame::NoFrame);
-    ui->labelTitle->setFrameShape(QFrame::NoFrame);
-    ui->listWidgetTemplate->setFrameShape(QFrame::NoFrame);
-
-    //设置隐藏
-    ui->widgetPaint->hide();
 }
 
 /*****************      初始化属性页控件    ******************/
-void TemplateSetUp::initWidgetProperty()
+void TemplateSetUp::initControl()
 {
-    varManager = new QtVariantPropertyManager(ui->widgetProperty);
+    ui->widgetControl->hide();
 
-    varFactory = new QtVariantEditorFactory(ui->widgetProperty);
+    //把表头上面去掉
+    ui->tableWidget->horizontalHeader()->setVisible(false);
+    ui->tableWidget->verticalHeader()->setVisible(false);
 
-    //设置分组最上层
-    QtProperty *groupItem = varManager->addProperty(QtVariantPropertyManager::groupTypeId(),QStringLiteral("外观："));
+    //设置列表控件等宽显示
+    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
+    headerView->setSectionResizeMode(QHeaderView::Stretch);
 
-    //设置内容
-    QtVariantProperty *item = varManager->addProperty(QVariant::String, QStringLiteral("内容："));
-    groupItem->addSubProperty(item);
-    propertyData[item] = QStringLiteral("内容：");
-    propertyList.append(item);
 
-    //设置大小
-    item = varManager->addProperty(QVariant::Size, QStringLiteral("大小："));
-    groupItem->addSubProperty(item);
-    propertyData[item] = QStringLiteral("大小：");
-    item->setValue(STARTSIZE);
-    for(int i = 0; i < item->subProperties().size(); i ++)
+    //设置列表控件等高显示
+    QHeaderView *leftHeaderView=ui->tableWidget->verticalHeader();
+    leftHeaderView->setSectionResizeMode(QHeaderView::Stretch);
+
+    //设置不能选择
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+
+    //设置为不可编辑
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    //去除点击的虚线
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+
+
+    //添加控件
+    fontBox = new QFontComboBox(this);
+    fontBox->setFontFilters(QFontComboBox::ScalableFonts);
+    fontBox->setFrame(QFrame::NoFrame);
+    ui->tableWidget->setCellWidget(0, 1, fontBox);
+
+    QFontDatabase fontDb;
+    fontSizeBox  = new QComboBox(this);
+    fontSizeBox->setEditable(true);
+    fontSizeBox->setFrame(QFrame::NoFrame);
+    ui->tableWidget->setCellWidget(1, 1, fontSizeBox);
+
+    foreach (int size, fontDb.standardSizes())
     {
-        propertyData[item->subProperties().at(i)] = item->subProperties().at(i)->propertyName();
+        fontSizeBox->addItem(QString::number(size));
     }
 
-    //设置字体
-    item = varManager->addProperty(QVariant::Font, QStringLiteral("字体："));
-    groupItem->addSubProperty(item);
-    item->setValue(STARTFONT);
-    for(int i = 0; i < item->subProperties().size(); i ++)
-    {
-        propertyData[item->subProperties().at(i)] = item->subProperties().at(i)->propertyName();
-    }
+    colorFrame = new QFrame(this);
+    ui->tableWidget->setCellWidget(2, 1, colorFrame);
 
-    //添加至分组中
-    ui->widgetProperty->addProperty(groupItem);
+    widthEdit = new QLineEdit(this);
+    widthEdit->setFrame(QFrame::NoFrame);
+    ui->tableWidget->setCellWidget(3, 1, widthEdit);
 
-    ui->widgetProperty->setFactoryForManager(varManager, varFactory);
+    heightEdit= new QLineEdit(this);
+    heightEdit->setFrame(QFrame::NoFrame);
+    ui->tableWidget->setCellWidget(4, 1, heightEdit);
+
+    //添加名称
+    QTableWidgetItem *fontItem = new QTableWidgetItem("字体:");
+    fontItem->setTextAlignment(Qt::AlignCenter);
+    ui->tableWidget->setItem(0, 0, fontItem);
+
+    QTableWidgetItem *fontSizeItem = new QTableWidgetItem("字号:");
+    fontSizeItem->setTextAlignment(Qt::AlignCenter);
+    ui->tableWidget->setItem(1, 0, fontSizeItem);
+
+    QTableWidgetItem *colorItem = new QTableWidgetItem("颜色:");
+    colorItem->setTextAlignment(Qt::AlignCenter);
+    ui->tableWidget->setItem(2, 0, colorItem);
+
+    QTableWidgetItem *widthItem = new QTableWidgetItem("宽度:");
+    widthItem->setTextAlignment(Qt::AlignCenter);
+    ui->tableWidget->setItem(3, 0, widthItem);
+
+    QTableWidgetItem *heightItem = new QTableWidgetItem("高度:");
+    heightItem->setTextAlignment(Qt::AlignCenter);
+    ui->tableWidget->setItem(4, 0, heightItem);
 }
 
 /*****************      连接信号与槽        ******************/
 void TemplateSetUp::initConnect()
 {
-    connect(varManager, SIGNAL(valueChanged(QtProperty*,QVariant)), this, SLOT(propertyValueChanged(QtProperty*,QVariant)));
+
 }
 
 /*****************      点击列表框中控件     ******************/
 void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 {
-    if(ui->widgetPaint->isHidden()) return;
+    if(ui->widgetControl->isHidden()) return;
 
     QLabel * label = new QLabel(this);   //声明一个Label
 
@@ -134,10 +147,10 @@ void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 
     switch(index.row())
     {
-    case TEXTTYPE:    label->setText("文本");   textLabel.append(label);     textLabel.last()->setGeometry(80,100,100,100);  break;
-    case BINGLITYPE:  label->setText("病理号");  bingLiLabel.append(label);   bingLiLabel.last()->setGeometry(80,200,100,100);break;
-    case BARCODETYPE: label->setText("条码");    barCodeLabel.append(label);  barCodeLabel.last()->setGeometry(180,100,100,100);break;
-    case QRCODETYPE:  label->setText("二维码");  qrCodeLabel.append(label);   qrCodeLabel.last()->setGeometry(180,200,100,100);break;
+    case TEXTTYPE:    label->setText("文本");   textLabel.append(label);      textLabel.last()->setGeometry(80,100,100,100);   break;
+    case BINGLITYPE:  label->setText("病理号");  bingLiLabel.append(label);   bingLiLabel.last()->setGeometry(80,200,100,100);  break;
+    case BARCODETYPE: label->setText("条码");   barCodeLabel.append(label);   barCodeLabel.last()->setGeometry(180,100,100,100);break;
+    case QRCODETYPE:  label->setText("二维码");  qrCodeLabel.append(label);   qrCodeLabel.last()->setGeometry(180,200,100,100); break;
     }
 
     label->setWordWrap(true); //设置换行
@@ -181,17 +194,6 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
 
                     selectLabelIndex = j;
 
-                    if(i == TEXTTYPE)
-                    {
-                        selectIndex = j;                                                              //判断出当前被选中的下标
-                        varManager->variantProperty(propertyList.first())->setEnabled(true);          //设置当前为可用状态
-                    }
-                    else
-                    {
-                        varManager->variantProperty(propertyList.first())->setEnabled(false);          //设置当前为不可用状态
-                    }
-
-                    varManager->variantProperty(propertyList.first())->setValue(listLabel[j]->text()); //将选中的文本字放到属性页
 
                     ui->widgetControl->selectWidget->addWidget(listLabel[j]);
                 }
@@ -217,54 +219,6 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
     }
 
     return QWidget::eventFilter(watched, event);
-}
-
-/*****************      属性页槽函数         ******************/
-void TemplateSetUp::propertyValueChanged(QtProperty *property, const QVariant &value)
-{
-    if(selectIndex == INVALIDVALUE)     return;
-    if(selectIndex >= textLabel.size()) return;
-    if(typeFlage == INVALIDVALUE)       return;
-
-    //设置字体
-    {
-        static QFont font = STARTFONT;
-        if(FAMILY    == propertyData[property]) font.setFamily(value.toString());
-        if(POINTSIZE == propertyData[property]) font.setPointSize(value.toInt());
-        if(BOLD      == propertyData[property]) font.setBold(value.toBool());
-        if(ITALIC    == propertyData[property]) font.setItalic(value.toBool());
-        if(UNDERLINE == propertyData[property]) font.setUnderline(value.toBool());
-        if(STRIKEOUT == propertyData[property]) font.setStrikeOut(value.toBool());
-        if(KERNING   == propertyData[property]) font.setKerning(value.toBool());
-
-        switch(typeFlage)
-        {
-        case TEXTTYPE:    textLabel[selectIndex]->setFont(font);     break;
-        case BINGLITYPE:  bingLiLabel[selectIndex]->setFont(font);   break;
-        case BARCODETYPE: barCodeLabel[selectIndex]->setFont(font);  break;
-        case QRCODETYPE:  qrCodeLabel[selectIndex]->setFont(font);   break;
-        }
-    }
-
-    //设置大小
-    {
-        static QSize size = STARTSIZE;
-        if(WIDTH  == propertyData[property]) size.setWidth(value.toInt());
-        if(HEIGHT == propertyData[property]) size.setHeight(value.toInt());
-
-        switch(typeFlage)
-        {
-        case TEXTTYPE:    textLabel[selectIndex]->setMinimumSize(size);     break;
-        case BINGLITYPE:  bingLiLabel[selectIndex]->setMinimumSize(size);   break;
-        case BARCODETYPE: barCodeLabel[selectIndex]->setMinimumSize(size);  break;
-        case QRCODETYPE:  qrCodeLabel[selectIndex]->setMinimumSize(size);   break;
-        }
-    }
-
-    if(typeFlage == TEXTTYPE && property == propertyList.first())
-    {
-        textLabel[selectIndex]->setText(value.toString());
-    }
 }
 
 /*****************      生成条形码           ******************/
