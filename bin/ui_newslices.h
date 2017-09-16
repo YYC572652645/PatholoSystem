@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDialog>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -24,6 +23,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -55,7 +55,7 @@ public:
     QPushButton *pushButtonOk;
     QPushButton *pushButtonCancel;
 
-    void setupUi(QDialog *newslices)
+    void setupUi(QWidget *newslices)
     {
         if (newslices->objectName().isEmpty())
             newslices->setObjectName(QStringLiteral("newslices"));
@@ -184,7 +184,7 @@ public:
         QMetaObject::connectSlotsByName(newslices);
     } // setupUi
 
-    void retranslateUi(QDialog *newslices)
+    void retranslateUi(QWidget *newslices)
     {
         newslices->setWindowTitle(QApplication::translate("newslices", "Dialog", 0));
         groupBox->setTitle(QString());

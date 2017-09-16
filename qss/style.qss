@@ -1,3 +1,4 @@
+
 QTableWidget::item:selected:active
 {
 background-color: rgb(20,150,200);
@@ -10,9 +11,12 @@ background-color: rgb(20,150,200);
 color:black;
 }
 
-QTableView QHeaderView::section
+QHeaderView::section
 {
-background-color:#EAE9EE
+    font:12pt;
+    background-color:rgb(0,130,150);
+    color:white;
+    height:30px;
 }
 
 QGroupBox
@@ -21,6 +25,7 @@ border-radius: 5px;
 border-width: 1px;
 border-style: solid;
 border-color: darkCyan;
+margin-top: 5px;
 }
 
 QGroupBox::title
@@ -28,6 +33,7 @@ QGroupBox::title
 subcontrol-origin: margin;
 subcontrol-position: top center;
 padding: 0 3px;
+margin-top: 0px;
 }
 
 QProgressBar

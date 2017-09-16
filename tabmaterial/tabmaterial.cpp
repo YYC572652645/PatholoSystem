@@ -32,8 +32,6 @@ void TabMaterial::initControl()
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
-
     //添加界面
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->addWidget(&patientInfo);

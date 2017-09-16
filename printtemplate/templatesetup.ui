@@ -126,29 +126,9 @@ padding: 0 3px;
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButtonOk">
+              <widget class="QPushButton" name="pushButtonSave">
                <property name="text">
-                <string>确定</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonCancel">
-               <property name="text">
-                <string>取消</string>
+                <string>保存</string>
                </property>
               </widget>
              </item>
@@ -340,7 +320,7 @@ QLabel
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>160</height>
+                 <height>120</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -371,11 +351,6 @@ QListWidget::item:selected
                <item>
                 <property name="text">
                  <string>病理号</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>条码</string>
                 </property>
                </item>
                <item>
@@ -421,6 +396,11 @@ QLabel
              </item>
              <item>
               <widget class="QTableWidget" name="tableWidget">
+               <row>
+                <property name="text">
+                 <string>新建行</string>
+                </property>
+               </row>
                <row>
                 <property name="text">
                  <string>新建行</string>

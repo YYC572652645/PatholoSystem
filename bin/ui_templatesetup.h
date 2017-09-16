@@ -45,9 +45,7 @@ public:
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_2;
-    QPushButton *pushButtonOk;
-    QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButtonCancel;
+    QPushButton *pushButtonSave;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_8;
@@ -152,19 +150,10 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        pushButtonOk = new QPushButton(groupBox_3);
-        pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
+        pushButtonSave = new QPushButton(groupBox_3);
+        pushButtonSave->setObjectName(QStringLiteral("pushButtonSave"));
 
-        horizontalLayout_2->addWidget(pushButtonOk);
-
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_4);
-
-        pushButtonCancel = new QPushButton(groupBox_3);
-        pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
-
-        horizontalLayout_2->addWidget(pushButtonCancel);
+        horizontalLayout_2->addWidget(pushButtonSave);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -295,9 +284,8 @@ public:
         new QListWidgetItem(listWidgetControl);
         new QListWidgetItem(listWidgetControl);
         new QListWidgetItem(listWidgetControl);
-        new QListWidgetItem(listWidgetControl);
         listWidgetControl->setObjectName(QStringLiteral("listWidgetControl"));
-        listWidgetControl->setMinimumSize(QSize(0, 160));
+        listWidgetControl->setMinimumSize(QSize(0, 120));
         listWidgetControl->setStyleSheet(QLatin1String("QListWidget::item\n"
 "{\n"
 "    height:40px;\n"
@@ -343,8 +331,8 @@ public:
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        if (tableWidget->rowCount() < 5)
-            tableWidget->setRowCount(5);
+        if (tableWidget->rowCount() < 6)
+            tableWidget->setRowCount(6);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
@@ -355,6 +343,8 @@ public:
         tableWidget->setVerticalHeaderItem(3, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(4, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(5, __qtablewidgetitem7);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         verticalLayout->addWidget(tableWidget);
@@ -393,8 +383,7 @@ public:
 #endif // QT_NO_TOOLTIP
         groupBox_2->setTitle(QString());
         groupBox_3->setTitle(QString());
-        pushButtonOk->setText(QApplication::translate("templatesetup", "\347\241\256\345\256\232", 0));
-        pushButtonCancel->setText(QApplication::translate("templatesetup", "\345\217\226\346\266\210", 0));
+        pushButtonSave->setText(QApplication::translate("templatesetup", "\344\277\235\345\255\230", 0));
         groupBox->setTitle(QString());
         pushButtonAdd->setText(QApplication::translate("templatesetup", "  \346\267\273\345\212\240\346\250\241\346\235\277", 0));
         pushButtonSub->setText(QApplication::translate("templatesetup", "  \345\210\240\351\231\244\346\250\241\346\235\277", 0));
@@ -408,9 +397,7 @@ public:
         QListWidgetItem *___qlistwidgetitem1 = listWidgetControl->item(1);
         ___qlistwidgetitem1->setText(QApplication::translate("templatesetup", "\347\227\205\347\220\206\345\217\267", 0));
         QListWidgetItem *___qlistwidgetitem2 = listWidgetControl->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("templatesetup", "\346\235\241\347\240\201", 0));
-        QListWidgetItem *___qlistwidgetitem3 = listWidgetControl->item(3);
-        ___qlistwidgetitem3->setText(QApplication::translate("templatesetup", "\344\272\214\347\273\264\346\235\241\347\240\201", 0));
+        ___qlistwidgetitem2->setText(QApplication::translate("templatesetup", "\344\272\214\347\273\264\346\235\241\347\240\201", 0));
         listWidgetControl->setSortingEnabled(__sortingEnabled);
 
         labelTitle_2->setText(QApplication::translate("templatesetup", "\350\256\276\347\275\256", 0));
@@ -428,6 +415,8 @@ public:
         ___qtablewidgetitem5->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->verticalHeaderItem(4);
         ___qtablewidgetitem6->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem7 = tableWidget->verticalHeaderItem(5);
+        ___qtablewidgetitem7->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
         toolBar->setWindowTitle(QApplication::translate("templatesetup", "toolBar", 0));
     } // retranslateUi
 

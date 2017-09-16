@@ -53,8 +53,14 @@ void TypeSet::initControl()
     headerView=ui->tableWidget->verticalHeader();
     headerView->setHidden(true);
 
+    //去除点击的虚线
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    //设置表头点击禁止塌陷
+    ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
     //连接信号和槽
     connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));

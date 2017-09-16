@@ -32,9 +32,6 @@ void TabNormalSlice::initControl()
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
-
-
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 

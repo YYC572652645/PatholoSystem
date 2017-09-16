@@ -8,7 +8,7 @@ namespace Ui {
 class newslices;
 }
 
-class NewSlices : public QDialog
+class NewSlices : public QWidget
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     void showDialog();                  //显示对话框
 
 signals:
-    void signalSelect(int);                //查询信号
+    void signalSelect(int);             //查询信号
 
 private slots:
     void on_pushButtonOk_clicked();     //确定按钮

@@ -18,9 +18,9 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initControl();
     this->initData();
 
-    newSlices = new NewSlices();         //新编号
-    newMoreSlices = new NewMoreSlices(); //批量编号
-    templateSetUp = new TemplateSetUp(); //打印模板
+    newSlices = new NewSlices();                 //新编号
+    newMoreSlices = new NewMoreSlices();         //批量编号
+    templateSetUp = new TemplateSetUp();     //打印模板
 
     //初始化信号和槽
     connect(newSlices, SIGNAL(signalSelect(int)), this, SLOT(selectData(int)));
@@ -119,8 +119,6 @@ void TabRegister::initControl()
 
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    ui->tableWidget->setStyleSheet("QTableView QHeaderView::section {background-color:#EAE9EE}");
 
     //添加界面
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);

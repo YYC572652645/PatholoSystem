@@ -32,6 +32,7 @@ INPUT(
 ./release\coderole.o
 ./release\typesetdialog.o
 ./release\exceloperate.o
+./release\templatedata.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o

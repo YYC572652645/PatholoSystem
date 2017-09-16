@@ -21,7 +21,7 @@ public:
     void showDialog();
 
 signals:
-    void signalSelect(int);                //查询信号
+    void signalSelect(int);             //查询信号
 
 private slots:
     void on_pushButtonOk_clicked();     //确定按钮

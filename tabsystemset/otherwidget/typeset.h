@@ -35,9 +35,9 @@ private slots:
 private:
     Ui::typeset *ui;
 
-    void initControl();  //初始化控件
+    void initControl();            //初始化控件
 
-    void initValue();    //初始化值
+    void initValue();              //初始化值
 
 private:
     int nowRow;                   //当前选中行

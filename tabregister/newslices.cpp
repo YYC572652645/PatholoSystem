@@ -5,7 +5,7 @@
 
 /*******************   构造函数    ***********************/
 NewSlices::NewSlices(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::newslices)
 {
     ui->setupUi(this);

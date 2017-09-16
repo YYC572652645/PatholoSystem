@@ -45,7 +45,8 @@ SOURCES += main.cpp\
     tabsystemset/tabsystemdata.cpp \
     tabsystemset/otherwidget/coderole.cpp \
     tabsystemset/otherwidget/typesetdialog.cpp \
-    exceloperate/exceloperate.cpp
+    exceloperate/exceloperate.cpp \
+    printtemplate/templatedata/templatedata.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -103,7 +104,8 @@ HEADERS  += mainwindow.h \
     tabsystemset/tabsystemdata.h \
     tabsystemset/otherwidget/coderole.h \
     tabsystemset/otherwidget/typesetdialog.h \
-    exceloperate/exceloperate.h
+    exceloperate/exceloperate.h \
+    printtemplate/templatedata/templatedata.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \

@@ -75,7 +75,8 @@ SOURCES       = ..\main.cpp \
 		..\tabsystemset\tabsystemdata.cpp \
 		..\tabsystemset\otherwidget\coderole.cpp \
 		..\tabsystemset\otherwidget\typesetdialog.cpp \
-		..\exceloperate\exceloperate.cpp debug\qrc_res.cpp \
+		..\exceloperate\exceloperate.cpp \
+		..\printtemplate\templatedata\templatedata.cpp debug\qrc_res.cpp \
 		debug\moc_mainwindow.cpp \
 		debug\moc_logindialog.cpp \
 		debug\moc_messagedialog.cpp \
@@ -125,6 +126,7 @@ OBJECTS       = debug/main.o \
 		debug/coderole.o \
 		debug/typesetdialog.o \
 		debug/exceloperate.o \
+		debug/templatedata.o \
 		debug/qrc_res.o \
 		debug/moc_mainwindow.o \
 		debug/moc_logindialog.o \
@@ -199,7 +201,8 @@ DIST          =  ..\mainwindow.h \
 		..\tabsystemset\tabsystemdata.h \
 		..\tabsystemset\otherwidget\coderole.h \
 		..\tabsystemset\otherwidget\typesetdialog.h \
-		..\exceloperate\exceloperate.h ..\main.cpp \
+		..\exceloperate\exceloperate.h \
+		..\printtemplate\templatedata\templatedata.h ..\main.cpp \
 		..\mainwindow.cpp \
 		..\logindialog\logindialog.cpp \
 		..\config\qreadini.cpp \
@@ -231,7 +234,8 @@ DIST          =  ..\mainwindow.h \
 		..\tabsystemset\tabsystemdata.cpp \
 		..\tabsystemset\otherwidget\coderole.cpp \
 		..\tabsystemset\otherwidget\typesetdialog.cpp \
-		..\exceloperate\exceloperate.cpp
+		..\exceloperate\exceloperate.cpp \
+		..\printtemplate\templatedata\templatedata.cpp
 QMAKE_TARGET  = PatholoSystem
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = PatholoSystem.exe
@@ -257,7 +261,7 @@ dist:
 	$(ZIP) PatholoSystem.zip $(SOURCES) $(DIST) ..\..\PatholoSystem.pro ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\spec_pre.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\qdevice.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\device_config.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\common\angle.conf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\qconfig.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_labscontrols_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_labstemplates_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_location.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_script.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\qt_functions.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\qt_config.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\qt_config.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\win32-g++\qmake.conf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\spec_post.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\exclusive_builds.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\default_pre.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\default_pre.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\resolve_config.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\default_post.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\build_pass.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\rtti.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\precompile_header.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\warn_on.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\qt.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\resources.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\moc.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\opengl.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\uic.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\dumpcpp.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\file_copies.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\win32\windows.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\testcase_targets.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\exceptions.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\yacc.prf ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\mkspecs\features\lex.prf ..\PatholoSystem.pro ..\res.qrc ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\qtmaind.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5PrintSupportd.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5AxContainerd.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5AxBased.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5Widgetsd.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5Guid.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5Sqld.prl ..\..\..\..\SoftWare\Qt\5.6\mingw49_32\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES TYPELIBS HEADERS TYPELIBS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\logindialog.o debug\qreadini.o debug\logindata.o debug\messagedialog.o debug\singleton.o debug\tabregister.o debug\registerdata.o debug\newslices.o debug\patientinfo.o debug\newmoreslices.o debug\tabsystemset.o debug\typeset.o debug\tabmaterial.o debug\tabnormalslice.o debug\templatesetup.o debug\movewidgetcontrol.o debug\bitstream.o debug\mask.o debug\mmask.o debug\mqrspec.o debug\qrenc.o debug\qrencode.o debug\qrinput.o debug\qrspec.o debug\rscode.o debug\split.o debug\qselectwidget.o debug\tabsystemdata.o debug\coderole.o debug\typesetdialog.o debug\exceloperate.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_logindialog.o debug\moc_messagedialog.o debug\moc_tabregister.o debug\moc_newslices.o debug\moc_patientinfo.o debug\moc_newmoreslices.o debug\moc_tabsystemset.o debug\moc_typeset.o debug\moc_tabmaterial.o debug\moc_tabnormalslice.o debug\moc_templatesetup.o debug\moc_movewidgetcontrol.o debug\moc_qselectwidget.o debug\moc_coderole.o debug\moc_typesetdialog.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\logindialog.o debug\qreadini.o debug\logindata.o debug\messagedialog.o debug\singleton.o debug\tabregister.o debug\registerdata.o debug\newslices.o debug\patientinfo.o debug\newmoreslices.o debug\tabsystemset.o debug\typeset.o debug\tabmaterial.o debug\tabnormalslice.o debug\templatesetup.o debug\movewidgetcontrol.o debug\bitstream.o debug\mask.o debug\mmask.o debug\mqrspec.o debug\qrenc.o debug\qrencode.o debug\qrinput.o debug\qrspec.o debug\rscode.o debug\split.o debug\qselectwidget.o debug\tabsystemdata.o debug\coderole.o debug\typesetdialog.o debug\exceloperate.o debug\templatedata.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_logindialog.o debug\moc_messagedialog.o debug\moc_tabregister.o debug\moc_newslices.o debug\moc_patientinfo.o debug\moc_newmoreslices.o debug\moc_tabsystemset.o debug\moc_typeset.o debug\moc_tabmaterial.o debug\moc_tabnormalslice.o debug\moc_templatesetup.o debug\moc_movewidgetcontrol.o debug\moc_qselectwidget.o debug\moc_coderole.o debug\moc_typesetdialog.o
 	-$(DEL_FILE) debug\myapp_res.o
 
 distclean: clean 
@@ -475,6 +479,14 @@ debug/moc_mainwindow.cpp: ../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWi
 		../tabregister/newmoreslices.h \
 		../printtemplate/templatesetup.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QTimer \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtimer.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasictimer.h \
@@ -916,6 +928,14 @@ debug/moc_tabregister.cpp: ../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtW
 		../tabregister/newmoreslices.h \
 		../printtemplate/templatesetup.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QTimer \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtimer.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasictimer.h \
@@ -1924,6 +1944,26 @@ debug/moc_templatesetup.cpp: ../../../../../SoftWare/Qt/5.6/mingw49_32/include/Q
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qlabel.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qframe.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qvalidator.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qregularexpression.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qslider.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyle.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../printtemplate/templatesetup.h
 	D:\SoftWare\Qt\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/SoftWare/Qt/5.6/mingw49_32/mkspecs/win32-g++ -ID:/Program/Qt/PatholoSystem -ID:/Program/Qt/PatholoSystem/printtemplate/include -ID:/SoftWare/Qt/5.6/mingw49_32/include -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtPrintSupport -ID:/SoftWare/Qt/5.6/mingw49_32/include/ActiveQt -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtWidgets -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtGui -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtANGLE -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtSql -ID:/SoftWare/Qt/5.6/mingw49_32/include/QtCore -I. ..\printtemplate\templatesetup.h -o debug\moc_templatesetup.cpp
 
@@ -2589,6 +2629,14 @@ debug/main.o: ../main.cpp ../mainwindow.h \
 		../tabregister/newmoreslices.h \
 		../printtemplate/templatesetup.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QTimer \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtimer.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasictimer.h \
@@ -2784,6 +2832,14 @@ debug/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../tabregister/newmoreslices.h \
 		../printtemplate/templatesetup.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QTimer \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtimer.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasictimer.h \
@@ -3577,6 +3633,14 @@ debug/tabregister.o: ../tabregister/tabregister.cpp ../tabregister/tabregister.h
 		../tabregister/newmoreslices.h \
 		../printtemplate/templatesetup.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QTimer \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtimer.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasictimer.h \
@@ -3609,8 +3673,6 @@ debug/tabregister.o: ../tabregister/tabregister.cpp ../tabregister/tabregister.h
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qtextformat.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qpen.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qtextoption.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpacerItem \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSplitter \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qsplitter.h \
@@ -3907,6 +3969,7 @@ debug/newslices.o: ../tabregister/newslices.cpp ../tabregister/newslices.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QWidget \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QDateTime \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qdatetime.h \
 		../config/qreadini.h \
@@ -5083,6 +5146,26 @@ debug/templatesetup.o: ../printtemplate/templatesetup.cpp ../printtemplate/templ
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qlabel.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qframe.h \
 		../printtemplate/QRcode/qrencode.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontComboBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcombobox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qvalidator.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qregularexpression.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qslider.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyle.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qfontdatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpinBox \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qspinbox.h \
 		ui_templatesetup.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QVariant \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QAction \
@@ -5108,24 +5191,10 @@ debug/templatesetup.o: ../printtemplate/templatesetup.cpp ../printtemplate/templ
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qvalidator.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qregularexpression.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qslider.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qstyle.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QListWidget \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qlistwidget.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qlistview.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QPushButton \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qpushbutton.h \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QSpacerItem \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QTableWidget \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qtablewidget.h \
@@ -5160,7 +5229,17 @@ debug/templatesetup.o: ../printtemplate/templatesetup.cpp ../printtemplate/templ
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qpagesize.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtPrintSupport/qtprintsupportglobal.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/QPainter \
-		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qpainter.h
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qpainter.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QFontDialog \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qfontdialog.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/QFontDatabase \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/QColorDialog \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtWidgets/qcolordialog.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QJsonObject \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qjsonobject.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qjsonvalue.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QJsonDocument \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qjsondocument.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\templatesetup.o ..\printtemplate\templatesetup.cpp
 
 debug/movewidgetcontrol.o: ../printtemplate/movewidgetcontrol/movewidgetcontrol.cpp ../printtemplate/movewidgetcontrol/movewidgetcontrol.h \
@@ -6042,6 +6121,93 @@ debug/exceloperate.o: ../exceloperate/exceloperate.cpp ../exceloperate/exceloper
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\exceloperate.o ..\exceloperate\exceloperate.cpp
+
+debug/templatedata.o: ../printtemplate/templatedata/templatedata.cpp ../printtemplate/templatedata/templatedata.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QString \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qstring.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qchar.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qglobal.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qconfig.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qfeatures.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qsystemdetection.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qprocessordetection.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qcompilerdetection.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtypeinfo.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtypetraits.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qisenum.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qsysinfo.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qlogging.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qflags.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbasicatomic.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_bootstrap.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qgenericatomic.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_cxx11.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_gcc.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_msvc.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_armv7.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_armv6.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_armv5.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_ia64.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_x86.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qatomic_unix.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qmutex.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qnumeric.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qversiontagging.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbytearray.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qrefcount.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qnamespace.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qarraydata.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/QSqlDriver \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/qsqldriver.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qobject.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qlist.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qalgorithms.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qiterator.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qpair.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qstringlist.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qregexp.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qcoreevent.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qmetatype.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qobject_impl.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/qsql.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/QSqlRecord \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/qsqlrecord.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/QSqlQuery \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/qsqlquery.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/qsqldatabase.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtSql/QSqlDatabase \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QFile \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qfile.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qfiledevice.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qiodevice.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QIODevice \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QDebug \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qdebug.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qhash.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qmap.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qtextstream.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qlocale.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qvariant.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qshareddata.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qvector.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qpoint.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qset.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
+		../config/qreadini.h \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/QSettings \
+		../../../../../SoftWare/Qt/5.6/mingw49_32/include/QtCore/qsettings.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\templatedata.o ..\printtemplate\templatedata\templatedata.cpp
 
 debug/qrc_res.o: debug/qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_res.o debug\qrc_res.cpp

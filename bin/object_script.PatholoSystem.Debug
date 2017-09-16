@@ -32,6 +32,7 @@ INPUT(
 ./debug\coderole.o
 ./debug\typesetdialog.o
 ./debug\exceloperate.o
+./debug\templatedata.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
