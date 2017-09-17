@@ -47,14 +47,13 @@ TemplateSetUp::TemplateSetUp(QWidget *parent) :
         //设置当前行为最后一行
         ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
     }
+
 }
 
 /*********************     析构函数             **************************/
 TemplateSetUp::~TemplateSetUp()
 {
-    textLabel.clear();
-    bingLiLabel.clear();
-    qrCodeLabel.clear();
+    deleteAll();
     SAFEDELETE(fontBox);
     SAFEDELETE(fontSizeBox);
     SAFEDELETE(colorFrame);
@@ -65,13 +64,29 @@ TemplateSetUp::~TemplateSetUp()
     delete ui;
 }
 
+/*********************     显示对话框           **************************/
+void TemplateSetUp::showWidget()
+{
+    this->show();
+}
+
 /*********************     添加模板             **************************/
 void TemplateSetUp::on_pushButtonAdd_clicked()
 {
     bool ok;
     QString text = QInputDialog::getText(this, "系统提示", "请输入模板名称", QLineEdit::Normal, QString::null, &ok);
 
-    if(ok && !text.isEmpty())
+    bool flage = false;
+
+    for(int i = 0; i < ui->listWidgetTemplate->count(); i ++)
+    {
+        if(text == ui->listWidgetTemplate->item(i)->text())
+        {
+            flage = true;
+        }
+    }
+
+    if(ok && !text.isEmpty() && !flage)
     {
         ui->listWidgetTemplate->addItem(text);
     }
@@ -98,6 +113,8 @@ void TemplateSetUp::on_pushButtonAdd_clicked()
 /*********************     删除模板             **************************/
 void TemplateSetUp::on_pushButtonSub_clicked()
 {
+    if(ui->listWidgetTemplate->currentRow() >= ui->listWidgetTemplate->count()) return;
+
     //删除列表项
     QListWidgetItem *item = ui->listWidgetTemplate->takeItem(ui->listWidgetTemplate->currentRow());
     delete item;
@@ -133,17 +150,19 @@ void TemplateSetUp::initControl()
     //去除点击的虚线
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
 
-    //添加控件
+    //内容控件
     textEdit = new QLineEdit(this);
     textEdit->setFrame(QFrame::NoFrame);
     ui->tableWidget->setCellWidget(0, 1, textEdit);
     textEdit->setStyleSheet("background-color:transparent");
 
+    //字体大小
     fontBox = new QFontComboBox(this);
     fontBox->setFontFilters(QFontComboBox::ScalableFonts);
     fontBox->setFrame(QFrame::NoFrame);
     ui->tableWidget->setCellWidget(1, 1, fontBox);
 
+    //字体
     QFontDatabase fontDb;
     fontSizeBox  = new QComboBox(this);
     fontSizeBox->setEditable(true);
@@ -155,17 +174,19 @@ void TemplateSetUp::initControl()
         fontSizeBox->addItem(QString::number(size));
     }
 
+    //颜色
     colorFrame = new QPushButton(this);
     colorFrame->setStyleSheet("background-color:black");
     ui->tableWidget->setCellWidget(3, 1, colorFrame);
 
-
+    //宽度
     widthEdit = new QLineEdit(this);
     widthEdit->setFrame(QFrame::NoFrame);
     ui->tableWidget->setCellWidget(4, 1, widthEdit);
     widthEdit->setStyleSheet("background-color:transparent");
     widthEdit->setEnabled(false);
 
+    //高度
     heightEdit= new QLineEdit(this);
     heightEdit->setFrame(QFrame::NoFrame);
     ui->tableWidget->setCellWidget(5, 1, heightEdit);
@@ -209,10 +230,10 @@ void TemplateSetUp::initControl()
 /*********************     连接信号与槽         *************************/
 void TemplateSetUp::initConnect()
 {
-    connect(fontBox, SIGNAL(currentFontChanged(const QFont)), this, SLOT(currentFontChange()));
-    connect(fontSizeBox, SIGNAL(currentTextChanged(QString)), this, SLOT(currentFontChange()));
-    connect(colorFrame,  SIGNAL(clicked(bool)), this, SLOT(colorChange()));
-    connect(textEdit,  SIGNAL(textChanged(QString)), this, SLOT(textChange()));
+    connect(fontBox,     SIGNAL(currentFontChanged(const QFont)), this, SLOT(currentFontChange()));
+    connect(fontSizeBox, SIGNAL(currentTextChanged(QString)),     this, SLOT(currentFontChange()));
+    connect(colorFrame,  SIGNAL(clicked(bool)),                   this, SLOT(colorChange()));
+    connect(textEdit,    SIGNAL(textChanged(QString)),            this, SLOT(textChange()));
 }
 
 /*********************     删除所有控件         *************************/
@@ -235,7 +256,7 @@ void TemplateSetUp::deleteAll()
 
             ui->widgetControl->selectWidget->removeWidget(listLabel.at(j));
 
-            delete listLabel.at(j);
+            delete listLabel[j];
         }
     }
 
@@ -248,6 +269,14 @@ void TemplateSetUp::writeAll()
 {
     if(ui->widgetControl->isHidden()) return;
     if(templateName.isEmpty())  return;
+
+    dataList.clear();
+
+    int count = TEMPLATEDATA->selectData();
+    for(int i = 0; i < count; i ++)
+    {
+        readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
+    }
 
     textLabel.clear();
     bingLiLabel.clear();
@@ -292,6 +321,8 @@ void TemplateSetUp::writeAll()
         label->setPalette(pal);
         label->setAutoFillBackground(true);
 
+        label->setWordWrap(true); //设置换行
+
         switch(dataLabel.at(i).labelType.toInt())
         {
         case TEXTTYPE:     textLabel.append(label);      break;
@@ -299,7 +330,6 @@ void TemplateSetUp::writeAll()
         case QRCODETYPE:   qrCodeLabel.append(label);    break;
         }
 
-        label->setWordWrap(true); //设置换行
 
         label->show();            //显示出来
 
@@ -320,13 +350,14 @@ void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 
     label->installEventFilter(this);     //注册监听事件
 
+    label->setWordWrap(true);            //设置换行
+
     switch(index.row())
     {
     case TEXTTYPE:    label->setText("文本");   textLabel.append(label);      textLabel.last()->setGeometry(80,100,100,100);   break;
     case BINGLITYPE:  label->setText("病理号");  bingLiLabel.append(label);   bingLiLabel.last()->setGeometry(80,200,100,100);  break;
     case QRCODETYPE:  label->setText("二维码");  qrCodeLabel.append(label);   qrCodeLabel.last()->setGeometry(180,200,100,100); break;
     }
-
 
     //将新建的控件数据添加到Map
     LabelData labelData;
@@ -336,15 +367,13 @@ void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
     labelData.labelText   = label->text();
     labelData.fontType    = "宋体";
     labelData.fontSize    = "16";
-    labelData.fontColor   = "0";
+    labelData.fontColor   = "4278190080";
     labelData.labelWidth  = QString::number(label->width());
     labelData.labelHeight = QString::number(label->height());
     labelData.gemoryX     = QString::number(label->geometry().x());
     labelData.gemoryY     = QString::number(label->geometry().y());
 
     dataList[templateName].append(labelData);
-
-    label->setWordWrap(true);                           //设置换行
 
     label->show();                                      //显示出来
 
@@ -390,24 +419,27 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
                     heightEdit->setText(QString::number(listLabel[j]->height()));
                     textEdit->setText(listLabel[j]->text());
 
-                    for(int i = 0; i < dataList[templateName].size(); i ++)
+                    for(int k = 0; k < dataList[templateName].size(); k ++)
                     {
-                        if(dataList[templateName].at(i).labelType.toInt() == i
-                                && dataList[templateName].at(i).label->geometry().x() == listLabel[j]->geometry().x()
-                                && dataList[templateName].at(i).label->geometry().y() == listLabel[j]->geometry().y())
+                        if(dataList[templateName].at(k).labelType.toInt() == typeFlage
+                                && dataList[templateName].at(k).label->geometry().x() == listLabel[j]->geometry().x()
+                                && dataList[templateName].at(k).label->geometry().y() == listLabel[j]->geometry().y())
                         {
-                            fontBox->setCurrentText(dataList[templateName].at(i).fontType);
-                            fontSizeBox->setCurrentText(dataList[templateName].at(i).fontSize);
+                            fontBox->setCurrentText(dataList[templateName].at(k).fontType);
+                            fontSizeBox->setCurrentText(dataList[templateName].at(k).fontSize);
 
                             QColor color;
 
-                            color.setRgb(dataList[templateName].at(i).fontColor.toInt());
+                            color.setRgb(dataList[templateName].at(k).fontColor.toUInt());
 
                             //设置颜色
                             QPalette pal = colorFrame->palette();
-                            pal.setColor(QPalette::WindowText, color);
+                            pal.setColor(QPalette::Button, color);
                             colorFrame->setPalette(pal);
                             colorFrame->setAutoFillBackground(true);
+                            colorFrame->setFlat(true);
+
+                            labelFontColor = color;
 
                             break;
                         }
@@ -479,6 +511,8 @@ const QImage TemplateSetUp::generateQrCode(QString number)
     {
         for( qint32 x = 0; x < qrcodeWidth; x ++)
         {
+            if((y * qrcodeWidth + x) > qrcode->width * qrcode->width) continue;
+
             unsigned char data = qrcode->data[y * qrcodeWidth + x];
             if(data & 0x01)
             {
@@ -493,7 +527,10 @@ const QImage TemplateSetUp::generateQrCode(QString number)
         qrCodeLabel[i]->setPixmap(QPixmap::fromImage(mainImg));
     }
 
-    bingLiLabel.first()->setText("123456789");
+    for(int i = 0; i < bingLiLabel.size(); i ++)
+    {
+        bingLiLabel[i]->setText(qrCodeNumber);
+    }
 
     ui->widgetControl->clearBox();
 
@@ -516,9 +553,9 @@ void TemplateSetUp::printQrCode(QPixmap & pixmap)
 }
 
 /*********************     打印图像            ************************/
-void TemplateSetUp::on_pushButtonPrint_clicked()
+void TemplateSetUp::printImage(QString number)
 {
-    generateQrCode("123456789");
+    generateQrCode(number);
 
     QPixmap printPixMap = QWidget::grab(QRect(STARTPOINT.x(), STARTPOINT.y(), ui->widgetControl->width() - PAINTDATA , ui->widgetControl->height() - PAINTDATA));
 
@@ -583,12 +620,6 @@ void TemplateSetUp::currentFontChange()
     //设置字体
     listLabel.at(selectLabelIndex)->setFont(currentFont);
 
-    //设置颜色
-    QPalette pal = listLabel.at(selectLabelIndex)->palette();
-    pal.setColor(QPalette::WindowText, labelFontColor);
-    listLabel.at(selectLabelIndex)->setPalette(pal);
-    listLabel.at(selectLabelIndex)->setAutoFillBackground(true);
-
     for(int i = 0; i < dataList[templateName].size(); i ++)
     {
         if(dataList[templateName].at(i).labelType.toInt() == typeFlage
@@ -597,7 +628,7 @@ void TemplateSetUp::currentFontChange()
         {
             dataList[templateName][i].labelType   = QString::number(typeFlage);
             dataList[templateName][i].labelText   = listLabel.at(selectLabelIndex)->text();
-            dataList[templateName][i].fontType    = currentFont.styleName();
+            dataList[templateName][i].fontType    = currentFont.family();
             dataList[templateName][i].fontSize    = QString::number(currentFont.pointSize());
             dataList[templateName][i].fontColor   = QString::number(labelFontColor.rgb());
             dataList[templateName][i].labelWidth  = QString::number(listLabel.at(selectLabelIndex)->width());
@@ -615,12 +646,29 @@ void TemplateSetUp::currentFontChange()
 /**********************    字体颜色改变         ************************/
 void TemplateSetUp::colorChange()
 {
-    labelFontColor = QColorDialog::getColor(Qt::white, this);
+    if(selectLabelIndex == INVALIDVALUE) return;
+
+    QList<QLabel*> listLabel;
+
+    switch(typeFlage)
+    {
+    case TEXTTYPE:    listLabel = textLabel;   break;
+    case BINGLITYPE:  listLabel = bingLiLabel; break;
+    case QRCODETYPE:  listLabel = qrCodeLabel; break;
+    }
+
+    labelFontColor = QColorDialog::getColor(Qt::black, this);
     QPalette pal = colorFrame->palette();
-    pal.setColor(QPalette::Button,labelFontColor);
+    pal.setColor(QPalette::Button, labelFontColor);
     colorFrame->setPalette(pal);
     colorFrame->setAutoFillBackground(true);
     colorFrame->setFlat(true);
+
+    //设置颜色
+    pal = listLabel.at(selectLabelIndex)->palette();
+    pal.setColor(QPalette::WindowText, labelFontColor);
+    listLabel.at(selectLabelIndex)->setPalette(pal);
+    listLabel.at(selectLabelIndex)->setAutoFillBackground(true);
 
     currentFontChange();
 }
@@ -641,6 +689,11 @@ void TemplateSetUp::textChange()
 
     //设置内容
     listLabel.at(selectLabelIndex)->setText(textEdit->text());
+}
+
+void TemplateSetUp::setQrCodeNumber(const QString &value)
+{
+    qrCodeNumber = value;
 }
 
 /**********************    组合json数据        *************************/
@@ -741,8 +794,9 @@ void TemplateSetUp::on_listWidgetTemplate_clicked(const QModelIndex &index)
 {
     templateName = index.data().toString();
 
-    deleteAll();  //先删除
-    writeAll();   //再写入
+    deleteAll();                    //先删除
+    writeAll();                     //再写入
+    generateQrCode(qrCodeNumber);   //二维码
 }
 
 /**********************    保存模板            *************************/

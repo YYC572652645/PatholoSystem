@@ -13,7 +13,7 @@ MessageDialog::MessageDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("系统提示"));
-    this->resize(320,160);                        //重定义界面大小
+    this->resize(320, 160);                       //重定义界面大小
     int width=this->width();                      //获取界面宽度
     int height=this->height();                    //获取界面高度
     mousePress=false;                             //初始化为未按下鼠标左键
@@ -75,7 +75,7 @@ MessageDialog::~MessageDialog()
 
 
 /****************************************设置函数*******************************/
-void MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget * parent)
+int MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget * parent)
 {
     setParent(parent);
     //设置标题
@@ -103,7 +103,7 @@ void MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, boo
 
     this->move((parent->width() - this->width()) / 2 , (parent->height()- this->height()) / 2);
 
-    this->exec();
+    return this->exec();
 }
 
 
@@ -126,9 +126,9 @@ void MessageDialog::mousePressEvent(QMouseEvent *event)
 {
     if(event->button()==Qt::LeftButton)
     {
-        mousePress=true;
+        mousePress = true;
     }
-    movePoint=event->globalPos()-pos();
+    movePoint = event->globalPos()-pos();
 }
 
 

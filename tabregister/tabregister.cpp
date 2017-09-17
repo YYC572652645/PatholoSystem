@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QModelIndex>
 #include <QAbstractItemModel>
+#include "messagebox/messagedialog.h"
 
 /*******************   构造函数    ***********************/
 TabRegister::TabRegister(QWidget *parent) :
@@ -18,9 +19,9 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initControl();
     this->initData();
 
-    newSlices = new NewSlices();                 //新编号
-    newMoreSlices = new NewMoreSlices();         //批量编号
-    templateSetUp = new TemplateSetUp();     //打印模板
+    newSlices = new NewSlices();                //新编号
+    newMoreSlices = new NewMoreSlices();        //批量编号
+    templateSetUp = new TemplateSetUp(this);    //打印模板
 
     //初始化信号和槽
     connect(newSlices, SIGNAL(signalSelect(int)), this, SLOT(selectData(int)));
@@ -74,8 +75,8 @@ void TabRegister::selectData(int type)
         ui->tableWidget->setItem(i, 2, DATA(registerData.registerInfo.at(i).printQuantity));  //打印数量
 
         {
-            QWidget *widget = new QWidget(this);
-            QCheckBox *checkBox = new QCheckBox(this);
+            QWidget     *widget     = new QWidget(this);
+            QCheckBox   *checkBox   = new QCheckBox(this);
             QHBoxLayout *hboxLayout = new QHBoxLayout(this);
             checkBox->setMinimumHeight(16);
             hboxLayout->addWidget(checkBox);
@@ -192,14 +193,15 @@ void TabRegister::on_actionNewMoreNumber_triggered()
 /*******************   打印模板    ***********************/
 void TabRegister::on_actionPrintTemplate_triggered()
 {
-    templateSetUp->show();
+    templateSetUp->setQrCodeNumber(registerData.registerInfo.at(ui->tableWidget->currentRow()).sn);
+    templateSetUp->showWidget();
 }
 
 /*******************   删除数据    ***********************/
 void TabRegister::on_actionDeleteInfo_triggered()
 {
-    int ok = QMessageBox::question(this,tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),QMessageBox::Yes|QMessageBox::No);
-    if(ok == QMessageBox::Yes)
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
     {
         registerData.deleteRowData(registerData.registerInfo.at(ui->tableWidget->currentRow()).id);
         this->selectData(ALLDATA);
@@ -209,8 +211,8 @@ void TabRegister::on_actionDeleteInfo_triggered()
 /*******************   清空数据    ***********************/
 void TabRegister::on_actionClearInfo_triggered()
 {
-    int ok = QMessageBox::question(this,tr("系统提示"),tr("确定清空数据吗？此操作不可逆！"),QMessageBox::Yes|QMessageBox::No);
-    if(ok == QMessageBox::Yes)
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
     {
         registerData.deleteAllData();
         this->selectData(ALLDATA);
@@ -235,7 +237,6 @@ void TabRegister::on_actionExtendExcel_triggered()
 void TabRegister::on_pushButtonRefresh_clicked()
 {
     //播放gif
-
     ui->labelMovie->setMovie(movie);
     movie->start();
 

@@ -13,7 +13,6 @@ public:
     void extendExcel(QList<QString> itemName, QList<RegisterInfo> registerInfo);  //导出Excel
 
 private:
-
     /********************创建操作excel对象*****************/
     QAxObject *excel;
     QAxObject *workBooks;

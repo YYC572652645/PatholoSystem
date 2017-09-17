@@ -26,7 +26,6 @@ public:
     explicit TabRegister(QWidget *parent = 0);
     ~TabRegister();
 
-
 signals:
     void sendNumber(QString);
 private slots:
@@ -42,8 +41,7 @@ private slots:
     void on_pushButtonFind_clicked();                                   //查找数据
     void on_tableWidget_clicked(const QModelIndex &index);              //单击列表
     void on_tableWidget_doubleClicked(const QModelIndex &currentIndex); //双击列表
-
-    void on_actionPrintLabel_triggered();
+    void on_actionPrintLabel_triggered();                               //打印标签
 
 private:
     Ui::tabregister *ui;
@@ -54,18 +52,18 @@ private:
     void createActions();                            //创建菜单栏
 
 private:
-    RegisterData registerData;    //登记数据库
-    PatientInfo patientInfo;      //患者信息
-    NewSlices *newSlices;         //新编号
-    NewMoreSlices *newMoreSlices; //批量编号
-    TemplateSetUp *templateSetUp; //打印模板
-    QMovie * movie;               //播放gif
-    QTimer * timer;               //设置定时器
-    QString deleteID;             //删除的ID
-    QMenu *menu;                  //菜单
-    QAction *print;               //打印
-    QAction *del;                 //删除
-    QAction *refresh;             //刷新
+    RegisterData registerData;                       //登记数据库
+    PatientInfo patientInfo;                         //患者信息
+    NewSlices *newSlices;                            //新编号
+    NewMoreSlices *newMoreSlices;                    //批量编号
+    TemplateSetUp *templateSetUp;                    //打印模板
+    QMovie  *movie;                                  //播放gif
+    QTimer  *timer;                                  //设置定时器
+    QString deleteID;                                //删除的ID
+    QMenu   *menu;                                   //菜单
+    QAction *print;                                  //打印
+    QAction *del;                                    //删除
+    QAction *refresh;                                //刷新
 };
 
 
