@@ -99,6 +99,11 @@ void NewSlices::on_pushButtonOk_clicked()
     //是否打印
     data.printed       = QString::number(ui->checkBoxPrint->isChecked());
 
+    if(ui->checkBoxPrint->isChecked())
+    {
+        emit printBLNumber(ui->spinBoxPrintNumber->value(), data.sn);
+    }
+
     //打印时间
     data.createTime    = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
 
@@ -106,7 +111,7 @@ void NewSlices::on_pushButtonOk_clicked()
     registerData.insertRegData(data);
 
     //发送更新信号
-    emit signalSelect(ALLDATA);
+    emit signalSelect(ALLDATA, true);
 
     //关闭窗口
     this->close();

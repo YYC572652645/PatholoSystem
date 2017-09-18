@@ -127,6 +127,12 @@ padding: 0 3px;
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonSave">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
                 <string>保存</string>
                </property>
@@ -421,11 +427,6 @@ QLabel
                  <string>新建行</string>
                 </property>
                </row>
-               <row>
-                <property name="text">
-                 <string>新建行</string>
-                </property>
-               </row>
                <column>
                 <property name="text">
                  <string>新建列</string>
@@ -456,6 +457,9 @@ QLabel
    <property name="movable">
     <bool>false</bool>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -470,10 +474,10 @@ QLabel
      <normaloff>:/image/image/critical.png</normaloff>:/image/image/critical.png</iconset>
    </property>
    <property name="text">
-    <string>删除</string>
+    <string>删除控件</string>
    </property>
    <property name="toolTip">
-    <string>删除</string>
+    <string>删除控件</string>
    </property>
   </action>
  </widget>

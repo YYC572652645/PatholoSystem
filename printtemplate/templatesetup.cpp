@@ -12,6 +12,8 @@
 #include <QJsonDocument>
 #include <QListWidgetItem>
 #include "templatedata/templatedata.h"
+#include "messagebox/messagedialog.h"
+#include "../globaldef.h"
 #include <QJsonArray>
 
 /*********************     构造函数             **************************/
@@ -47,7 +49,6 @@ TemplateSetUp::TemplateSetUp(QWidget *parent) :
         //设置当前行为最后一行
         ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
     }
-
 }
 
 /*********************     析构函数             **************************/
@@ -56,7 +57,6 @@ TemplateSetUp::~TemplateSetUp()
     deleteAll();
     SAFEDELETE(fontBox);
     SAFEDELETE(fontSizeBox);
-    SAFEDELETE(colorFrame);
     SAFEDELETE(widthEdit);
     SAFEDELETE(heightEdit);
     SAFEDELETE(qrcode);
@@ -67,6 +67,10 @@ TemplateSetUp::~TemplateSetUp()
 /*********************     显示对话框           **************************/
 void TemplateSetUp::showWidget()
 {
+    if(!deleteFlage) deleteAll();   //先删除
+    writeAll();                     //再写入
+    generateQrCode(qrCodeNumber);   //二维码
+
     this->show();
 }
 
@@ -174,24 +178,17 @@ void TemplateSetUp::initControl()
         fontSizeBox->addItem(QString::number(size));
     }
 
-    //颜色
-    colorFrame = new QPushButton(this);
-    colorFrame->setStyleSheet("background-color:black");
-    ui->tableWidget->setCellWidget(3, 1, colorFrame);
-
     //宽度
     widthEdit = new QLineEdit(this);
     widthEdit->setFrame(QFrame::NoFrame);
-    ui->tableWidget->setCellWidget(4, 1, widthEdit);
+    ui->tableWidget->setCellWidget(3, 1, widthEdit);
     widthEdit->setStyleSheet("background-color:transparent");
-    widthEdit->setEnabled(false);
 
     //高度
     heightEdit= new QLineEdit(this);
     heightEdit->setFrame(QFrame::NoFrame);
-    ui->tableWidget->setCellWidget(5, 1, heightEdit);
+    ui->tableWidget->setCellWidget(4, 1, heightEdit);
     heightEdit->setStyleSheet("background-color:transparent");
-    heightEdit->setEnabled(false);
 
     //内容
     QTableWidgetItem *textItem = new QTableWidgetItem("内容:");
@@ -208,23 +205,20 @@ void TemplateSetUp::initControl()
     fontSizeItem->setTextAlignment(Qt::AlignCenter);
     ui->tableWidget->setItem(2, 0, fontSizeItem);
 
-    //颜色
-    QTableWidgetItem *colorItem = new QTableWidgetItem("颜色:");
-    colorItem->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget->setItem(3, 0, colorItem);
-
     //宽度
     QTableWidgetItem *widthItem = new QTableWidgetItem("宽度:");
     widthItem->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget->setItem(4, 0, widthItem);
+    ui->tableWidget->setItem(3, 0, widthItem);
 
     //高度
-    QTableWidgetItem *heightItem = new QTableWidgetItem("高度:");
+    QTableWidgetItem *heightItem = new  QTableWidgetItem("高度:");
     heightItem->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget->setItem(5, 0, heightItem);
+    ui->tableWidget->setItem(4, 0, heightItem);
 
     //默认字体大小为16
     fontSizeBox->setCurrentIndex(8);
+
+    deleteFlage = true;   //是否删除标志位
 }
 
 /*********************     连接信号与槽         *************************/
@@ -232,8 +226,9 @@ void TemplateSetUp::initConnect()
 {
     connect(fontBox,     SIGNAL(currentFontChanged(const QFont)), this, SLOT(currentFontChange()));
     connect(fontSizeBox, SIGNAL(currentTextChanged(QString)),     this, SLOT(currentFontChange()));
-    connect(colorFrame,  SIGNAL(clicked(bool)),                   this, SLOT(colorChange()));
     connect(textEdit,    SIGNAL(textChanged(QString)),            this, SLOT(textChange()));
+    connect(this,        SIGNAL(textChg()),                       this, SLOT(sizeChange()));
+    connect(this,        SIGNAL(textChg()),                       this, SLOT(sizeChange()));
 }
 
 /*********************     删除所有控件         *************************/
@@ -262,12 +257,13 @@ void TemplateSetUp::deleteAll()
 
     selectLabelIndex = INVALIDVALUE;
     ui->widgetControl->clearBox();
+
+    deleteFlage = true;
 }
 
 /*********************     写入控件            *************************/
 void TemplateSetUp::writeAll()
 {
-    if(ui->widgetControl->isHidden()) return;
     if(templateName.isEmpty())  return;
 
     dataList.clear();
@@ -311,17 +307,7 @@ void TemplateSetUp::writeAll()
 
         label->setGeometry(x, y, width, height);          //设置位置
 
-        QColor color;
-
-        color.setRgb(dataLabel.at(i).fontColor.toUInt());
-
-        //设置颜色
-        QPalette pal = label->palette();
-        pal.setColor(QPalette::WindowText, color);
-        label->setPalette(pal);
-        label->setAutoFillBackground(true);
-
-        label->setWordWrap(true); //设置换行
+        label->setWordWrap(true);                         //设置换行
 
         switch(dataLabel.at(i).labelType.toInt())
         {
@@ -330,13 +316,14 @@ void TemplateSetUp::writeAll()
         case QRCODETYPE:   qrCodeLabel.append(label);    break;
         }
 
-
         label->show();            //显示出来
 
         dataList[templateName][i].label = label;
 
         ui->widgetControl->selectWidget->addWidget(label);  //添加控件
     }
+
+    deleteFlage = false;
 }
 
 /*********************     点击列表框中控件     *************************/
@@ -367,7 +354,6 @@ void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
     labelData.labelText   = label->text();
     labelData.fontType    = "宋体";
     labelData.fontSize    = "16";
-    labelData.fontColor   = "4278190080";
     labelData.labelWidth  = QString::number(label->width());
     labelData.labelHeight = QString::number(label->height());
     labelData.gemoryX     = QString::number(label->geometry().x());
@@ -427,19 +413,6 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
                         {
                             fontBox->setCurrentText(dataList[templateName].at(k).fontType);
                             fontSizeBox->setCurrentText(dataList[templateName].at(k).fontSize);
-
-                            QColor color;
-
-                            color.setRgb(dataList[templateName].at(k).fontColor.toUInt());
-
-                            //设置颜色
-                            QPalette pal = colorFrame->palette();
-                            pal.setColor(QPalette::Button, color);
-                            colorFrame->setPalette(pal);
-                            colorFrame->setAutoFillBackground(true);
-                            colorFrame->setFlat(true);
-
-                            labelFontColor = color;
 
                             break;
                         }
@@ -630,7 +603,6 @@ void TemplateSetUp::currentFontChange()
             dataList[templateName][i].labelText   = listLabel.at(selectLabelIndex)->text();
             dataList[templateName][i].fontType    = currentFont.family();
             dataList[templateName][i].fontSize    = QString::number(currentFont.pointSize());
-            dataList[templateName][i].fontColor   = QString::number(labelFontColor.rgb());
             dataList[templateName][i].labelWidth  = QString::number(listLabel.at(selectLabelIndex)->width());
             dataList[templateName][i].labelHeight = QString::number(listLabel.at(selectLabelIndex)->height());
             dataList[templateName][i].gemoryX     = QString::number(listLabel.at(selectLabelIndex)->geometry().x());
@@ -641,36 +613,6 @@ void TemplateSetUp::currentFontChange()
     }
 
     listLabel.clear();
-}
-
-/**********************    字体颜色改变         ************************/
-void TemplateSetUp::colorChange()
-{
-    if(selectLabelIndex == INVALIDVALUE) return;
-
-    QList<QLabel*> listLabel;
-
-    switch(typeFlage)
-    {
-    case TEXTTYPE:    listLabel = textLabel;   break;
-    case BINGLITYPE:  listLabel = bingLiLabel; break;
-    case QRCODETYPE:  listLabel = qrCodeLabel; break;
-    }
-
-    labelFontColor = QColorDialog::getColor(Qt::black, this);
-    QPalette pal = colorFrame->palette();
-    pal.setColor(QPalette::Button, labelFontColor);
-    colorFrame->setPalette(pal);
-    colorFrame->setAutoFillBackground(true);
-    colorFrame->setFlat(true);
-
-    //设置颜色
-    pal = listLabel.at(selectLabelIndex)->palette();
-    pal.setColor(QPalette::WindowText, labelFontColor);
-    listLabel.at(selectLabelIndex)->setPalette(pal);
-    listLabel.at(selectLabelIndex)->setAutoFillBackground(true);
-
-    currentFontChange();
 }
 
 /**********************    文本改变            *************************/
@@ -691,6 +633,28 @@ void TemplateSetUp::textChange()
     listLabel.at(selectLabelIndex)->setText(textEdit->text());
 }
 
+/**********************    改变大小        *************************/
+void TemplateSetUp::sizeChange()
+{
+    if(selectLabelIndex == INVALIDVALUE) return;
+
+    QList<QLabel*> listLabel;
+
+    switch(typeFlage)
+    {
+    case TEXTTYPE:    listLabel = textLabel;   break;
+    case BINGLITYPE:  listLabel = bingLiLabel; break;
+    case QRCODETYPE:  listLabel = qrCodeLabel; break;
+    }
+
+    //设置大小
+    int x = listLabel.at(selectLabelIndex)->geometry().x();
+    int y = listLabel.at(selectLabelIndex)->geometry().y();
+
+    listLabel.at(selectLabelIndex)->setGeometry(x, y, widthEdit->text().toInt(), heightEdit->text().toInt());
+}
+
+/**********************    设置病理号        *************************/
 void TemplateSetUp::setQrCodeNumber(const QString &value)
 {
     qrCodeNumber = value;
@@ -715,7 +679,6 @@ void TemplateSetUp::writeJson()
         mapData[labelText]   = dataLabel.at(i).labelText;
         mapData[fontType]    = dataLabel.at(i).fontType;
         mapData[fontSize]    = dataLabel.at(i).fontSize;
-        mapData[fontColor]   = dataLabel.at(i).fontColor;
         mapData[labelWidth]  = QString::number(dataLabel.at(i).label->width());
         mapData[labelHeight] = QString::number(dataLabel.at(i).label->height());
         mapData[gemoryX]     = QString::number(dataLabel.at(i).label->geometry().x());
@@ -774,7 +737,6 @@ bool TemplateSetUp::readJson(QString arrayData, QString name)
             data.labelText   = mapData[labelText];
             data.fontType    = mapData[fontType];
             data.fontSize    = mapData[fontSize];
-            data.fontColor   = mapData[fontColor];
             data.labelWidth  = mapData[labelWidth];
             data.labelHeight = mapData[labelHeight];
             data.gemoryX     = mapData[gemoryX];
@@ -794,7 +756,7 @@ void TemplateSetUp::on_listWidgetTemplate_clicked(const QModelIndex &index)
 {
     templateName = index.data().toString();
 
-    deleteAll();                    //先删除
+    if(!deleteFlage) deleteAll();   //先删除
     writeAll();                     //再写入
     generateQrCode(qrCodeNumber);   //二维码
 }
@@ -803,4 +765,6 @@ void TemplateSetUp::on_listWidgetTemplate_clicked(const QModelIndex &index)
 void TemplateSetUp::on_pushButtonSave_clicked()
 {
     writeJson();
+
+    MESSAGEBOX->setInfo(tr("系统提示"),tr("当前模板为 <%1>").arg(templateName),GLOBALDEF::SUCCESSIMAGE, true, NULL);
 }

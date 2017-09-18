@@ -167,15 +167,15 @@ int RegisterData::selectBLData(QString blNumber)
 }
 
 /********************         更改数据       ******************/
-bool RegisterData::updateData()
+bool RegisterData::updateBLData(QString printed, QString id)
 {
-    if(!db.isOpen())
-    {
-        db.open();
-    }
+    if(!db.isOpen()) db.open();
+
     QSqlQuery query;
-    QString Str = QString("update  table set('','');");
-    bool success = query.exec(Str);  //执行sql语句
+
+    QString str = QString("update Reg set Printed = '%1' where Id = '%2';").arg(printed, id);
+
+    bool success = query.exec(str);
 
     db.close();
 
@@ -190,8 +190,10 @@ bool RegisterData::deleteAllData()
         db.open();
     }
     QSqlQuery query;
-    QString Str = QString("delete from Reg");
-    bool success = query.exec(Str);  //执行sql语句
+
+    QString str = QString("delete from Reg");
+
+    bool success = query.exec(str);
 
     db.close();
 

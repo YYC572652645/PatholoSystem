@@ -77,7 +77,6 @@ MessageDialog::~MessageDialog()
 /****************************************设置函数*******************************/
 int MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget * parent)
 {
-    setParent(parent);
     //设置标题
     titleLabel->setText(" "+titleInfo);
 
@@ -101,7 +100,12 @@ int MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, bool
     //设置默认按钮为取消按钮
     cancelButton->setFocus();
 
-    this->move((parent->width() - this->width()) / 2 , (parent->height()- this->height()) / 2);
+    //指定父窗口
+    if(NULL != parent)
+    {
+        setParent(parent);
+        this->move((parent->width() - this->width()) / 2 , (parent->height()- this->height()) / 2);
+    }
 
     return this->exec();
 }

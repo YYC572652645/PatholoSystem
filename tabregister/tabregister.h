@@ -28,9 +28,11 @@ public:
 
 signals:
     void sendNumber(QString);
+
 private slots:
     void updateMovie();                                                 //更新gif
-    void selectData(int type);                                          //查询数据
+    void printBLNumber(int count, QString number);                      //打印数据
+    void selectData(int type, int scrollFlage);                         //查询数据
     void on_actionNewNumber_triggered();                                //新建编号
     void on_actionNewMoreNumber_triggered();                            //批量编号
     void on_actionPrintTemplate_triggered();                            //打印模版
@@ -42,6 +44,7 @@ private slots:
     void on_tableWidget_clicked(const QModelIndex &index);              //单击列表
     void on_tableWidget_doubleClicked(const QModelIndex &currentIndex); //双击列表
     void on_actionPrintLabel_triggered();                               //打印标签
+    void on_actionPrintMoreLabel_triggered();                           //批量打印
 
 private:
     Ui::tabregister *ui;

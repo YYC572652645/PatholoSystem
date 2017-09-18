@@ -9,7 +9,7 @@
 #include <QAbstractItemModel>
 #include "messagebox/messagedialog.h"
 
-/*******************   构造函数    ***********************/
+/*******************       构造函数                ***********************/
 TabRegister::TabRegister(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::tabregister)
@@ -24,8 +24,10 @@ TabRegister::TabRegister(QWidget *parent) :
     templateSetUp = new TemplateSetUp(this);    //打印模板
 
     //初始化信号和槽
-    connect(newSlices, SIGNAL(signalSelect(int)), this, SLOT(selectData(int)));
-    connect(newMoreSlices, SIGNAL(signalSelect(int)), this, SLOT(selectData(int)));
+    connect(newSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));
+    connect(newSlices, SIGNAL(printBLNumber(int, QString)), this, SLOT(printBLNumber(int, QString)));
+    connect(newMoreSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));
+
 
     timer = new QTimer(this);
     movie = new QMovie(":/image/image/refresh.gif");
@@ -33,7 +35,7 @@ TabRegister::TabRegister(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateMovie()));
 }
 
-/*******************   析构函数    ***********************/
+/*******************       析构函数                ***********************/
 TabRegister::~TabRegister()
 {
     SAFEDELETE(newSlices);
@@ -44,15 +46,25 @@ TabRegister::~TabRegister()
     delete ui;
 }
 
-/*******************   更新gif    ***********************/
+/*******************       更新gif                ***********************/
 void TabRegister::updateMovie()
 {
     movie->stop();
     timer->stop();
 }
 
-/*******************   查询数据    ***********************/
-void TabRegister::selectData(int type)
+/*******************       打印数据                ***********************/
+void TabRegister::printBLNumber(int count, QString number)
+{
+    qDebug()<<count<<number;
+    for(int i = 0; i < count; i ++)
+    {
+        templateSetUp->printImage(number);
+    }
+}
+
+/*******************       查询数据                ***********************/
+void TabRegister::selectData(int type, int scrollFlage)
 {
     int dataCount = 0;
     if(type == ALLDATA)
@@ -66,7 +78,7 @@ void TabRegister::selectData(int type)
 
     if(dataCount == GLOBALDEF::ERROR) return;
 
-    ui->tableWidget->setRowCount(dataCount);    //设置表格行数
+    ui->tableWidget->setRowCount(dataCount);     //设置表格行数
 
     for(int i = 0; i < dataCount; i ++)
     {
@@ -94,18 +106,21 @@ void TabRegister::selectData(int type)
         ui->tableWidget->setItem(i, 4, DATA(registerData.registerInfo.at(i).createTime));     //创建时间
     }
 
-    //滑动至最后一行
-    ui->tableWidget->scrollToBottom();
-
-    //设置第一行为当前选中行
-    if(dataCount != 0)
+    if(scrollFlage)
     {
-        ui->tableWidget->selectRow(dataCount - 1);
-        ui->tableWidget->setFocus();
+        //滑动至最后一行
+        ui->tableWidget->scrollToBottom();
+
+        //设置第一行为当前选中行
+        if(dataCount != 0)
+        {
+            ui->tableWidget->selectRow(dataCount - 1);
+            ui->tableWidget->setFocus();
+        }
     }
 }
 
-/*******************   初始化控件    ***********************/
+/*******************       初始化控件              ***********************/
 void TabRegister::initControl()
 {
     //设置单行选中
@@ -144,8 +159,7 @@ void TabRegister::initControl()
     this->createActions();
 }
 
-
-/*******************   创建菜单    ***********************/
+/*******************       创建菜单                ***********************/
 void TabRegister::createActions()
 {
     menu    = new QMenu(this);
@@ -158,7 +172,7 @@ void TabRegister::createActions()
     connect(del,     SIGNAL(triggered(bool)), this,SLOT(on_actionDeleteInfo_triggered()));
 }
 
-/**************************显示菜单***************************/
+/*******************       显示菜单                ***********************/
 void TabRegister::contextMenuEvent(QContextMenuEvent *event)
 {
     menu->clear();
@@ -172,54 +186,54 @@ void TabRegister::contextMenuEvent(QContextMenuEvent *event)
     event->accept();
 }
 
-/*******************   初始化数据    ***********************/
+/*******************       初始化数据               ***********************/
 void TabRegister::initData()
 {
-    selectData(ALLDATA);
+    selectData(ALLDATA, true);
 }
 
-/*******************   新建编号    ***********************/
+/*******************       新建编号                 ***********************/
 void TabRegister::on_actionNewNumber_triggered()
 {
     newSlices->showDialog();
 }
 
-/*******************   批量编号    ***********************/
+/*******************       批量编号                 ***********************/
 void TabRegister::on_actionNewMoreNumber_triggered()
 {
     newMoreSlices->showDialog();
 }
 
-/*******************   打印模板    ***********************/
+/*******************       打印模板                 ***********************/
 void TabRegister::on_actionPrintTemplate_triggered()
 {
     templateSetUp->setQrCodeNumber(registerData.registerInfo.at(ui->tableWidget->currentRow()).sn);
     templateSetUp->showWidget();
 }
 
-/*******************   删除数据    ***********************/
+/*******************       删除数据                 ***********************/
 void TabRegister::on_actionDeleteInfo_triggered()
 {
     int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
     if(ok == QDialog::Accepted)
     {
         registerData.deleteRowData(registerData.registerInfo.at(ui->tableWidget->currentRow()).id);
-        this->selectData(ALLDATA);
+        this->selectData(ALLDATA, false);
     }
 }
 
-/*******************   清空数据    ***********************/
+/*******************       清空数据                 ***********************/
 void TabRegister::on_actionClearInfo_triggered()
 {
     int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
     if(ok == QDialog::Accepted)
     {
         registerData.deleteAllData();
-        this->selectData(ALLDATA);
+        this->selectData(ALLDATA, false);
     }
 }
 
-/*******************   导出Excel    ***********************/
+/*******************       导出Excel               ***********************/
 void TabRegister::on_actionExtendExcel_triggered()
 {
     QList<QString>itemName;
@@ -233,31 +247,31 @@ void TabRegister::on_actionExtendExcel_triggered()
     EXCEL->extendExcel(itemName, registerData.registerInfo);
 }
 
-/*******************   刷新数据       ***********************/
+/*******************       刷新数据                 ***********************/
 void TabRegister::on_pushButtonRefresh_clicked()
 {
     //播放gif
     ui->labelMovie->setMovie(movie);
     movie->start();
 
-    selectData(ALLDATA);
+    selectData(ALLDATA, true);
 
     timer->start(GLOBALDEF::REFRESHTIME);
 }
 
-/*******************   查找数据       ***********************/
+/*******************       查找数据                 ***********************/
 void TabRegister::on_pushButtonFind_clicked()
 {
-    selectData(BLDATA);
+    selectData(BLDATA, true);
 }
 
-/*******************   选中一行       ***********************/
+/*******************       选中一行                 ***********************/
 void TabRegister::on_tableWidget_clicked(const QModelIndex &index)
 {
 
 }
 
-/*******************   双击跳转至第二个界面       ***********************/
+/*******************       双击跳转至第二个界面       ***********************/
 void TabRegister::on_tableWidget_doubleClicked(const QModelIndex &currentIndex)
 {
     QAbstractItemModel *model = ui->tableWidget->model();
@@ -265,8 +279,55 @@ void TabRegister::on_tableWidget_doubleClicked(const QModelIndex &currentIndex)
     emit sendNumber(model->data(index).toString());
 }
 
-/*******************   打印标签       ***********************/
+/*******************       打印标签                 ***********************/
 void TabRegister::on_actionPrintLabel_triggered()
 {
+    int currentRow = ui->tableWidget->currentRow();
+    if(currentRow >= registerData.registerInfo.size()) return;
 
+    if(registerData.registerInfo.at(currentRow).printed != "0")
+    {
+        int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("当前标签已经打印，您需要重打吗？"),GLOBALDEF::SUCCESSIMAGE, false, this);
+        if(ok == QDialog::Accepted)
+        {
+            for(int i = 0; i < registerData.registerInfo.at(currentRow).printQuantity.toInt(); i ++)
+            {
+                templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
+            }
+
+            registerData.updateBLData("1", registerData.registerInfo.at(currentRow).id);
+        }
+    }
+    else
+    {
+        for(int i = 0; i < registerData.registerInfo.at(currentRow).printQuantity.toInt(); i ++)
+        {
+            templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
+        }
+
+        registerData.updateBLData("1", registerData.registerInfo.at(currentRow).id);
+    }
+
+    selectData(ALLDATA, false);
+}
+
+/*******************       批量打印打印标签          ***********************/
+void TabRegister::on_actionPrintMoreLabel_triggered()
+{
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("即将批量打印所有剩余的病理登记标签，您确认吗？"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
+    {
+        for(int i = 0; i < registerData.registerInfo.size(); i ++)
+        {
+            if(registerData.registerInfo.at(i).printed == "0")
+            {
+                for(int j = 0; j < registerData.registerInfo.at(i).printQuantity.toInt(); j ++)
+                {
+                    templateSetUp->printImage(registerData.registerInfo.at(i).sn);
+                }
+            }
+        }
+
+        selectData(ALLDATA, false);
+    }
 }

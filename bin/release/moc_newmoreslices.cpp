@@ -56,14 +56,14 @@ static const uint qt_meta_data_NewMoreSlices[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   29,    2, 0x06 /* Public */,
+       1,    2,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   32,    2, 0x08 /* Private */,
-       4,    0,   33,    2, 0x08 /* Private */,
+       3,    0,   34,    2, 0x08 /* Private */,
+       4,    0,   35,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,7 +78,7 @@ void NewMoreSlices::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         NewMoreSlices *_t = static_cast<NewMoreSlices *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signalSelect((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: _t->signalSelect((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 1: _t->on_pushButtonOk_clicked(); break;
         case 2: _t->on_pushButtonCancel_clicked(); break;
         default: ;
@@ -87,7 +87,7 @@ void NewMoreSlices::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (NewMoreSlices::*_t)(int );
+            typedef void (NewMoreSlices::*_t)(int , int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&NewMoreSlices::signalSelect)) {
                 *result = 0;
                 return;
@@ -133,9 +133,9 @@ int NewMoreSlices::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void NewMoreSlices::signalSelect(int _t1)
+void NewMoreSlices::signalSelect(int _t1, int _t2)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

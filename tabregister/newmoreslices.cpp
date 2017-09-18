@@ -108,7 +108,7 @@ void NewMoreSlices::on_pushButtonOk_clicked()
 
 
     //发送更新信号
-    emit signalSelect(ALLDATA);
+    emit signalSelect(ALLDATA, true);
 
     //关闭窗口
     this->close();

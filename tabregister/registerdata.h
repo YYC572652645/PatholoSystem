@@ -32,7 +32,7 @@ public:
     int selectBLData(QString blNumber);
 
     /************更改数据*************/
-    bool updateData();
+    bool updateBLData(QString printed, QString id);
 
     /************删除数据*************/
     bool deleteAllData();

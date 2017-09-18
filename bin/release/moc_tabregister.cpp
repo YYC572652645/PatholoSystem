@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_TabRegister_t {
-    QByteArrayData data[19];
-    char stringdata0[393];
+    QByteArrayData data[24];
+    char stringdata0[466];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,25 +33,31 @@ QT_MOC_LITERAL(0, 0, 11), // "TabRegister"
 QT_MOC_LITERAL(1, 12, 10), // "sendNumber"
 QT_MOC_LITERAL(2, 23, 0), // ""
 QT_MOC_LITERAL(3, 24, 11), // "updateMovie"
-QT_MOC_LITERAL(4, 36, 10), // "selectData"
-QT_MOC_LITERAL(5, 47, 4), // "type"
-QT_MOC_LITERAL(6, 52, 28), // "on_actionNewNumber_triggered"
-QT_MOC_LITERAL(7, 81, 32), // "on_actionNewMoreNumber_triggered"
-QT_MOC_LITERAL(8, 114, 32), // "on_actionPrintTemplate_triggered"
-QT_MOC_LITERAL(9, 147, 29), // "on_actionDeleteInfo_triggered"
-QT_MOC_LITERAL(10, 177, 28), // "on_actionClearInfo_triggered"
-QT_MOC_LITERAL(11, 206, 30), // "on_actionExtendExcel_triggered"
-QT_MOC_LITERAL(12, 237, 28), // "on_pushButtonRefresh_clicked"
-QT_MOC_LITERAL(13, 266, 25), // "on_pushButtonFind_clicked"
-QT_MOC_LITERAL(14, 292, 22), // "on_tableWidget_clicked"
-QT_MOC_LITERAL(15, 315, 5), // "index"
-QT_MOC_LITERAL(16, 321, 28), // "on_tableWidget_doubleClicked"
-QT_MOC_LITERAL(17, 350, 12), // "currentIndex"
-QT_MOC_LITERAL(18, 363, 29) // "on_actionPrintLabel_triggered"
+QT_MOC_LITERAL(4, 36, 13), // "printBLNumber"
+QT_MOC_LITERAL(5, 50, 5), // "count"
+QT_MOC_LITERAL(6, 56, 6), // "number"
+QT_MOC_LITERAL(7, 63, 10), // "selectData"
+QT_MOC_LITERAL(8, 74, 4), // "type"
+QT_MOC_LITERAL(9, 79, 11), // "scrollFlage"
+QT_MOC_LITERAL(10, 91, 28), // "on_actionNewNumber_triggered"
+QT_MOC_LITERAL(11, 120, 32), // "on_actionNewMoreNumber_triggered"
+QT_MOC_LITERAL(12, 153, 32), // "on_actionPrintTemplate_triggered"
+QT_MOC_LITERAL(13, 186, 29), // "on_actionDeleteInfo_triggered"
+QT_MOC_LITERAL(14, 216, 28), // "on_actionClearInfo_triggered"
+QT_MOC_LITERAL(15, 245, 30), // "on_actionExtendExcel_triggered"
+QT_MOC_LITERAL(16, 276, 28), // "on_pushButtonRefresh_clicked"
+QT_MOC_LITERAL(17, 305, 25), // "on_pushButtonFind_clicked"
+QT_MOC_LITERAL(18, 331, 22), // "on_tableWidget_clicked"
+QT_MOC_LITERAL(19, 354, 5), // "index"
+QT_MOC_LITERAL(20, 360, 28), // "on_tableWidget_doubleClicked"
+QT_MOC_LITERAL(21, 389, 12), // "currentIndex"
+QT_MOC_LITERAL(22, 402, 29), // "on_actionPrintLabel_triggered"
+QT_MOC_LITERAL(23, 432, 33) // "on_actionPrintMoreLabel_trigg..."
 
     },
     "TabRegister\0sendNumber\0\0updateMovie\0"
-    "selectData\0type\0on_actionNewNumber_triggered\0"
+    "printBLNumber\0count\0number\0selectData\0"
+    "type\0scrollFlage\0on_actionNewNumber_triggered\0"
     "on_actionNewMoreNumber_triggered\0"
     "on_actionPrintTemplate_triggered\0"
     "on_actionDeleteInfo_triggered\0"
@@ -61,7 +67,8 @@ QT_MOC_LITERAL(18, 363, 29) // "on_actionPrintLabel_triggered"
     "on_pushButtonFind_clicked\0"
     "on_tableWidget_clicked\0index\0"
     "on_tableWidget_doubleClicked\0currentIndex\0"
-    "on_actionPrintLabel_triggered"
+    "on_actionPrintLabel_triggered\0"
+    "on_actionPrintMoreLabel_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +78,7 @@ static const uint qt_meta_data_TabRegister[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,29 +86,32 @@ static const uint qt_meta_data_TabRegister[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   84,    2, 0x06 /* Public */,
+       1,    1,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   87,    2, 0x08 /* Private */,
-       4,    1,   88,    2, 0x08 /* Private */,
-       6,    0,   91,    2, 0x08 /* Private */,
-       7,    0,   92,    2, 0x08 /* Private */,
-       8,    0,   93,    2, 0x08 /* Private */,
-       9,    0,   94,    2, 0x08 /* Private */,
-      10,    0,   95,    2, 0x08 /* Private */,
-      11,    0,   96,    2, 0x08 /* Private */,
-      12,    0,   97,    2, 0x08 /* Private */,
-      13,    0,   98,    2, 0x08 /* Private */,
-      14,    1,   99,    2, 0x08 /* Private */,
-      16,    1,  102,    2, 0x08 /* Private */,
-      18,    0,  105,    2, 0x08 /* Private */,
+       3,    0,   97,    2, 0x08 /* Private */,
+       4,    2,   98,    2, 0x08 /* Private */,
+       7,    2,  103,    2, 0x08 /* Private */,
+      10,    0,  108,    2, 0x08 /* Private */,
+      11,    0,  109,    2, 0x08 /* Private */,
+      12,    0,  110,    2, 0x08 /* Private */,
+      13,    0,  111,    2, 0x08 /* Private */,
+      14,    0,  112,    2, 0x08 /* Private */,
+      15,    0,  113,    2, 0x08 /* Private */,
+      16,    0,  114,    2, 0x08 /* Private */,
+      17,    0,  115,    2, 0x08 /* Private */,
+      18,    1,  116,    2, 0x08 /* Private */,
+      20,    1,  119,    2, 0x08 /* Private */,
+      22,    0,  122,    2, 0x08 /* Private */,
+      23,    0,  123,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,    5,    6,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    8,    9,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -110,8 +120,9 @@ static const uint qt_meta_data_TabRegister[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   15,
-    QMetaType::Void, QMetaType::QModelIndex,   17,
+    QMetaType::Void, QMetaType::QModelIndex,   19,
+    QMetaType::Void, QMetaType::QModelIndex,   21,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -125,18 +136,20 @@ void TabRegister::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         switch (_id) {
         case 0: _t->sendNumber((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->updateMovie(); break;
-        case 2: _t->selectData((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->on_actionNewNumber_triggered(); break;
-        case 4: _t->on_actionNewMoreNumber_triggered(); break;
-        case 5: _t->on_actionPrintTemplate_triggered(); break;
-        case 6: _t->on_actionDeleteInfo_triggered(); break;
-        case 7: _t->on_actionClearInfo_triggered(); break;
-        case 8: _t->on_actionExtendExcel_triggered(); break;
-        case 9: _t->on_pushButtonRefresh_clicked(); break;
-        case 10: _t->on_pushButtonFind_clicked(); break;
-        case 11: _t->on_tableWidget_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 12: _t->on_tableWidget_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 13: _t->on_actionPrintLabel_triggered(); break;
+        case 2: _t->printBLNumber((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 3: _t->selectData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 4: _t->on_actionNewNumber_triggered(); break;
+        case 5: _t->on_actionNewMoreNumber_triggered(); break;
+        case 6: _t->on_actionPrintTemplate_triggered(); break;
+        case 7: _t->on_actionDeleteInfo_triggered(); break;
+        case 8: _t->on_actionClearInfo_triggered(); break;
+        case 9: _t->on_actionExtendExcel_triggered(); break;
+        case 10: _t->on_pushButtonRefresh_clicked(); break;
+        case 11: _t->on_pushButtonFind_clicked(); break;
+        case 12: _t->on_tableWidget_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 13: _t->on_tableWidget_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 14: _t->on_actionPrintLabel_triggered(); break;
+        case 15: _t->on_actionPrintMoreLabel_triggered(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -177,13 +190,13 @@ int TabRegister::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }

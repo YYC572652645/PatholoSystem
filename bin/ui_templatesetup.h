@@ -152,6 +152,7 @@ public:
 
         pushButtonSave = new QPushButton(groupBox_3);
         pushButtonSave->setObjectName(QStringLiteral("pushButtonSave"));
+        pushButtonSave->setMinimumSize(QSize(120, 0));
 
         horizontalLayout_2->addWidget(pushButtonSave);
 
@@ -331,8 +332,8 @@ public:
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        if (tableWidget->rowCount() < 6)
-            tableWidget->setRowCount(6);
+        if (tableWidget->rowCount() < 5)
+            tableWidget->setRowCount(5);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
@@ -343,8 +344,6 @@ public:
         tableWidget->setVerticalHeaderItem(3, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(4, __qtablewidgetitem6);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        tableWidget->setVerticalHeaderItem(5, __qtablewidgetitem7);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         verticalLayout->addWidget(tableWidget);
@@ -365,6 +364,7 @@ public:
         toolBar = new QToolBar(templatesetup);
         toolBar->setObjectName(QStringLiteral("toolBar"));
         toolBar->setMovable(false);
+        toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
         templatesetup->addToolBar(Qt::TopToolBarArea, toolBar);
 
         toolBar->addAction(actionDelete);
@@ -377,9 +377,9 @@ public:
     void retranslateUi(QMainWindow *templatesetup)
     {
         templatesetup->setWindowTitle(QApplication::translate("templatesetup", "MainWindow", 0));
-        actionDelete->setText(QApplication::translate("templatesetup", "\345\210\240\351\231\244", 0));
+        actionDelete->setText(QApplication::translate("templatesetup", "\345\210\240\351\231\244\346\216\247\344\273\266", 0));
 #ifndef QT_NO_TOOLTIP
-        actionDelete->setToolTip(QApplication::translate("templatesetup", "\345\210\240\351\231\244", 0));
+        actionDelete->setToolTip(QApplication::translate("templatesetup", "\345\210\240\351\231\244\346\216\247\344\273\266", 0));
 #endif // QT_NO_TOOLTIP
         groupBox_2->setTitle(QString());
         groupBox_3->setTitle(QString());
@@ -415,8 +415,6 @@ public:
         ___qtablewidgetitem5->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->verticalHeaderItem(4);
         ___qtablewidgetitem6->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
-        QTableWidgetItem *___qtablewidgetitem7 = tableWidget->verticalHeaderItem(5);
-        ___qtablewidgetitem7->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\350\241\214", 0));
         toolBar->setWindowTitle(QApplication::translate("templatesetup", "toolBar", 0));
     } // retranslateUi
 

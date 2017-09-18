@@ -19,7 +19,6 @@ typedef struct LabelData
     QString labelText;     //控件文本
     QString fontType;      //字体类型
     QString fontSize;      //字体大小
-    QString fontColor;     //字体颜色
     QString labelWidth;    //控件宽度
     QString labelHeight;   //控件高度
     QString gemoryX;       //控件位置X
@@ -42,6 +41,7 @@ public:
 
 signals:
     void sendType(int);
+    void textChg();
 
 private slots:
     void on_pushButtonAdd_clicked();                               //添加模板
@@ -51,8 +51,8 @@ private slots:
     void on_listWidgetTemplate_clicked(const QModelIndex &index);  //点击模板列表
     void on_pushButtonSave_clicked();                              //保存按钮
     void currentFontChange();                                      //字体改变
-    void colorChange();                                            //字体颜色改变
     void textChange();                                             //内容改变
+    void sizeChange();                                             //大小改变
 
 private:
     Ui::templatesetup *ui;
@@ -60,7 +60,6 @@ private:
     QLineEdit *textEdit;                                           //内容
     QFontComboBox *fontBox;                                        //字体下拉框
     QComboBox *fontSizeBox;                                        //字号下拉框
-    QPushButton *colorFrame;                                       //颜色
     QLineEdit *widthEdit;                                          //宽度
     QLineEdit *heightEdit;                                         //高度
     QRcode *qrcode;                                                //生成二维码对象
@@ -72,8 +71,8 @@ private:
     int selectLabelIndex;                                          //被选中的下标
     int selectIndex;                                               //被选中的下标
     int typeFlage;                                                 //被选中的类型
-    QColor labelFontColor;                                         //字体颜色
     QMap<QString, QList<LabelData>>dataList;                       //控件内容
+    bool deleteFlage;                                              //删除标志位
 
 private:
     void initControl();                                            //初始化控件
