@@ -82,6 +82,10 @@ enum DATATYPE
     TYPEUPDATE,
 };
 
+enum EXTENDTYPE
+{
+  REGTYPE,
+};
 
 }
 

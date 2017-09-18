@@ -9,7 +9,6 @@ INPUT(
 ./release\tabregister.o
 ./release\registerdata.o
 ./release\newslices.o
-./release\patientinfo.o
 ./release\newmoreslices.o
 ./release\tabsystemset.o
 ./release\typeset.o
@@ -33,13 +32,16 @@ INPUT(
 ./release\typesetdialog.o
 ./release\exceloperate.o
 ./release\templatedata.o
+./release\patientinfo.o
+./release\paintdata.o
+./release\tabimmuneslice.o
+./release\tabspecialslice.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
 ./release\moc_messagedialog.o
 ./release\moc_tabregister.o
 ./release\moc_newslices.o
-./release\moc_patientinfo.o
 ./release\moc_newmoreslices.o
 ./release\moc_tabsystemset.o
 ./release\moc_typeset.o
@@ -50,4 +52,7 @@ INPUT(
 ./release\moc_qselectwidget.o
 ./release\moc_coderole.o
 ./release\moc_typesetdialog.o
+./release\moc_patientinfo.o
+./release\moc_tabimmuneslice.o
+./release\moc_tabspecialslice.o
 );

@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QVBoxLayout>
-#include "tabregister/patientinfo.h"
+#include "paintinfo/patientinfo.h"
 
 namespace Ui {
 class tabmaterial;

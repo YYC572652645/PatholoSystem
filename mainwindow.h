@@ -6,6 +6,8 @@
 #include "tabsystemset/tabsystemset.h"
 #include "tabmaterial/tabmaterial.h"
 #include "tabnormalslice/tabnormalslice.h"
+#include "tabimmuneslice/tabimmuneslice.h"
+#include "tabspecialslice/tabspecialslice.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +32,8 @@ private:
     TabSystemSet *tabSystemSet;      //系统设置
     TabMaterial *tabMaterial;        //取材
     TabNormalSlice *tabNormalSlice;  //常规切片
+    TabImmuneSlice *tabImmuneSlice;  //免疫组化切片
+    TabSpeciaSlice *tabSpecialSlice; //特染切片
 };
 
 #endif // MAINWINDOW_H

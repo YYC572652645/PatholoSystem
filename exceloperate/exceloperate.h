@@ -3,22 +3,31 @@
 #include <QAxObject>
 #include "globaldef.h"
 #include "singleton/singleton.h"
+#include <QThread>
+#include <QMutex>
 
-#define EXCEL  Singleton<ExcelOperate>::getInstance()
-
-class ExcelOperate
+class ExcelOperate : public QThread
 {
 public:
     ExcelOperate();
-    void extendExcel(QList<QString> itemName, QList<RegisterInfo> registerInfo);  //导出Excel
+
+    void run();
+
+    void extendRegExcel();
+
+    void setItemName(const QList<QString> &value);
+
+    void setRegisterInfo(const QList<RegisterInfo> &value);
+
+    void setExtendType(int value);
+
+    void setFileName(const QString &value);
 
 private:
-    /********************创建操作excel对象*****************/
-    QAxObject *excel;
-    QAxObject *workBooks;
-    QAxObject *workBook;
-    QAxObject *workSheets;
-    QAxObject *workSheet;
+    QList<QString>itemName;
+    QList<RegisterInfo> registerInfo;
+    int extendType;
+    QString fileName;
 };
 
 #endif // EXCELOPERATE_H

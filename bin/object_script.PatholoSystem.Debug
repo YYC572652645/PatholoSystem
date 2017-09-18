@@ -9,7 +9,6 @@ INPUT(
 ./debug\tabregister.o
 ./debug\registerdata.o
 ./debug\newslices.o
-./debug\patientinfo.o
 ./debug\newmoreslices.o
 ./debug\tabsystemset.o
 ./debug\typeset.o
@@ -33,13 +32,16 @@ INPUT(
 ./debug\typesetdialog.o
 ./debug\exceloperate.o
 ./debug\templatedata.o
+./debug\patientinfo.o
+./debug\paintdata.o
+./debug\tabimmuneslice.o
+./debug\tabspecialslice.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_messagedialog.o
 ./debug\moc_tabregister.o
 ./debug\moc_newslices.o
-./debug\moc_patientinfo.o
 ./debug\moc_newmoreslices.o
 ./debug\moc_tabsystemset.o
 ./debug\moc_typeset.o
@@ -50,4 +52,7 @@ INPUT(
 ./debug\moc_qselectwidget.o
 ./debug\moc_coderole.o
 ./debug\moc_typesetdialog.o
+./debug\moc_patientinfo.o
+./debug\moc_tabimmuneslice.o
+./debug\moc_tabspecialslice.o
 );

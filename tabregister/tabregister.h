@@ -7,7 +7,7 @@
 #include <QStyledItemDelegate>
 #include "registerdata.h"
 #include "newslices.h"
-#include "patientinfo.h"
+#include "paintinfo/patientinfo.h"
 #include "newmoreslices.h"
 #include "printtemplate/templatesetup.h"
 #include "registerdata.h"

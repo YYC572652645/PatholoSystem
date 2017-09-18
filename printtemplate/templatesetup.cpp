@@ -227,8 +227,8 @@ void TemplateSetUp::initConnect()
     connect(fontBox,     SIGNAL(currentFontChanged(const QFont)), this, SLOT(currentFontChange()));
     connect(fontSizeBox, SIGNAL(currentTextChanged(QString)),     this, SLOT(currentFontChange()));
     connect(textEdit,    SIGNAL(textChanged(QString)),            this, SLOT(textChange()));
-    connect(this,        SIGNAL(textChg()),                       this, SLOT(sizeChange()));
-    connect(this,        SIGNAL(textChg()),                       this, SLOT(sizeChange()));
+    connect(widthEdit,   SIGNAL(textEdited(QString)),            this, SLOT(sizeChange()));
+    connect(heightEdit,  SIGNAL(textEdited(QString)),            this, SLOT(sizeChange()));
 }
 
 /*********************     删除所有控件         *************************/

@@ -23,9 +23,14 @@ void MainWindow::initControl()
     tabSystemSet = new TabSystemSet(this);      //系统设置
     tabMaterial = new TabMaterial(this);        //取材
     tabNormalSlice = new TabNormalSlice(this);  //常规切片
+    tabImmuneSlice = new TabImmuneSlice(this);  //免疫组化切片
+    tabSpecialSlice = new TabSpeciaSlice(this); //特染切片
 
     ui->tabWidgetTotal->addTab(tabRegister,  "登记");
     ui->tabWidgetTotal->addTab(tabMaterial,  "取材");
     ui->tabWidgetTotal->addTab(tabNormalSlice,"常规切片");
+    ui->tabWidgetTotal->addTab(tabImmuneSlice,"免疫组化切片");
+    ui->tabWidgetTotal->addTab(tabSpecialSlice,"特染切片");
+
     ui->tabWidgetTotal->addTab(tabSystemSet, "系统设置");
 }

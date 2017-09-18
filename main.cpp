@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include "logindialog/logindialog.h"
+#include "messagebox/messagedialog.h"
 
 int main(int argc, char *argv[])
 {

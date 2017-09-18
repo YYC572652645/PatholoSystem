@@ -41,7 +41,6 @@ public:
 
 signals:
     void sendType(int);
-    void textChg();
 
 private slots:
     void on_pushButtonAdd_clicked();                               //添加模板

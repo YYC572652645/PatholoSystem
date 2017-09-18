@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     tabregister/tabregister.cpp \
     tabregister/registerdata.cpp \
     tabregister/newslices.cpp \
-    tabregister/patientinfo.cpp \
     tabregister/newmoreslices.cpp \
     tabsystemset/tabsystemset.cpp \
     tabsystemset/otherwidget/typeset.cpp \
@@ -46,7 +45,11 @@ SOURCES += main.cpp\
     tabsystemset/otherwidget/coderole.cpp \
     tabsystemset/otherwidget/typesetdialog.cpp \
     exceloperate/exceloperate.cpp \
-    printtemplate/templatedata/templatedata.cpp
+    printtemplate/templatedata/templatedata.cpp \
+    paintinfo/patientinfo.cpp \
+    paintinfo/paintdata.cpp \
+    tabimmuneslice/tabimmuneslice.cpp \
+    tabspecialslice/tabspecialslice.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -59,7 +62,6 @@ HEADERS  += mainwindow.h \
     tabregister/tabregister.h \
     tabregister/registerdata.h \
     tabregister/newslices.h \
-    tabregister/patientinfo.h \
     tabregister/newmoreslices.h \
     tabsystemset/tabsystemset.h \
     tabsystemset/otherwidget/typeset.h \
@@ -105,14 +107,17 @@ HEADERS  += mainwindow.h \
     tabsystemset/otherwidget/coderole.h \
     tabsystemset/otherwidget/typesetdialog.h \
     exceloperate/exceloperate.h \
-    printtemplate/templatedata/templatedata.h
+    printtemplate/templatedata/templatedata.h \
+    paintinfo/patientinfo.h \
+    paintinfo/paintdata.h \
+    tabimmuneslice/tabimmuneslice.h \
+    tabspecialslice/tabspecialslice.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
     messagebox/messagedialog.ui \
     tabregister/tabregister.ui \
     tabregister/newslices.ui \
-    tabregister/patientinfo.ui \
     tabregister/newmoreslices.ui \
     tabsystemset/tabsystemset.ui \
     tabsystemset/otherwidget/typeset.ui \
@@ -120,7 +125,10 @@ FORMS  += mainwindow.ui \
     tabnormalslice/tabnormalslice.ui \
     printtemplate/templatesetup.ui \
     tabsystemset/otherwidget/coderole.ui \
-    tabsystemset/otherwidget/typesetdialog.ui
+    tabsystemset/otherwidget/typesetdialog.ui \
+    paintinfo/patientinfo.ui \
+    tabimmuneslice/tabimmuneslice.ui \
+    tabspecialslice/tabspecialslice.ui
 
 RESOURCES += \
     res.qrc

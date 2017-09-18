@@ -8,6 +8,7 @@
 #include <QModelIndex>
 #include <QAbstractItemModel>
 #include "messagebox/messagedialog.h"
+#include <QFileDialog>
 
 /*******************       构造函数                ***********************/
 TabRegister::TabRegister(QWidget *parent) :
@@ -244,7 +245,18 @@ void TabRegister::on_actionExtendExcel_triggered()
     itemName.append(PRINTED);
     itemName.append(CREATETIME);
 
-    EXCEL->extendExcel(itemName, registerData.registerInfo);
+    QString fileName = QFileDialog::getSaveFileName(NULL, "保存文件",".","Excel(*.xlsx *.xls)");
+
+    ExcelOperate * excelOperate = new ExcelOperate();
+
+    excelOperate->setExtendType(GLOBALDEF::REGTYPE);
+    excelOperate->setItemName(itemName);
+    excelOperate->setRegisterInfo(registerData.registerInfo);
+    excelOperate->setFileName(fileName);
+
+    connect(excelOperate, SIGNAL(finished()), excelOperate, SLOT(terminate()));
+
+    excelOperate->start();
 }
 
 /*******************       刷新数据                 ***********************/
@@ -325,6 +337,8 @@ void TabRegister::on_actionPrintMoreLabel_triggered()
                 {
                     templateSetUp->printImage(registerData.registerInfo.at(i).sn);
                 }
+
+                registerData.updateBLData("1", registerData.registerInfo.at(i).id);
             }
         }
 
