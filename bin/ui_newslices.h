@@ -24,12 +24,14 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_newslices
 {
 public:
+    QWidget *centralWidget;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -62,7 +64,9 @@ public:
         newslices->resize(232, 228);
         newslices->setMinimumSize(QSize(232, 228));
         newslices->setMaximumSize(QSize(232, 228));
-        groupBox = new QGroupBox(newslices);
+        centralWidget = new QWidget(newslices);
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(10, 10, 211, 161));
         groupBox->setStyleSheet(QLatin1String("QGroupBox {\n"
@@ -170,17 +174,15 @@ public:
 
         verticalLayout_2->addItem(horizontalSpacer_10);
 
-        newslices->setCentralWidget(groupBox);
-        pushButtonOk = new QPushButton(newslices);
+        pushButtonOk = new QPushButton(centralWidget);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(20, 190, 80, 30));
         pushButtonOk->setMinimumSize(QSize(0, 30));
-        newslices->setCentralWidget(pushButtonOk);
-        pushButtonCancel = new QPushButton(newslices);
+        pushButtonCancel = new QPushButton(centralWidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(130, 190, 80, 30));
         pushButtonCancel->setMinimumSize(QSize(0, 30));
-        newslices->setCentralWidget(pushButtonCancel);
+        newslices->setCentralWidget(centralWidget);
 
         retranslateUi(newslices);
 
@@ -189,7 +191,7 @@ public:
 
     void retranslateUi(QMainWindow *newslices)
     {
-        newslices->setWindowTitle(QApplication::translate("newslices", "Dialog", 0));
+        newslices->setWindowTitle(QApplication::translate("newslices", "MainWindow", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("newslices", "\347\261\273    \345\210\253:", 0));
         label_2->setText(QApplication::translate("newslices", "\346\211\223\345\215\260\346\225\260\351\207\217:", 0));

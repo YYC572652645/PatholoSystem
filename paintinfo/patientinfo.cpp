@@ -32,11 +32,6 @@ void PatientInfo::initControl()
     ui->toolBar->addWidget(autoSaveBox);
     ui->toolBar->addWidget(labelInfo);
 
-    QPalette palette = ui->lineFirst->palette();
-    palette.setColor(QPalette::Dark, Qt::darkCyan);
-    ui->lineFirst->setPalette(palette);
-    ui->lineSecond->setPalette(palette);
-
     ui->comboBoxNation->addItem(tr("汉族"));
     ui->comboBoxNation->addItem(tr("回族"));
     ui->comboBoxNation->addItem(tr("蒙古族"));

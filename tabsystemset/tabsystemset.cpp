@@ -56,13 +56,13 @@ void TabSystemSet::listWidgetClicked(const QModelIndex &index)
     {
     case 0:  showCentralwidget();              break;  //起始病理号设置
     case 1:  showTypeSet();                    break;  //标本类别设置
-    case 2:                                    break;  //打印参数设置
+    case 2:  showPrintSet();                   break;  //打印参数设置
     case 3:  showCodeRule();                   break;  //编码规则设置
-    case 4:                                    break;  //免疫组化染色类型设置
-    case 5:                                    break;  //免疫组化染色指标设置
-    case 6:                                    break;  //特染染色类型设置
-    case 7:                                    break;  //特染染色指标设置
-    case 8:                                    break;  //用户设置
+    case 4:  showImmuneTypeSet();              break;  //免疫组化染色类型设置
+    case 5:  showImmuneIndexSet();             break;  //免疫组化染色指标设置
+    case 6:  showSpecialTypeSet();             break;  //特染染色类型设置
+    case 7:  showSpecialIndexSet();            break;  //特染染色指标设置
+    case 8:  showUserSet();                    break;  //用户设置
     }
 }
 
@@ -74,6 +74,7 @@ void TabSystemSet::on_pushButtonOk_clicked()
     ui->centralwidget->hide();                                                                //将该界面隐藏
 }
 
+/***************************               取消                        ***********************/
 void TabSystemSet::on_pushButtonCancel_clicked()
 {
     ui->centralwidget->hide();
@@ -104,4 +105,47 @@ void TabSystemSet::showCodeRule()
 {
     SETCENTRALWIDGET(&codeRole);
     codeRole.show();
+}
+
+
+/***************************               打印设置                 ***********************/
+void TabSystemSet::showPrintSet()
+{
+    SETCENTRALWIDGET(&printSet);
+    printSet.show();
+}
+
+/***************************               用户设置                 ***********************/
+void TabSystemSet::showUserSet()
+{
+    SETCENTRALWIDGET(&userSet);
+    userSet.show();
+}
+
+/***************************               免疫组化类型设置                 ***********************/
+void TabSystemSet::showImmuneTypeSet()
+{
+    SETCENTRALWIDGET(&immuneTypeSet);
+    immuneTypeSet.show();
+}
+
+/***************************               免疫组化指标设置                 ***********************/
+void TabSystemSet::showImmuneIndexSet()
+{
+    SETCENTRALWIDGET(&immuneIndexSet);
+    immuneIndexSet.show();
+}
+
+/***************************               特染组化类型设置                 ***********************/
+void TabSystemSet::showSpecialTypeSet()
+{
+    SETCENTRALWIDGET(&speciaTypeSet);
+    speciaTypeSet.show();
+}
+
+/***************************               特染组化指标设置                 ***********************/
+void TabSystemSet::showSpecialIndexSet()
+{
+    SETCENTRALWIDGET(&speciaIndexSet);
+    speciaIndexSet.show();
 }

@@ -23,12 +23,14 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_newmoreslices
 {
 public:
+    QWidget *centralWidget;
     QPushButton *pushButtonCancel;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_2;
@@ -61,12 +63,13 @@ public:
         newmoreslices->resize(232, 228);
         newmoreslices->setMinimumSize(QSize(232, 228));
         newmoreslices->setMaximumSize(QSize(232, 228));
-        pushButtonCancel = new QPushButton(newmoreslices);
+        centralWidget = new QWidget(newmoreslices);
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        pushButtonCancel = new QPushButton(centralWidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(130, 190, 80, 30));
         pushButtonCancel->setMinimumSize(QSize(0, 30));
-        newmoreslices->setCentralWidget(pushButtonCancel);
-        groupBox = new QGroupBox(newmoreslices);
+        groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(10, 10, 211, 161));
         groupBox->setStyleSheet(QLatin1String("QGroupBox {\n"
@@ -176,12 +179,11 @@ public:
 
         verticalLayout_2->addItem(horizontalSpacer_10);
 
-        newmoreslices->setCentralWidget(groupBox);
-        pushButtonOk = new QPushButton(newmoreslices);
+        pushButtonOk = new QPushButton(centralWidget);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(20, 190, 80, 30));
         pushButtonOk->setMinimumSize(QSize(0, 30));
-        newmoreslices->setCentralWidget(pushButtonOk);
+        newmoreslices->setCentralWidget(centralWidget);
 
         retranslateUi(newmoreslices);
 
@@ -190,7 +192,7 @@ public:
 
     void retranslateUi(QMainWindow *newmoreslices)
     {
-        newmoreslices->setWindowTitle(QApplication::translate("newmoreslices", "Dialog", 0));
+        newmoreslices->setWindowTitle(QApplication::translate("newmoreslices", "MainWindow", 0));
         pushButtonCancel->setText(QApplication::translate("newmoreslices", "\345\217\226\346\266\210", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("newmoreslices", "\347\261\273    \345\210\253:", 0));

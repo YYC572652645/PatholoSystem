@@ -7,7 +7,12 @@
 #include "otherwidget/typeset.h"
 #include "otherwidget/coderole.h"
 #include "tabsystemdata.h"
-
+#include "otherwidget/printset.h"
+#include "otherwidget/immuneindexset.h"
+#include "otherwidget/immunetypeset.h"
+#include "otherwidget/specialindexset.h"
+#include "otherwidget/specialtypeset.h"
+#include "otherwidget/userset.h"
 
 namespace Ui {
 class tabsystemset;
@@ -39,12 +44,23 @@ private:
 private:
     TypeSet typeSet;
     CodeRole codeRole;
-
+    PrintSet printSet;
+    UserSet userSet;
+    SpeciaIndexSet speciaIndexSet;
+    SpeciaTypeSet speciaTypeSet;
+    ImmuneIndexSet immuneIndexSet;
+    ImmuneTypeSet immuneTypeSet;
 
     //显示窗口
     void showCentralwidget();
     void showTypeSet();
     void showCodeRule();
+    void showPrintSet();
+    void showUserSet();
+    void showImmuneTypeSet();
+    void showImmuneIndexSet();
+    void showSpecialTypeSet();
+    void showSpecialIndexSet();
 
 };
 

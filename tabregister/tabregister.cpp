@@ -21,8 +21,8 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initData();
 
     newSlices = new NewSlices(this);                    //新编号
-    newMoreSlices = new NewMoreSlices();            //批量编号
-    templateSetUp = new TemplateSetUp(this);        //打印模板
+    newMoreSlices = new NewMoreSlices(this);            //批量编号
+    templateSetUp = new TemplateSetUp(this);            //打印模板
 
     //初始化信号和槽
     connect(newSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));

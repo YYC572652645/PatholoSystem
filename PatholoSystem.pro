@@ -49,7 +49,13 @@ SOURCES += main.cpp\
     paintinfo/patientinfo.cpp \
     paintinfo/paintdata.cpp \
     tabimmuneslice/tabimmuneslice.cpp \
-    tabspecialslice/tabspecialslice.cpp
+    tabspecialslice/tabspecialslice.cpp \
+    tabsystemset/otherwidget/immuneindexset.cpp \
+    tabsystemset/otherwidget/immunetypeset.cpp \
+    tabsystemset/otherwidget/printset.cpp \
+    tabsystemset/otherwidget/specialindexset.cpp \
+    tabsystemset/otherwidget/specialtypeset.cpp \
+    tabsystemset/otherwidget/userset.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -111,7 +117,13 @@ HEADERS  += mainwindow.h \
     paintinfo/patientinfo.h \
     paintinfo/paintdata.h \
     tabimmuneslice/tabimmuneslice.h \
-    tabspecialslice/tabspecialslice.h
+    tabspecialslice/tabspecialslice.h \
+    tabsystemset/otherwidget/immuneindexset.h \
+    tabsystemset/otherwidget/immunetypeset.h \
+    tabsystemset/otherwidget/printset.h \
+    tabsystemset/otherwidget/specialindexset.h \
+    tabsystemset/otherwidget/specialtypeset.h \
+    tabsystemset/otherwidget/userset.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -128,7 +140,13 @@ FORMS  += mainwindow.ui \
     tabsystemset/otherwidget/typesetdialog.ui \
     paintinfo/patientinfo.ui \
     tabimmuneslice/tabimmuneslice.ui \
-    tabspecialslice/tabspecialslice.ui
+    tabspecialslice/tabspecialslice.ui \
+    tabsystemset/otherwidget/immuneindexset.ui \
+    tabsystemset/otherwidget/immunetypeset.ui \
+    tabsystemset/otherwidget/printset.ui \
+    tabsystemset/otherwidget/specialindexset.ui \
+    tabsystemset/otherwidget/specialtypeset.ui \
+    tabsystemset/otherwidget/userset.ui
 
 RESOURCES += \
     res.qrc

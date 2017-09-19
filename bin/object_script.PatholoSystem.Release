@@ -36,6 +36,12 @@ INPUT(
 ./release\paintdata.o
 ./release\tabimmuneslice.o
 ./release\tabspecialslice.o
+./release\immuneindexset.o
+./release\immunetypeset.o
+./release\printset.o
+./release\specialindexset.o
+./release\specialtypeset.o
+./release\userset.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -55,4 +61,10 @@ INPUT(
 ./release\moc_patientinfo.o
 ./release\moc_tabimmuneslice.o
 ./release\moc_tabspecialslice.o
+./release\moc_immuneindexset.o
+./release\moc_immunetypeset.o
+./release\moc_printset.o
+./release\moc_specialindexset.o
+./release\moc_specialtypeset.o
+./release\moc_userset.o
 );
