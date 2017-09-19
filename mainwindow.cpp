@@ -31,6 +31,5 @@ void MainWindow::initControl()
     ui->tabWidgetTotal->addTab(tabNormalSlice,"常规切片");
     ui->tabWidgetTotal->addTab(tabImmuneSlice,"免疫组化切片");
     ui->tabWidgetTotal->addTab(tabSpecialSlice,"特染切片");
-
     ui->tabWidgetTotal->addTab(tabSystemSet, "系统设置");
 }

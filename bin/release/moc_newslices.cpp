@@ -108,7 +108,7 @@ void NewSlices::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 }
 
 const QMetaObject NewSlices::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_NewSlices.data,
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_NewSlices.data,
       qt_meta_data_NewSlices,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -123,12 +123,12 @@ void *NewSlices::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_NewSlices.stringdata0))
         return static_cast<void*>(const_cast< NewSlices*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QMainWindow::qt_metacast(_clname);
 }
 
 int NewSlices::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

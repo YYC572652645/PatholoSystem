@@ -1,14 +1,14 @@
 #ifndef NEWSLICES_H
 #define NEWSLICES_H
 
-#include <QDialog>
+#include <QMainWindow>
 #include "registerdata.h"
 #include "tabsystemset/tabsystemdata.h"
 namespace Ui {
 class newslices;
 }
 
-class NewSlices : public QWidget
+class NewSlices : public QMainWindow
 {
     Q_OBJECT
 

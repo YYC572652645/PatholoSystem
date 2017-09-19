@@ -14,11 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDialog>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
@@ -54,7 +54,7 @@ public:
     QSpacerItem *horizontalSpacer_10;
     QPushButton *pushButtonOk;
 
-    void setupUi(QDialog *newmoreslices)
+    void setupUi(QMainWindow *newmoreslices)
     {
         if (newmoreslices->objectName().isEmpty())
             newmoreslices->setObjectName(QStringLiteral("newmoreslices"));
@@ -65,6 +65,7 @@ public:
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(130, 190, 80, 30));
         pushButtonCancel->setMinimumSize(QSize(0, 30));
+        newmoreslices->setCentralWidget(pushButtonCancel);
         groupBox = new QGroupBox(newmoreslices);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(10, 10, 211, 161));
@@ -175,17 +176,19 @@ public:
 
         verticalLayout_2->addItem(horizontalSpacer_10);
 
+        newmoreslices->setCentralWidget(groupBox);
         pushButtonOk = new QPushButton(newmoreslices);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(20, 190, 80, 30));
         pushButtonOk->setMinimumSize(QSize(0, 30));
+        newmoreslices->setCentralWidget(pushButtonOk);
 
         retranslateUi(newmoreslices);
 
         QMetaObject::connectSlotsByName(newmoreslices);
     } // setupUi
 
-    void retranslateUi(QDialog *newmoreslices)
+    void retranslateUi(QMainWindow *newmoreslices)
     {
         newmoreslices->setWindowTitle(QApplication::translate("newmoreslices", "Dialog", 0));
         pushButtonCancel->setText(QApplication::translate("newmoreslices", "\345\217\226\346\266\210", 0));

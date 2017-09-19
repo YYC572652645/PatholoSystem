@@ -41,7 +41,7 @@ private slots:
     void on_actionExtendExcel_triggered();                              //导出Excel
     void on_pushButtonRefresh_clicked();                                //刷新数据
     void on_pushButtonFind_clicked();                                   //查找数据
-    void on_tableWidget_clicked(const QModelIndex &index);              //单击列表
+    void on_tableWidget_clicked(const QModelIndex &currentIndex);       //单击列表
     void on_tableWidget_doubleClicked(const QModelIndex &currentIndex); //双击列表
     void on_actionPrintLabel_triggered();                               //打印标签
     void on_actionPrintMoreLabel_triggered();                           //批量打印

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_TabRegister_t {
-    QByteArrayData data[24];
-    char stringdata0[466];
+    QByteArrayData data[23];
+    char stringdata0[460];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -48,11 +48,10 @@ QT_MOC_LITERAL(15, 245, 30), // "on_actionExtendExcel_triggered"
 QT_MOC_LITERAL(16, 276, 28), // "on_pushButtonRefresh_clicked"
 QT_MOC_LITERAL(17, 305, 25), // "on_pushButtonFind_clicked"
 QT_MOC_LITERAL(18, 331, 22), // "on_tableWidget_clicked"
-QT_MOC_LITERAL(19, 354, 5), // "index"
-QT_MOC_LITERAL(20, 360, 28), // "on_tableWidget_doubleClicked"
-QT_MOC_LITERAL(21, 389, 12), // "currentIndex"
-QT_MOC_LITERAL(22, 402, 29), // "on_actionPrintLabel_triggered"
-QT_MOC_LITERAL(23, 432, 33) // "on_actionPrintMoreLabel_trigg..."
+QT_MOC_LITERAL(19, 354, 12), // "currentIndex"
+QT_MOC_LITERAL(20, 367, 28), // "on_tableWidget_doubleClicked"
+QT_MOC_LITERAL(21, 396, 29), // "on_actionPrintLabel_triggered"
+QT_MOC_LITERAL(22, 426, 33) // "on_actionPrintMoreLabel_trigg..."
 
     },
     "TabRegister\0sendNumber\0\0updateMovie\0"
@@ -65,8 +64,8 @@ QT_MOC_LITERAL(23, 432, 33) // "on_actionPrintMoreLabel_trigg..."
     "on_actionExtendExcel_triggered\0"
     "on_pushButtonRefresh_clicked\0"
     "on_pushButtonFind_clicked\0"
-    "on_tableWidget_clicked\0index\0"
-    "on_tableWidget_doubleClicked\0currentIndex\0"
+    "on_tableWidget_clicked\0currentIndex\0"
+    "on_tableWidget_doubleClicked\0"
     "on_actionPrintLabel_triggered\0"
     "on_actionPrintMoreLabel_triggered"
 };
@@ -102,8 +101,8 @@ static const uint qt_meta_data_TabRegister[] = {
       17,    0,  115,    2, 0x08 /* Private */,
       18,    1,  116,    2, 0x08 /* Private */,
       20,    1,  119,    2, 0x08 /* Private */,
-      22,    0,  122,    2, 0x08 /* Private */,
-      23,    0,  123,    2, 0x08 /* Private */,
+      21,    0,  122,    2, 0x08 /* Private */,
+      22,    0,  123,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -121,7 +120,7 @@ static const uint qt_meta_data_TabRegister[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QModelIndex,   19,
-    QMetaType::Void, QMetaType::QModelIndex,   21,
+    QMetaType::Void, QMetaType::QModelIndex,   19,
     QMetaType::Void,
     QMetaType::Void,
 

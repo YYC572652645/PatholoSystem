@@ -46,11 +46,11 @@ public:
     QLineEdit *lineEditID;
     QSpacerItem *horizontalSpacer_5;
     QLabel *label_2;
-    QComboBox *comboBoxSex;
+    QLineEdit *lineEditName;
     QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
-    QLineEdit *lineEditSex;
+    QComboBox *comboBoxSex;
     QSpacerItem *horizontalSpacer_19;
     QLabel *label_4;
     QLineEdit *lineEditAge;
@@ -233,13 +233,12 @@ public:
 
         horizontalLayout->addWidget(label_2);
 
-        comboBoxSex = new QComboBox(tabBaseInfo);
-        comboBoxSex->setObjectName(QStringLiteral("comboBoxSex"));
-        comboBoxSex->setMinimumSize(QSize(160, 0));
-        comboBoxSex->setMaximumSize(QSize(160, 16777215));
-        comboBoxSex->setEditable(true);
+        lineEditName = new QLineEdit(tabBaseInfo);
+        lineEditName->setObjectName(QStringLiteral("lineEditName"));
+        lineEditName->setMinimumSize(QSize(160, 0));
+        lineEditName->setMaximumSize(QSize(160, 16777215));
 
-        horizontalLayout->addWidget(comboBoxSex);
+        horizontalLayout->addWidget(lineEditName);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -255,12 +254,13 @@ public:
 
         horizontalLayout_2->addWidget(label_3);
 
-        lineEditSex = new QLineEdit(tabBaseInfo);
-        lineEditSex->setObjectName(QStringLiteral("lineEditSex"));
-        lineEditSex->setMinimumSize(QSize(160, 0));
-        lineEditSex->setMaximumSize(QSize(160, 16777215));
+        comboBoxSex = new QComboBox(tabBaseInfo);
+        comboBoxSex->setObjectName(QStringLiteral("comboBoxSex"));
+        comboBoxSex->setMinimumSize(QSize(160, 0));
+        comboBoxSex->setMaximumSize(QSize(160, 16777215));
+        comboBoxSex->setEditable(true);
 
-        horizontalLayout_2->addWidget(lineEditSex);
+        horizontalLayout_2->addWidget(comboBoxSex);
 
         horizontalSpacer_19 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -943,12 +943,12 @@ public:
 #endif // QT_NO_TOOLTIP
         label->setText(QApplication::translate("patientinfo", " ID(HIS)\357\274\232", 0));
         label_2->setText(QApplication::translate("patientinfo", "  \345\247\223\345\220\215\357\274\232", 0));
+        label_3->setText(QApplication::translate("patientinfo", "    \346\200\247\345\210\253\357\274\232", 0));
         comboBoxSex->clear();
         comboBoxSex->insertItems(0, QStringList()
          << QApplication::translate("patientinfo", "\347\224\267", 0)
          << QApplication::translate("patientinfo", "\345\245\263", 0)
         );
-        label_3->setText(QApplication::translate("patientinfo", "    \346\200\247\345\210\253\357\274\232", 0));
         label_4->setText(QApplication::translate("patientinfo", "  \345\271\264\351\276\204\357\274\232", 0));
         label_5->setText(QApplication::translate("patientinfo", "    \347\224\265\350\257\235\357\274\232", 0));
         label_6->setText(QApplication::translate("patientinfo", "  \345\234\260\345\235\200\357\274\232", 0));

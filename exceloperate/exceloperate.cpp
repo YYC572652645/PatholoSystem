@@ -29,25 +29,24 @@ void ExcelOperate::extendRegExcel()
 
     if(fileName.isEmpty())  return;
 
-    excel = new QAxObject("Excel.Application");             //加载Excel驱动
-    excel->setProperty("Visible", false);                   //不显示任何警告信息
+    excel = new QAxObject("Excel.Application");                     //加载Excel驱动
+    excel->setProperty("Visible", false);                           //不显示任何警告信息
     workBooks = excel->querySubObject("WorkBooks");
     workBooks->dynamicCall("Add");
     workBook = excel->querySubObject("ActiveWorkBook");
-    workSheets = workBook->querySubObject("Sheets");        //Sheets可换做WorkSheets
-    workSheet = workBook->querySubObject("Sheets(int)", 1); //读取第一个工作表中的内容
-
+    workSheets = workBook->querySubObject("Sheets");                //Sheets可换做WorkSheets
+    workSheet = workBook->querySubObject("Sheets(int)", 1);         //读取第一个工作表中的内容
 
     for(int i = 1; i < itemName.size() + 1; i ++)
     {
-        cell = workSheet->querySubObject("Cells(int, int)", 1, i); //循环获取单元格中数据
-        cell->setProperty("Value", itemName.at(i - 1));           //写单元格值
+        cell = workSheet->querySubObject("Cells(int, int)", 1, i);  //循环获取单元格中数据
+        cell->setProperty("Value", itemName.at(i - 1));             //写单元格值
         cell->clear();
     }
 
     const static int STARTROW = 2;    //数据开始行数
 
-    /*******************          写入单元格数据          *******************/
+    /*******************              写入单元格数据             *******************/
     for(int i = STARTROW; i < registerInfo.size() + STARTROW; i ++)
     {
         for(int j = 1; j < itemName.size() + 1; j ++)

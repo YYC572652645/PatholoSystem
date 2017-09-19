@@ -1,7 +1,7 @@
 #ifndef NEWMORESLICES_H
 #define NEWMORESLICES_H
 
-#include <QDialog>
+#include <QMainWindow>
 #include "registerdata.h"
 
 namespace Ui {
@@ -10,7 +10,7 @@ class newmoreslices;
 
 class CodeTypeInfo;
 
-class NewMoreSlices : public QDialog
+class NewMoreSlices : public QMainWindow
 {
     Q_OBJECT
 

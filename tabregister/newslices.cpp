@@ -5,14 +5,14 @@
 
 /*******************   构造函数    ***********************/
 NewSlices::NewSlices(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::newslices)
 {
     ui->setupUi(this);
 
     this->setWindowTitle("标本登记");
 
-    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    //this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 /*******************   析构函数    ***********************/

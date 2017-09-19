@@ -8,6 +8,9 @@
 #include<QFile>
 #include<QIODevice>
 #include<QDebug>
+#include "../singleton/singleton.h"
+
+#define PAINTDATA  Singleton<PaintData>::getInstance()
 
 typedef struct DataPaint
 {
@@ -17,7 +20,6 @@ typedef struct DataPaint
     QString name;
     QString sex;
     QString age;
-    QString birthYear;
     QString nationality;
     QString tel;
     QString address;
@@ -26,8 +28,6 @@ typedef struct DataPaint
     QString job;
     QString feeType;
     QString idCard;
-    QString createTime;
-    QString modifyTime;
     QString familyHistory;
     QString infectiousHistory;
     QString pastHistory;
@@ -43,6 +43,7 @@ typedef struct DataPaint
     QString sendTime;
     QString receiveTime;
     QString receiver;
+    QString site;
     QString specimenQt;
     QString fixedMode;
     QString chiefComplaint;
@@ -53,26 +54,30 @@ typedef struct DataPaint
 class PaintData
 {
 public:
-    /************    构造函数      *************/
+    /************         构造函数         *************/
     PaintData();
 
-    /************    连接数据库    *************/
+    /************         连接数据库       *************/
     bool dataCnn();
 
-    /************     插入数据     *************/
-    bool insertData();
+    /************         插入数据         *************/
+    bool insertData(DataPaint data);
 
-    /************     查询数据     *************/
-    bool selectData();
+    /************         查询数据         *************/
+    int selectData(QString regId, QString patientID);
 
-    /************     更改数据     *************/
-    bool updateData();
+    /************         更改数据         *************/
+    bool updateData(DataPaint data);
 
-    /************     删除数据    *************/
-    bool deleteData();
+    /************         删除数据         *************/
+    bool deleteData(QString regId, QString patientID);
+
+    DataPaint getDataPaint() const;
 
 private:
     QSqlDatabase db;               //定义数据库对象
+
+    DataPaint dataPaint;           //数据存取
 };
 
 #endif // DATABASE_H

@@ -19,11 +19,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -55,7 +55,7 @@ public:
     QPushButton *pushButtonOk;
     QPushButton *pushButtonCancel;
 
-    void setupUi(QWidget *newslices)
+    void setupUi(QMainWindow *newslices)
     {
         if (newslices->objectName().isEmpty())
             newslices->setObjectName(QStringLiteral("newslices"));
@@ -170,21 +170,24 @@ public:
 
         verticalLayout_2->addItem(horizontalSpacer_10);
 
+        newslices->setCentralWidget(groupBox);
         pushButtonOk = new QPushButton(newslices);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(20, 190, 80, 30));
         pushButtonOk->setMinimumSize(QSize(0, 30));
+        newslices->setCentralWidget(pushButtonOk);
         pushButtonCancel = new QPushButton(newslices);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(130, 190, 80, 30));
         pushButtonCancel->setMinimumSize(QSize(0, 30));
+        newslices->setCentralWidget(pushButtonCancel);
 
         retranslateUi(newslices);
 
         QMetaObject::connectSlotsByName(newslices);
     } // setupUi
 
-    void retranslateUi(QWidget *newslices)
+    void retranslateUi(QMainWindow *newslices)
     {
         newslices->setWindowTitle(QApplication::translate("newslices", "Dialog", 0));
         groupBox->setTitle(QString());

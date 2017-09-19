@@ -5,14 +5,14 @@
 #include <QDate>
 
 NewMoreSlices::NewMoreSlices(QWidget *parent) :
-    QDialog(parent),
+    QMainWindow(parent),
     ui(new Ui::newmoreslices)
 {
     ui->setupUi(this);
 
     this->setWindowTitle("批量编码");
 
-    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    //this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 NewMoreSlices::~NewMoreSlices()

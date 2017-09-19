@@ -20,9 +20,9 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initControl();
     this->initData();
 
-    newSlices = new NewSlices();                //新编号
-    newMoreSlices = new NewMoreSlices();        //批量编号
-    templateSetUp = new TemplateSetUp(this);    //打印模板
+    newSlices = new NewSlices(this);                    //新编号
+    newMoreSlices = new NewMoreSlices();            //批量编号
+    templateSetUp = new TemplateSetUp(this);        //打印模板
 
     //初始化信号和槽
     connect(newSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));
@@ -57,7 +57,6 @@ void TabRegister::updateMovie()
 /*******************       打印数据                ***********************/
 void TabRegister::printBLNumber(int count, QString number)
 {
-    qDebug()<<count<<number;
     for(int i = 0; i < count; i ++)
     {
         templateSetUp->printImage(number);
@@ -118,6 +117,9 @@ void TabRegister::selectData(int type, int scrollFlage)
             ui->tableWidget->selectRow(dataCount - 1);
             ui->tableWidget->setFocus();
         }
+
+        patientInfo.setPaintId(registerData.registerInfo.last().pCode);
+        patientInfo.setRegId(registerData.registerInfo.last().sn);
     }
 }
 
@@ -278,9 +280,18 @@ void TabRegister::on_pushButtonFind_clicked()
 }
 
 /*******************       选中一行                 ***********************/
-void TabRegister::on_tableWidget_clicked(const QModelIndex &index)
+void TabRegister::on_tableWidget_clicked(const QModelIndex &currentIndex)
 {
+    QAbstractItemModel *model = ui->tableWidget->model();
+    QModelIndex index = model->index(currentIndex.row(), 0);
 
+    patientInfo.setPaintId(model->data(index).toString());
+
+    index = model->index(currentIndex.row(), 1);
+
+    patientInfo.setRegId(model->data(index).toString());
+
+    patientInfo.setSelect();
 }
 
 /*******************       双击跳转至第二个界面       ***********************/
