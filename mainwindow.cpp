@@ -9,7 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("病理科专用打码软件 ");
-    this->initControl();                         //初始化控件
+    this->initControl();
+    this->initConnect();
 }
 
 MainWindow::~MainWindow()
@@ -17,6 +18,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::receiveNumber(QString number, QString id)
+{
+    ui->tabWidgetTotal->setCurrentIndex(1);
+
+    emit sendNumber(number, id);
+}
+
+/*******************   初始化控件    ***********************/
 void MainWindow::initControl()
 {
     tabRegister = new TabRegister(this);        //登记
@@ -26,10 +35,17 @@ void MainWindow::initControl()
     tabImmuneSlice = new TabImmuneSlice(this);  //免疫组化切片
     tabSpecialSlice = new TabSpeciaSlice(this); //特染切片
 
-    ui->tabWidgetTotal->addTab(tabRegister,  "登记");
-    ui->tabWidgetTotal->addTab(tabMaterial,  "取材");
-    ui->tabWidgetTotal->addTab(tabNormalSlice,"常规切片");
-    ui->tabWidgetTotal->addTab(tabImmuneSlice,"免疫组化切片");
+    ui->tabWidgetTotal->addTab(tabRegister,    "登记");
+    ui->tabWidgetTotal->addTab(tabMaterial,    "取材");
+    ui->tabWidgetTotal->addTab(tabNormalSlice, "常规切片");
+    ui->tabWidgetTotal->addTab(tabImmuneSlice, "免疫组化切片");
     ui->tabWidgetTotal->addTab(tabSpecialSlice,"特染切片");
-    ui->tabWidgetTotal->addTab(tabSystemSet, "系统设置");
+    ui->tabWidgetTotal->addTab(tabSystemSet,   "系统设置");
+}
+
+/*******************   初始化信号与槽    ***********************/
+void MainWindow::initConnect()
+{
+    connect(tabRegister, SIGNAL(sendNumber(QString, QString)), this, SLOT(receiveNumber(QString, QString)));
+    connect(this, SIGNAL(sendNumber(QString, QString)), tabMaterial, SLOT(receiveNumber(QString, QString)));
 }

@@ -2,7 +2,10 @@
 #define GLOBALDEF_HPP
 #include <QString>
 
-#define  DATA(str)   new QTableWidgetItem(str)
+#define  DATA(str)          new QTableWidgetItem(str)
+#define  TREEDATA(widget)   new QTreeWidgetItem(widget)
+#define  TREEITEM()         new QTreeWidgetItem()
+
 
 #define SETCENTRALWIDGET(widget)               \
 {                                              \
@@ -20,6 +23,19 @@
         delete pointer;     \
     }                       \
     pointer = NULL;         \
+}
+
+#define LOADQSS(qssFile)                      \
+{                                             \
+    QString strQss;                           \
+    QFile file(qssFile);                      \
+    file.open(QFile::ReadOnly);               \
+    if(file.isOpen())                         \
+    {                                         \
+        strQss=QLatin1String(file.readAll()); \
+        qApp->setStyleSheet(strQss);          \
+        file.close();                         \
+    }                                         \
 }
 
 enum TYPE

@@ -299,7 +299,9 @@ void TabRegister::on_tableWidget_doubleClicked(const QModelIndex &currentIndex)
 {
     QAbstractItemModel *model = ui->tableWidget->model();
     QModelIndex index = model->index(currentIndex.row(), 1);
-    emit sendNumber(model->data(index).toString());
+    QModelIndex secondIndex = model->index(currentIndex.row(), 0);
+
+    emit sendNumber(model->data(index).toString(), model->data(secondIndex).toString());
 }
 
 /*******************       打印标签                 ***********************/

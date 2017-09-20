@@ -21,11 +21,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void sendNumber(QString, QString);
+
+private slots:
+    void receiveNumber(QString number, QString id);
+
 private:
     Ui::MainWindow *ui;
 
-    void initControl(); //初始化控件
-
+    void initControl();              //初始化控件
+    void initConnect();              //初始化信号与槽
 
 private:
     TabRegister *tabRegister;        //登记

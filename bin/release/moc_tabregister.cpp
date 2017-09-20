@@ -85,27 +85,27 @@ static const uint qt_meta_data_TabRegister[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   94,    2, 0x06 /* Public */,
+       1,    2,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   97,    2, 0x08 /* Private */,
-       4,    2,   98,    2, 0x08 /* Private */,
-       7,    2,  103,    2, 0x08 /* Private */,
-      10,    0,  108,    2, 0x08 /* Private */,
-      11,    0,  109,    2, 0x08 /* Private */,
-      12,    0,  110,    2, 0x08 /* Private */,
-      13,    0,  111,    2, 0x08 /* Private */,
-      14,    0,  112,    2, 0x08 /* Private */,
-      15,    0,  113,    2, 0x08 /* Private */,
-      16,    0,  114,    2, 0x08 /* Private */,
-      17,    0,  115,    2, 0x08 /* Private */,
-      18,    1,  116,    2, 0x08 /* Private */,
-      20,    1,  119,    2, 0x08 /* Private */,
-      21,    0,  122,    2, 0x08 /* Private */,
-      22,    0,  123,    2, 0x08 /* Private */,
+       3,    0,   99,    2, 0x08 /* Private */,
+       4,    2,  100,    2, 0x08 /* Private */,
+       7,    2,  105,    2, 0x08 /* Private */,
+      10,    0,  110,    2, 0x08 /* Private */,
+      11,    0,  111,    2, 0x08 /* Private */,
+      12,    0,  112,    2, 0x08 /* Private */,
+      13,    0,  113,    2, 0x08 /* Private */,
+      14,    0,  114,    2, 0x08 /* Private */,
+      15,    0,  115,    2, 0x08 /* Private */,
+      16,    0,  116,    2, 0x08 /* Private */,
+      17,    0,  117,    2, 0x08 /* Private */,
+      18,    1,  118,    2, 0x08 /* Private */,
+      20,    1,  121,    2, 0x08 /* Private */,
+      21,    0,  124,    2, 0x08 /* Private */,
+      22,    0,  125,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -133,7 +133,7 @@ void TabRegister::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         TabRegister *_t = static_cast<TabRegister *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sendNumber((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->sendNumber((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 1: _t->updateMovie(); break;
         case 2: _t->printBLNumber((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 3: _t->selectData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
@@ -155,7 +155,7 @@ void TabRegister::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (TabRegister::*_t)(QString );
+            typedef void (TabRegister::*_t)(QString , QString );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&TabRegister::sendNumber)) {
                 *result = 0;
                 return;
@@ -201,9 +201,9 @@ int TabRegister::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void TabRegister::sendNumber(QString _t1)
+void TabRegister::sendNumber(QString _t1, QString _t2)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

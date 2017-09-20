@@ -49,6 +49,8 @@ TemplateSetUp::TemplateSetUp(QWidget *parent) :
         //设置当前行为最后一行
         ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
     }
+
+    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
 /*********************     析构函数             **************************/

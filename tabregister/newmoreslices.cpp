@@ -11,8 +11,7 @@ NewMoreSlices::NewMoreSlices(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("批量编码");
-
-    //this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
 NewMoreSlices::~NewMoreSlices()

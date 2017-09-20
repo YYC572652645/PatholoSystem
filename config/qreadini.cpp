@@ -17,6 +17,11 @@ QReadIni::QReadIni()
     this->readIni();
 }
 
+QString QReadIni::getRecentNumber() const
+{
+    return recentNumber;
+}
+
 QString QReadIni::getStartNumber() const
 {
     return startNumber;
@@ -39,6 +44,7 @@ void QReadIni::readIni()
     loginConfig.userName       = configIniRead->value("login/username").toString();         //登录用户名
     loginConfig.passWord       = configIniRead->value("login/password").toString();         //登录密码
     startNumber                = configIniRead->value("init/startNumber").toString();       //开始编号
+    recentNumber               = configIniRead->value("init/recentNumber").toString();      //最近编号
     SAFEDELETE(configIniRead);
 }
 
@@ -56,6 +62,15 @@ void QReadIni::writeIni(QString startNumber)
     QSettings * configIniWrite=new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
     configIniWrite->setValue("init/startNumber", startNumber);                  //用户名
     this->startNumber = startNumber;
+    SAFEDELETE(configIniWrite);
+}
+
+/****************写入配置文件***************/
+void QReadIni::writeQCIni(QString recentNumber)
+{
+    QSettings * configIniWrite=new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    configIniWrite->setValue("init/recentNumber", recentNumber);                  //用户名
+    this->recentNumber = recentNumber;
     SAFEDELETE(configIniWrite);
 }
 

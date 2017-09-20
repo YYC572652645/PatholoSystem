@@ -42,6 +42,8 @@ INPUT(
 ./release\specialindexset.o
 ./release\specialtypeset.o
 ./release\userset.o
+./release\normalmaterial.o
+./release\materialdata.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -67,4 +69,5 @@ INPUT(
 ./release\moc_specialindexset.o
 ./release\moc_specialtypeset.o
 ./release\moc_userset.o
+./release\moc_normalmaterial.o
 );

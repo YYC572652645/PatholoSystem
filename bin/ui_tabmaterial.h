@@ -21,8 +21,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -51,7 +51,7 @@ public:
     QLineEdit *lineEditNumber;
     QPushButton *pushButtonFind;
     QSpacerItem *horizontalSpacer;
-    QTableWidget *tableWidget;
+    QTreeWidget *treeWidget;
     QWidget *widgetInfo;
     QToolBar *toolBar;
 
@@ -156,28 +156,10 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout);
 
-        tableWidget = new QTableWidget(widgetTable);
-        if (tableWidget->columnCount() < 8)
-            tableWidget->setColumnCount(8);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        treeWidget = new QTreeWidget(widgetTable);
+        treeWidget->setObjectName(QStringLiteral("treeWidget"));
 
-        verticalLayout_2->addWidget(tableWidget);
+        verticalLayout_2->addWidget(treeWidget);
 
 
         verticalLayout_3->addLayout(verticalLayout_2);
@@ -256,22 +238,15 @@ public:
 #endif // QT_NO_TOOLTIP
         label->setText(QApplication::translate("tabmaterial", "\347\274\226\345\217\267\357\274\232", 0));
         pushButtonFind->setText(QApplication::translate("tabmaterial", "    \346\237\245\346\211\276", 0));
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("tabmaterial", "\347\274\226\345\217\267", 0));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("tabmaterial", "\345\272\217\345\217\267", 0));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("tabmaterial", "\347\273\204\347\273\207\345\220\215\347\247\260", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("tabmaterial", "\345\267\262\346\211\223\345\215\260", 0));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("tabmaterial", "\346\211\223\345\215\260\346\227\266\351\227\264", 0));
-        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("tabmaterial", "\345\267\262\345\217\226\346\235\220", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("tabmaterial", "\345\217\226\346\235\220\346\227\245\346\234\237", 0));
-        QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
-        ___qtablewidgetitem7->setText(QApplication::translate("tabmaterial", "\345\217\226\346\235\220\344\272\272", 0));
+        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
+        ___qtreewidgetitem->setText(7, QApplication::translate("tabmaterial", "\345\217\226\346\235\220\344\272\272", 0));
+        ___qtreewidgetitem->setText(6, QApplication::translate("tabmaterial", "\345\217\226\346\235\220\346\227\245\346\234\237", 0));
+        ___qtreewidgetitem->setText(5, QApplication::translate("tabmaterial", "\345\267\262\345\217\226\346\235\220", 0));
+        ___qtreewidgetitem->setText(4, QApplication::translate("tabmaterial", "\346\211\223\345\215\260\346\227\266\351\227\264", 0));
+        ___qtreewidgetitem->setText(3, QApplication::translate("tabmaterial", "\345\267\262\346\211\223\345\215\260", 0));
+        ___qtreewidgetitem->setText(2, QApplication::translate("tabmaterial", "\347\273\204\347\273\207\345\220\215\347\247\260", 0));
+        ___qtreewidgetitem->setText(1, QApplication::translate("tabmaterial", "\345\272\217\345\217\267", 0));
+        ___qtreewidgetitem->setText(0, QApplication::translate("tabmaterial", "\347\274\226\345\217\267", 0));
         toolBar->setWindowTitle(QApplication::translate("tabmaterial", "toolBar", 0));
     } // retranslateUi
 

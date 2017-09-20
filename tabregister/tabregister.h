@@ -27,7 +27,7 @@ public:
     ~TabRegister();
 
 signals:
-    void sendNumber(QString);
+    void sendNumber(QString, QString);
 
 private slots:
     void updateMovie();                                                 //更新gif

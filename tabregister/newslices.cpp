@@ -12,7 +12,7 @@ NewSlices::NewSlices(QWidget *parent) :
 
     this->setWindowTitle("标本登记");
 
-    //this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
 /*******************   析构函数    ***********************/
@@ -34,7 +34,7 @@ void NewSlices::on_pushButtonOk_clicked()
         int setBeginNumber = mapData[PCODEBEGINSN].toInt();
         int maxId = registerData.selectMaxId();
 
-        if(INICONFIG->getStartNumber().toInt() != maxId)
+        if(INICONFIG->getStartNumber().toInt() > maxId)
         {
             data.pCode = QString::number(setBeginNumber);
         }

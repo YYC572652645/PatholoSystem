@@ -42,6 +42,8 @@ INPUT(
 ./debug\specialindexset.o
 ./debug\specialtypeset.o
 ./debug\userset.o
+./debug\normalmaterial.o
+./debug\materialdata.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -67,4 +69,5 @@ INPUT(
 ./debug\moc_specialindexset.o
 ./debug\moc_specialtypeset.o
 ./debug\moc_userset.o
+./debug\moc_normalmaterial.o
 );

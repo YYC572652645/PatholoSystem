@@ -290,6 +290,7 @@ public:
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         checkBoxBingLiNumber = new QCheckBox(groupBoxQuCai);
         checkBoxBingLiNumber->setObjectName(QStringLiteral("checkBoxBingLiNumber"));
+        checkBoxBingLiNumber->setEnabled(false);
         checkBoxBingLiNumber->setChecked(true);
 
         horizontalLayout_9->addWidget(checkBoxBingLiNumber);

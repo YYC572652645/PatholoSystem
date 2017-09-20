@@ -39,14 +39,14 @@ void TabSystemSet::initControl()
     listWidget->addItem(new QListWidgetItem("特染染色类型设置"));
     listWidget->addItem(new QListWidgetItem("特染染色指标设置"));
     listWidget->addItem(new QListWidgetItem("用户设置"));
-
-    listWidget->setGridSize(QSize(80, 30));   //设置显示间隔
     listWidget->setFrameStyle(QFrame::NoFrame);
 
     listWidget->setFont(QFont("ZYSong", 12)); //设置字体大小
 
     //连接信号和槽
     connect(listWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(listWidgetClicked(QModelIndex)));
+
+    listWidget->setObjectName("systemList");
 }
 
 /***************************               点击列表控件                 ***********************/

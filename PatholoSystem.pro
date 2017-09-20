@@ -55,7 +55,9 @@ SOURCES += main.cpp\
     tabsystemset/otherwidget/printset.cpp \
     tabsystemset/otherwidget/specialindexset.cpp \
     tabsystemset/otherwidget/specialtypeset.cpp \
-    tabsystemset/otherwidget/userset.cpp
+    tabsystemset/otherwidget/userset.cpp \
+    tabmaterial/normalmaterial.cpp \
+    tabmaterial/materialdata.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -123,7 +125,9 @@ HEADERS  += mainwindow.h \
     tabsystemset/otherwidget/printset.h \
     tabsystemset/otherwidget/specialindexset.h \
     tabsystemset/otherwidget/specialtypeset.h \
-    tabsystemset/otherwidget/userset.h
+    tabsystemset/otherwidget/userset.h \
+    tabmaterial/normalmaterial.h \
+    tabmaterial/materialdata.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -146,7 +150,8 @@ FORMS  += mainwindow.ui \
     tabsystemset/otherwidget/printset.ui \
     tabsystemset/otherwidget/specialindexset.ui \
     tabsystemset/otherwidget/specialtypeset.ui \
-    tabsystemset/otherwidget/userset.ui
+    tabsystemset/otherwidget/userset.ui \
+    tabmaterial/normalmaterial.ui
 
 RESOURCES += \
     res.qrc

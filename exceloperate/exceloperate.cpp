@@ -30,6 +30,9 @@ void ExcelOperate::extendRegExcel()
     if(fileName.isEmpty())  return;
 
     excel = new QAxObject("Excel.Application");                     //加载Excel驱动
+
+    if(excel->isNull()) return;
+
     excel->setProperty("Visible", false);                           //不显示任何警告信息
     workBooks = excel->querySubObject("WorkBooks");
     workBooks->dynamicCall("Add");
