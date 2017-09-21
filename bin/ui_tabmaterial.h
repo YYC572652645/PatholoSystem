@@ -36,7 +36,6 @@ public:
     QAction *actionPrintLabel;
     QAction *actionPrintMoreLabel;
     QAction *actionDeleteInfo;
-    QAction *actionClearInfo;
     QAction *actionExtendExcel;
     QAction *actionPrintTemplate;
     QAction *actionAddBingLiNumber;
@@ -50,6 +49,9 @@ public:
     QLabel *label;
     QLineEdit *lineEditNumber;
     QPushButton *pushButtonFind;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *labelMovie;
+    QPushButton *pushButtonRefresh;
     QSpacerItem *horizontalSpacer;
     QTreeWidget *treeWidget;
     QWidget *widgetInfo;
@@ -85,26 +87,21 @@ public:
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/image/image/critical.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionDeleteInfo->setIcon(icon4);
-        actionClearInfo = new QAction(tabmaterial);
-        actionClearInfo->setObjectName(QStringLiteral("actionClearInfo"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/image/image/edit-clear.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionClearInfo->setIcon(icon5);
         actionExtendExcel = new QAction(tabmaterial);
         actionExtendExcel->setObjectName(QStringLiteral("actionExtendExcel"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/image/image/excel.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionExtendExcel->setIcon(icon6);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/image/image/excel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionExtendExcel->setIcon(icon5);
         actionPrintTemplate = new QAction(tabmaterial);
         actionPrintTemplate->setObjectName(QStringLiteral("actionPrintTemplate"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/image/image/tempalte.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionPrintTemplate->setIcon(icon7);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/image/image/tempalte.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionPrintTemplate->setIcon(icon6);
         actionAddBingLiNumber = new QAction(tabmaterial);
         actionAddBingLiNumber->setObjectName(QStringLiteral("actionAddBingLiNumber"));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/image/image/add.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionAddBingLiNumber->setIcon(icon8);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/image/image/add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAddBingLiNumber->setIcon(icon7);
         centralwidget = new QWidget(tabmaterial);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -143,11 +140,37 @@ public:
         pushButtonFind = new QPushButton(widgetTable);
         pushButtonFind->setObjectName(QStringLiteral("pushButtonFind"));
         pushButtonFind->setStyleSheet(QStringLiteral(""));
-        QIcon icon9;
-        icon9.addFile(QStringLiteral(":/image/image/serch.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonFind->setIcon(icon9);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/image/image/serch.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonFind->setIcon(icon8);
 
         horizontalLayout->addWidget(pushButtonFind);
+
+        horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        labelMovie = new QLabel(widgetTable);
+        labelMovie->setObjectName(QStringLiteral("labelMovie"));
+        labelMovie->setStyleSheet(QStringLiteral("image: url(:/image/image/refresh.png);"));
+        labelMovie->setPixmap(QPixmap(QString::fromUtf8(":/image/image/refresh.png")));
+
+        horizontalLayout->addWidget(labelMovie);
+
+        pushButtonRefresh = new QPushButton(widgetTable);
+        pushButtonRefresh->setObjectName(QStringLiteral("pushButtonRefresh"));
+        pushButtonRefresh->setMinimumSize(QSize(40, 0));
+        pushButtonRefresh->setMaximumSize(QSize(40, 16777215));
+        pushButtonRefresh->setStyleSheet(QLatin1String("QPushButton:hover\n"
+"{\n"
+"    color:skyblue;\n"
+"}\n"
+"QPushButton\n"
+"{\n"
+"background-color:transparent;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonRefresh);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -157,6 +180,20 @@ public:
         verticalLayout_2->addLayout(horizontalLayout);
 
         treeWidget = new QTreeWidget(widgetTable);
+        QBrush brush(QColor(85, 255, 127, 255));
+        brush.setStyle(Qt::NoBrush);
+        QBrush brush1(QColor(85, 255, 127, 255));
+        brush1.setStyle(Qt::NoBrush);
+        QBrush brush2(QColor(85, 255, 127, 255));
+        brush2.setStyle(Qt::NoBrush);
+        QBrush brush3(QColor(85, 255, 127, 255));
+        brush3.setStyle(Qt::NoBrush);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setForeground(7, brush3);
+        __qtreewidgetitem->setForeground(6, brush2);
+        __qtreewidgetitem->setForeground(5, brush1);
+        __qtreewidgetitem->setForeground(2, brush);
+        treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
 
         verticalLayout_2->addWidget(treeWidget);
@@ -186,7 +223,6 @@ public:
         toolBar->addAction(actionPrintMoreLabel);
         toolBar->addSeparator();
         toolBar->addAction(actionDeleteInfo);
-        toolBar->addAction(actionClearInfo);
         toolBar->addSeparator();
         toolBar->addAction(actionExtendExcel);
         toolBar->addAction(actionPrintTemplate);
@@ -220,11 +256,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionDeleteInfo->setToolTip(QApplication::translate("tabmaterial", "\345\210\240\351\231\244", 0));
 #endif // QT_NO_TOOLTIP
-        actionClearInfo->setText(QApplication::translate("tabmaterial", "\346\270\205\347\251\272", 0));
-#ifndef QT_NO_TOOLTIP
-        actionClearInfo->setToolTip(QApplication::translate("tabmaterial", "\346\270\205\347\251\272", 0));
-#endif // QT_NO_TOOLTIP
-        actionExtendExcel->setText(QApplication::translate("tabmaterial", "\345\257\274\345\207\272", 0));
+        actionExtendExcel->setText(QApplication::translate("tabmaterial", "\345\257\274\345\207\272Excel", 0));
 #ifndef QT_NO_TOOLTIP
         actionExtendExcel->setToolTip(QApplication::translate("tabmaterial", "\345\257\274\345\207\272", 0));
 #endif // QT_NO_TOOLTIP
@@ -238,6 +270,8 @@ public:
 #endif // QT_NO_TOOLTIP
         label->setText(QApplication::translate("tabmaterial", "\347\274\226\345\217\267\357\274\232", 0));
         pushButtonFind->setText(QApplication::translate("tabmaterial", "    \346\237\245\346\211\276", 0));
+        labelMovie->setText(QString());
+        pushButtonRefresh->setText(QApplication::translate("tabmaterial", "\345\210\267\346\226\260", 0));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(7, QApplication::translate("tabmaterial", "\345\217\226\346\235\220\344\272\272", 0));
         ___qtreewidgetitem->setText(6, QApplication::translate("tabmaterial", "\345\217\226\346\235\220\346\227\245\346\234\237", 0));

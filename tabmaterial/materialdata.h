@@ -8,6 +8,7 @@
 #include<QFile>
 #include<QIODevice>
 #include<QDebug>
+#include "globaldef.h"
 #include <../singleton/singleton.h>
 
 #define MATERIALDATA Singleton<MaterialData>::getInstance()
@@ -48,10 +49,8 @@ public:
     /************     构造函数       *************/
     MaterialData();
 
-
     /************    连接数据库      *************/
     bool dataCnn();
-
 
     /************    插入父类数据    *************/
     bool insertParentData(DataParent data);
@@ -59,21 +58,23 @@ public:
     /************    插入子类数据    *************/
     bool insertChildData(DataChild data);
 
+    /************    查询数据        *************/
+    bool selectData(int type, QString number = NULL);
 
-    /************    查询数据       *************/
-    int selectData();
-
-    /************    查询编号   *************/
+    /************    查询编号        **************/
     QString selectCode(QString blNumber);
 
+    /************    查询包埋数量     *************/
+    int selectBaoMai(QString blNumber);
 
-    /************    更改数据       *************/
-    bool updateData();
+    /************    更改子类数据     *************/
+    bool updateChildData(DataChild data);
 
+    /************    更改父类数据     *************/
+    bool updateParentData(DataParent data);
 
-    /************    删除数据       *************/
-    bool deleteData();
-
+    /************    删除数据         *************/
+    bool deleteData(int type, QString id = NULL);
 
     QList<DataChild> getChildList() const;
 

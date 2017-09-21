@@ -3,6 +3,7 @@
 #include <QAxObject>
 #include "globaldef.h"
 #include "singleton/singleton.h"
+#include "tabmaterial/materialdata.h"
 #include <QThread>
 #include <QMutex>
 
@@ -13,7 +14,9 @@ public:
 
     void run();
 
-    void extendRegExcel();
+    void extendRegExcel();     //导出登记信息
+
+    void extendSampleExcel();  //导出取材信息
 
     void setItemName(const QList<QString> &value);
 
@@ -23,9 +26,13 @@ public:
 
     void setFileName(const QString &value);
 
+    void setChildInfo(const QList<DataChild> &value);
+
 private:
     QList<QString>itemName;
     QList<RegisterInfo> registerInfo;
+    QList<DataChild> childInfo;
+
     int extendType;
     QString fileName;
 };

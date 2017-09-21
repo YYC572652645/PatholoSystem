@@ -1,6 +1,5 @@
 #include "normalmaterial.h"
 #include "ui_normalmaterial.h"
-#include "materialdata.h"
 #include <QDateTime>
 #include <config/qreadini.h>
 #include "../tabsystemset/tabsystemdata.h"
@@ -40,9 +39,25 @@ void NormalMaterial::showWidget()
     this->show();
 }
 
+/*******************   设置数据    ***********************/
+void NormalMaterial::setData(DataParent data)
+{
+    ui->lineEditBlNumber->setText(data.pCode);                        //病理号
+    ui->lineEditName->setText(data.specimenName);                     //标本名称
+    ui->lineEditNumber->setText(data.specimenQuantity);               //标本数量
+    ui->lineEditSize->setText(data.specimenSize);                     //标本大小
+    ui->lineEditWeight->setText(data.specimenWeight);                 //标本重量
+    ui->spinBoxMaterialNumber->setValue(data.samplingCount.toInt());  //取材总数
+    ui->comboBoxPeople->setCurrentText(data.sampler);                 //取材人
+    ui->textEditRecord->setText(data.note );                          //检测记录
+    ui->comboBoxRegPeople->setCurrentText(data.noter);                //记录人
+}
+
 /*******************   确定按钮    ***********************/
 void NormalMaterial::on_pushButtonOk_clicked()
 {
+    if(ui->lineEditBlNumber->text().isEmpty()) return;
+
     DataParent data;
 
     if(!this->id.isEmpty())
@@ -64,11 +79,12 @@ void NormalMaterial::on_pushButtonOk_clicked()
         {
             data.samplingId = ui->lineEditBlNumber->text();
         }
-
-        INICONFIG->writeQCIni(data.samplingId);
     }
 
     data.pCode = ui->lineEditBlNumber->text();                                           //病理号
+
+    INICONFIG->writeQCIni(data.pCode);
+
     data.specimenName = ui->lineEditName->text();                                        //标本名称
     data.specimenQuantity = ui->lineEditNumber->text();                                  //标本数量
     data.specimenSize = ui->lineEditSize->text();                                        //标本大小
@@ -77,12 +93,21 @@ void NormalMaterial::on_pushButtonOk_clicked()
     data.sampler = ui->comboBoxPeople->currentText();                                    //取材人
     data.note = ui->textEditRecord->toPlainText();                                       //检测记录
     data.noter = ui->comboBoxRegPeople->currentText();                                   //记录人
-    data.createTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");  //取材时间
+    data.createTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");      //取材时间
 
-    MATERIALDATA->insertParentData(data);
+    if(!MATERIALDATA->insertParentData(data))
+    {
+        MATERIALDATA->updateParentData(data);
+
+        emit sendSelect();
+
+        this->close();
+
+        return;
+    }
 
     //获取编码规则
-    SYSTEMDATA->codeTypeSelectData();
+    SYSTEMDATA->codeBeginSelectData();
     QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
     DataChild dataChild;
@@ -93,28 +118,26 @@ void NormalMaterial::on_pushButtonOk_clicked()
     {
         dataChild.embedCode = data.pCode;                 //病理号子序号
 
-        if(mapData[HYPHEN].toInt() != 0)
+        if(mapData[HYPHEN] != "0")
         {
             dataChild.embedCode +=  "-";                 //病理号子序号
         }
 
         switch(mapData[NUMBERTYPE].toInt())
         {
-        case 0: dataChild.embedCode +=  "1";              //病理号子序号
-        case 1: dataChild.embedCode +=  "a";              //病理号子序号
-        case 2: dataChild.embedCode +=  "A";              //病理号子序号
+        case 0: dataChild.embedCode +=  "1";  break;      //病理号子序号
+        case 1: dataChild.embedCode +=  "a";  break;      //病理号子序号
+        case 2: dataChild.embedCode +=  "A";  break;      //病理号子序号
         }
     }
 
     dataChild.printed = "0";                              //是否打印
     dataChild.sampled = "0";                              //是否取材
     dataChild.sampler =  data.sampler;                    //取材人
-    dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");;     //取材时间
+    dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");;     //取材时间
 
     MATERIALDATA->insertChildData(dataChild);
 
-
-    qDebug()<<"11111111111111111111111111111111111";
     emit sendSelect();
 
     this->close();

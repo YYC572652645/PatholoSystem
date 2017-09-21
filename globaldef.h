@@ -42,7 +42,28 @@ enum TYPE
 {
     ALLDATA,
     BLDATA,
+    CHILDDATA,
 };
+
+enum MATRIALCOLUMN
+{
+    NUMBERING,
+    SERIALNUMBER,
+    ORGANIZATIONNAME,
+    ISPRINTED,
+    PRINTTIME,
+    ISMATERIAL,
+    MATERIALTIME,
+    MATERIALPEOPLE,
+    MATRIALCOLUMNMAX,
+};
+
+enum NUMBERFIGERTYPE
+{
+    CAPITAL,  //大写
+    LOWER,    //小写
+};
+
 
 
 typedef struct RegisterInfo
@@ -55,12 +76,26 @@ typedef struct RegisterInfo
     QString createTime;   //创建时间
 }RegisterInfo;
 
-//导出Excel
+//导出登记信息Excel
 const static QString PCODE         = "序号";
 const static QString SN            = "病理号";
 const static QString PRINTQUANTITY = "打印数量";
 const static QString PRINTED       = "已打印";
 const static QString CREATETIME    = "创建日期";
+
+//导出取材信息Excel
+namespace MATERALINFO
+{
+const static QString SN            = "编号";
+const static QString PCODE         = "序号";
+const static QString TISSUE        = "组织名称";
+const static QString PRINTED       = "已打印";
+const static QString PRINTTIME     = "打印时间";
+const static QString SAMPLED       = "已取材";
+const static QString SAMPLEDTIME   = "取材日期";
+const static QString SAMPLEDPEOPLE = "取材人";
+}
+
 
 
 //Map键值

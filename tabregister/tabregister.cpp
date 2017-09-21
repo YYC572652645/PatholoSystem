@@ -319,8 +319,6 @@ void TabRegister::on_actionPrintLabel_triggered()
             {
                 templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
             }
-
-            registerData.updateBLData("1", registerData.registerInfo.at(currentRow).id);
         }
     }
     else

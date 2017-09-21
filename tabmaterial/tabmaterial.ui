@@ -63,6 +63,64 @@
              </widget>
             </item>
             <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Maximum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>10</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelMovie">
+              <property name="styleSheet">
+               <string notr="true">image: url(:/image/image/refresh.png);</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../res.qrc">:/image/image/refresh.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonRefresh">
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>40</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton:hover
+{
+    color:skyblue;
+}
+QPushButton
+{
+background-color:transparent;
+}</string>
+              </property>
+              <property name="text">
+               <string>刷新</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -93,6 +151,15 @@
              <property name="text">
               <string>组织名称</string>
              </property>
+             <property name="foreground">
+              <brush brushstyle="NoBrush">
+               <color alpha="255">
+                <red>85</red>
+                <green>255</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </property>
             </column>
             <column>
              <property name="text">
@@ -108,15 +175,42 @@
              <property name="text">
               <string>已取材</string>
              </property>
+             <property name="foreground">
+              <brush brushstyle="NoBrush">
+               <color alpha="255">
+                <red>85</red>
+                <green>255</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </property>
             </column>
             <column>
              <property name="text">
               <string>取材日期</string>
              </property>
+             <property name="foreground">
+              <brush brushstyle="NoBrush">
+               <color alpha="255">
+                <red>85</red>
+                <green>255</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </property>
             </column>
             <column>
              <property name="text">
               <string>取材人</string>
+             </property>
+             <property name="foreground">
+              <brush brushstyle="NoBrush">
+               <color alpha="255">
+                <red>85</red>
+                <green>255</green>
+                <blue>127</blue>
+               </color>
+              </brush>
              </property>
             </column>
            </widget>
@@ -154,7 +248,6 @@
    <addaction name="actionPrintMoreLabel"/>
    <addaction name="separator"/>
    <addaction name="actionDeleteInfo"/>
-   <addaction name="actionClearInfo"/>
    <addaction name="separator"/>
    <addaction name="actionExtendExcel"/>
    <addaction name="actionPrintTemplate"/>
@@ -220,25 +313,13 @@
     <string>删除</string>
    </property>
   </action>
-  <action name="actionClearInfo">
-   <property name="icon">
-    <iconset resource="../res.qrc">
-     <normaloff>:/image/image/edit-clear.png</normaloff>:/image/image/edit-clear.png</iconset>
-   </property>
-   <property name="text">
-    <string>清空</string>
-   </property>
-   <property name="toolTip">
-    <string>清空</string>
-   </property>
-  </action>
   <action name="actionExtendExcel">
    <property name="icon">
     <iconset resource="../res.qrc">
      <normaloff>:/image/image/excel.png</normaloff>:/image/image/excel.png</iconset>
    </property>
    <property name="text">
-    <string>导出</string>
+    <string>导出Excel</string>
    </property>
    <property name="toolTip">
     <string>导出</string>

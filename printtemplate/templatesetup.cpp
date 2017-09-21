@@ -130,6 +130,21 @@ void TemplateSetUp::on_pushButtonSub_clicked()
 
     //移除控件中的内容
     deleteAll();
+
+    if(ui->listWidgetTemplate->count() > 0)
+    {
+        //设置当前行为最后一行
+        ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
+
+        //选中最后一行
+        item = ui->listWidgetTemplate->item(ui->listWidgetTemplate->count() - 1);
+        item->setSelected(true);
+
+        //模板名称为当前名称
+        templateName = item->text();
+
+        writeAll();
+    }
 }
 
 /*********************     初始化属性页控件      *************************/

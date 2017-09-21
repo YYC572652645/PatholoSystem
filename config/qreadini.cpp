@@ -1,6 +1,7 @@
 #include "qreadini.h"
 #include <QDebug>
 #include "globaldef.h"
+#include <QTextCodec>
 QReadIni*QReadIni::instance = NULL;
 
 QReadIni *QReadIni::getInstance()
@@ -35,6 +36,7 @@ LoginConfig QReadIni::getLoginConfig() const
 void QReadIni::readIni()
 {
     QSettings * configIniRead  = new QSettings("config.ini",QSettings::IniFormat);          //初始化读取Ini文件对象
+    configIniRead->setIniCodec(QTextCodec::codecForName("GB2312"));
     dataConfig.ip              = configIniRead->value("conn/ip").toString();                //IP地址
     dataConfig.port            = configIniRead->value("conn/port").toString();              //端口
     dataConfig.dataBaseVersion = configIniRead->value("conn/databaseversion").toString();   //数据库版本
@@ -51,7 +53,8 @@ void QReadIni::readIni()
 /****************写入配置文件***************/
 void QReadIni::writeIni(QString userName, QString passWord)
 {
-    QSettings * configIniWrite=new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+        configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
     configIniWrite->setValue("login/username", userName);                       //用户名
     configIniWrite->setValue("login/password", passWord);                       //密码
     SAFEDELETE(configIniWrite);
@@ -59,7 +62,8 @@ void QReadIni::writeIni(QString userName, QString passWord)
 
 void QReadIni::writeIni(QString startNumber)
 {
-    QSettings * configIniWrite=new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
     configIniWrite->setValue("init/startNumber", startNumber);                  //用户名
     this->startNumber = startNumber;
     SAFEDELETE(configIniWrite);
@@ -68,7 +72,8 @@ void QReadIni::writeIni(QString startNumber)
 /****************写入配置文件***************/
 void QReadIni::writeQCIni(QString recentNumber)
 {
-    QSettings * configIniWrite=new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
     configIniWrite->setValue("init/recentNumber", recentNumber);                  //用户名
     this->recentNumber = recentNumber;
     SAFEDELETE(configIniWrite);

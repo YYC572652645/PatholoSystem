@@ -109,26 +109,31 @@ bool MaterialData::insertChildData(DataChild data)
 }
 
 /***************************查询数据***********************/
-int MaterialData::selectData()
+bool MaterialData::selectData(int type, QString number)
 { 
-    int count = 0;
-
     if(!db.isOpen()) db.open();
 
     QSqlQuery query;
 
-    QString str = QString("select * from Sampling,SamplingRow where  Sampling.SamplingId = SamplingRow.SamplingId;");
+    QString str;
+
+    if(type == ALLDATA)
+    {
+        str = QString("select * from Sampling;");
+    }
+    else
+    {
+        str = QString("select * from Sampling where PCode like '%%1%';").arg(number);
+    }
 
     bool success = query.exec(str);
 
-    if(!success) return false;
+    if(!success) return success;
 
     parentList.clear();
-    childList.clear();
 
     while(query.next())
     {
-
         DataParent dataParent;
 
         dataParent.samplingId       = query.value(0).toString();    //取材ID
@@ -144,29 +149,47 @@ int MaterialData::selectData()
         dataParent.createTime       = query.value(10).toString();   //取材时间
 
         parentList.append(dataParent);
+    }
 
+    childList.clear();
+
+    if(type == ALLDATA)
+    {
+        str = QString("select * from SamplingRow;");
+    }
+    else
+    {
+        str = QString("select * from SamplingRow where EmbedCode like '%%1%';").arg(number);
+    }
+
+    success = query.exec(str);
+
+    if(!success) return success;
+
+    while(query.next())
+    {
         DataChild dataChild;
 
-        dataChild.samplingId        = query.value(11).toString();   //取材ID
-        dataChild.sn                = query.value(12).toString();   //序号
-        dataChild.embedCode         = query.value(13).toString();   //病理号子序号
-        dataChild.tissue            = query.value(14).toString();   //组织名称
-        dataChild.printed           = query.value(15).toString();   //是否打印
-        dataChild.printTime         = query.value(16).toString();   //打印时间
-        dataChild.sampled           = query.value(17).toString();   //是否取材
-        dataChild.sampler           = query.value(18).toString();   //取材人
-        dataChild.samplingTime      = query.value(19).toString();   //取材时间
+        dataChild.samplingId        = query.value(0).toString();   //取材ID
+        dataChild.sn                = query.value(1).toString();   //序号
+        dataChild.embedCode         = query.value(2).toString();   //病理号子序号
+        dataChild.tissue            = query.value(3).toString();   //组织名称
+        dataChild.printed           = query.value(4).toString();   //是否打印
+        dataChild.printTime         = query.value(5).toString();   //打印时间
+        dataChild.sampled           = query.value(6).toString();   //是否取材
+        dataChild.sampler           = query.value(7).toString();   //取材人
+        dataChild.samplingTime      = query.value(8).toString();   //取材时间
 
         childList.append(dataChild);
-
-        count ++;
     }
 
     db.close();
 
-    return count;
+    return success;
 }
 
+
+/***************************查询病理号***********************/
 QString MaterialData::selectCode(QString blNumber)
 {
     QString pCode;
@@ -191,15 +214,53 @@ QString MaterialData::selectCode(QString blNumber)
     return pCode;
 }
 
-/***************************更改数据***********************/
-bool MaterialData::updateData()
+/***************************查询包埋数***********************/
+int MaterialData::selectBaoMai(QString blNumber)
+{
+    int count = 0;
+
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("select count(*) from SamplingRow where SamplingId = '%1';").arg(blNumber);
+
+    bool success = query.exec(str);
+
+    if(!success) return false;
+
+    if(query.next())
+    {
+        count = query.value(0).toInt();
+    }
+
+    db.close();
+
+    return count;
+}
+
+/***************************更改子类数据***********************/
+bool MaterialData::updateChildData(DataChild data)
 {
     if(!db.isOpen()) db.open();
 
     QSqlQuery query;
 
-    QString str = QString("update  table set('','');");
+    QString str = QString("update  SamplingRow set ");
 
+    str += "Tissue = '"           +  data.tissue       + "', ";
+
+    str += "Printed = '"          +  data.printed      + "', ";
+
+    str += "Sampled = '"          +  data.sampled      + "', ";
+
+    str += "Operator = '"         +  data.sampler      + "', ";
+
+    str += "SamplingTime = '"     +  data.samplingTime + "'  ";
+
+    str += "where EmbedCode = '" +  data.embedCode     + "'; ";
+
+    qDebug()<<str;
     bool success = query.exec(str);  //执行sql语句
 
     db.close();
@@ -207,16 +268,80 @@ bool MaterialData::updateData()
     return success;
 }
 
-/***************************删除数据***********************/
-bool MaterialData::deleteData()
+/***************************更改父类数据***********************/
+bool MaterialData::updateParentData(DataParent data)
 {
     if(!db.isOpen()) db.open();
 
     QSqlQuery query;
 
-    QString str = QString("delete from table where ;");
+    QString str = QString("update  Sampling set ");
+
+    str += "SpecimenName = '"      +  data.specimenName     + "', ";
+
+    str += "SpecimenQuantity = '"  +  data.specimenQuantity + "', ";
+
+    str += "SpecimenSize = '"      +  data.specimenSize     + "', ";
+
+    str += "SpecimenWeight = '"    +  data.specimenWeight   + "',  ";
+
+    str += "SamplingCount = '"     +  data.samplingCount    + "',  ";
+
+    str += "Sampler = '"           +  data.sampler          + "',  ";
+
+    str += "Note = '"              +  data.note             + "',  ";
+
+    str += "Noter = '"             +  data.noter            + "',  ";
+
+    str += "CreateTime = '"        +  data.createTime       + "'  ";
+
+    str += "where PCode = '"       +  data.pCode            + "'; ";
 
     bool success = query.exec(str);  //执行sql语句
+
+    qDebug()<<str;
+    db.close();
+
+    return success;
+}
+
+/***************************删除所有数据***********************/
+bool MaterialData::deleteData(int type, QString id)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str;
+
+    bool success = false;
+
+    if(type == ALLDATA)
+    {
+        str = QString("delete from Sampling;");
+
+        success = query.exec(str);
+
+        str = QString("delete from SamplingRow;");
+
+        success = query.exec(str);
+    }
+    else if(type == BLDATA)
+    {
+        str = QString("delete from Sampling where SamplingId = '%1';").arg(id);
+
+        success = query.exec(str);
+
+        str = QString("delete from SamplingRow where SamplingId = '%1';").arg(id);
+
+        success = query.exec(str);
+    }
+    else
+    {
+        str = QString("delete from SamplingRow where SamplingId = '%1';").arg(id);
+
+        success = query.exec(str);
+    }
 
     db.close();
 
