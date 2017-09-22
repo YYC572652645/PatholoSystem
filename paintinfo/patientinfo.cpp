@@ -11,6 +11,7 @@ PatientInfo::PatientInfo(QWidget *parent) :
     ui->setupUi(this);
 
     this->initControl();
+    this->initConnect();
 }
 
 /********************       析构函数      ***********************/
@@ -107,13 +108,6 @@ void PatientInfo::setPaintId(const QString &value)
 /********************       查询数据       ***********************/
 void PatientInfo::setSelect()
 {
-
-    //如果是自动保存，则保存
-    if(autoSaveBox->isChecked())
-    {
-        on_actionSavePatientInfo_triggered();
-    }
-
     //清除信息
     this->clearInfo();
 
@@ -154,6 +148,20 @@ void PatientInfo::setSelect()
     ui->lineEditZhuSu->setText(data.chiefComplaint);
     ui->lineEditNow->setText(data.currentHistory);
     ui->textEditTiZheng->setText(data.clinical);
+}
+
+/********************       初始化信号与槽      ***********************/
+void PatientInfo::initConnect()
+{
+    isAutoSaveFlage = false;
+
+    connect(autoSaveBox, SIGNAL(stateChanged(int)), this, SLOT(flageChange()));
+}
+
+/********************       内容改变      ***********************/
+void PatientInfo::flageChange()
+{
+    isAutoSaveFlage =  autoSaveBox->isChecked() ? true : false;
 }
 
 /********************       设置病理号      ***********************/
@@ -257,4 +265,9 @@ void PatientInfo::clearInfo()
 
     ui->dateTimeEditSongJian->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
     ui->dateTimeEditSongJian->setDateTime(QDateTime::currentDateTime());
+}
+
+bool PatientInfo::getIsAutoSaveFlage() const
+{
+    return isAutoSaveFlage;
 }

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>normalmaterial</class>
- <widget class="QMainWindow" name="normalmaterial">
+ <class>newnormalslice</class>
+ <widget class="QMainWindow" name="newnormalslice">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>670</width>
-    <height>498</height>
+    <width>600</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>670</width>
-    <height>498</height>
+    <width>600</width>
+    <height>496</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>670</width>
-    <height>498</height>
+    <width>600</width>
+    <height>496</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -31,6 +31,18 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QGroupBox" name="groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>400</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>400</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -45,28 +57,28 @@
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
-                <string>  病理号：</string>
+                <string>材块编号：</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEditBlNumber">
+              <widget class="QLineEdit" name="lineEditCodeNumber">
                <property name="minimumSize">
                 <size>
-                 <width>250</width>
+                 <width>180</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>250</width>
+                 <width>180</width>
                  <height>16777215</height>
                 </size>
                </property>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_9">
+              <spacer name="horizontalSpacer_2">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -79,23 +91,23 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="label_9">
+              <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>取材总数：</string>
+                <string>打印数量：</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBoxMaterialNumber">
+              <widget class="QSpinBox" name="spinBoxPrintNumber">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>180</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>100</width>
+                 <width>180</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -104,231 +116,6 @@
                </property>
                <property name="maximum">
                 <number>1000000000</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>标本名称：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditName">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_11">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>标本数量：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditNumber">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_10">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>标本大小：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditSize">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>标本重量：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditWeight">
-               <property name="minimumSize">
-                <size>
-                 <width>250</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>250</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_12">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>  取材人：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBoxPeople">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="editable">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_7">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>检查记录：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="textEditRecord">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>100</height>
-                </size>
                </property>
               </widget>
              </item>
@@ -348,25 +135,213 @@
             </spacer>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLabel" name="label_8">
+              <widget class="QLabel" name="label_3">
                <property name="text">
-                <string>  记录人：</string>
+                <string>染色类型：</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBoxRegPeople">
+              <widget class="QLineEdit" name="lineEditColorType">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>180</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>100</width>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>常规</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>染色指标：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditColorIndex">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>HE</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>其他：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditOther"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>切片人：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBoxQPPeople">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>切片时间：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="dateEditQPTime">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>染色人：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBoxRSPeople">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -388,6 +363,29 @@
                </property>
               </spacer>
              </item>
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>染色时间：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="dateEditRSTime">
+               <property name="minimumSize">
+                <size>
+                 <width>180</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
           </layout>
@@ -396,7 +394,7 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_13">
+       <spacer name="horizontalSpacer_5">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -409,9 +407,9 @@
        </spacer>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <spacer name="horizontalSpacer">
+         <spacer name="horizontalSpacer_12">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -425,25 +423,13 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonOk">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>150</width>
-            <height>16777215</height>
-           </size>
-          </property>
           <property name="text">
            <string>确定</string>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_2">
+         <spacer name="horizontalSpacer_7">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -457,25 +443,13 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonCancel">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>150</width>
-            <height>16777215</height>
-           </size>
-          </property>
           <property name="text">
            <string>取消</string>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_3">
+         <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>

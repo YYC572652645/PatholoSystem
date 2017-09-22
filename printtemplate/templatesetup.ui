@@ -73,6 +73,15 @@ padding: 0 3px;
                <height>500</height>
               </size>
              </property>
+             <property name="toolTip">
+              <string>打印区域</string>
+             </property>
+             <property name="statusTip">
+              <string/>
+             </property>
+             <property name="whatsThis">
+              <string/>
+             </property>
              <property name="styleSheet">
               <string notr="true">background-color:white</string>
              </property>

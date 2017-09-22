@@ -1,11 +1,8 @@
-﻿#include "templatedata.h"
-#include "../../config/qreadini.h"
-#include "../globaldef.h"
-
-TemplateData * TemplateData::instance = NULL;
+﻿#include "database.h"
+#include"qreadini.h"
 
 /***************************构造函数***********************/
-TemplateData::TemplateData()
+DataBase::DataBase()
 {   
     if(!dataCnn())
     {
@@ -14,7 +11,7 @@ TemplateData::TemplateData()
 }
 
 /***************************连接数据库*********************/
-bool TemplateData::dataCnn()
+bool DataBase::dataCnn()
 {
     //是否为默认连接
     if(QSqlDatabase::contains("qt_sql_default_connection"))
@@ -40,16 +37,14 @@ bool TemplateData::dataCnn()
 }
 
 /***************************插入数据***********************/
-bool TemplateData::insertData(QString name, QString templateText, int type)
+bool DataBase::insertData()
 {
     if(!db.isOpen())
     {
         db.open();
     }
     QSqlQuery query;
-
-    QString Str = QString("insert into PrintTemplate values('%1','%2', '%3');").arg(name, templateText, QString::number(type));
-
+    QString Str = QString("insert into table values('','');");
     bool success = query.exec(Str);  //执行sql语句
 
     db.close();
@@ -58,45 +53,41 @@ bool TemplateData::insertData(QString name, QString templateText, int type)
 }
 
 /***************************查询数据***********************/
-int TemplateData::selectData(int type)
+bool DataBase::selectData()
 {
-    int count = 0;
-    if(!db.isOpen()) db.open();
-
-    QSqlQuery query;
-    QString str = QString("select * from PrintTemplate where Type = '%1';").arg(QString::number(type));
-    bool success = query.exec(str);
-    if(!success)  return count;
-
-    dataTemplate.clear();
-
-    while(query.next())
+    int Count = 0;
+    if(!db.isOpen())
     {
-        DataTemplate data;
-
-        data.templateName = query.value(TEMPLATENAME).toString();
-        data.templateText = query.value(TEMPLATETEXT).toString();
-
-        dataTemplate.append(data);
-        count ++;
+        db.open();
     }
-
+    QSqlQuery query;
+    QString Str = QString("select * from table;");
+    bool success = query.exec(Str);  //执行sql语句
+    if(!success)
+    {
+        return false;
+    }
+    else
+    {
+        while(query.next())        //挨个遍历数据
+        {
+            Count ++;
+        }
+    }
     db.close();
 
-    return count;
+    return Count > 0 ? true : false;
 }
 
 /***************************更改数据***********************/
-bool TemplateData::updateData(QString name, QString templateText, int type)
+bool DataBase::updateData()
 {
     if(!db.isOpen())
     {
         db.open();
     }
     QSqlQuery query;
-
-    QString Str = QString("update  PrintTemplate set Template = '%1' where Name = '%2' and Type = '%3';").arg(templateText, name, QString::number(type));
-
+    QString Str = QString("update  table set('','');");
     bool success = query.exec(Str);  //执行sql语句
 
     db.close();
@@ -105,24 +96,18 @@ bool TemplateData::updateData(QString name, QString templateText, int type)
 }
 
 /***************************删除数据***********************/
-bool TemplateData::deleteData(QString name, int type)
+bool DataBase::deleteData()
 {
     if(!db.isOpen())
     {
         db.open();
     }
     QSqlQuery query;
-    QString Str = QString("delete from PrintTemplate where Name = '%1' and Type = '%2';").arg(name, QString::number(type));
+    QString Str = QString("delete from table where ;");
     bool success = query.exec(Str);  //执行sql语句
 
     db.close();
 
     return success;
 }
-
-QList<DataTemplate> TemplateData::getDataTemplate() const
-{
-    return dataTemplate;
-}
-
 

@@ -382,6 +382,15 @@ public:
         actionDelete->setToolTip(QApplication::translate("templatesetup", "\345\210\240\351\231\244\346\216\247\344\273\266", 0));
 #endif // QT_NO_TOOLTIP
         groupBox_2->setTitle(QString());
+#ifndef QT_NO_TOOLTIP
+        widgetControl->setToolTip(QApplication::translate("templatesetup", "\346\211\223\345\215\260\345\214\272\345\237\237", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        widgetControl->setStatusTip(QString());
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_WHATSTHIS
+        widgetControl->setWhatsThis(QString());
+#endif // QT_NO_WHATSTHIS
         groupBox_3->setTitle(QString());
         pushButtonSave->setText(QApplication::translate("templatesetup", "\344\277\235\345\255\230", 0));
         groupBox->setTitle(QString());

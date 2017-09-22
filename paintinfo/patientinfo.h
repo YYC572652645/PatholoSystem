@@ -20,8 +20,12 @@ public:
     void setRegId(const QString &value);
     void setPaintId(const QString &value);
     void setSelect();
+    void initConnect();
 
-private slots:
+    bool getIsAutoSaveFlage() const;
+
+public slots:
+    void flageChange();                           //内容改变
     void on_actionSavePatientInfo_triggered();    //保存患者信息
     void on_actionClearPatientInfo_triggered();   //清除患者信息
 
@@ -34,6 +38,7 @@ private:
     QCheckBox *autoSaveBox;  //自动保存
     QString regId;           //登记ID
     QString paintId;         //患者ID
+    bool isAutoSaveFlage;    //自动保存标志位
 };
 
 #endif // PATIENTINFO_H

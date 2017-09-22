@@ -64,7 +64,16 @@ enum NUMBERFIGERTYPE
     LOWER,    //小写
 };
 
-
+//界面
+enum WIDGETTYPE
+{
+    FIRSTWIDGET,
+    SECONDWIDGET,
+    THIRDWIDGET,
+    FOURTHWIDGET,
+    FIVETHWIDGET,
+    SIXTHWIDGET,
+};
 
 typedef struct RegisterInfo
 {

@@ -23,7 +23,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -78,13 +77,14 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButtonCancel;
     QSpacerItem *horizontalSpacer_3;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *normalmaterial)
     {
         if (normalmaterial->objectName().isEmpty())
             normalmaterial->setObjectName(QStringLiteral("normalmaterial"));
         normalmaterial->resize(670, 498);
+        normalmaterial->setMinimumSize(QSize(670, 498));
+        normalmaterial->setMaximumSize(QSize(670, 498));
         centralwidget = new QWidget(normalmaterial);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout_4 = new QVBoxLayout(centralwidget);
@@ -315,9 +315,6 @@ public:
         verticalLayout_4->addLayout(verticalLayout_3);
 
         normalmaterial->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(normalmaterial);
-        statusbar->setObjectName(QStringLiteral("statusbar"));
-        normalmaterial->setStatusBar(statusbar);
 
         retranslateUi(normalmaterial);
 

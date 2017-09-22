@@ -108,8 +108,8 @@ void TabMaterial::contextMenuEvent(QContextMenuEvent *event)
 /*******************   初始化数据          ***********************/
 void TabMaterial::initData()
 {
-    normalMaterial = new NormalMaterial(this); //常规取材
-    templateSetUp = new TemplateSetUp(this);   //打印模板
+    normalMaterial = new NormalMaterial(this);               //常规取材
+    templateSetUp = new TemplateSetUp(SECONDWIDGET, this);   //打印模板
     updateFlage = false;
 }
 
@@ -176,14 +176,6 @@ void TabMaterial::selectData(int type)
         parentItem->setText(0, parentList.at(i).pCode);
         parentItem->setText(1, parentList.at(i).samplingCount);
 
-        if(currentCode == parentList.at(i).pCode)
-        {
-            parentItem->setSelected(true);
-            ui->treeWidget->setCurrentItem(parentItem);
-            ui->treeWidget->scrollToItem(parentItem);
-            currentCode.clear();
-        }
-
         for(int j = 0; j < childList.size(); j ++)
         {
             if(parentList.at(i).samplingId == childList.at(j).samplingId)
@@ -231,7 +223,7 @@ void TabMaterial::selectData(int type)
                 {
                     childItem->setSelected(true);
                     ui->treeWidget->setCurrentItem(childItem);
-                    ui->treeWidget->scrollTo(ui->treeWidget->currentIndex());
+                    ui->treeWidget->scrollToItem(childItem);
                     currentCode.clear();
                 }
             }
@@ -472,11 +464,23 @@ void TabMaterial::on_treeWidget_clicked(const QModelIndex &index)
 {
     if(currentRow != index.row() || currentColume != index.column())
     {
-        if(currentItem == NULL) return;
-        ui->treeWidget->closePersistentEditor(currentItem, ORGANIZATIONNAME);
-        ui->treeWidget->closePersistentEditor(currentItem, MATERIALTIME);
-        ui->treeWidget->closePersistentEditor(currentItem, MATERIALPEOPLE);
+        if(currentItem != NULL)
+        {
+            ui->treeWidget->closePersistentEditor(currentItem, ORGANIZATIONNAME);
+            ui->treeWidget->closePersistentEditor(currentItem, MATERIALTIME);
+            ui->treeWidget->closePersistentEditor(currentItem, MATERIALPEOPLE);
+        }
     }
+
+    if(NULL == ui->treeWidget->currentItem()->parent())
+    {
+        patientInfo.setPaintId(getIndexNumber(BLDATA, ui->treeWidget->currentItem()->text(0)));
+
+        patientInfo.setRegId(ui->treeWidget->currentItem()->text(0));
+
+        patientInfo.setSelect();
+    }
+
     if(updateFlage)
     {
         updateFlage= false;
@@ -690,9 +694,6 @@ void TabMaterial::on_actionPrintTemplate_triggered()
 void TabMaterial::on_treeWidget_itemChanged(QTreeWidgetItem *item, int column)
 {
     if(NULL == item) return;
-
-    ui->treeWidget->setCurrentItem(item);
-    item->setSelected(true);
 
     dataUpdate = getDataChild(item->text(0));
 

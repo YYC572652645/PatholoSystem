@@ -50,6 +50,23 @@ enum CODETYPESET
     CODETYPENAME,
 };
 
+//常规切片
+enum SECTION
+{
+    SECTIONID,
+    SECTIONCODE,
+    EMBEDCODE,
+    STAINTYPENAME,
+    STAINING,
+    SECTIONTIME,
+    SECTIONER,
+    STAINTIME,
+    STAINER,
+    PRINTNUM,
+    PRINTED,
+    OTHER,
+};
+
 }
 
 

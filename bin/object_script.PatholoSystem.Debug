@@ -44,6 +44,9 @@ INPUT(
 ./debug\userset.o
 ./debug\normalmaterial.o
 ./debug\materialdata.o
+./debug\newnormalslice.o
+./debug\normalslicedata.o
+./debug\newmorenormalslice.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -70,4 +73,6 @@ INPUT(
 ./debug\moc_specialtypeset.o
 ./debug\moc_userset.o
 ./debug\moc_normalmaterial.o
+./debug\moc_newnormalslice.o
+./debug\moc_newmorenormalslice.o
 );

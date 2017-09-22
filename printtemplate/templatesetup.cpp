@@ -17,19 +17,22 @@
 #include <QJsonArray>
 
 /*********************     构造函数             **************************/
-TemplateSetUp::TemplateSetUp(QWidget *parent) :
+TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
     QMainWindow(parent), selectIndex(INVALIDVALUE),typeFlage(INVALIDVALUE),
     selectLabelIndex(INVALIDVALUE),
     ui(new Ui::templatesetup)
 {
     ui->setupUi(this);
 
+    widgetType = type;
+
     this->setWindowTitle("打印模板");
 
     this->initControl();     //初始化属性页
     this->initConnect();     //连接信号与槽
+    this->initValue();       //初始化数据
 
-    int count = TEMPLATEDATA->selectData();
+    int count = TEMPLATEDATA->selectData(widgetType);
 
     for(int i = 0; i < count; i ++)
     {
@@ -126,7 +129,7 @@ void TemplateSetUp::on_pushButtonSub_clicked()
     delete item;
 
     //删除数据库信息
-    TEMPLATEDATA->deleteData(templateName);
+    TEMPLATEDATA->deleteData(templateName, widgetType);
 
     //移除控件中的内容
     deleteAll();
@@ -147,7 +150,7 @@ void TemplateSetUp::on_pushButtonSub_clicked()
     }
 }
 
-/*********************     初始化属性页控件      *************************/
+/*********************     初始化控件         *************************/
 void TemplateSetUp::initControl()
 {
     //把表头上面去掉
@@ -244,8 +247,50 @@ void TemplateSetUp::initConnect()
     connect(fontBox,     SIGNAL(currentFontChanged(const QFont)), this, SLOT(currentFontChange()));
     connect(fontSizeBox, SIGNAL(currentTextChanged(QString)),     this, SLOT(currentFontChange()));
     connect(textEdit,    SIGNAL(textChanged(QString)),            this, SLOT(textChange()));
-    connect(widthEdit,   SIGNAL(textEdited(QString)),            this, SLOT(sizeChange()));
-    connect(heightEdit,  SIGNAL(textEdited(QString)),            this, SLOT(sizeChange()));
+    connect(widthEdit,   SIGNAL(textEdited(QString)),             this, SLOT(sizeChange()));
+    connect(heightEdit,  SIGNAL(textEdited(QString)),             this, SLOT(sizeChange()));
+}
+
+/*********************     初始化数据         *************************/
+void TemplateSetUp::initValue()
+{
+    //常规切片
+    if(widgetType == THIRDWIDGET)
+    {
+        ui->listWidgetControl->addItem("染色类型");
+        ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("其他");
+        ui->listWidgetControl->addItem("切片日期");
+        ui->listWidgetControl->addItem("切片人");
+        ui->listWidgetControl->addItem("染色时间");
+        ui->listWidgetControl->addItem("染色人");
+        ui->listWidgetControl->addItem("单位名称");
+    }
+
+    //免疫组化切片
+    else if(widgetType == FOURTHWIDGET)
+    {
+        ui->listWidgetControl->addItem("染色类型");
+        ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("切片日期");
+        ui->listWidgetControl->addItem("切片人");
+        ui->listWidgetControl->addItem("染色时间");
+        ui->listWidgetControl->addItem("染色人");
+        ui->listWidgetControl->addItem("克隆号");
+        ui->listWidgetControl->addItem("单位名称");
+    }
+
+    //特染切片
+    else if(widgetType == FIVETHWIDGET)
+    {
+        ui->listWidgetControl->addItem("染色类型");
+        ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("切片日期");
+        ui->listWidgetControl->addItem("切片人");
+        ui->listWidgetControl->addItem("染色时间");
+        ui->listWidgetControl->addItem("染色人");
+        ui->listWidgetControl->addItem("单位名称");
+    }
 }
 
 /*********************     删除所有控件         *************************/
@@ -260,6 +305,15 @@ void TemplateSetUp::deleteAll()
         case TEXTTYPE:    listLabel = textLabel;   break;
         case BINGLITYPE:  listLabel = bingLiLabel; break;
         case QRCODETYPE:  listLabel = qrCodeLabel; break;
+        case LABELFOUR:   listLabel = fourLabel;   break;
+        case LABELFIVE:   listLabel = fiveLabel;   break;
+        case LABELSIX:    listLabel = sixLabel;    break;
+        case LABELSEVEN:  listLabel = sevenLabel;  break;
+        case LABELEIGHT:  listLabel = eightLabel;  break;
+        case LABELNINE:   listLabel = nineLabel;   break;
+        case LABELTEN:    listLabel = tenLabel;    break;
+        case LABELELEVEN: listLabel = elevenLabel; break;
+        case LABELTWELVE: listLabel = twelveLabel; break;
         }
 
         for(int j = 0; j < listLabel.size(); j ++)
@@ -285,7 +339,7 @@ void TemplateSetUp::writeAll()
 
     dataList.clear();
 
-    int count = TEMPLATEDATA->selectData();
+    int count = TEMPLATEDATA->selectData(widgetType);
     for(int i = 0; i < count; i ++)
     {
         readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
@@ -328,9 +382,18 @@ void TemplateSetUp::writeAll()
 
         switch(dataLabel.at(i).labelType.toInt())
         {
-        case TEXTTYPE:     textLabel.append(label);      break;
-        case BINGLITYPE:   bingLiLabel.append(label);    break;
-        case QRCODETYPE:   qrCodeLabel.append(label);    break;
+        case TEXTTYPE:     textLabel.append(label);   break;
+        case BINGLITYPE:   bingLiLabel.append(label); break;
+        case QRCODETYPE:   qrCodeLabel.append(label); break;
+        case LABELFOUR:    fourLabel.append(label);   break;
+        case LABELFIVE:    fiveLabel.append(label);   break;
+        case LABELSIX:     sixLabel.append(label);    break;
+        case LABELSEVEN:   sevenLabel.append(label);  break;
+        case LABELEIGHT:   eightLabel.append(label);  break;
+        case LABELNINE:    nineLabel.append(label);   break;
+        case LABELTEN:     tenLabel.append(label);    break;
+        case LABELELEVEN:  elevenLabel.append(label); break;
+        case LABELTWELVE:  twelveLabel.append(label); break;
         }
 
         label->show();            //显示出来
@@ -356,11 +419,22 @@ void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 
     label->setWordWrap(true);            //设置换行
 
+    QString strText = ui->listWidgetControl->currentItem()->text();
+
     switch(index.row())
     {
-    case TEXTTYPE:    label->setText("文本");   textLabel.append(label);      textLabel.last()->setGeometry(80,100,100,100);   break;
-    case BINGLITYPE:  label->setText("病理号");  bingLiLabel.append(label);   bingLiLabel.last()->setGeometry(80,200,100,100);  break;
-    case QRCODETYPE:  label->setText("二维码");  qrCodeLabel.append(label);   qrCodeLabel.last()->setGeometry(180,200,100,100); break;
+    case TEXTTYPE:    label->setText(strText);  textLabel.append(label);     textLabel.last()->setGeometry(80,100,100,100);     break;
+    case BINGLITYPE:  label->setText(strText);  bingLiLabel.append(label);   bingLiLabel.last()->setGeometry(80,200,100,100);   break;
+    case QRCODETYPE:  label->setText(strText);  qrCodeLabel.append(label);   qrCodeLabel.last()->setGeometry(180,100,100,100);  break;
+    case LABELFOUR:   label->setText(strText);  fourLabel.append(label);     fourLabel.last()->setGeometry(180,200,100,100);    break;
+    case LABELFIVE:   label->setText(strText);  fiveLabel.append(label);     fiveLabel.last()->setGeometry(280,100,100,100);    break;
+    case LABELSIX:    label->setText(strText);  sixLabel.append(label);      sixLabel.last()->setGeometry(280,200,100,100);     break;
+    case LABELSEVEN:  label->setText(strText);  sevenLabel.append(label);    sevenLabel.last()->setGeometry(380,100,100,100);   break;
+    case LABELEIGHT:  label->setText(strText);  eightLabel.append(label);    eightLabel.last()->setGeometry(380,200,100,100);   break;
+    case LABELNINE:   label->setText(strText);  nineLabel.append(label);     nineLabel.last()->setGeometry(80,300,100,100);     break;
+    case LABELTEN:    label->setText(strText);  tenLabel.append(label);      tenLabel.last()->setGeometry(180,300,100,100);     break;
+    case LABELELEVEN: label->setText(strText);  elevenLabel.append(label);   elevenLabel.last()->setGeometry(280,300,100,100);  break;
+    case LABELTWELVE: label->setText(strText);  twelveLabel.append(label);   twelveLabel.last()->setGeometry(380,300,100,100);  break;
     }
 
     //将新建的控件数据添加到Map
@@ -397,6 +471,15 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
         case TEXTTYPE:    listLabel = textLabel;   break;
         case BINGLITYPE:  listLabel = bingLiLabel; break;
         case QRCODETYPE:  listLabel = qrCodeLabel; break;
+        case LABELFOUR:   listLabel = fourLabel;   break;
+        case LABELFIVE:   listLabel = fiveLabel;   break;
+        case LABELSIX:    listLabel = sixLabel;    break;
+        case LABELSEVEN:  listLabel = sevenLabel;  break;
+        case LABELEIGHT:  listLabel = eightLabel;  break;
+        case LABELNINE:   listLabel = nineLabel;   break;
+        case LABELTEN:    listLabel = tenLabel;    break;
+        case LABELELEVEN: listLabel = elevenLabel; break;
+        case LABELTWELVE: listLabel = twelveLabel; break;
         }
 
         for(int j = 0; j < listLabel.size(); j ++)
@@ -557,13 +640,24 @@ void TemplateSetUp::on_actionDelete_triggered()
 {
     if(selectLabelIndex == INVALIDVALUE) return;
 
-    QLabel * label;
+    QLabel * label = NULL;
+
     switch(typeFlage)
     {
-    case TEXTTYPE:    if(selectLabelIndex >= textLabel.size())    return; label = textLabel[selectLabelIndex];     textLabel.removeAt(selectLabelIndex);    break;
-    case BINGLITYPE:  if(selectLabelIndex >= bingLiLabel.size())  return; label = bingLiLabel[selectLabelIndex];   bingLiLabel.removeAt(selectLabelIndex);  break;
-    case QRCODETYPE:  if(selectLabelIndex >= qrCodeLabel.size())  return; label = qrCodeLabel[selectLabelIndex];   qrCodeLabel.removeAt(selectLabelIndex);  break;
+    case TEXTTYPE:    if(selectLabelIndex >= textLabel.size())    return; label = textLabel[selectLabelIndex];     textLabel.removeAt(selectLabelIndex);   break;
+    case BINGLITYPE:  if(selectLabelIndex >= bingLiLabel.size())  return; label = bingLiLabel[selectLabelIndex];   bingLiLabel.removeAt(selectLabelIndex); break;
+    case QRCODETYPE:  if(selectLabelIndex >= qrCodeLabel.size())  return; label = qrCodeLabel[selectLabelIndex];   qrCodeLabel.removeAt(selectLabelIndex); break;
+    case LABELFOUR:   if(selectLabelIndex >= fourLabel.size())    return; label = fourLabel[selectLabelIndex];     fourLabel.removeAt(selectLabelIndex);   break;
+    case LABELFIVE:   if(selectLabelIndex >= fiveLabel.size())    return; label = fiveLabel[selectLabelIndex];     fiveLabel.removeAt(selectLabelIndex);   break;
+    case LABELSIX:    if(selectLabelIndex >= sixLabel.size())     return; label = sixLabel[selectLabelIndex];      sixLabel.removeAt(selectLabelIndex);    break;
+    case LABELSEVEN:  if(selectLabelIndex >= sevenLabel.size())   return; label = sevenLabel[selectLabelIndex];    sevenLabel.removeAt(selectLabelIndex);  break;
+    case LABELEIGHT:  if(selectLabelIndex >= eightLabel.size())   return; label = eightLabel[selectLabelIndex];    eightLabel.removeAt(selectLabelIndex);  break;
+    case LABELNINE:   if(selectLabelIndex >= nineLabel.size())    return; label = nineLabel[selectLabelIndex];     nineLabel.removeAt(selectLabelIndex);   break;
+    case LABELTEN:    if(selectLabelIndex >= tenLabel.size())     return; label = tenLabel[selectLabelIndex];      tenLabel.removeAt(selectLabelIndex);    break;
+    case LABELELEVEN: if(selectLabelIndex >= elevenLabel.size())  return; label = elevenLabel[selectLabelIndex];   elevenLabel.removeAt(selectLabelIndex); break;
+    case LABELTWELVE: if(selectLabelIndex >= twelveLabel.size())  return; label = twelveLabel[selectLabelIndex];   twelveLabel.removeAt(selectLabelIndex); break;
     }
+
     if(NULL == label) return;
 
     for(int i = 0; i < dataList[templateName].size(); i ++)
@@ -599,6 +693,15 @@ void TemplateSetUp::currentFontChange()
     case TEXTTYPE:    listLabel = textLabel;   break;
     case BINGLITYPE:  listLabel = bingLiLabel; break;
     case QRCODETYPE:  listLabel = qrCodeLabel; break;
+    case LABELFOUR:   listLabel = fourLabel;   break;
+    case LABELFIVE:   listLabel = fiveLabel;   break;
+    case LABELSIX:    listLabel = sixLabel;    break;
+    case LABELSEVEN:  listLabel = sevenLabel;  break;
+    case LABELEIGHT:  listLabel = eightLabel;  break;
+    case LABELNINE:   listLabel = nineLabel;   break;
+    case LABELTEN:    listLabel = tenLabel;    break;
+    case LABELELEVEN: listLabel = elevenLabel; break;
+    case LABELTWELVE: listLabel = twelveLabel; break;
     }
 
     //获取当前字体
@@ -644,6 +747,15 @@ void TemplateSetUp::textChange()
     case TEXTTYPE:    listLabel = textLabel;   break;
     case BINGLITYPE:  listLabel = bingLiLabel; break;
     case QRCODETYPE:  listLabel = qrCodeLabel; break;
+    case LABELFOUR:   listLabel = fourLabel;   break;
+    case LABELFIVE:   listLabel = fiveLabel;   break;
+    case LABELSIX:    listLabel = sixLabel;    break;
+    case LABELSEVEN:  listLabel = sevenLabel;  break;
+    case LABELEIGHT:  listLabel = eightLabel;  break;
+    case LABELNINE:   listLabel = nineLabel;   break;
+    case LABELTEN:    listLabel = tenLabel;    break;
+    case LABELELEVEN: listLabel = elevenLabel; break;
+    case LABELTWELVE: listLabel = twelveLabel; break;
     }
 
     //设置内容
@@ -662,6 +774,15 @@ void TemplateSetUp::sizeChange()
     case TEXTTYPE:    listLabel = textLabel;   break;
     case BINGLITYPE:  listLabel = bingLiLabel; break;
     case QRCODETYPE:  listLabel = qrCodeLabel; break;
+    case LABELFOUR:   listLabel = fourLabel;   break;
+    case LABELFIVE:   listLabel = fiveLabel;   break;
+    case LABELSIX:    listLabel = sixLabel;    break;
+    case LABELSEVEN:  listLabel = sevenLabel;  break;
+    case LABELEIGHT:  listLabel = eightLabel;  break;
+    case LABELNINE:   listLabel = nineLabel;   break;
+    case LABELTEN:    listLabel = tenLabel;    break;
+    case LABELELEVEN: listLabel = elevenLabel; break;
+    case LABELTWELVE: listLabel = twelveLabel; break;
     }
 
     //设置大小
@@ -716,9 +837,9 @@ void TemplateSetUp::writeJson()
 
     QString arrayData = document.toJson();
 
-    if(!TEMPLATEDATA->insertData(templateName, arrayData))
+    if(!TEMPLATEDATA->insertData(templateName, arrayData, widgetType))
     {
-        TEMPLATEDATA->updateData(templateName, arrayData);
+        TEMPLATEDATA->updateData(templateName, arrayData, widgetType);
     }
 }
 

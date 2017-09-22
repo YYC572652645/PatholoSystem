@@ -67,7 +67,6 @@ private:
     QAction *print;                                      //打印
     QAction *del;                                        //删除
     QAction *refresh;                                    //刷新
-    QList<QCheckBox*>samCheckBox;                        //是否取材
     TemplateSetUp *templateSetUp;                        //打印模板
     QString numberToLetter(int type, int number);        //数字转字母
     QString currentCode;                                 //当前病理号

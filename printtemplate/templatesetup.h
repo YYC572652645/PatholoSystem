@@ -30,7 +30,7 @@ class TemplateSetUp : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TemplateSetUp(QWidget *parent = 0);
+    explicit TemplateSetUp(int type, QWidget *parent = 0);
     ~TemplateSetUp();
 
     void showWidget();                                             //显示对话框
@@ -65,17 +65,28 @@ private:
     QList<QLabel*>textLabel;                                       //文字
     QList<QLabel*>bingLiLabel;                                     //病理号
     QList<QLabel*>qrCodeLabel;                                     //二维码
+    QList<QLabel*>fourLabel;                                       //后面匹配控件,切片中使用
+    QList<QLabel*>fiveLabel;                                       //后面匹配控件,切片中使用
+    QList<QLabel*>sixLabel;                                        //后面匹配控件,切片中使用
+    QList<QLabel*>sevenLabel;                                      //后面匹配控件,切片中使用
+    QList<QLabel*>eightLabel;                                      //后面匹配控件,切片中使用
+    QList<QLabel*>nineLabel;                                       //后面匹配控件,切片中使用
+    QList<QLabel*>tenLabel;                                        //后面匹配控件,切片中使用
+    QList<QLabel*>elevenLabel;                                     //后面匹配控件,切片中使用
+    QList<QLabel*>twelveLabel;                                     //后面匹配控件,切片中使用
     QString templateName;                                          //模板名称
     QString qrCodeNumber;                                          //二维码数字
     int selectLabelIndex;                                          //被选中的下标
     int selectIndex;                                               //被选中的下标
     int typeFlage;                                                 //被选中的类型
+    int widgetType;                                                //当前界面
     QMap<QString, QList<LabelData>>dataList;                       //控件内容
     bool deleteFlage;                                              //删除标志位
 
 private:
     void initControl();                                            //初始化控件
     void initConnect();                                            //连接信号与槽
+    void initValue();                                              //初始化数据
     void deleteAll();                                              //删除所有控件
     void writeAll();                                               //写入控件
     bool eventFilter(QObject *watched, QEvent *event);             //事件过滤

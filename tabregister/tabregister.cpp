@@ -20,14 +20,14 @@ TabRegister::TabRegister(QWidget *parent) :
     this->initControl();
     this->initData();
 
-    newSlices = new NewSlices(this);                    //新编号
-    newMoreSlices = new NewMoreSlices(this);            //批量编号
-    templateSetUp = new TemplateSetUp(this);            //打印模板
+    newSlices = new NewSlices(this);                                 //新编号
+    newMoreSlices = new NewMoreSlices(this);                         //批量编号
+    templateSetUp = new TemplateSetUp(FIRSTWIDGET, this);            //打印模板
 
     //初始化信号和槽
-    connect(newSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));
-    connect(newSlices, SIGNAL(printBLNumber(int, QString)), this, SLOT(printBLNumber(int, QString)));
-    connect(newMoreSlices, SIGNAL(signalSelect(int, int)), this, SLOT(selectData(int, int)));
+    connect(newSlices,     SIGNAL(signalSelect(int, int)),      this, SLOT(selectData(int, int)));
+    connect(newSlices,     SIGNAL(printBLNumber(int, QString)), this, SLOT(printBLNumber(int, QString)));
+    connect(newMoreSlices, SIGNAL(signalSelect(int, int)),      this, SLOT(selectData(int, int)));
 
 
     timer = new QTimer(this);
@@ -290,6 +290,12 @@ void TabRegister::on_tableWidget_clicked(const QModelIndex &currentIndex)
     index = model->index(currentIndex.row(), 1);
 
     patientInfo.setRegId(model->data(index).toString());
+
+    //如果是自动保存，则保存
+    if(patientInfo.getIsAutoSaveFlage())
+    {
+        patientInfo.on_actionSavePatientInfo_triggered();
+    }
 
     patientInfo.setSelect();
 }

@@ -57,7 +57,10 @@ SOURCES += main.cpp\
     tabsystemset/otherwidget/specialtypeset.cpp \
     tabsystemset/otherwidget/userset.cpp \
     tabmaterial/normalmaterial.cpp \
-    tabmaterial/materialdata.cpp
+    tabmaterial/materialdata.cpp \
+    tabnormalslice/newnormalslice.cpp \
+    tabnormalslice/normalslicedata.cpp \
+    tabnormalslice/newmorenormalslice.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -127,7 +130,10 @@ HEADERS  += mainwindow.h \
     tabsystemset/otherwidget/specialtypeset.h \
     tabsystemset/otherwidget/userset.h \
     tabmaterial/normalmaterial.h \
-    tabmaterial/materialdata.h
+    tabmaterial/materialdata.h \
+    tabnormalslice/newnormalslice.h \
+    tabnormalslice/normalslicedata.h \
+    tabnormalslice/newmorenormalslice.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -151,7 +157,9 @@ FORMS  += mainwindow.ui \
     tabsystemset/otherwidget/specialindexset.ui \
     tabsystemset/otherwidget/specialtypeset.ui \
     tabsystemset/otherwidget/userset.ui \
-    tabmaterial/normalmaterial.ui
+    tabmaterial/normalmaterial.ui \
+    tabnormalslice/newnormalslice.ui \
+    tabnormalslice/newmorenormalslice.ui
 
 RESOURCES += \
     res.qrc

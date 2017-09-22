@@ -44,6 +44,9 @@ INPUT(
 ./release\userset.o
 ./release\normalmaterial.o
 ./release\materialdata.o
+./release\newnormalslice.o
+./release\normalslicedata.o
+./release\newmorenormalslice.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -70,4 +73,6 @@ INPUT(
 ./release\moc_specialtypeset.o
 ./release\moc_userset.o
 ./release\moc_normalmaterial.o
+./release\moc_newnormalslice.o
+./release\moc_newmorenormalslice.o
 );

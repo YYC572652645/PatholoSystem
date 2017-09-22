@@ -70,12 +70,12 @@ void NewMoreSlices::on_pushButtonOk_clicked()
                 }
             }
 
-            if(0 != mapData[USEMONTH].toInt());
+            if(0 != mapData[USEMONTH].toInt())
             {
                 str += QString::number((date.month()));
             }
 
-            if(0 != mapData[USEDAY].toInt());
+            if(0 != mapData[USEDAY].toInt())
             {
                 str += QString::number((date.day()));
             }

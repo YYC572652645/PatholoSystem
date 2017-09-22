@@ -39,16 +39,16 @@ public:
     bool dataCnn();
 
     /************插入数据*************/
-    bool insertData(QString name, QString templateText);
+    bool insertData(QString name, QString templateText, int type);
 
     /************查询数据*************/
-    int selectData();
+    int selectData(int type);
 
     /************更改数据*************/
-    bool updateData(QString name, QString templateText);
+    bool updateData(QString name, QString templateText, int type);
 
     /************删除数据*************/
-    bool deleteData(QString name);
+    bool deleteData(QString name, int type);
 
     QList<DataTemplate> getDataTemplate() const;
 
