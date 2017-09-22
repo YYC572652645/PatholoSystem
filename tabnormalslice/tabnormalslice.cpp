@@ -241,5 +241,9 @@ void TabNormalSlice::on_actionNewMore_triggered()
 /*******************   打印模板            ***********************/
 void TabNormalSlice::on_actionPrintTemplate_triggered()
 {
+    templateSetUp->setQrCodeNumber(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionCode);
+    templateSetUp->setDataNormalSlice(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()));
+
     templateSetUp->showWidget();
 }
+

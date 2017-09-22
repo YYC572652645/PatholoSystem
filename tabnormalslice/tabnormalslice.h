@@ -36,13 +36,9 @@ private slots:
     void on_actionDeleteInfo_triggered();
     void on_actionClearInfo_triggered();
     void on_pushButtonRefresh_clicked();
-
     void on_tableWidget_doubleClicked(const QModelIndex &index);
-
     void on_pushButtonFind_clicked();
-
     void on_actionNewMore_triggered();
-
     void on_actionPrintTemplate_triggered();
 
 private:
@@ -57,7 +53,7 @@ private:
 private:
     NewNormalSlice *newNormalSlice;                      //新建切片
     NewMoreNormalSlice * newMoreSlice;                   //批量新建
-    TemplateSetUp *templateSetUp;                         //模板
+    TemplateSetUp *templateSetUp;                        //模板
     QMenu   *menu;                                       //菜单
     QAction *print;                                      //打印
     QAction *del;                                        //删除

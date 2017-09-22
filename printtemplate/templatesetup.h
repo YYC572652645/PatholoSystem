@@ -7,6 +7,7 @@
 #include <QFontComboBox>
 #include <QPushButton>
 #include <QSpinBox>
+#include "../tabnormalslice/normalslicedata.h"
 
 namespace Ui {
 class templatesetup;
@@ -38,6 +39,7 @@ public:
     const QImage generateQrCode(QString number);                   //生成二维码
     void printQrCode(QPixmap & pixmap);                            //打印二维码
     void setQrCodeNumber(const QString &value);                    //设置二维码
+    void setDataNormalSlice(const DataNormalSlice &value);         //设置常规切片数据
 
 signals:
     void sendType(int);
@@ -82,6 +84,7 @@ private:
     int widgetType;                                                //当前界面
     QMap<QString, QList<LabelData>>dataList;                       //控件内容
     bool deleteFlage;                                              //删除标志位
+    DataNormalSlice dataNormalSlice;                               //常规切片数据
 
 private:
     void initControl();                                            //初始化控件

@@ -74,7 +74,44 @@ void TemplateSetUp::showWidget()
 {
     if(!deleteFlage) deleteAll();   //先删除
     writeAll();                     //再写入
-    generateQrCode(qrCodeNumber);   //二维码
+
+    if(widgetType == THIRDWIDGET)
+    {
+        for(int i = 0; i < fourLabel.size(); i ++)
+        {
+            fourLabel[i]->setText(dataNormalSlice.stainTypeName);
+        }
+
+        for(int i = 0; i < fiveLabel.size(); i ++)
+        {
+            fiveLabel[i]->setText(dataNormalSlice.staining);
+        }
+
+        for(int i = 0; i < sixLabel.size(); i ++)
+        {
+            sixLabel[i]->setText(dataNormalSlice.other);
+        }
+        for(int i = 0; i < sevenLabel.size(); i ++)
+        {
+            sevenLabel[i]->setText(dataNormalSlice.stainTime);
+        }
+
+        for(int i = 0; i < eightLabel.size(); i ++)
+        {
+            eightLabel[i]->setText(dataNormalSlice.stainer);
+        }
+
+        for(int i = 0; i < nineLabel.size(); i ++)
+        {
+            nineLabel[i]->setText(dataNormalSlice.sectionTime);
+        }
+        for(int i = 0; i < tenLabel.size(); i ++)
+        {
+            tenLabel[i]->setText(dataNormalSlice.sectioner);
+        }
+    }
+
+    this->generateQrCode(qrCodeNumber);
 
     this->show();
 }
@@ -123,6 +160,8 @@ void TemplateSetUp::on_pushButtonAdd_clicked()
 void TemplateSetUp::on_pushButtonSub_clicked()
 {
     if(ui->listWidgetTemplate->currentRow() >= ui->listWidgetTemplate->count()) return;
+
+    if(NULL == ui->listWidgetTemplate->currentItem()) return;
 
     //删除列表项
     QListWidgetItem *item = ui->listWidgetTemplate->takeItem(ui->listWidgetTemplate->currentRow());
@@ -409,6 +448,8 @@ void TemplateSetUp::writeAll()
 /*********************     点击列表框中控件     *************************/
 void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 {
+    if(NULL == ui->listWidgetTemplate->currentItem()) return;
+
     QLabel * label = new QLabel(this);   //声明一个Label
 
     label->setFont(STARTFONT);           //设置显示字体
@@ -790,6 +831,11 @@ void TemplateSetUp::sizeChange()
     int y = listLabel.at(selectLabelIndex)->geometry().y();
 
     listLabel.at(selectLabelIndex)->setGeometry(x, y, widthEdit->text().toInt(), heightEdit->text().toInt());
+}
+
+void TemplateSetUp::setDataNormalSlice(const DataNormalSlice &value)
+{
+    dataNormalSlice = value;
 }
 
 /**********************    设置病理号        *************************/
