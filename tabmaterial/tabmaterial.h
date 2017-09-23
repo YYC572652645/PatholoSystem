@@ -54,6 +54,11 @@ private:
     QString getIndexNumber(int type, QString blNumber);  //获取id
     void contextMenuEvent(QContextMenuEvent *event);     //鼠标响应
     int subFinger(QString number);                       //去字母
+    bool isEmpty(DataChild data);                        //判断结构体是否为空
+    void dataChildClear();                               //清空结构体
+    QString numberToLetter(int type, int number);        //数字转字母
+    DataChild  getDataChild(QString blNumber);           //获取子节点数据
+    DataParent getDataParent(QString blNumber);          //获取父节点数据
 
     PatientInfo patientInfo;                             //患者信息
     NormalMaterial *normalMaterial;                      //常规取材
@@ -61,20 +66,16 @@ private:
     int currentColume;                                   //当前列
     bool updateFlage;                                    //更新标志位
     QTreeWidgetItem *currentItem;                        //当前Item
+    TemplateSetUp *templateSetUp;                        //打印模板
     QMovie  *movie;                                      //播放gif
     QTimer  *timer;                                      //设置定时器
     QMenu   *menu;                                       //菜单
     QAction *print;                                      //打印
     QAction *del;                                        //删除
     QAction *refresh;                                    //刷新
-    TemplateSetUp *templateSetUp;                        //打印模板
-    QString numberToLetter(int type, int number);        //数字转字母
     QString currentCode;                                 //当前病理号
-    DataChild  getDataChild(QString blNumber);           //获取子节点数据
-    DataParent getDataParent(QString blNumber);          //获取父节点数据
     DataChild dataUpdate;                                //需要更新的数据
-    bool isEmpty(DataChild data);                        //判断结构体是否为空
-    void dataChildClear();                               //清空结构体
+
 };
 
 #endif // TABREGISTER_H

@@ -34,6 +34,13 @@ TabMaterial::~TabMaterial()
     delete ui;
     SAFEDELETE(normalMaterial);
     SAFEDELETE(templateSetUp);
+    SAFEDELETE(menu);
+    SAFEDELETE(print);
+    SAFEDELETE(del);
+    SAFEDELETE(refresh);
+    SAFEDELETE(movie);
+    SAFEDELETE(timer);
+    SAFEDELETE(currentItem);
 }
 
 /*******************   初始化控件          ***********************/
@@ -54,10 +61,12 @@ void TabMaterial::initControl()
 
     //设置表头点击禁止塌陷
     ui->treeWidget->header()->setHighlightSections(false);
+    ui->treeWidget->setColumnWidth(0, 210);
+    ui->treeWidget->setColumnWidth(4, 160);
+    ui->treeWidget->setColumnWidth(6, 160);
 
     //设置根据内容调整列宽
     ui->treeWidget->header()->setStretchLastSection(true);
-    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
 
     //设置水平伸展策略
     ui->splitter->setStretchFactor(1, 0);
@@ -318,6 +327,10 @@ void TabMaterial::on_actionPrintLabel_triggered()
         int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("当前标签已经打印，您需要重打吗？"), GLOBALDEF::SUCCESSIMAGE, false, this);
         if(ok == QDialog::Accepted)
         {
+            data.printTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+
+            MATERIALDATA->updateChildData(data);
+
             templateSetUp->printImage(data.embedCode);
         }
     }
@@ -326,6 +339,8 @@ void TabMaterial::on_actionPrintLabel_triggered()
         templateSetUp->printImage(data.embedCode);
 
         data.printed = "1";
+
+        data.printTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 
         MATERIALDATA->updateChildData(data);
     }
@@ -350,6 +365,8 @@ void TabMaterial::on_actionPrintMoreLabel_triggered()
             templateSetUp->printImage(childList.at(i).embedCode);
 
             childList[i].printed = "1";
+
+            childList[i].printTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
 
             MATERIALDATA->updateChildData(childList.at(i));
         }
@@ -513,11 +530,10 @@ void TabMaterial::on_actionDeleteInfo_triggered()
         }
         else
         {
-            MATERIALDATA->deleteData(CHILDDATA, getIndexNumber(CHILDDATA, ui->treeWidget->currentItem()->text(0)));
+            MATERIALDATA->deleteData(CHILDDATA, getIndexNumber(CHILDDATA, ui->treeWidget->currentItem()->text(0)), ui->treeWidget->currentItem()->text(0));
         }
 
         selectData(ALLDATA);
-
     }
 }
 

@@ -256,11 +256,12 @@ bool MaterialData::updateChildData(DataChild data)
 
     str += "Operator = '"         +  data.sampler      + "', ";
 
+    str += "PrintTime = '"        +  data.printTime    + "', ";
+
     str += "SamplingTime = '"     +  data.samplingTime + "'  ";
 
-    str += "where EmbedCode = '" +  data.embedCode     + "'; ";
+    str += "where EmbedCode = '"  +  data.embedCode     + "'; ";
 
-    qDebug()<<str;
     bool success = query.exec(str);  //执行sql语句
 
     db.close();
@@ -306,7 +307,7 @@ bool MaterialData::updateParentData(DataParent data)
 }
 
 /***************************删除所有数据***********************/
-bool MaterialData::deleteData(int type, QString id)
+bool MaterialData::deleteData(int type, QString id, QString embedCode)
 {
     if(!db.isOpen()) db.open();
 
@@ -338,7 +339,7 @@ bool MaterialData::deleteData(int type, QString id)
     }
     else
     {
-        str = QString("delete from SamplingRow where SamplingId = '%1';").arg(id);
+        str = QString("delete from SamplingRow where SamplingId = '%1' and EmbedCode = '%2';").arg(id, embedCode);
 
         success = query.exec(str);
     }

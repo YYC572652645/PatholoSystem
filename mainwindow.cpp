@@ -16,6 +16,12 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    SAFEDELETE(tabRegister);
+    SAFEDELETE(tabSystemSet);
+    SAFEDELETE(tabMaterial);
+    SAFEDELETE(tabNormalSlice);
+    SAFEDELETE(tabImmuneSlice);
+    SAFEDELETE(tabSpecialSlice);
 }
 
 void MainWindow::receiveNumber(QString number, QString id)

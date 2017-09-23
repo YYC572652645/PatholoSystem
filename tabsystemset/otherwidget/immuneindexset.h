@@ -20,7 +20,7 @@ public:
     void showDialog();
 
 private slots:
-    void receiveData(QString typeAbbreviation, QString typeName, int type);
+    void receiveData(QString typeName, int type);
 
     void on_pushButtonNew_clicked();
 
@@ -40,8 +40,8 @@ private:
     void initValue();              //初始化值
 
 private:
-    int nowRow;                   //当前选中行
-    TypeSetDialog typeSetDialog;  //新建输入框
+    int nowRow;                    //当前选中行
+    TypeSetDialog typeSetDialog;   //新建输入框
 };
 
 #endif // TYPESET_H

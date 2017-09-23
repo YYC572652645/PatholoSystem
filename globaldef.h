@@ -10,20 +10,20 @@
 #define SETCENTRALWIDGET(widget)               \
 {                                              \
     if(this->centralWidget())                  \
-    {                                          \
-        this->centralWidget()->setParent(NULL);\
+{                                          \
+    this->centralWidget()->setParent(NULL);\
     }                                          \
     this->setCentralWidget(widget);            \
-}
+    }
 
 #define SAFEDELETE(pointer) \
 {                           \
     if(pointer)             \
-    {                       \
-        delete pointer;     \
+{                       \
+    delete pointer;     \
     }                       \
     pointer = NULL;         \
-}
+    }
 
 #define LOADQSS(qssFile)                      \
 {                                             \
@@ -31,12 +31,12 @@
     QFile file(qssFile);                      \
     file.open(QFile::ReadOnly);               \
     if(file.isOpen())                         \
-    {                                         \
-        strQss=QLatin1String(file.readAll()); \
-        qApp->setStyleSheet(strQss);          \
-        file.close();                         \
+{                                         \
+    strQss=QLatin1String(file.readAll()); \
+    qApp->setStyleSheet(strQss);          \
+    file.close();                         \
     }                                         \
-}
+    }
 
 enum TYPE
 {
@@ -144,7 +144,14 @@ enum DATATYPE
 
 enum EXTENDTYPE
 {
-  REGTYPE,
+    REGTYPE,
+};
+
+//系统设置的类型设置和指标设置
+enum IMMUNESPECIAL
+{
+    FIRSTTYPE,
+    SECONDTYPE,
 };
 
 }

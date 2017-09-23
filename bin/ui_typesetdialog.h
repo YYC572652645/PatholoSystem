@@ -20,23 +20,34 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QWidget>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_typesetdialog
 {
 public:
+    QVBoxLayout *verticalLayout_4;
+    QVBoxLayout *verticalLayout_3;
     QGroupBox *groupBox;
-    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout_2;
+    QSpacerItem *horizontalSpacer_4;
+    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QLineEdit *lineEditTypeAbbreviation;
-    QWidget *layoutWidget1;
+    QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QLineEdit *lineEditTypeName;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_7;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pushButtonOk;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButtonCancel;
 
     void setupUi(QDialog *typesetdialog)
@@ -46,49 +57,100 @@ public:
         typesetdialog->resize(350, 231);
         typesetdialog->setMinimumSize(QSize(350, 231));
         typesetdialog->setMaximumSize(QSize(350, 231));
+        verticalLayout_4 = new QVBoxLayout(typesetdialog);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         groupBox = new QGroupBox(typesetdialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(20, 10, 301, 171));
-        layoutWidget = new QWidget(groupBox);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 40, 268, 24));
-        horizontalLayout = new QHBoxLayout(layoutWidget);
+        verticalLayout_2 = new QVBoxLayout(groupBox);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_2->addItem(horizontalSpacer_4);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(layoutWidget);
+        label = new QLabel(groupBox);
         label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout->addWidget(label);
 
-        lineEditTypeAbbreviation = new QLineEdit(layoutWidget);
+        lineEditTypeAbbreviation = new QLineEdit(groupBox);
         lineEditTypeAbbreviation->setObjectName(QStringLiteral("lineEditTypeAbbreviation"));
         lineEditTypeAbbreviation->setMinimumSize(QSize(200, 0));
 
         horizontalLayout->addWidget(lineEditTypeAbbreviation);
 
-        layoutWidget1 = new QWidget(groupBox);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(20, 110, 268, 24));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout->addItem(horizontalSpacer_5);
+
+        horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(layoutWidget1);
+        label_2 = new QLabel(groupBox);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        lineEditTypeName = new QLineEdit(layoutWidget1);
+        lineEditTypeName = new QLineEdit(groupBox);
         lineEditTypeName->setObjectName(QStringLiteral("lineEditTypeName"));
         lineEditTypeName->setMinimumSize(QSize(200, 0));
 
         horizontalLayout_2->addWidget(lineEditTypeName);
 
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_2->addItem(horizontalSpacer_6);
+
+
+        verticalLayout_3->addWidget(groupBox);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_3->addItem(horizontalSpacer_7);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
         pushButtonOk = new QPushButton(typesetdialog);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
-        pushButtonOk->setGeometry(QRect(80, 200, 80, 20));
+
+        horizontalLayout_3->addWidget(pushButtonOk);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_2);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_3);
+
         pushButtonCancel = new QPushButton(typesetdialog);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
-        pushButtonCancel->setGeometry(QRect(210, 200, 80, 20));
+
+        horizontalLayout_3->addWidget(pushButtonCancel);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_3);
+
+
+        verticalLayout_4->addLayout(verticalLayout_3);
+
 
         retranslateUi(typesetdialog);
 
@@ -97,7 +159,7 @@ public:
 
     void retranslateUi(QDialog *typesetdialog)
     {
-        typesetdialog->setWindowTitle(QApplication::translate("typesetdialog", "Dialog", 0));
+        typesetdialog->setWindowTitle(QApplication::translate("typesetdialog", "Form", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("typesetdialog", "\347\261\273\345\210\253\347\274\251\345\206\231\357\274\232", 0));
         label_2->setText(QApplication::translate("typesetdialog", "\347\261\273\345\210\253\345\220\215\347\247\260\357\274\232", 0));

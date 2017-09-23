@@ -21,7 +21,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>定义标本类别</string>
+          <string>定义染色类型</string>
          </property>
         </widget>
        </item>
@@ -37,11 +37,6 @@
            <string>新建行</string>
           </property>
          </row>
-         <column>
-          <property name="text">
-           <string>前缀</string>
-          </property>
-         </column>
          <column>
           <property name="text">
            <string>名称</string>

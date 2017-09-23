@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ImmuneIndexSet_t {
-    QByteArrayData data[12];
-    char stringdata0[195];
+    QByteArrayData data[11];
+    char stringdata0[178];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,20 +32,18 @@ static const qt_meta_stringdata_ImmuneIndexSet_t qt_meta_stringdata_ImmuneIndexS
 QT_MOC_LITERAL(0, 0, 14), // "ImmuneIndexSet"
 QT_MOC_LITERAL(1, 15, 11), // "receiveData"
 QT_MOC_LITERAL(2, 27, 0), // ""
-QT_MOC_LITERAL(3, 28, 16), // "typeAbbreviation"
-QT_MOC_LITERAL(4, 45, 8), // "typeName"
-QT_MOC_LITERAL(5, 54, 4), // "type"
-QT_MOC_LITERAL(6, 59, 24), // "on_pushButtonNew_clicked"
-QT_MOC_LITERAL(7, 84, 27), // "on_pushButtonDelete_clicked"
-QT_MOC_LITERAL(8, 112, 27), // "on_pushButtonUpdate_clicked"
-QT_MOC_LITERAL(9, 140, 25), // "on_pushButtonExit_clicked"
-QT_MOC_LITERAL(10, 166, 22), // "on_tableWidget_clicked"
-QT_MOC_LITERAL(11, 189, 5) // "index"
+QT_MOC_LITERAL(3, 28, 8), // "typeName"
+QT_MOC_LITERAL(4, 37, 4), // "type"
+QT_MOC_LITERAL(5, 42, 24), // "on_pushButtonNew_clicked"
+QT_MOC_LITERAL(6, 67, 27), // "on_pushButtonDelete_clicked"
+QT_MOC_LITERAL(7, 95, 27), // "on_pushButtonUpdate_clicked"
+QT_MOC_LITERAL(8, 123, 25), // "on_pushButtonExit_clicked"
+QT_MOC_LITERAL(9, 149, 22), // "on_tableWidget_clicked"
+QT_MOC_LITERAL(10, 172, 5) // "index"
 
     },
-    "ImmuneIndexSet\0receiveData\0\0"
-    "typeAbbreviation\0typeName\0type\0"
-    "on_pushButtonNew_clicked\0"
+    "ImmuneIndexSet\0receiveData\0\0typeName\0"
+    "type\0on_pushButtonNew_clicked\0"
     "on_pushButtonDelete_clicked\0"
     "on_pushButtonUpdate_clicked\0"
     "on_pushButtonExit_clicked\0"
@@ -67,20 +65,20 @@ static const uint qt_meta_data_ImmuneIndexSet[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    3,   44,    2, 0x08 /* Private */,
-       6,    0,   51,    2, 0x08 /* Private */,
-       7,    0,   52,    2, 0x08 /* Private */,
-       8,    0,   53,    2, 0x08 /* Private */,
-       9,    0,   54,    2, 0x08 /* Private */,
-      10,    1,   55,    2, 0x08 /* Private */,
+       1,    2,   44,    2, 0x08 /* Private */,
+       5,    0,   49,    2, 0x08 /* Private */,
+       6,    0,   50,    2, 0x08 /* Private */,
+       7,    0,   51,    2, 0x08 /* Private */,
+       8,    0,   52,    2, 0x08 /* Private */,
+       9,    1,   53,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,    3,    4,    5,
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,    3,    4,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   11,
+    QMetaType::Void, QMetaType::QModelIndex,   10,
 
        0        // eod
 };
@@ -91,7 +89,7 @@ void ImmuneIndexSet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         ImmuneIndexSet *_t = static_cast<ImmuneIndexSet *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->receiveData((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 0: _t->receiveData((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 1: _t->on_pushButtonNew_clicked(); break;
         case 2: _t->on_pushButtonDelete_clicked(); break;
         case 3: _t->on_pushButtonUpdate_clicked(); break;

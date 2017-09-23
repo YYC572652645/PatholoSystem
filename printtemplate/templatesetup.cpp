@@ -32,6 +32,9 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
     this->initConnect();     //连接信号与槽
     this->initValue();       //初始化数据
 
+    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
+
+
     int count = TEMPLATEDATA->selectData(widgetType);
 
     for(int i = 0; i < count; i ++)
@@ -52,8 +55,6 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
         //设置当前行为最后一行
         ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
     }
-
-    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
 /*********************     析构函数             **************************/
@@ -65,6 +66,7 @@ TemplateSetUp::~TemplateSetUp()
     SAFEDELETE(widthEdit);
     SAFEDELETE(heightEdit);
     SAFEDELETE(qrcode);
+    SAFEDELETE(textEdit);
 
     delete ui;
 }
@@ -72,46 +74,13 @@ TemplateSetUp::~TemplateSetUp()
 /*********************     显示对话框           **************************/
 void TemplateSetUp::showWidget()
 {
-    if(!deleteFlage) deleteAll();   //先删除
-    writeAll();                     //再写入
+    if(!deleteFlage) deleteAll();         //先删除
+    writeAll();                           //再写入
 
-    if(widgetType == THIRDWIDGET)
-    {
-        for(int i = 0; i < fourLabel.size(); i ++)
-        {
-            fourLabel[i]->setText(dataNormalSlice.stainTypeName);
-        }
+    this->setInfo();                      //设置信息
+    this->generateQrCode(qrCodeNumber);   //生成二维码
 
-        for(int i = 0; i < fiveLabel.size(); i ++)
-        {
-            fiveLabel[i]->setText(dataNormalSlice.staining);
-        }
-
-        for(int i = 0; i < sixLabel.size(); i ++)
-        {
-            sixLabel[i]->setText(dataNormalSlice.other);
-        }
-        for(int i = 0; i < sevenLabel.size(); i ++)
-        {
-            sevenLabel[i]->setText(dataNormalSlice.stainTime);
-        }
-
-        for(int i = 0; i < eightLabel.size(); i ++)
-        {
-            eightLabel[i]->setText(dataNormalSlice.stainer);
-        }
-
-        for(int i = 0; i < nineLabel.size(); i ++)
-        {
-            nineLabel[i]->setText(dataNormalSlice.sectionTime);
-        }
-        for(int i = 0; i < tenLabel.size(); i ++)
-        {
-            tenLabel[i]->setText(dataNormalSlice.sectioner);
-        }
-    }
-
-    this->generateQrCode(qrCodeNumber);
+    ui->widgetControl->clearBox();        //将边界去掉
 
     this->show();
 }
@@ -311,11 +280,11 @@ void TemplateSetUp::initValue()
     {
         ui->listWidgetControl->addItem("染色类型");
         ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("克隆号");
         ui->listWidgetControl->addItem("切片日期");
         ui->listWidgetControl->addItem("切片人");
         ui->listWidgetControl->addItem("染色时间");
         ui->listWidgetControl->addItem("染色人");
-        ui->listWidgetControl->addItem("克隆号");
         ui->listWidgetControl->addItem("单位名称");
     }
 
@@ -324,6 +293,7 @@ void TemplateSetUp::initValue()
     {
         ui->listWidgetControl->addItem("染色类型");
         ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("克隆号");
         ui->listWidgetControl->addItem("切片日期");
         ui->listWidgetControl->addItem("切片人");
         ui->listWidgetControl->addItem("染色时间");
@@ -387,6 +357,15 @@ void TemplateSetUp::writeAll()
     textLabel.clear();
     bingLiLabel.clear();
     qrCodeLabel.clear();
+    fourLabel.clear();
+    fiveLabel.clear();
+    sixLabel.clear();
+    sevenLabel.clear();
+    eightLabel.clear();
+    nineLabel.clear();
+    tenLabel.clear();
+    elevenLabel.clear();
+    twelveLabel.clear();
 
     for(int i = 0; i < dataList[templateName].size(); i ++)
     {
@@ -443,6 +422,109 @@ void TemplateSetUp::writeAll()
     }
 
     deleteFlage = false;
+}
+
+/*********************     设置控件信息     *************************/
+void TemplateSetUp::setInfo()
+{
+    for(int i = 0; i < bingLiLabel.size(); i ++)
+    {
+        bingLiLabel[i]->setText(qrCodeNumber);
+    }
+
+    if(widgetType == THIRDWIDGET)
+    {
+        for(int i = 0; i < fourLabel.size(); i ++)
+        {
+            fourLabel[i]->setText(dataNormalSlice.stainTypeName);
+        }
+        for(int i = 0; i < fiveLabel.size(); i ++)
+        {
+            fiveLabel[i]->setText(dataNormalSlice.staining);
+        }
+        for(int i = 0; i < sixLabel.size(); i ++)
+        {
+            sixLabel[i]->setText(dataNormalSlice.other);
+        }
+        for(int i = 0; i < sevenLabel.size(); i ++)
+        {
+            sevenLabel[i]->setText(dataNormalSlice.stainTime);
+        }
+        for(int i = 0; i < eightLabel.size(); i ++)
+        {
+            eightLabel[i]->setText(dataNormalSlice.stainer);
+        }
+        for(int i = 0; i < nineLabel.size(); i ++)
+        {
+            nineLabel[i]->setText(dataNormalSlice.sectionTime);
+        }
+        for(int i = 0; i < tenLabel.size(); i ++)
+        {
+            tenLabel[i]->setText(dataNormalSlice.sectioner);
+        }
+    }
+    else if(widgetType == FOURTHWIDGET)
+    {
+        for(int i = 0; i < fourLabel.size(); i ++)
+        {
+            fourLabel[i]->setText(dataImmuneSlice.stainTypeName);
+        }
+        for(int i = 0; i < fiveLabel.size(); i ++)
+        {
+            fiveLabel[i]->setText(dataImmuneSlice.staining);
+        }
+        for(int i = 0; i < sixLabel.size(); i ++)
+        {
+            sixLabel[i]->setText(dataImmuneSlice.cloneNumber);
+        }
+        for(int i = 0; i < sevenLabel.size(); i ++)
+        {
+            sevenLabel[i]->setText(dataImmuneSlice.stainTime);
+        }
+        for(int i = 0; i < eightLabel.size(); i ++)
+        {
+            eightLabel[i]->setText(dataImmuneSlice.stainer);
+        }
+        for(int i = 0; i < nineLabel.size(); i ++)
+        {
+            nineLabel[i]->setText(dataImmuneSlice.sectionTime);
+        }
+        for(int i = 0; i < tenLabel.size(); i ++)
+        {
+            tenLabel[i]->setText(dataImmuneSlice.sectioner);
+        }
+    }
+    else if(widgetType == FIVETHWIDGET)
+    {
+        for(int i = 0; i < fourLabel.size(); i ++)
+        {
+            fourLabel[i]->setText(dataSpecialSlice.stainTypeName);
+        }
+        for(int i = 0; i < fiveLabel.size(); i ++)
+        {
+            fiveLabel[i]->setText(dataSpecialSlice.staining);
+        }
+        for(int i = 0; i < sixLabel.size(); i ++)
+        {
+            sixLabel[i]->setText(dataSpecialSlice.cloneNumber);
+        }
+        for(int i = 0; i < sevenLabel.size(); i ++)
+        {
+            sevenLabel[i]->setText(dataSpecialSlice.stainTime);
+        }
+        for(int i = 0; i < eightLabel.size(); i ++)
+        {
+            eightLabel[i]->setText(dataSpecialSlice.stainer);
+        }
+        for(int i = 0; i < nineLabel.size(); i ++)
+        {
+            nineLabel[i]->setText(dataSpecialSlice.sectionTime);
+        }
+        for(int i = 0; i < tenLabel.size(); i ++)
+        {
+            tenLabel[i]->setText(dataSpecialSlice.sectioner);
+        }
+    }
 }
 
 /*********************     点击列表框中控件     *************************/
@@ -641,13 +723,6 @@ const QImage TemplateSetUp::generateQrCode(QString number)
         qrCodeLabel[i]->setPixmap(QPixmap::fromImage(mainImg));
     }
 
-    for(int i = 0; i < bingLiLabel.size(); i ++)
-    {
-        bingLiLabel[i]->setText(qrCodeNumber);
-    }
-
-    ui->widgetControl->clearBox();
-
     return mainImg;
 }
 
@@ -669,7 +744,11 @@ void TemplateSetUp::printQrCode(QPixmap & pixmap)
 /*********************     打印图像            ************************/
 void TemplateSetUp::printImage(QString number)
 {
-    generateQrCode(number);
+    this->setInfo();
+
+    this->generateQrCode(number);
+
+    ui->widgetControl->clearBox();
 
     QPixmap printPixMap = QWidget::grab(QRect(STARTPOINT.x(), STARTPOINT.y(), ui->widgetControl->width() - PAINTDATA , ui->widgetControl->height() - PAINTDATA));
 
@@ -831,6 +910,16 @@ void TemplateSetUp::sizeChange()
     int y = listLabel.at(selectLabelIndex)->geometry().y();
 
     listLabel.at(selectLabelIndex)->setGeometry(x, y, widthEdit->text().toInt(), heightEdit->text().toInt());
+}
+
+void TemplateSetUp::setDataSpecialSlice(const DataSpecialSlice &value)
+{
+    dataSpecialSlice = value;
+}
+
+void TemplateSetUp::setDataImmuneSlice(const DataImmuneSlice &value)
+{
+    dataImmuneSlice = value;
 }
 
 void TemplateSetUp::setDataNormalSlice(const DataNormalSlice &value)

@@ -54,7 +54,157 @@ bool TabSystemData::insertData()
     return success;
 }
 
-/***************************    起始病理号设置查询数据            ***********************/
+/************     插入免疫组化染色类型数据            *************/
+bool TabSystemData::insertStainTypeData(QString typeName, int type)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("insert into StainType (StainTypeName, Type) values('%1', '%2');").arg(typeName, QString::number(type));
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+/************     查询免疫组化染色类型数据            *************/
+int TabSystemData::selectStainTypeData(int type)
+{
+    int count = 0;
+
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("select * from StainType where Type = '%1';").arg(QString::number(type));
+
+    if(!query.exec(str)) return -1;
+
+    StainTypeName.clear();
+
+    while(query.next())
+    {
+        StainTypeName[query.value(0).toString()] = query.value(1).toString();;
+
+        count ++;
+    }
+
+    db.close();
+
+    return count;
+}
+
+/************     更改免疫组化染色类型数据            *************/
+bool TabSystemData::updateStainTypeData(QString stainTypeName, QString stainTypeID)
+{
+    if(!db.isOpen())  db.open();
+
+    QSqlQuery query;
+
+    QString Str = QString("update  StainType set StainTypeName = '%1' where StainTypeID = '%2';").arg(stainTypeName, stainTypeID);
+
+    bool success = query.exec(Str);
+
+    db.close();
+
+    return success;
+}
+
+/************     删除免疫组化染色类型数据            *************/
+bool TabSystemData::deleteStainTypeData(QString stainTypeID)
+{
+    if(!db.isOpen())  db.open();
+
+    QSqlQuery query;
+
+    QString Str = QString("delete from StainType where StainTypeID = '%2';").arg(stainTypeID);
+
+    bool success = query.exec(Str);
+
+    db.close();
+
+    return success;
+}
+
+/************     插入免疫组化染色指标数据            *************/
+bool TabSystemData::insertStainingData(QString typeName, int type)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("insert into Staining (StainingName, Type) values('%1', '%2');").arg(typeName, QString::number(type));
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+/************     查询免疫组化染色指标数据            *************/
+int TabSystemData::selectStainingData(int type)
+{
+    int count = 0;
+
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("select * from Staining where Type = '%1';").arg(QString::number(type));
+
+    if(!query.exec(str)) return -1;
+
+    StainingName.clear();
+
+    while(query.next())
+    {
+        StainingName[query.value(0).toString()] = query.value(1).toString();;
+
+        count ++;
+    }
+
+    db.close();
+
+    return count;
+}
+
+/************     更改免疫组化染色指标数据            *************/
+bool TabSystemData::updateStainingData(QString stainingName, QString stainingID)
+{
+    if(!db.isOpen())  db.open();
+
+    QSqlQuery query;
+
+    QString Str = QString("update  Staining set StainingName = '%1' where StainTypeID = '%2';").arg(stainingName, stainingID);
+
+    bool success = query.exec(Str);
+
+    db.close();
+
+    return success;
+}
+
+/************     删除免疫组化染色指标数据            *************/
+bool TabSystemData::deleteStainingData(QString stainingID)
+{
+    if(!db.isOpen())  db.open();
+
+    QSqlQuery query;
+
+    QString Str = QString("delete from Staining where StainingID = '%2';").arg(stainingID);
+
+    bool success = query.exec(Str);
+
+    db.close();
+
+    return success;
+}
+
+/***************************    起始病理号设置指标数据            ***********************/
 bool TabSystemData::codeBeginSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -64,6 +214,8 @@ bool TabSystemData::codeBeginSelectData()
     QString str = "select * from SystemSetting;";
 
     if(!query.exec(str)) return false;
+
+    codeBeginSnSetInfo.clear();
 
     while(query.next())        //挨个遍历数据
     {
@@ -127,6 +279,7 @@ bool TabSystemData::codeTypeUpdateData(QString typeAbbreviation, QString typeNam
     if(!db.isOpen())  db.open();
 
     QSqlQuery query;
+
     QString Str = QString("update  PCodeType set PCodeTypeAbbr = '%1', PCodeTypeName = '%2' where PCodeTypeID = '%3';").arg(typeAbbreviation, typeName, typeId);
 
     bool success = query.exec(Str);  //执行sql语句
@@ -179,5 +332,15 @@ QMap<QString, QString> TabSystemData::getCodeBeginSnSetInfo() const
 QList<CodeTypeInfo> TabSystemData::getCodeTypeInfo() const
 {
     return codeTypeInfo;
+}
+
+QMap<QString, QString> TabSystemData::getStainTypeName() const
+{
+    return StainTypeName;
+}
+
+QMap<QString, QString> TabSystemData::getStainingName() const
+{
+    return StainingName;
 }
 

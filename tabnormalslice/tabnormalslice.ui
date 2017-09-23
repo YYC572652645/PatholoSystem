@@ -167,11 +167,6 @@ background-color:transparent;
             </column>
             <column>
              <property name="text">
-              <string>取材人</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
               <string>切片日期</string>
              </property>
             </column>
@@ -183,6 +178,11 @@ background-color:transparent;
             <column>
              <property name="text">
               <string>染色日期</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>染色人</string>
              </property>
             </column>
            </widget>

@@ -26,7 +26,15 @@ void TypeSetDialog::on_pushButtonOk_clicked()
         return;
     }
 
-    emit sendString(ui->lineEditTypeAbbreviation->text(), ui->lineEditTypeName->text(), dataType);
+    if(ui->label->isHidden())
+    {
+        emit sendString(ui->lineEditTypeName->text(), dataType);
+    }
+    else
+    {
+        emit sendString(ui->lineEditTypeAbbreviation->text(), ui->lineEditTypeName->text(), dataType);
+    }
+
 
     this->close();
 }
@@ -53,4 +61,13 @@ void TypeSetDialog::showNewDialog()
     ui->lineEditTypeName->setText("");
 
     this->show();
+}
+
+void TypeSetDialog::setInfo()
+{
+    ui->label->hide();
+    ui->lineEditTypeAbbreviation->hide();
+    this->setWindowTitle("属性");
+    this->setMinimumHeight(180);
+    this->setMaximumHeight(180);
 }

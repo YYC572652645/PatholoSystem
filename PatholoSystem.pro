@@ -60,7 +60,13 @@ SOURCES += main.cpp\
     tabmaterial/materialdata.cpp \
     tabnormalslice/newnormalslice.cpp \
     tabnormalslice/normalslicedata.cpp \
-    tabnormalslice/newmorenormalslice.cpp
+    tabnormalslice/newmorenormalslice.cpp \
+    tabimmuneslice/immuneslicedata.cpp \
+    tabimmuneslice/newmoreimmuneslice.cpp \
+    tabimmuneslice/newimmuneslice.cpp \
+    tabspecialslice/newmorespecialslice.cpp \
+    tabspecialslice/newspecialslice.cpp \
+    tabspecialslice/specialslicedata.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -133,7 +139,13 @@ HEADERS  += mainwindow.h \
     tabmaterial/materialdata.h \
     tabnormalslice/newnormalslice.h \
     tabnormalslice/normalslicedata.h \
-    tabnormalslice/newmorenormalslice.h
+    tabnormalslice/newmorenormalslice.h \
+    tabimmuneslice/immuneslicedata.h \
+    tabimmuneslice/newmoreimmuneslice.h \
+    tabimmuneslice/newimmuneslice.h \
+    tabspecialslice/newmorespecialslice.h \
+    tabspecialslice/newspecialslice.h \
+    tabspecialslice/specialslicedata.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -159,7 +171,11 @@ FORMS  += mainwindow.ui \
     tabsystemset/otherwidget/userset.ui \
     tabmaterial/normalmaterial.ui \
     tabnormalslice/newnormalslice.ui \
-    tabnormalslice/newmorenormalslice.ui
+    tabnormalslice/newmorenormalslice.ui \
+    tabimmuneslice/newimmuneslice.ui \
+    tabimmuneslice/newmoreimmuneslice.ui \
+    tabspecialslice/newmorespecialslice.ui \
+    tabspecialslice/newspecialslice.ui
 
 RESOURCES += \
     res.qrc

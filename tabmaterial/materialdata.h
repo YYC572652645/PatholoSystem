@@ -74,7 +74,7 @@ public:
     bool updateParentData(DataParent data);
 
     /************    删除数据         *************/
-    bool deleteData(int type, QString id = NULL);
+    bool deleteData(int type, QString id = NULL, QString embedCode = NULL);
 
     QList<DataChild> getChildList() const;
 

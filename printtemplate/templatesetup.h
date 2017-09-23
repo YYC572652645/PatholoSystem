@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QSpinBox>
 #include "../tabnormalslice/normalslicedata.h"
+#include "../tabimmuneslice/immuneslicedata.h"
+#include "../tabspecialslice/specialslicedata.h"
 
 namespace Ui {
 class templatesetup;
@@ -40,6 +42,8 @@ public:
     void printQrCode(QPixmap & pixmap);                            //打印二维码
     void setQrCodeNumber(const QString &value);                    //设置二维码
     void setDataNormalSlice(const DataNormalSlice &value);         //设置常规切片数据
+    void setDataImmuneSlice(const DataImmuneSlice &value);         //设置免疫组化切片数据
+    void setDataSpecialSlice(const DataSpecialSlice &value);       //设置特染切片数据
 
 signals:
     void sendType(int);
@@ -85,6 +89,8 @@ private:
     QMap<QString, QList<LabelData>>dataList;                       //控件内容
     bool deleteFlage;                                              //删除标志位
     DataNormalSlice dataNormalSlice;                               //常规切片数据
+    DataImmuneSlice dataImmuneSlice;                               //免疫组化切片
+    DataSpecialSlice dataSpecialSlice;                             //特染切片数据
 
 private:
     void initControl();                                            //初始化控件
@@ -92,6 +98,7 @@ private:
     void initValue();                                              //初始化数据
     void deleteAll();                                              //删除所有控件
     void writeAll();                                               //写入控件
+    void setInfo();                                                //设置控件信息
     bool eventFilter(QObject *watched, QEvent *event);             //事件过滤
     void writeJson();                                              //组合JSON
     bool readJson(QString arrayData, QString name);                //读取JSON

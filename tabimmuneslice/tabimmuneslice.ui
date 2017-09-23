@@ -57,64 +57,59 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_2">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Maximum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>10</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelMovie">
               <property name="text">
-               <string>扫描时打印数量;</string>
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../res.qrc">:/image/image/refresh.png</pixmap>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBoxPrintNumber"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxDyeingType">
+             <widget class="QPushButton" name="pushButtonRefresh">
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>40</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton:hover
+{
+    color:skyblue;
+}
+QPushButton
+{
+background-color:transparent;
+}</string>
+              </property>
               <property name="text">
-               <string>染色类型</string>
+               <string>刷新</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxDyeingType"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxDyeingIndex">
-              <property name="text">
-               <string>染色指标</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxDyeingIndex"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxSlicePerson">
-              <property name="text">
-               <string>切片人</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxSlicePerson"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxDyeingPerson">
-              <property name="text">
-               <string>染色人</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxDyeingPerson"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxOther">
-              <property name="text">
-               <string>其他</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEditOther"/>
             </item>
             <item>
              <spacer name="horizontalSpacer">
@@ -140,6 +135,21 @@
             </column>
             <column>
              <property name="text">
+              <string>克隆号</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>已打印</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>打印数量</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>染色类型</string>
              </property>
             </column>
@@ -150,22 +160,7 @@
             </column>
             <column>
              <property name="text">
-              <string>打印数量</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>克隆号</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
               <string>切片日期</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>染色日期</string>
              </property>
             </column>
             <column>
@@ -176,6 +171,11 @@
             <column>
              <property name="text">
               <string>染色日期</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>染色人</string>
              </property>
             </column>
            </widget>

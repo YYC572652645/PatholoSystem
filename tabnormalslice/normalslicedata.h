@@ -45,7 +45,7 @@ public:
     int selectData(int type, QString text);
 
     /************更改数据*************/
-    bool updateData();
+    bool updateData(DataNormalSlice data);
 
     /************删除数据*************/
     bool deleteData(int type, QString id);

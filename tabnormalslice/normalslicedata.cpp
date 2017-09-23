@@ -130,13 +130,40 @@ int NormalSliceData::selectData(int type, QString text)
 }
 
 /***************************更改数据***********************/
-bool NormalSliceData::updateData()
+bool NormalSliceData::updateData(DataNormalSlice data)
 {
     if(!db.isOpen()) db.open();
 
     QSqlQuery query;
-    QString Str = QString("update  table set('','');");
-    bool success = query.exec(Str);  //执行sql语句
+
+    QString str = QString("update Section set ");
+
+    str += "SectionCode = '"     + data.sectionCode   + "', ";
+
+    str += "EmbedCode = '"       + data.embedCode     + "', ";
+
+    str += "StainTypeName = '"   + data.stainTypeName + "', ";
+
+    str += "Staining = '"        + data.staining      + "', ";
+
+    str += "SectionTime = '"     + data.sectionTime   + "', ";
+
+    str += "Sectioner = '"       + data.sectioner     + "', ";
+
+    str += "StainTime = '"       + data.stainTime     + "', ";
+
+    str += "Stainer = '"         + data.stainer       + "', ";
+
+    str += "PrintNum = '"        + data.printNum      + "', ";
+
+    str += "Printed = '"         + data.printed       + "', ";
+
+    str += "Other = '"           + data.other         + "'  ";
+
+    str += "where SectionId = '" + data.sectionId     + "' ;";
+
+    qDebug()<<str;
+    bool success = query.exec(str);
 
     db.close();
 

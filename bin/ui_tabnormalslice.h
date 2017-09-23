@@ -284,13 +284,13 @@ public:
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QApplication::translate("tabnormalslice", "\346\237\223\350\211\262\346\214\207\346\240\207", 0));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("tabnormalslice", "\345\217\226\346\235\220\344\272\272", 0));
+        ___qtablewidgetitem6->setText(QApplication::translate("tabnormalslice", "\345\210\207\347\211\207\346\227\245\346\234\237", 0));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
-        ___qtablewidgetitem7->setText(QApplication::translate("tabnormalslice", "\345\210\207\347\211\207\346\227\245\346\234\237", 0));
+        ___qtablewidgetitem7->setText(QApplication::translate("tabnormalslice", "\345\210\207\347\211\207\344\272\272", 0));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
-        ___qtablewidgetitem8->setText(QApplication::translate("tabnormalslice", "\345\210\207\347\211\207\344\272\272", 0));
+        ___qtablewidgetitem8->setText(QApplication::translate("tabnormalslice", "\346\237\223\350\211\262\346\227\245\346\234\237", 0));
         QTableWidgetItem *___qtablewidgetitem9 = tableWidget->horizontalHeaderItem(9);
-        ___qtablewidgetitem9->setText(QApplication::translate("tabnormalslice", "\346\237\223\350\211\262\346\227\245\346\234\237", 0));
+        ___qtablewidgetitem9->setText(QApplication::translate("tabnormalslice", "\346\237\223\350\211\262\344\272\272", 0));
         toolBar->setWindowTitle(QApplication::translate("tabnormalslice", "toolBar", 0));
     } // retranslateUi
 

@@ -56,18 +56,16 @@ public:
         verticalLayout->addWidget(label);
 
         tableWidget = new QTableWidget(speciatypeset);
-        if (tableWidget->columnCount() < 2)
-            tableWidget->setColumnCount(2);
+        if (tableWidget->columnCount() < 1)
+            tableWidget->setColumnCount(1);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         if (tableWidget->rowCount() < 2)
             tableWidget->setRowCount(2);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem3);
+        tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem2);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         verticalLayout->addWidget(tableWidget);
@@ -116,15 +114,13 @@ public:
     void retranslateUi(QWidget *speciatypeset)
     {
         speciatypeset->setWindowTitle(QApplication::translate("speciatypeset", "Form", 0));
-        label->setText(QApplication::translate("speciatypeset", "\345\256\232\344\271\211\346\240\207\346\234\254\347\261\273\345\210\253", 0));
+        label->setText(QApplication::translate("speciatypeset", "\345\256\232\344\271\211\346\237\223\350\211\262\347\261\273\345\236\213", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("speciatypeset", "\345\211\215\347\274\200", 0));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("speciatypeset", "\345\220\215\347\247\260", 0));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->verticalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("speciatypeset", "\345\220\215\347\247\260", 0));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->verticalHeaderItem(0);
+        ___qtablewidgetitem1->setText(QApplication::translate("speciatypeset", "\346\226\260\345\273\272\350\241\214", 0));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->verticalHeaderItem(1);
         ___qtablewidgetitem2->setText(QApplication::translate("speciatypeset", "\346\226\260\345\273\272\350\241\214", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->verticalHeaderItem(1);
-        ___qtablewidgetitem3->setText(QApplication::translate("speciatypeset", "\346\226\260\345\273\272\350\241\214", 0));
         pushButtonNew->setText(QApplication::translate("speciatypeset", "\346\226\260\345\273\272", 0));
         pushButtonDelete->setText(QApplication::translate("speciatypeset", "\345\210\240\351\231\244", 0));
         pushButtonUpdate->setText(QApplication::translate("speciatypeset", "\344\277\256\346\224\271", 0));

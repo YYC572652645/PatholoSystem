@@ -17,14 +17,15 @@ public:
 
     void showUpdateDialog(QString typeAbbreviation, QString typeName);
     void showNewDialog();
+    void setInfo();
 
 private slots:
     void on_pushButtonOk_clicked();
-
     void on_pushButtonCancel_clicked();
 
 signals:
     void sendString(QString, QString, int);
+    void sendString(QString, int);
 
 private:
     Ui::typesetdialog *ui;

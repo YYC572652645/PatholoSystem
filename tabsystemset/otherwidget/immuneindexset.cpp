@@ -13,6 +13,8 @@ ImmuneIndexSet::ImmuneIndexSet(QWidget *parent) :
     this->initControl();  //初始化控件
 
     this->initValue();    //初始化值
+
+    typeSetDialog.setInfo();
 }
 
 /****************     析构函数      **********************/
@@ -28,7 +30,7 @@ void ImmuneIndexSet::showDialog()
 
     nowRow = 0;
 
-    if(SYSTEMDATA->getCodeTypeInfo().size() != 0)
+    if(SYSTEMDATA->getStainingName().size() != 0)
     {
         ui->tableWidget->selectRow(0);
         ui->tableWidget->setFocus();
@@ -63,37 +65,38 @@ void ImmuneIndexSet::initControl()
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
     //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
+    connect(&typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
 }
 
 /****************     初始化值      **********************/
 void ImmuneIndexSet::initValue()
 {
-    bool success = SYSTEMDATA->codeTypeSelectData();  //查询标本类别信息
+    int count = SYSTEMDATA->selectStainingData(GLOBALDEF::FIRSTTYPE);  //查询标本类别信息
 
-    if(!success) return;
+    if(count == GLOBALDEF::ERROR) return;
 
-    ui->tableWidget->setRowCount(SYSTEMDATA->getCodeTypeInfo().size());
+    ui->tableWidget->setRowCount(count);
 
-    for(int i = 0; i < SYSTEMDATA->getCodeTypeInfo().size(); i ++)
+    QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
+
+    for(int i = 0; i < mapData.keys().size(); i ++)
     {
-        ui->tableWidget->setItem(i, 0, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeAbbr));          //前缀
-        ui->tableWidget->setItem(i, 1, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeName));          //名称
+        ui->tableWidget->setItem(i, 0, DATA(mapData[mapData.keys().at(i)]));          //名称
     }
 }
 
 /****************     接收数据      **********************/
-void ImmuneIndexSet::receiveData(QString typeAbbreviation, QString typeName, int type)
+void ImmuneIndexSet::receiveData(QString typeName, int type)
 {
     if(type ==  GLOBALDEF::TYPEINSERT)
     {
-        SYSTEMDATA->codeTypeInsertData(typeAbbreviation, typeName);
+        SYSTEMDATA->insertStainingData(typeName, GLOBALDEF::FIRSTTYPE);
     }
     else if(type ==  GLOBALDEF::TYPEUPDATE)
     {
-        if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
+        if(nowRow >= SYSTEMDATA->getStainingName().size()) return;
 
-        SYSTEMDATA->codeTypeUpdateData(typeAbbreviation, typeName, SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
+        SYSTEMDATA->updateStainingData(typeName, SYSTEMDATA->getStainingName().keys().at(nowRow));
     }
 
     this->initValue();
@@ -110,9 +113,9 @@ void ImmuneIndexSet::on_pushButtonDelete_clicked()
 {
     if(nowRow < 0) return;
 
-    if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
+    if(nowRow >= SYSTEMDATA->getStainingName().size()) return;
 
-    bool success = SYSTEMDATA->codeTypeDeleteData(SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
+    bool success = SYSTEMDATA->deleteStainingData(SYSTEMDATA->getStainingName().keys().at(nowRow));
 
     if(!success) return;
 
@@ -122,10 +125,11 @@ void ImmuneIndexSet::on_pushButtonDelete_clicked()
 /****************     更新         **********************/
 void ImmuneIndexSet::on_pushButtonUpdate_clicked()
 {
-    QString codeTypeAbbr = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeAbbr;
-    QString codeTypeName = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeName;
+    QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
 
-    typeSetDialog.showUpdateDialog(codeTypeAbbr, codeTypeName);
+    QString codeTypeName = mapData[mapData.keys().at(nowRow)];
+
+    typeSetDialog.showUpdateDialog(NULL, codeTypeName);
 }
 
 /****************     退出         **********************/

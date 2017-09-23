@@ -136,6 +136,8 @@ public:
         spinBoxNumber->setObjectName(QStringLiteral("spinBoxNumber"));
         spinBoxNumber->setMinimumSize(QSize(180, 0));
         spinBoxNumber->setMaximumSize(QSize(180, 16777215));
+        spinBoxNumber->setMinimum(1);
+        spinBoxNumber->setMaximum(1000000000);
 
         horizontalLayout->addWidget(spinBoxNumber);
 
@@ -194,6 +196,8 @@ public:
         spinBoxPrintNumber->setObjectName(QStringLiteral("spinBoxPrintNumber"));
         spinBoxPrintNumber->setMinimumSize(QSize(180, 0));
         spinBoxPrintNumber->setMaximumSize(QSize(180, 16777215));
+        spinBoxPrintNumber->setMinimum(1);
+        spinBoxPrintNumber->setMaximum(1000000000);
 
         horizontalLayout_3->addWidget(spinBoxPrintNumber);
 

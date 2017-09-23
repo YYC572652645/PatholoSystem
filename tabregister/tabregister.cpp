@@ -44,6 +44,10 @@ TabRegister::~TabRegister()
     SAFEDELETE(templateSetUp);
     SAFEDELETE(movie);
     SAFEDELETE(timer);
+    SAFEDELETE(menu);
+    SAFEDELETE(print);
+    SAFEDELETE(del);
+    SAFEDELETE(refresh);
     delete ui;
 }
 
@@ -152,8 +156,8 @@ void TabRegister::initControl()
 
     //设置根据内容调整列宽
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+    ui->tableWidget->setColumnWidth(0, 150);
+    ui->tableWidget->setColumnWidth(1, 200);
 
     //设置水平伸展策略
     ui->splitter->setStretchFactor(1, 0);

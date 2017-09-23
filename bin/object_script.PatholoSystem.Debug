@@ -47,6 +47,12 @@ INPUT(
 ./debug\newnormalslice.o
 ./debug\normalslicedata.o
 ./debug\newmorenormalslice.o
+./debug\immuneslicedata.o
+./debug\newmoreimmuneslice.o
+./debug\newimmuneslice.o
+./debug\newmorespecialslice.o
+./debug\newspecialslice.o
+./debug\specialslicedata.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -75,4 +81,8 @@ INPUT(
 ./debug\moc_normalmaterial.o
 ./debug\moc_newnormalslice.o
 ./debug\moc_newmorenormalslice.o
+./debug\moc_newmoreimmuneslice.o
+./debug\moc_newimmuneslice.o
+./debug\moc_newmorespecialslice.o
+./debug\moc_newspecialslice.o
 );

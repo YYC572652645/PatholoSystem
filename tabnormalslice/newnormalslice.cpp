@@ -10,7 +10,7 @@ NewNormalSlice::NewNormalSlice(QWidget *parent) :
 
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 
-    this->setWindowTitle("常规切片");
+    this->setWindowTitle("新建切片");
 }
 
 /*******************   析构函数    ***********************/

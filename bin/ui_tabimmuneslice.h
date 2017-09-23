@@ -13,8 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -22,7 +20,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
@@ -49,18 +46,9 @@ public:
     QLabel *label;
     QLineEdit *lineEditNumber;
     QPushButton *pushButtonFind;
-    QLabel *label_2;
-    QSpinBox *spinBoxPrintNumber;
-    QCheckBox *checkBoxDyeingType;
-    QComboBox *comboBoxDyeingType;
-    QCheckBox *checkBoxDyeingIndex;
-    QComboBox *comboBoxDyeingIndex;
-    QCheckBox *checkBoxSlicePerson;
-    QComboBox *comboBoxSlicePerson;
-    QCheckBox *checkBoxDyeingPerson;
-    QComboBox *comboBoxDyeingPerson;
-    QCheckBox *checkBoxOther;
-    QLineEdit *lineEditOther;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *labelMovie;
+    QPushButton *pushButtonRefresh;
     QSpacerItem *horizontalSpacer;
     QTableWidget *tableWidget;
     QToolBar *toolBar;
@@ -134,65 +122,30 @@ public:
 
         horizontalLayout->addWidget(pushButtonFind);
 
-        label_2 = new QLabel(widgetTable);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
 
-        horizontalLayout->addWidget(label_2);
+        horizontalLayout->addItem(horizontalSpacer_2);
 
-        spinBoxPrintNumber = new QSpinBox(widgetTable);
-        spinBoxPrintNumber->setObjectName(QStringLiteral("spinBoxPrintNumber"));
+        labelMovie = new QLabel(widgetTable);
+        labelMovie->setObjectName(QStringLiteral("labelMovie"));
+        labelMovie->setPixmap(QPixmap(QString::fromUtf8(":/image/image/refresh.png")));
 
-        horizontalLayout->addWidget(spinBoxPrintNumber);
+        horizontalLayout->addWidget(labelMovie);
 
-        checkBoxDyeingType = new QCheckBox(widgetTable);
-        checkBoxDyeingType->setObjectName(QStringLiteral("checkBoxDyeingType"));
+        pushButtonRefresh = new QPushButton(widgetTable);
+        pushButtonRefresh->setObjectName(QStringLiteral("pushButtonRefresh"));
+        pushButtonRefresh->setMinimumSize(QSize(40, 0));
+        pushButtonRefresh->setMaximumSize(QSize(40, 16777215));
+        pushButtonRefresh->setStyleSheet(QLatin1String("QPushButton:hover\n"
+"{\n"
+"    color:skyblue;\n"
+"}\n"
+"QPushButton\n"
+"{\n"
+"background-color:transparent;\n"
+"}"));
 
-        horizontalLayout->addWidget(checkBoxDyeingType);
-
-        comboBoxDyeingType = new QComboBox(widgetTable);
-        comboBoxDyeingType->setObjectName(QStringLiteral("comboBoxDyeingType"));
-
-        horizontalLayout->addWidget(comboBoxDyeingType);
-
-        checkBoxDyeingIndex = new QCheckBox(widgetTable);
-        checkBoxDyeingIndex->setObjectName(QStringLiteral("checkBoxDyeingIndex"));
-
-        horizontalLayout->addWidget(checkBoxDyeingIndex);
-
-        comboBoxDyeingIndex = new QComboBox(widgetTable);
-        comboBoxDyeingIndex->setObjectName(QStringLiteral("comboBoxDyeingIndex"));
-
-        horizontalLayout->addWidget(comboBoxDyeingIndex);
-
-        checkBoxSlicePerson = new QCheckBox(widgetTable);
-        checkBoxSlicePerson->setObjectName(QStringLiteral("checkBoxSlicePerson"));
-
-        horizontalLayout->addWidget(checkBoxSlicePerson);
-
-        comboBoxSlicePerson = new QComboBox(widgetTable);
-        comboBoxSlicePerson->setObjectName(QStringLiteral("comboBoxSlicePerson"));
-
-        horizontalLayout->addWidget(comboBoxSlicePerson);
-
-        checkBoxDyeingPerson = new QCheckBox(widgetTable);
-        checkBoxDyeingPerson->setObjectName(QStringLiteral("checkBoxDyeingPerson"));
-
-        horizontalLayout->addWidget(checkBoxDyeingPerson);
-
-        comboBoxDyeingPerson = new QComboBox(widgetTable);
-        comboBoxDyeingPerson->setObjectName(QStringLiteral("comboBoxDyeingPerson"));
-
-        horizontalLayout->addWidget(comboBoxDyeingPerson);
-
-        checkBoxOther = new QCheckBox(widgetTable);
-        checkBoxOther->setObjectName(QStringLiteral("checkBoxOther"));
-
-        horizontalLayout->addWidget(checkBoxOther);
-
-        lineEditOther = new QLineEdit(widgetTable);
-        lineEditOther->setObjectName(QStringLiteral("lineEditOther"));
-
-        horizontalLayout->addWidget(lineEditOther);
+        horizontalLayout->addWidget(pushButtonRefresh);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -202,8 +155,8 @@ public:
         verticalLayout_2->addLayout(horizontalLayout);
 
         tableWidget = new QTableWidget(widgetTable);
-        if (tableWidget->columnCount() < 9)
-            tableWidget->setColumnCount(9);
+        if (tableWidget->columnCount() < 10)
+            tableWidget->setColumnCount(10);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -222,6 +175,8 @@ public:
         tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(8, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(9, __qtablewidgetitem9);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         verticalLayout_2->addWidget(tableWidget);
@@ -280,30 +235,28 @@ public:
 #endif // QT_NO_TOOLTIP
         label->setText(QApplication::translate("tabimmuneslice", "\347\274\226\345\217\267\357\274\232", 0));
         pushButtonFind->setText(QApplication::translate("tabimmuneslice", "    \346\237\245\346\211\276", 0));
-        label_2->setText(QApplication::translate("tabimmuneslice", "\346\211\253\346\217\217\346\227\266\346\211\223\345\215\260\346\225\260\351\207\217;", 0));
-        checkBoxDyeingType->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\347\261\273\345\236\213", 0));
-        checkBoxDyeingIndex->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\346\214\207\346\240\207", 0));
-        checkBoxSlicePerson->setText(QApplication::translate("tabimmuneslice", "\345\210\207\347\211\207\344\272\272", 0));
-        checkBoxDyeingPerson->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\344\272\272", 0));
-        checkBoxOther->setText(QApplication::translate("tabimmuneslice", "\345\205\266\344\273\226", 0));
+        labelMovie->setText(QString());
+        pushButtonRefresh->setText(QApplication::translate("tabimmuneslice", "\345\210\267\346\226\260", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("tabimmuneslice", "\347\274\226\345\217\267", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\347\261\273\345\236\213", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("tabimmuneslice", "\345\205\213\351\232\206\345\217\267", 0));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\346\214\207\346\240\207", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("tabimmuneslice", "\345\267\262\346\211\223\345\215\260", 0));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("tabimmuneslice", "\346\211\223\345\215\260\346\225\260\351\207\217", 0));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("tabimmuneslice", "\345\205\213\351\232\206\345\217\267", 0));
+        ___qtablewidgetitem4->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\347\261\273\345\236\213", 0));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("tabimmuneslice", "\345\210\207\347\211\207\346\227\245\346\234\237", 0));
+        ___qtablewidgetitem5->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\346\214\207\346\240\207", 0));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\346\227\245\346\234\237", 0));
+        ___qtablewidgetitem6->setText(QApplication::translate("tabimmuneslice", "\345\210\207\347\211\207\346\227\245\346\234\237", 0));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
         ___qtablewidgetitem7->setText(QApplication::translate("tabimmuneslice", "\345\210\207\347\211\207\344\272\272", 0));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
         ___qtablewidgetitem8->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\346\227\245\346\234\237", 0));
+        QTableWidgetItem *___qtablewidgetitem9 = tableWidget->horizontalHeaderItem(9);
+        ___qtablewidgetitem9->setText(QApplication::translate("tabimmuneslice", "\346\237\223\350\211\262\344\272\272", 0));
         toolBar->setWindowTitle(QApplication::translate("tabimmuneslice", "toolBar", 0));
     } // retranslateUi
 

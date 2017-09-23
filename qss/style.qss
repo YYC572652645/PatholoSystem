@@ -1,12 +1,12 @@
 QTableWidget::item:selected:active
 {
-background-color: #5F9EA0;
+background-color: #9C9C9C;
 color:black;
 }
 
 QTableWidget::item:selected:!active
 {
-background-color: #5F9EA0;
+background-color: #9C9C9C;
 color:black;
 }
 
@@ -72,12 +72,6 @@ QMenuBar::item:pressed
 background: #888888;
 }
 
-QToolBar
-{
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0.7, y2: 0.7,stop: 0.3 rgb(40,150,200,160),stop: 0.6 rgb(40,150,200,220),stop:1 rgb(40,150,200,255));
-}
-
-
 QListWidget::item#systemList
 {
     height:50px;
@@ -99,14 +93,37 @@ background-color: #458B74;
 
 QTreeWidget::item:selected:active
 {
-background-color: #5F9EA0;
+background-color: #9C9C9C;
 color:black;
 }
 
 QTreeWidget::item:selected:!active
 {
-background-color: #5F9EA0;
+background-color: #9C9C9C;
 color:black;
 }
 
+
+QTabBar::tab
+{
+min-width:100px;
+color: white;
+background-color:qlineargradient(x1: 0, y1: 0, x2: 0.7, y2: 0.7,stop: 0.3 rgb(40,150,200,160),stop: 0.6 rgb(40,150,200,220),stop:1 rgb(40,150,200,255));
+border: 0px solid;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding:5px;
+}
+
+QTabBar::tab:!selected
+{
+margin-top: 5px;
+}
+
+QTabBar::tab:selected
+{
+color: white;
+font-size:14px;
+font-weight:bold;
+}
 

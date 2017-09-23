@@ -1,6 +1,7 @@
 #include "tabnormalslice.h"
 #include "ui_tabnormalslice.h"
 #include "globaldef.h"
+#include "messagebox/messagedialog.h"
 
 /*******************   构造函数    ***********************/
 TabNormalSlice::TabNormalSlice(QWidget *parent) :
@@ -31,6 +32,16 @@ TabNormalSlice::TabNormalSlice(QWidget *parent) :
 TabNormalSlice::~TabNormalSlice()
 {
     delete ui;
+
+    SAFEDELETE(newNormalSlice);
+    SAFEDELETE(newMoreSlice);
+    SAFEDELETE(templateSetUp);
+    SAFEDELETE(menu);
+    SAFEDELETE(print);
+    SAFEDELETE(del);
+    SAFEDELETE(refresh);
+    SAFEDELETE(movie);
+    SAFEDELETE(timer);
 }
 
 /*******************   初始化控件    ***********************/
@@ -71,7 +82,7 @@ void TabNormalSlice::initData()
 {
     newNormalSlice = new NewNormalSlice(this);               //新建
     newMoreSlice = new NewMoreNormalSlice(this);             //批量新建
-    templateSetUp = new TemplateSetUp(THIRDWIDGET, this);   //打印模板
+    templateSetUp = new TemplateSetUp(THIRDWIDGET, this);    //打印模板
 
     connect(newNormalSlice, SIGNAL(sendSelect()), this, SLOT(receiveSelect()));
     connect(newMoreSlice, SIGNAL(sendSelect()), this, SLOT(receiveSelect()));
@@ -178,13 +189,71 @@ void TabNormalSlice::dataSelect(int type)
 /*******************   打印            ***********************/
 void TabNormalSlice::on_actionPrintLabel_triggered()
 {
+    if(NULL == ui->tableWidget->currentItem()) return;
 
+    DataNormalSlice data = NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow());
+
+    if(data.printed != "0")
+    {
+        int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("当前标签已经打印，您需要重打吗？"), GLOBALDEF::SUCCESSIMAGE, false, this);
+        if(ok == QDialog::Accepted)
+        {
+            for(int j = 0; j < data.printNum.toInt(); j ++)
+            {
+                templateSetUp->setQrCodeNumber(data.sectionCode);
+                templateSetUp->setDataNormalSlice(data);
+
+                templateSetUp->printImage(data.sectionCode);
+            }
+        }
+    }
+    else
+    {
+        for(int j = 0; j < data.printNum.toInt(); j ++)
+        {
+            templateSetUp->setQrCodeNumber(data.sectionCode);
+            templateSetUp->setDataNormalSlice(data);
+
+            templateSetUp->printImage(data.sectionCode);
+        }
+
+        data.printed = "1";
+
+        NORMALSLICEDATA->updateData(data);
+    }
+
+    dataSelect(ALLDATA);
 }
 
 /*******************   批量打印            ***********************/
 void TabNormalSlice::on_actionPrintMoreLabel_triggered()
 {
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("即将批量打印所有剩余的病理登记标签，您确认吗？"),GLOBALDEF::SUCCESSIMAGE, false, this);
 
+    if(ok == QDialog::Accepted)
+    {
+        for(int i = 0; i < NORMALSLICEDATA->getDataList().size(); i ++)
+        {
+            DataNormalSlice data = NORMALSLICEDATA->getDataList().at(i);
+
+            if(data.printed == "0")
+            {
+                for(int j = 0; j < data.printNum.toInt(); j ++)
+                {
+                    templateSetUp->setQrCodeNumber(data.sectionCode);
+                    templateSetUp->setDataNormalSlice(data);
+
+                    templateSetUp->printImage(data.sectionCode);
+                }
+
+                data.printed = "1";
+
+                NORMALSLICEDATA->updateData(data);
+            }
+        }
+
+        dataSelect(ALLDATA);
+    }
 }
 
 /*******************   删除信息            ***********************/
@@ -241,8 +310,11 @@ void TabNormalSlice::on_actionNewMore_triggered()
 /*******************   打印模板            ***********************/
 void TabNormalSlice::on_actionPrintTemplate_triggered()
 {
-    templateSetUp->setQrCodeNumber(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionCode);
-    templateSetUp->setDataNormalSlice(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()));
+    if(NULL != ui->tableWidget->currentItem())
+    {
+        templateSetUp->setQrCodeNumber(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionCode);
+        templateSetUp->setDataNormalSlice(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()));
+    }
 
     templateSetUp->showWidget();
 }
