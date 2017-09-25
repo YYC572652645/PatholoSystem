@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPixmap>
 
+/*******************   构造函数    ***********************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->initConnect();
 }
 
+/*******************   析构函数    ***********************/
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -24,6 +26,7 @@ MainWindow::~MainWindow()
     SAFEDELETE(tabSpecialSlice);
 }
 
+/*******************   接收双击消息    ***********************/
 void MainWindow::receiveNumber(QString number, QString id)
 {
     ui->tabWidgetTotal->setCurrentIndex(1);
@@ -34,24 +37,26 @@ void MainWindow::receiveNumber(QString number, QString id)
 /*******************   初始化控件    ***********************/
 void MainWindow::initControl()
 {
-    tabRegister = new TabRegister(this);        //登记
-    tabSystemSet = new TabSystemSet(this);      //系统设置
-    tabMaterial = new TabMaterial(this);        //取材
-    tabNormalSlice = new TabNormalSlice(this);  //常规切片
-    tabImmuneSlice = new TabImmuneSlice(this);  //免疫组化切片
-    tabSpecialSlice = new TabSpeciaSlice(this); //特染切片
+    tabRegister     = new TabRegister(this);     //登记
+    tabSystemSet    = new TabSystemSet(this);    //系统设置
+    tabMaterial     = new TabMaterial(this);     //取材
+    tabNormalSlice  = new TabNormalSlice(this);  //常规切片
+    tabImmuneSlice  = new TabImmuneSlice(this);  //免疫组化切片
+    tabSpecialSlice = new TabSpeciaSlice(this);  //特染切片
+    tabsSatistics = new TabsSatistics(this);     //取材统计
 
     ui->tabWidgetTotal->addTab(tabRegister,    "登记");
     ui->tabWidgetTotal->addTab(tabMaterial,    "取材");
     ui->tabWidgetTotal->addTab(tabNormalSlice, "常规切片");
     ui->tabWidgetTotal->addTab(tabImmuneSlice, "免疫组化切片");
     ui->tabWidgetTotal->addTab(tabSpecialSlice,"特染切片");
+    ui->tabWidgetTotal->addTab(tabsSatistics,  "取材统计");
     ui->tabWidgetTotal->addTab(tabSystemSet,   "系统设置");
 }
 
 /*******************   初始化信号与槽    ***********************/
 void MainWindow::initConnect()
 {
-    connect(tabRegister, SIGNAL(sendNumber(QString, QString)), this, SLOT(receiveNumber(QString, QString)));
-    connect(this, SIGNAL(sendNumber(QString, QString)), tabMaterial, SLOT(receiveNumber(QString, QString)));
+    connect(tabRegister, SIGNAL(sendNumber(QString, QString)), this,        SLOT(receiveNumber(QString, QString)));
+    connect(this,        SIGNAL(sendNumber(QString, QString)), tabMaterial, SLOT(receiveNumber(QString, QString)));
 }

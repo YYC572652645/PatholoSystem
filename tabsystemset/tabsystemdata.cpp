@@ -3,6 +3,8 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
+TabSystemData * TabSystemData::instance = NULL;
+
 /***************************构造函数***********************/
 TabSystemData::TabSystemData()
 {   
@@ -324,6 +326,101 @@ bool TabSystemData::codeTypeInsertData(QString typeAbbreviation, QString typeNam
     return success;
 }
 
+bool TabSystemData::printInsertData(PrintData data)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("insert into PrinterOption values('");
+
+    str += data.computerID   + "' , '";
+
+    str += data.computerName + "' , '";
+
+     str += data.printerModel + "' , '";
+
+    str += data.cinkModel    + "' , '";
+
+    str += data.printerIP    + "' , '";
+
+    str += data.printerPort  + "' , '";
+
+    str += data.remark       + "' ) ;";
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+bool TabSystemData::printUpdateData(PrintData data)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("update PrinterOption set ");
+
+    str += "ComputerName = '"     + data.computerName + "' , ";
+
+    str += "CinkModel = '"        + data.cinkModel    + "' , ";
+
+    str += "PrinterIP = '"        + data.printerIP    + "' , ";
+
+    str += "PrinterPort = '"      + data.printerPort  + "' , ";
+
+    str += "PrinterModel = '"     + data.printerModel + "' , ";
+
+    str += "Remark = '"           + data.remark       + "'   ";
+
+    str += "where ComputerID = '" + data.computerID   + "' ;";
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+int TabSystemData::printSelectData()
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = "select * from PrinterOption;";
+
+    if(!query.exec(str)) return -1;
+
+    int count = 0;
+
+    printList.clear();
+
+    //挨个遍历数据
+    while(query.next())
+    {
+        PrintData data;
+
+        data.computerID   = query.value(DAtABASEDEF::COMPUTERID).toString();
+        data.computerName = query.value(DAtABASEDEF::COMPUTERNAME).toString();
+        data.printerModel = query.value(DAtABASEDEF::PRINTERMODEL).toString();
+        data.cinkModel    = query.value(DAtABASEDEF::CINKMODEl).toString();
+        data.printerIP    = query.value(DAtABASEDEF::PRINTERIP).toString();
+        data.printerPort  = query.value(DAtABASEDEF::PRINTERPORT).toString();
+        data.remark       = query.value(DAtABASEDEF::PRINTREMARK).toString();
+
+        count ++;
+
+        printList.append(data);
+    }
+
+    db.close();
+
+    return count;
+}
+
 QMap<QString, QString> TabSystemData::getCodeBeginSnSetInfo() const
 {
     return codeBeginSnSetInfo;
@@ -342,5 +439,10 @@ QMap<QString, QString> TabSystemData::getStainTypeName() const
 QMap<QString, QString> TabSystemData::getStainingName() const
 {
     return StainingName;
+}
+
+QList<PrintData> TabSystemData::getPrintList() const
+{
+    return printList;
 }
 

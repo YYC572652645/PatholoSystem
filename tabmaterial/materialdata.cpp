@@ -1,5 +1,8 @@
 ﻿#include "materialdata.h"
 #include"config/qreadini.h"
+#include "databasedef.h"
+
+MaterialData * MaterialData::instance = NULL;
 
 /***************************构造函数***********************/
 MaterialData::MaterialData()
@@ -239,6 +242,51 @@ int MaterialData::selectBaoMai(QString blNumber)
     return count;
 }
 
+int MaterialData::selectStatistics(QString beginTime, QString endTime)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str;
+
+    if(beginTime.isEmpty())
+    {
+        str = QString("select strftime('%Y-%m-%d',CreateTime), count(*), sum(SamplingCount), count(*),sum(SamplingCount) from Sampling group by strftime('%Y-%m-%d',CreateTime);");
+    }
+    else
+    {
+        str = QString("select strftime('%Y-%m-%d',CreateTime), count(*), sum(SamplingCount), count(*),sum(SamplingCount) from Sampling where CreateTime >= '%1' and CreateTime <= '%2'").arg(beginTime, endTime);
+    }
+
+    bool success = query.exec(str);
+
+    if(!success) return -1;
+
+    int count = 0;
+
+    statisticsList.clear();
+
+    while(query.next())
+    {
+        DataStatistics data;
+
+        data.date           = query.value(DAtABASEDEF::DATE).toString();              //日期
+        data.materialTotal  = query.value(DAtABASEDEF::MATERIALTOTAL).toString();     //取材总例数
+        data.embeddingTotal = query.value(DAtABASEDEF::EMBEDDINGTOTAL).toString();    //包埋总数
+        data.normalMtlTotal = query.value(DAtABASEDEF::NORMALMTLTOTAL).toString();    //常规取材例数
+        data.normalEddTotal = query.value(DAtABASEDEF::NORMALEDDTOTAL).toString();    //常规包埋数
+
+        statisticsList.append(data);
+
+        count ++;
+    }
+
+    db.close();
+
+    return count;
+}
+
 /***************************更改子类数据***********************/
 bool MaterialData::updateChildData(DataChild data)
 {
@@ -357,5 +405,10 @@ QList<DataChild> MaterialData::getChildList() const
 QList<DataParent> MaterialData::getParentList() const
 {
     return parentList;
+}
+
+QList<DataStatistics> MaterialData::getStatisticsList() const
+{
+    return statisticsList;
 }
 

@@ -10,20 +10,20 @@
 #define SETCENTRALWIDGET(widget)               \
 {                                              \
     if(this->centralWidget())                  \
-{                                          \
-    this->centralWidget()->setParent(NULL);\
+    {                                          \
+        this->centralWidget()->setParent(NULL);\
     }                                          \
     this->setCentralWidget(widget);            \
-    }
+}
 
 #define SAFEDELETE(pointer) \
 {                           \
     if(pointer)             \
-{                       \
-    delete pointer;     \
+    {                       \
+        delete pointer;     \
     }                       \
     pointer = NULL;         \
-    }
+}
 
 #define LOADQSS(qssFile)                      \
 {                                             \
@@ -31,12 +31,12 @@
     QFile file(qssFile);                      \
     file.open(QFile::ReadOnly);               \
     if(file.isOpen())                         \
-{                                         \
-    strQss=QLatin1String(file.readAll()); \
-    qApp->setStyleSheet(strQss);          \
-    file.close();                         \
+    {                                         \
+        strQss=QLatin1String(file.readAll()); \
+        qApp->setStyleSheet(strQss);          \
+        file.close();                         \
     }                                         \
-    }
+}
 
 enum TYPE
 {
@@ -105,6 +105,17 @@ const static QString SAMPLEDTIME   = "取材日期";
 const static QString SAMPLEDPEOPLE = "取材人";
 }
 
+//导出取材统计信息Excel
+namespace STATISTICSINFO
+{
+const static QString DATE           = "日期";
+const static QString MATERIALTOTAL  = "取材总例数";
+const static QString EMBEDDINGTOTAL = "包埋总数";
+const static QString NORMALMTLTOTAL = "常规取材例数";
+const static QString NORMALEDDTOTAL = "常规包埋数";
+const static QString FROZENMTLTOTAL = "冰冻取材例数";
+const static QString FROZENMEDDOTAL = "冰冻包埋数";
+}
 
 
 //Map键值
@@ -132,6 +143,7 @@ const static QString FAILIMAGE    = ":/image/image/fail.png";     //失败图片
 const static QString PRINTICON    = ":/image/image/print.jpg";    //打印图片
 const static QString REFRESHICON  = ":/image/image/refresh.png";  //刷新图片
 const static QString DELETEICON   = ":/image/image/critical.png"; //删除图片
+const static QString EXCELICON    = ":/image/image/excel.png";    //Excel图片
 const static QString SYSTEMINFO   = "系统提示";                    //系统提示
 const static int     REFRESHTIME  = 3500;                         //刷新时间
 
@@ -145,6 +157,8 @@ enum DATATYPE
 enum EXTENDTYPE
 {
     REGTYPE,
+    MATERIALTYPE,
+    STATISTICSTYPE,
 };
 
 //系统设置的类型设置和指标设置

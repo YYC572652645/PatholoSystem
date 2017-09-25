@@ -198,6 +198,7 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/Qt/5.6/mingw49_32/mkspecs/wi
 		../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Widgets.prl \
 		../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Gui.prl \
 		../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Sql.prl \
+		../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Network.prl \
 		../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ -o Makefile ..\PatholoSystem.pro
 ../../../../SoftWare/Qt/5.6/mingw49_32/mkspecs/features/spec_pre.prf:
@@ -339,6 +340,7 @@ Makefile: ../PatholoSystem.pro ../../../../SoftWare/Qt/5.6/mingw49_32/mkspecs/wi
 ../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Widgets.prl:
 ../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Gui.prl:
 ../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Sql.prl:
+../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Network.prl:
 ../../../../SoftWare/Qt/5.6/mingw49_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ -o Makefile ..\PatholoSystem.pro

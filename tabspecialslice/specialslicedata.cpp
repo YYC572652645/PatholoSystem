@@ -3,6 +3,8 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
+SpecialSliceData * SpecialSliceData::instance = NULL;
+
 /***************************构造函数***********************/
 SpecialSliceData::SpecialSliceData()
 {

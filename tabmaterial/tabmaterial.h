@@ -51,6 +51,7 @@ private:
     void initConnect();                                  //初始化信号与槽
     void selectData(int type);                           //查询数据
     void createActions();                                //创建菜单
+    void extendTxt(QString fileName);                    //导出txt
     QString getIndexNumber(int type, QString blNumber);  //获取id
     void contextMenuEvent(QContextMenuEvent *event);     //鼠标响应
     int subFinger(QString number);                       //去字母

@@ -3,6 +3,8 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
+ImmuneSliceData * ImmuneSliceData::instance = NULL;
+
 /***************************构造函数***********************/
 ImmuneSliceData::ImmuneSliceData()
 {

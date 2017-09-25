@@ -27,11 +27,21 @@ typedef struct DataNormalSlice
 }DataNormalSlice;
 
 
-#define NORMALSLICEDATA Singleton<NormalSliceData>::getInstance()
+#define NORMALSLICEDATA NormalSliceData::getInstance()
 
 class NormalSliceData
 {
 public:
+    static NormalSliceData * getInstance()
+    {
+        if(NULL == instance)
+        {
+             instance = new NormalSliceData();
+        }
+
+        return instance;
+    }
+
     /************构造函数*************/
     NormalSliceData();
 
@@ -53,8 +63,9 @@ public:
     QList<DataNormalSlice> getDataList() const;
 
 private:
-    QSqlDatabase db;                 //定义数据库对象
-    QList<DataNormalSlice> dataList; //数据库数据
+    QSqlDatabase db;                   //定义数据库对象
+    static NormalSliceData * instance; //单例模式
+    QList<DataNormalSlice> dataList;   //数据库数据
 };
 
 #endif // DATABASE_H

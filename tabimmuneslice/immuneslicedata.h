@@ -10,7 +10,7 @@
 #include <QDebug>
 #include "singleton/singleton.h"
 
-#define IMMUNESLICEDATA Singleton<ImmuneSliceData>::getInstance()
+#define IMMUNESLICEDATA ImmuneSliceData::getInstance()
 
 typedef struct DataImmuneSlice
 {
@@ -31,6 +31,16 @@ typedef struct DataImmuneSlice
 class ImmuneSliceData
 {
 public:
+    static ImmuneSliceData * getInstance()
+    {
+        if(NULL == instance)
+        {
+            instance = new ImmuneSliceData();
+        }
+
+        return instance;
+    }
+
     /************构造函数***************/
     ImmuneSliceData();
 
@@ -52,8 +62,9 @@ public:
     QList<DataImmuneSlice> getDataList() const;
 
 private:
-    QSqlDatabase db;                 //定义数据库对象
-    QList<DataImmuneSlice> dataList; //数据库数据
+    QSqlDatabase db;                   //定义数据库对象
+    static ImmuneSliceData * instance; //单例模式
+    QList<DataImmuneSlice> dataList;   //数据库数据
 };
 
 #endif // DATABASE_H

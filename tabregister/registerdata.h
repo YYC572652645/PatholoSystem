@@ -13,6 +13,7 @@
 class RegisterData
 {
 public:
+
     /************构造函数*************/
     RegisterData();
 

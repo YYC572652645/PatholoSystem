@@ -1,6 +1,8 @@
 ﻿#include "paintdata.h"
 #include"config/qreadini.h"
 
+PaintData * PaintData::instance = NULL;
+
 /***************************构造函数***********************/
 PaintData::PaintData()
 {   

@@ -1,7 +1,8 @@
 #include "printset.h"
 #include "ui_printset.h"
 #include "globaldef.h"
-
+#include "databasedef.h"
+#include <QHostInfo>
 
 /****************     构造函数      **********************/
 PrintSet::PrintSet(QWidget *parent) :
@@ -11,7 +12,6 @@ PrintSet::PrintSet(QWidget *parent) :
     ui->setupUi(this);
 
     this->initControl();  //初始化控件
-
     this->initValue();    //初始化值
 }
 
@@ -24,15 +24,7 @@ PrintSet::~PrintSet()
 /****************     显示对话框    **********************/
 void PrintSet::showDialog()
 {
-    this->initValue();
-
     nowRow = 0;
-
-    if(SYSTEMDATA->getCodeTypeInfo().size() != 0)
-    {
-        ui->tableWidget->selectRow(0);
-        ui->tableWidget->setFocus();
-    }
 
     this->show();
 }
@@ -61,81 +53,69 @@ void PrintSet::initControl()
 
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
-
-    //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
 }
 
 /****************     初始化值      **********************/
 void PrintSet::initValue()
 {
-    bool success = SYSTEMDATA->codeTypeSelectData();  //查询标本类别信息
+    PrintData data;
+    QHostInfo hostInfo = QHostInfo::fromName(QHostInfo::localHostName());;
 
-    if(!success) return;
-
-    ui->tableWidget->setRowCount(SYSTEMDATA->getCodeTypeInfo().size());
-
-    for(int i = 0; i < SYSTEMDATA->getCodeTypeInfo().size(); i ++)
+    foreach(QHostAddress address,hostInfo.addresses())
     {
-        ui->tableWidget->setItem(i, 0, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeAbbr));          //前缀
-        ui->tableWidget->setItem(i, 1, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeName));          //名称
-    }
-}
-
-/****************     接收数据      **********************/
-void PrintSet::receiveData(QString typeAbbreviation, QString typeName, int type)
-{
-    if(type ==  GLOBALDEF::TYPEINSERT)
-    {
-        SYSTEMDATA->codeTypeInsertData(typeAbbreviation, typeName);
-    }
-    else if(type ==  GLOBALDEF::TYPEUPDATE)
-    {
-        if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
-
-        SYSTEMDATA->codeTypeUpdateData(typeAbbreviation, typeName, SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
+        if(address.protocol() == QAbstractSocket::IPv4Protocol)
+        {
+            data.computerID   = address.toString();
+        }
     }
 
-    this->initValue();
+    data.computerName = QHostInfo::localHostName();
+    data.cinkModel    = "USB";
+    data.printerPort  = "9100";
+    data.printerModel = printer.printerName();
+
+    SYSTEMDATA->printInsertData(data);
+
+    dataSelect();
 }
 
-/****************     新建         **********************/
-void PrintSet::on_pushButtonNew_clicked()
+/****************     查询数据  **********************/
+void PrintSet::dataSelect()
 {
-    typeSetDialog.showNewDialog();
-}
+    int dataCount = SYSTEMDATA->printSelectData();
 
-/****************     删除         **********************/
-void PrintSet::on_pushButtonDelete_clicked()
-{
-    if(nowRow < 0) return;
+    if(dataCount == GLOBALDEF::ERROR) return;
 
-    if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
+    QList<PrintData> dataList = SYSTEMDATA->getPrintList();
 
-    bool success = SYSTEMDATA->codeTypeDeleteData(SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
+    ui->tableWidget->setRowCount(dataCount);     //设置表格行数
 
-    if(!success) return;
-
-    ui->tableWidget->removeRow(nowRow); //移除删除的一行
-}
-
-/****************     更新         **********************/
-void PrintSet::on_pushButtonUpdate_clicked()
-{
-    QString codeTypeAbbr = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeAbbr;
-    QString codeTypeName = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeName;
-
-    typeSetDialog.showUpdateDialog(codeTypeAbbr, codeTypeName);
-}
-
-/****************     退出         **********************/
-void PrintSet::on_pushButtonExit_clicked()
-{
-    this->close();
+    for(int i = 0; i < dataCount; i ++)
+    {
+        ui->tableWidget->setItem(i, DAtABASEDEF::COMPUTERID,   DATA(dataList.at(i).computerID));
+        ui->tableWidget->setItem(i, DAtABASEDEF::COMPUTERNAME, DATA(dataList.at(i).computerName));
+        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERMODEL, DATA(dataList.at(i).printerModel));
+        ui->tableWidget->setItem(i, DAtABASEDEF::CINKMODEl,    DATA(dataList.at(i).cinkModel));
+        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERIP,    DATA(dataList.at(i).printerIP));
+        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERPORT,  DATA(dataList.at(i).printerPort));
+        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTREMARK,  DATA(dataList.at(i).remark));
+    }
 }
 
 /****************     点击列表控件  **********************/
 void PrintSet::on_tableWidget_clicked(const QModelIndex &index)
 {
     nowRow = index.row();
+}
+
+/****************     确定  **********************/
+void PrintSet::on_pushButtonOk_clicked()
+{
+    this->close();
+}
+
+/****************     取消  **********************/
+void PrintSet::on_pushButtonCancel_clicked()
+{
+    this->close();
 }

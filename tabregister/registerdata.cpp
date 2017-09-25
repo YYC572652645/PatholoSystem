@@ -3,7 +3,6 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
-
 /********************         构造函数       ******************/
 RegisterData::RegisterData()
 {   

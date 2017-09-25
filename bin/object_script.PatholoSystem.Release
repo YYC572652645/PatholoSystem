@@ -53,6 +53,7 @@ INPUT(
 ./release\newmorespecialslice.o
 ./release\newspecialslice.o
 ./release\specialslicedata.o
+./release\tabstatistics.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -85,4 +86,5 @@ INPUT(
 ./release\moc_newimmuneslice.o
 ./release\moc_newmorespecialslice.o
 ./release\moc_newspecialslice.o
+./release\moc_tabstatistics.o
 );

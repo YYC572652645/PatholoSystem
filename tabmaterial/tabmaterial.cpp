@@ -735,27 +735,54 @@ void TabMaterial::on_treeWidget_itemChanged(QTreeWidgetItem *item, int column)
 /*******************   导出Excel               ***********************/
 void TabMaterial::on_actionExtendExcel_triggered()
 {
-    QList<QString>itemName;
+    QString fileName = QFileDialog::getSaveFileName(NULL, "保存文件",".","Excel(*.xlsx *.xls);;txt(*.txt)");
 
-    itemName.append(MATERALINFO::SN);
-    itemName.append(MATERALINFO::PCODE);
-    itemName.append(MATERALINFO::TISSUE);
-    itemName.append(MATERALINFO::PRINTED);
-    itemName.append(MATERALINFO::PRINTTIME);
-    itemName.append(MATERALINFO::SAMPLED);
-    itemName.append(MATERALINFO::SAMPLEDTIME);
-    itemName.append(MATERALINFO::SAMPLEDPEOPLE);
+    if(fileName.contains(".txt"))
+    {
+        this->extendTxt(fileName);
+    }
+    else
+    {
+        QList<QString>itemName;
 
-    QString fileName = QFileDialog::getSaveFileName(NULL, "保存文件",".","Excel(*.xlsx *.xls)");
+        itemName.append(MATERALINFO::SN);
+        itemName.append(MATERALINFO::PCODE);
+        itemName.append(MATERALINFO::TISSUE);
+        itemName.append(MATERALINFO::PRINTED);
+        itemName.append(MATERALINFO::PRINTTIME);
+        itemName.append(MATERALINFO::SAMPLED);
+        itemName.append(MATERALINFO::SAMPLEDTIME);
+        itemName.append(MATERALINFO::SAMPLEDPEOPLE);
 
-    ExcelOperate * excelOperate = new ExcelOperate();
+        ExcelOperate * excelOperate = new ExcelOperate();
 
-    excelOperate->setExtendType(GLOBALDEF::REGTYPE);
-    excelOperate->setItemName(itemName);
-    excelOperate->setChildInfo(MATERIALDATA->getChildList());
-    excelOperate->setFileName(fileName);
+        excelOperate->setExtendType(GLOBALDEF::MATERIALTYPE);
+        excelOperate->setItemName(itemName);
+        excelOperate->setChildInfo(MATERIALDATA->getChildList());
+        excelOperate->setFileName(fileName);
 
-    connect(excelOperate, SIGNAL(finished()), excelOperate, SLOT(terminate()));
+        connect(excelOperate, SIGNAL(finished()), excelOperate, SLOT(terminate()));
 
-    excelOperate->start();
+        excelOperate->start();
+    }
+}
+
+
+/*******************   显示菜单            ***********************/
+void TabMaterial::extendTxt(QString fileName)
+{
+    QFile file(fileName);
+
+    if(!file.open(QFile::Text | QIODevice::WriteOnly)) return;
+
+    QTextStream txtOutput(&file);
+
+    QList<DataChild> childList = MATERIALDATA->getChildList();
+
+    for(int i = 0; i < childList.size(); i ++)
+    {
+        txtOutput << childList.at(i).embedCode << "$$HE" << "\n";
+    }
+
+    file.close();
 }

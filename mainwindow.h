@@ -8,6 +8,7 @@
 #include "tabnormalslice/tabnormalslice.h"
 #include "tabimmuneslice/tabimmuneslice.h"
 #include "tabspecialslice/tabspecialslice.h"
+#include "tabstatistics/tabstatistics.h"
 
 namespace Ui {
 class MainWindow;
@@ -40,6 +41,7 @@ private:
     TabNormalSlice *tabNormalSlice;  //常规切片
     TabImmuneSlice *tabImmuneSlice;  //免疫组化切片
     TabSpeciaSlice *tabSpecialSlice; //特染切片
+    TabsSatistics *tabsSatistics;    //取材统计
 };
 
 #endif // MAINWINDOW_H

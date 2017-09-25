@@ -3,6 +3,8 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
+NormalSliceData * NormalSliceData::instance = NULL;
+
 /***************************构造函数***********************/
 NormalSliceData::NormalSliceData()
 {   

@@ -17,7 +17,6 @@ namespace Ui {
 class tabnormalslice;
 }
 
-
 class TabNormalSlice : public QMainWindow
 {
     Q_OBJECT
@@ -25,7 +24,6 @@ class TabNormalSlice : public QMainWindow
 public:
     explicit TabNormalSlice(QWidget *parent = 0);
     ~TabNormalSlice();
-
 
 private slots:
     void receiveSelect();                         //接收查询信号
@@ -40,6 +38,7 @@ private slots:
     void on_pushButtonFind_clicked();
     void on_actionNewMore_triggered();
     void on_actionPrintTemplate_triggered();
+    void on_actionImportTxt_triggered();
 
 private:
     Ui::tabnormalslice *ui;

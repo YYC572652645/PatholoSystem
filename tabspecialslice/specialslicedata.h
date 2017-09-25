@@ -10,7 +10,7 @@
 #include <QDebug>
 #include "singleton/singleton.h"
 
-#define SPECIALSLICEDATA Singleton<SpecialSliceData>::getInstance()
+#define SPECIALSLICEDATA SpecialSliceData::getInstance()
 
 typedef struct DataSpecialSlice
 {
@@ -31,6 +31,16 @@ typedef struct DataSpecialSlice
 class SpecialSliceData
 {
 public:
+    static SpecialSliceData * getInstance()
+    {
+        if(NULL == instance)
+        {
+            instance = new SpecialSliceData();
+        }
+
+        return instance;
+    }
+
     /************构造函数***************/
     SpecialSliceData();
 
@@ -52,8 +62,9 @@ public:
     QList<DataSpecialSlice> getDataList() const;
 
 private:
-    QSqlDatabase db;                 //定义数据库对象
-    QList<DataSpecialSlice> dataList; //数据库数据
+    QSqlDatabase db;                    //定义数据库对象
+    static SpecialSliceData * instance; //单例模式
+    QList<DataSpecialSlice> dataList;   //数据库数据
 };
 
 #endif // DATABASE_H

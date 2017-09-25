@@ -14,9 +14,11 @@ public:
 
     void run();
 
-    void extendRegExcel();     //导出登记信息
+    void extendRegExcel();         //导出登记信息
 
-    void extendSampleExcel();  //导出取材信息
+    void extendSampleExcel();      //导出取材信息
+
+    void extendStatisticsExcel();  //导出取材统计信息
 
     void setItemName(const QList<QString> &value);
 
@@ -28,10 +30,13 @@ public:
 
     void setChildInfo(const QList<DataChild> &value);
 
+    void setStatisticsList(const QList<DataStatistics> &value);
+
 private:
     QList<QString>itemName;
     QList<RegisterInfo> registerInfo;
     QList<DataChild> childInfo;
+    QList<DataStatistics>statisticsList;
 
     int extendType;
     QString fileName;

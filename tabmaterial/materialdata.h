@@ -11,7 +11,7 @@
 #include "globaldef.h"
 #include <../singleton/singleton.h>
 
-#define MATERIALDATA Singleton<MaterialData>::getInstance()
+#define MATERIALDATA MaterialData::getInstance()
 
 typedef struct DataParent
 {
@@ -42,10 +42,29 @@ typedef struct DataChild
     QString samplingTime;     //取材时间
 }DataChild;
 
+typedef struct DataStatistics
+{
+    QString date;             //日期
+    QString materialTotal;    //取材总例数
+    QString embeddingTotal;   //包埋总数
+    QString normalMtlTotal;   //常规取材例数
+    QString normalEddTotal;   //常规包埋数
+    QString frozenMtlTotal;   //冰冻取材例数
+    QString frozenEddTotal;   //冰冻包埋数
+}DataStatistics;
 
 class MaterialData
 {
 public:
+    static MaterialData * getInstance()
+    {
+        if(NULL == instance)
+        {
+             instance = new MaterialData();
+        }
+
+        return instance;
+    }
     /************     构造函数       *************/
     MaterialData();
 
@@ -67,6 +86,9 @@ public:
     /************    查询包埋数量     *************/
     int selectBaoMai(QString blNumber);
 
+    /************    统计数据     *************/
+    int selectStatistics(QString beginTime = NULL, QString endTime = NULL);
+
     /************    更改子类数据     *************/
     bool updateChildData(DataChild data);
 
@@ -80,11 +102,15 @@ public:
 
     QList<DataParent> getParentList() const;
 
+    QList<DataStatistics> getStatisticsList() const;
+
 private:
     QSqlDatabase db;               //定义数据库对象
 
+    static MaterialData * instance;
     QList<DataParent> parentList;
     QList<DataChild>  childList;
+    QList<DataStatistics>statisticsList;
 };
 
 #endif // DATABASE_H

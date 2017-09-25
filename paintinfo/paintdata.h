@@ -10,7 +10,7 @@
 #include<QDebug>
 #include "../singleton/singleton.h"
 
-#define PAINTDATA  Singleton<PaintData>::getInstance()
+#define PAINTDATA  PaintData::getInstance()
 
 typedef struct DataPaint
 {
@@ -54,6 +54,17 @@ typedef struct DataPaint
 class PaintData
 {
 public:
+
+    static PaintData * getInstance()
+    {
+        if(NULL == instance)
+        {
+            instance = new PaintData();
+        }
+
+        return instance;
+    }
+
     /************         构造函数         *************/
     PaintData();
 
@@ -75,9 +86,9 @@ public:
     DataPaint getDataPaint() const;
 
 private:
-    QSqlDatabase db;               //定义数据库对象
-
-    DataPaint dataPaint;           //数据存取
+    QSqlDatabase db;                  //定义数据库对象
+    static PaintData * instance;      //单例模式
+    DataPaint dataPaint;              //数据存取
 };
 
 #endif // DATABASE_H

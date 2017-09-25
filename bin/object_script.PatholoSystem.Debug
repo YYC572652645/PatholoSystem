@@ -53,6 +53,7 @@ INPUT(
 ./debug\newmorespecialslice.o
 ./debug\newspecialslice.o
 ./debug\specialslicedata.o
+./debug\tabstatistics.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -85,4 +86,5 @@ INPUT(
 ./debug\moc_newimmuneslice.o
 ./debug\moc_newmorespecialslice.o
 ./debug\moc_newspecialslice.o
+./debug\moc_tabstatistics.o
 );

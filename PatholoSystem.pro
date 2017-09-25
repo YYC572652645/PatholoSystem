@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql printsupport axcontainer
+QT       += core gui sql printsupport axcontainer network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -66,7 +66,8 @@ SOURCES += main.cpp\
     tabimmuneslice/newimmuneslice.cpp \
     tabspecialslice/newmorespecialslice.cpp \
     tabspecialslice/newspecialslice.cpp \
-    tabspecialslice/specialslicedata.cpp
+    tabspecialslice/specialslicedata.cpp \
+    tabstatistics/tabstatistics.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -145,7 +146,8 @@ HEADERS  += mainwindow.h \
     tabimmuneslice/newimmuneslice.h \
     tabspecialslice/newmorespecialslice.h \
     tabspecialslice/newspecialslice.h \
-    tabspecialslice/specialslicedata.h
+    tabspecialslice/specialslicedata.h \
+    tabstatistics/tabstatistics.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -175,7 +177,8 @@ FORMS  += mainwindow.ui \
     tabimmuneslice/newimmuneslice.ui \
     tabimmuneslice/newmoreimmuneslice.ui \
     tabspecialslice/newmorespecialslice.ui \
-    tabspecialslice/newspecialslice.ui
+    tabspecialslice/newspecialslice.ui \
+    tabstatistics/tabstatistics.ui
 
 RESOURCES += \
     res.qrc

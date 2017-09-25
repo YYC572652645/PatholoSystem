@@ -2,6 +2,8 @@
 #include "ui_tabnormalslice.h"
 #include "globaldef.h"
 #include "messagebox/messagedialog.h"
+#include <QFileDialog>
+#include <QDateTime>
 
 /*******************   构造函数    ***********************/
 TabNormalSlice::TabNormalSlice(QWidget *parent) :
@@ -13,7 +15,6 @@ TabNormalSlice::TabNormalSlice(QWidget *parent) :
     this->initControl();
     this->initData();
     this->dataSelect(ALLDATA);
-
 
     //滑动至最后一行
     ui->tableWidget->scrollToBottom();
@@ -70,6 +71,7 @@ void TabNormalSlice::initControl()
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
     //设置列宽
+    ui->tableWidget->setColumnWidth(0, 200);
     ui->tableWidget->setColumnWidth(6, 160);
     ui->tableWidget->setColumnWidth(8, 160);
 
@@ -319,3 +321,47 @@ void TabNormalSlice::on_actionPrintTemplate_triggered()
     templateSetUp->showWidget();
 }
 
+/*******************   导入Txt            ***********************/
+void TabNormalSlice::on_actionImportTxt_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(NULL, "打开文件对话框", ".", "txt(*.txt)");
+
+    if(fileName.isEmpty()) return;
+
+    QFile file(fileName);
+
+    if(!file.open(QIODevice::Text | QIODevice::ReadOnly)) return;
+
+    QTextStream textRead(&file);
+
+    while(!textRead.atEnd())
+    {
+        DataNormalSlice data;
+
+        QStringList stringList = textRead.readLine().split("$$");
+
+        if(stringList.size() < 2) continue;
+
+        data.embedCode     = stringList.first();
+        data.sectionCode   = stringList.first();
+        data.printNum      = "1";
+        data.stainTypeName = "常规";
+        data.staining      = stringList.at(1);
+        data.sectionTime   = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        data.stainTime     = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        data.printed       = "0";
+
+        NORMALSLICEDATA->insertData(data);
+    }
+
+    file.close();
+
+    dataSelect(ALLDATA);
+
+    //滑动至最后一行
+    ui->tableWidget->scrollToBottom();
+
+    //设置最后一行为当前选中行
+    ui->tableWidget->selectRow(ui->tableWidget->rowCount() - 1);
+    ui->tableWidget->setFocus();
+}

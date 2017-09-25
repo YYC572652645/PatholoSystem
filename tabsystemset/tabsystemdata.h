@@ -19,7 +19,7 @@
    创建时间:2017-7-29
 **************************************************************/
 
-#define SYSTEMDATA Singleton<TabSystemData>::getInstance()
+#define SYSTEMDATA TabSystemData::getInstance()
 
 //标本类别设置信息
 typedef struct CodeTypeInfo
@@ -30,10 +30,31 @@ typedef struct CodeTypeInfo
 
 }CodeTypeInfo;
 
+typedef struct PrintData
+{
+    QString computerID;
+    QString computerName;
+    QString cinkModel;
+    QString printerIP;
+    QString printerPort;
+    QString printerModel;
+    QString remark;
+}PrintData;
+
 
 class TabSystemData
 {
 public:
+    static TabSystemData * getInstance()
+    {
+        if(NULL == instance)
+        {
+             instance = new TabSystemData();
+        }
+
+        return instance;
+    }
+
     /************     构造函数                      *************/
     TabSystemData();
 
@@ -55,7 +76,6 @@ public:
     /************     删除免疫组化染色类型数据          *************/
     bool deleteStainTypeData(QString stainTypeID);
 
-
     /************     插入免疫组化染色指标数据          *************/
     bool insertStainingData(QString typeName, int type);
 
@@ -67,7 +87,6 @@ public:
 
     /************     删除免疫组化染色指标数据          *************/
     bool deleteStainingData(QString stainingID);
-
 
     /************     起始病理号设置查询数据           *************/
     bool codeBeginSelectData();
@@ -87,18 +106,30 @@ public:
     /************     标本类别设置插入数据              *************/
     bool codeTypeInsertData(QString typeAbbreviation, QString typeName);
 
+    /************     打印机设置插入数据              *************/
+    bool printInsertData(PrintData data);
+
+    /************     打印机设置更新数据              *************/
+    bool printUpdateData(PrintData data);
+
+    /************     打印机设置查询数据              *************/
+    int printSelectData();
+
 public:
     QMap<QString, QString> getCodeBeginSnSetInfo() const;  //获取起始病理号设置信息
     QList<CodeTypeInfo> getCodeTypeInfo() const;           //获取标本类别设置信息
     QMap<QString, QString> getStainTypeName() const;       //获取免疫组化染色类型信息
     QMap<QString, QString> getStainingName() const;        //获取免疫组化染色指标信息
+    QList<PrintData> getPrintList() const;                 //打印机设置信息
 
 private:
     QSqlDatabase db;                                       //定义数据库对象
+    static TabSystemData * instance;                       //单例模式
     QMap<QString, QString>codeBeginSnSetInfo;              //起始病理号设置
     QList<CodeTypeInfo> codeTypeInfo;                      //标本类别设置信息
     QMap<QString, QString>StainTypeName;                   //免疫组化染色类型
     QMap<QString, QString>StainingName;                    //免疫组化染色指标
+    QList<PrintData> printList;                            //打印机设置信息
 
 };
 

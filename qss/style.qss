@@ -1,12 +1,12 @@
 QTableWidget::item:selected:active
 {
-background-color: #9C9C9C;
+background-color:#708069;
 color:black;
 }
 
 QTableWidget::item:selected:!active
 {
-background-color: #9C9C9C;
+background-color:#708069;
 color:black;
 }
 
