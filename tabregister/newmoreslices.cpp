@@ -119,7 +119,6 @@ void NewMoreSlices::on_pushButtonCancel_clicked()
     this->close();
 }
 
-
 /*******************   显示对话框    ***********************/
 void NewMoreSlices::showDialog()
 {
@@ -131,7 +130,7 @@ void NewMoreSlices::showDialog()
 
     for(int i = 0; i < dataInfo.size(); i ++)
     {
-        ui->comboBoxType->addItem(dataInfo[i].codeTypeAbbr +" "+ dataInfo[i].codeTypeName);
+        ui->comboBoxType->addItem(dataInfo.at(i).codeTypeAbbr +" "+ dataInfo.at(i).codeTypeName);
     }
 
     this->show();

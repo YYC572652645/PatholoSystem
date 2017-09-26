@@ -24,7 +24,7 @@ NewSlices::~NewSlices()
 /*******************   确定按钮    ***********************/
 void NewSlices::on_pushButtonOk_clicked()
 {
-    SYSTEMDATA->codeTypeSelectData();
+    SYSTEMDATA->codeBeginSelectData();
     QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
     RegisterInfo data;
@@ -134,7 +134,7 @@ void NewSlices::showDialog()
 
     for(int i = 0; i < dataInfo.size(); i ++)
     {
-        ui->comboBoxType->addItem(dataInfo[i].codeTypeAbbr +" "+ dataInfo[i].codeTypeName);
+        ui->comboBoxType->addItem(dataInfo.at(i).codeTypeAbbr +" "+ dataInfo.at(i).codeTypeName);
     }
 
     this->show();

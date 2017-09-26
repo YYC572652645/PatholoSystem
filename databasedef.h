@@ -15,12 +15,10 @@ namespace DAtABASEDEF
 //用户数据库表
 enum USER
 {
-    USERID,
-    USERNO,
     USERNAME,
     PASSWORD,
     ISADMINISTRATOR,
-    UNUSED,
+    AUTHORITY,
     REMARK,
 };
 

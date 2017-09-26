@@ -39,6 +39,7 @@ TabRegister::TabRegister(QWidget *parent) :
 /*******************       析构函数                ***********************/
 TabRegister::~TabRegister()
 {
+    delete ui;
     SAFEDELETE(newSlices);
     SAFEDELETE(newMoreSlices);
     SAFEDELETE(templateSetUp);
@@ -48,7 +49,6 @@ TabRegister::~TabRegister()
     SAFEDELETE(print);
     SAFEDELETE(del);
     SAFEDELETE(refresh);
-    delete ui;
 }
 
 /*******************       更新gif                ***********************/
@@ -122,8 +122,11 @@ void TabRegister::selectData(int type, int scrollFlage)
             ui->tableWidget->setFocus();
         }
 
-        patientInfo.setPaintId(registerData.registerInfo.last().pCode);
-        patientInfo.setRegId(registerData.registerInfo.last().sn);
+        if(registerData.registerInfo.size() != 0)
+        {
+            patientInfo.setPaintId(registerData.registerInfo.last().pCode);
+            patientInfo.setRegId(registerData.registerInfo.last().sn);
+        }
     }
 }
 
@@ -132,13 +135,10 @@ void TabRegister::initControl()
 {
     //设置单行选中
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
 
     //纵向隐藏序号
-    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -214,7 +214,11 @@ void TabRegister::on_actionNewMoreNumber_triggered()
 /*******************       打印模板                 ***********************/
 void TabRegister::on_actionPrintTemplate_triggered()
 {
-    templateSetUp->setQrCodeNumber(registerData.registerInfo.at(ui->tableWidget->currentRow()).sn);
+    if(NULL != ui->tableWidget->currentItem() && registerData.registerInfo.size() > ui->tableWidget->currentRow())
+    {
+        templateSetUp->setQrCodeNumber(registerData.registerInfo.at(ui->tableWidget->currentRow()).sn);
+    }
+
     templateSetUp->showWidget();
 }
 
@@ -224,7 +228,15 @@ void TabRegister::on_actionDeleteInfo_triggered()
     int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
     if(ok == QDialog::Accepted)
     {
-        registerData.deleteRowData(registerData.registerInfo.at(ui->tableWidget->currentRow()).id);
+        for(int i = 0; i < ui->tableWidget->selectedItems().size() ; i += 4)
+        {
+            int currentRow = ui->tableWidget->selectedItems().at(i)->row();
+
+            if(currentRow >= registerData.registerInfo.size()) continue;
+
+            registerData.deleteRowData(registerData.registerInfo.at(currentRow).id);
+        }
+
         this->selectData(ALLDATA, false);
     }
 }
@@ -232,7 +244,7 @@ void TabRegister::on_actionDeleteInfo_triggered()
 /*******************       清空数据                 ***********************/
 void TabRegister::on_actionClearInfo_triggered()
 {
-    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定清空数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
     if(ok == QDialog::Accepted)
     {
         registerData.deleteAllData();
@@ -317,28 +329,28 @@ void TabRegister::on_tableWidget_doubleClicked(const QModelIndex &currentIndex)
 /*******************       打印标签                 ***********************/
 void TabRegister::on_actionPrintLabel_triggered()
 {
-    int currentRow = ui->tableWidget->currentRow();
-    if(currentRow >= registerData.registerInfo.size()) return;
-
-    if(registerData.registerInfo.at(currentRow).printed != "0")
+    for(int i = 0; i < ui->tableWidget->selectedItems().size() ; i += 4)
     {
-        int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("当前标签已经打印，您需要重打吗？"),GLOBALDEF::SUCCESSIMAGE, false, this);
-        if(ok == QDialog::Accepted)
+        int currentRow = ui->tableWidget->selectedItems().at(i)->row();
+
+        if(currentRow >= registerData.registerInfo.size()) continue;
+
+        if(registerData.registerInfo.at(currentRow).printed != "0")
         {
             for(int i = 0; i < registerData.registerInfo.at(currentRow).printQuantity.toInt(); i ++)
             {
                 templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
             }
         }
-    }
-    else
-    {
-        for(int i = 0; i < registerData.registerInfo.at(currentRow).printQuantity.toInt(); i ++)
+        else
         {
-            templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
-        }
+            for(int i = 0; i < registerData.registerInfo.at(currentRow).printQuantity.toInt(); i ++)
+            {
+                templateSetUp->printImage(registerData.registerInfo.at(currentRow).sn);
+            }
 
-        registerData.updateBLData("1", registerData.registerInfo.at(currentRow).id);
+            registerData.updateBLData("1", registerData.registerInfo.at(currentRow).id);
+        }
     }
 
     selectData(ALLDATA, false);

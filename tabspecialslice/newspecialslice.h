@@ -16,7 +16,7 @@ public:
     explicit NewSpecialSlice(QWidget *parent = 0);
     ~NewSpecialSlice();
 
-    void showWidget();                       //显示窗口
+    void showWidget();                        //显示窗口
     void showWidget(DataSpecialSlice data);   //显示窗口
 
 signals:

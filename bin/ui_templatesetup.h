@@ -206,6 +206,28 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(pushButtonAdd->sizePolicy().hasHeightForWidth());
         pushButtonAdd->setSizePolicy(sizePolicy);
+        pushButtonAdd->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/image/image/plus.ico"), QSize(), QIcon::Normal, QIcon::Off);
         pushButtonAdd->setIcon(icon1);
@@ -217,6 +239,28 @@ public:
         pushButtonSub->setObjectName(QStringLiteral("pushButtonSub"));
         sizePolicy.setHeightForWidth(pushButtonSub->sizePolicy().hasHeightForWidth());
         pushButtonSub->setSizePolicy(sizePolicy);
+        pushButtonSub->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/image/image/delete.ico"), QSize(), QIcon::Normal, QIcon::Off);
         pushButtonSub->setIcon(icon2);

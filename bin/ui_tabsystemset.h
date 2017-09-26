@@ -55,10 +55,54 @@ public:
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setGeometry(QRect(80, 170, 100, 20));
         pushButtonOk->setMinimumSize(QSize(100, 0));
+        pushButtonOk->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
         pushButtonCancel = new QPushButton(centralwidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setGeometry(QRect(200, 170, 100, 20));
         pushButtonCancel->setMinimumSize(QSize(100, 0));
+        pushButtonCancel->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
         tabsystemset->setCentralWidget(centralwidget);
         toolBar = new QToolBar(tabsystemset);
         toolBar->setObjectName(QStringLiteral("toolBar"));

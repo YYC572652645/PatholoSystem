@@ -5,7 +5,7 @@
 
 /****************     构造函数      **********************/
 UserSet::UserSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
+    QWidget(parent),
     ui(new Ui::userset)
 {
     ui->setupUi(this);
@@ -13,6 +13,8 @@ UserSet::UserSet(QWidget *parent) :
     this->initControl();  //初始化控件
 
     this->initValue();    //初始化值
+
+    connect(&userWidget, SIGNAL(sendData(UserData)), this, SLOT(receiveData(UserData)));
 }
 
 /****************     析构函数      **********************/
@@ -24,17 +26,17 @@ UserSet::~UserSet()
 /****************     显示对话框    **********************/
 void UserSet::showDialog()
 {
-    this->initValue();
+    this->show();
+}
 
-    nowRow = 0;
-
-    if(SYSTEMDATA->getCodeTypeInfo().size() != 0)
+void UserSet::receiveData(UserData data)
+{
+    if(!SYSTEMDATA->userInsertData(data))
     {
-        ui->tableWidget->selectRow(0);
-        ui->tableWidget->setFocus();
+        SYSTEMDATA->userUpdateData(data);
     }
 
-    this->show();
+    dataSelect();
 }
 
 /****************     初始化控件    **********************/
@@ -61,71 +63,44 @@ void UserSet::initControl()
 
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
-
-    //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
 }
 
 /****************     初始化值      **********************/
 void UserSet::initValue()
 {
-    bool success = SYSTEMDATA->codeTypeSelectData();  //查询标本类别信息
-
-    if(!success) return;
-
-    ui->tableWidget->setRowCount(SYSTEMDATA->getCodeTypeInfo().size());
-
-    for(int i = 0; i < SYSTEMDATA->getCodeTypeInfo().size(); i ++)
-    {
-        ui->tableWidget->setItem(i, 0, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeAbbr));          //前缀
-        ui->tableWidget->setItem(i, 1, DATA(SYSTEMDATA->getCodeTypeInfo().at(i).codeTypeName));          //名称
-    }
-}
-
-/****************     接收数据      **********************/
-void UserSet::receiveData(QString typeAbbreviation, QString typeName, int type)
-{
-    if(type ==  GLOBALDEF::TYPEINSERT)
-    {
-        SYSTEMDATA->codeTypeInsertData(typeAbbreviation, typeName);
-    }
-    else if(type ==  GLOBALDEF::TYPEUPDATE)
-    {
-        if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
-
-        SYSTEMDATA->codeTypeUpdateData(typeAbbreviation, typeName, SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
-    }
-
-    this->initValue();
+    dataSelect();
 }
 
 /****************     新建         **********************/
 void UserSet::on_pushButtonNew_clicked()
 {
-    typeSetDialog.showNewDialog();
+    userWidget.show();
 }
 
 /****************     删除         **********************/
 void UserSet::on_pushButtonDelete_clicked()
 {
-    if(nowRow < 0) return;
+    if(NULL == ui->tableWidget->currentItem()) return;
 
-    if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
+    if(ui->tableWidget->currentRow() >= SYSTEMDATA->getUserList().size()) return;
 
-    bool success = SYSTEMDATA->codeTypeDeleteData(SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
+    if(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()).isAdministrator.toInt()) return;
+
+    bool success = SYSTEMDATA->userDeleteData(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()).userName);
 
     if(!success) return;
 
-    ui->tableWidget->removeRow(nowRow); //移除删除的一行
+    ui->tableWidget->removeRow(ui->tableWidget->currentRow());
 }
 
 /****************     更新         **********************/
 void UserSet::on_pushButtonUpdate_clicked()
 {
-    QString codeTypeAbbr = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeAbbr;
-    QString codeTypeName = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeName;
+    if(NULL == ui->tableWidget->currentItem()) return;
 
-    typeSetDialog.showUpdateDialog(codeTypeAbbr, codeTypeName);
+    if(ui->tableWidget->currentRow() >= SYSTEMDATA->getUserList().size()) return;
+
+    userWidget.showWidget(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()));
 }
 
 /****************     退出         **********************/
@@ -134,8 +109,29 @@ void UserSet::on_pushButtonExit_clicked()
     this->close();
 }
 
-/****************     点击列表控件  **********************/
-void UserSet::on_tableWidget_clicked(const QModelIndex &index)
+/****************     查询数据  **********************/
+void UserSet::dataSelect()
 {
-    nowRow = index.row();
+    int dataCount = SYSTEMDATA->userSelectData();
+
+    if(dataCount == GLOBALDEF::ERROR) return;
+
+    QList<UserData> dataList = SYSTEMDATA->getUserList();
+
+    ui->tableWidget->setRowCount(dataCount);     //设置表格行数
+
+    for(int i = 0; i < dataCount; i ++)
+    {
+        int authority = dataList.at(i).authority.toInt();
+
+        ui->tableWidget->setItem(i, 0,   DATA(dataList.at(i).userName));
+        ui->tableWidget->setItem(i, 1,   DATA(dataList.at(i).isAdministrator));
+        ui->tableWidget->setItem(i, 2,   DATA(QString::number((authority & 0X01) > 0)));
+        ui->tableWidget->setItem(i, 3,   DATA(QString::number((authority & 0X02) > 0)));
+        ui->tableWidget->setItem(i, 4,   DATA(QString::number((authority & 0X04) > 0)));
+        ui->tableWidget->setItem(i, 5,   DATA(QString::number((authority & 0X08) > 0)));
+        ui->tableWidget->setItem(i, 6,   DATA(QString::number((authority & 0X10) > 0)));
+        ui->tableWidget->setItem(i, 7,   DATA(QString::number((authority & 0X20) > 0)));
+        ui->tableWidget->setItem(i, 8,   DATA(dataList.at(i).remark));
+    }
 }

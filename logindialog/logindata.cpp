@@ -64,22 +64,20 @@ bool LoginData::selectData(QString userName, QString passWord)
 
     if(!query.exec(str)) return false;
 
-    int Count = 0;
-    while(query.next())        //挨个遍历数据
+    int count = 0;
+    while(query.next())
     {
-        userInfo.userId = query.value(DAtABASEDEF::USERID).toString();
-        userInfo.userNo = query.value(DAtABASEDEF::USERNO).toString();
-        userInfo.userName = query.value(DAtABASEDEF::USERNAME).toString();
-        userInfo.passWord = query.value(DAtABASEDEF::PASSWORD).toString();
+        userInfo.userName        = query.value(DAtABASEDEF::USERNAME).toString();
+        userInfo.passWord        = query.value(DAtABASEDEF::PASSWORD).toString();
         userInfo.isAdministrator = query.value(DAtABASEDEF::ISADMINISTRATOR).toString();
-        userInfo.unused = query.value(DAtABASEDEF::UNUSED).toString();
-        userInfo.remark = query.value(DAtABASEDEF::REMARK).toString();
-        Count ++;
+        userInfo.authority       = query.value(DAtABASEDEF::AUTHORITY).toString();
+        userInfo.remark          = query.value(DAtABASEDEF::REMARK).toString();
+        count ++;
     }
 
     db.close();
 
-    if(userInfo.unused == GLOBALDEF::UNUSED)
+    if(userInfo.isAdministrator == GLOBALDEF::UNUSED)
     {
         return true;
     }
@@ -122,4 +120,10 @@ bool LoginData::deleteData()
 
     return success;
 }
+
+UserInfo LoginData::getUserInfo() const
+{
+    return userInfo;
+}
+
 

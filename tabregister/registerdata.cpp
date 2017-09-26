@@ -184,10 +184,8 @@ bool RegisterData::updateBLData(QString printed, QString id)
 /********************         删除数据       ******************/
 bool RegisterData::deleteAllData()
 {
-    if(!db.isOpen())
-    {
-        db.open();
-    }
+    if(!db.isOpen()) db.open();
+
     QSqlQuery query;
 
     QString str = QString("delete from Reg");

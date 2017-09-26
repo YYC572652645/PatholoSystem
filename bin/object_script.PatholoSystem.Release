@@ -5,7 +5,6 @@ INPUT(
 ./release\qreadini.o
 ./release\logindata.o
 ./release\messagedialog.o
-./release\singleton.o
 ./release\tabregister.o
 ./release\registerdata.o
 ./release\newslices.o
@@ -54,6 +53,7 @@ INPUT(
 ./release\newspecialslice.o
 ./release\specialslicedata.o
 ./release\tabstatistics.o
+./release\userwidget.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -87,4 +87,5 @@ INPUT(
 ./release\moc_newmorespecialslice.o
 ./release\moc_newspecialslice.o
 ./release\moc_tabstatistics.o
+./release\moc_userwidget.o
 );

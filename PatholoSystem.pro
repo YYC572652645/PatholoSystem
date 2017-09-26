@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     config/qreadini.cpp \
     logindialog/logindata.cpp \
     messagebox/messagedialog.cpp \
-    singleton/singleton.cpp \
     tabregister/tabregister.cpp \
     tabregister/registerdata.cpp \
     tabregister/newslices.cpp \
@@ -67,7 +66,8 @@ SOURCES += main.cpp\
     tabspecialslice/newmorespecialslice.cpp \
     tabspecialslice/newspecialslice.cpp \
     tabspecialslice/specialslicedata.cpp \
-    tabstatistics/tabstatistics.cpp
+    tabstatistics/tabstatistics.cpp \
+    tabsystemset/otherwidget/userwidget.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -75,7 +75,6 @@ HEADERS  += mainwindow.h \
     logindialog/logindata.h \
     databasedef.h \
     messagebox/messagedialog.h \
-    singleton/singleton.h \
     globaldef.h \
     tabregister/tabregister.h \
     tabregister/registerdata.h \
@@ -147,7 +146,8 @@ HEADERS  += mainwindow.h \
     tabspecialslice/newmorespecialslice.h \
     tabspecialslice/newspecialslice.h \
     tabspecialslice/specialslicedata.h \
-    tabstatistics/tabstatistics.h
+    tabstatistics/tabstatistics.h \
+    tabsystemset/otherwidget/userwidget.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -178,7 +178,8 @@ FORMS  += mainwindow.ui \
     tabimmuneslice/newmoreimmuneslice.ui \
     tabspecialslice/newmorespecialslice.ui \
     tabspecialslice/newspecialslice.ui \
-    tabstatistics/tabstatistics.ui
+    tabstatistics/tabstatistics.ui \
+    tabsystemset/otherwidget/userwidget.ui
 
 RESOURCES += \
     res.qrc

@@ -68,7 +68,7 @@ void CodeRole::changeBingLiCodeRule()
         str += ui->lineEditSpin->text();
     }
 
-    for(int i = 0; i < ui->spinBoxLength->value(); i ++)
+    for(int i = 0; i < ui->spinBoxLength->value() - 1; i ++)
     {
         str += "0";
     }

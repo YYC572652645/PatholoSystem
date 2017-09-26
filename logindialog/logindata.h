@@ -20,12 +20,10 @@
 
 typedef struct UserInfo
 {
-    QString userId;
-    QString userNo;
     QString userName;
     QString passWord;
     QString isAdministrator;
-    QString unused;
+    QString authority;
     QString remark;
 
 }UserInfo;
@@ -56,6 +54,8 @@ public:
 
     /************删除数据*************/
     bool deleteData();
+
+    UserInfo getUserInfo() const;
 
 private:
     QSqlDatabase db;               //定义数据库对象

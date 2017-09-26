@@ -102,7 +102,7 @@ public:
     {
         if (coderole->objectName().isEmpty())
             coderole->setObjectName(QStringLiteral("coderole"));
-        coderole->resize(1062, 639);
+        coderole->resize(1062, 643);
         verticalLayout_8 = new QVBoxLayout(coderole);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         horizontalLayout_12 = new QHBoxLayout();
@@ -222,6 +222,7 @@ public:
 
         spinBoxLength = new QSpinBox(groupBoxBingLi);
         spinBoxLength->setObjectName(QStringLiteral("spinBoxLength"));
+        spinBoxLength->setMinimum(1);
 
         horizontalLayout_4->addWidget(spinBoxLength);
 
@@ -248,6 +249,7 @@ public:
 
         lineEditBingLiCodeDemo = new QLineEdit(groupBoxBingLi);
         lineEditBingLiCodeDemo->setObjectName(QStringLiteral("lineEditBingLiCodeDemo"));
+        lineEditBingLiCodeDemo->setEnabled(false);
 
         horizontalLayout_7->addWidget(lineEditBingLiCodeDemo);
 
@@ -336,6 +338,7 @@ public:
 
         lineEditQuCaiCodeDemo = new QLineEdit(groupBoxQuCai);
         lineEditQuCaiCodeDemo->setObjectName(QStringLiteral("lineEditQuCaiCodeDemo"));
+        lineEditQuCaiCodeDemo->setEnabled(false);
 
         horizontalLayout_10->addWidget(lineEditQuCaiCodeDemo);
 
@@ -372,6 +375,28 @@ public:
         pushButtonOk = new QPushButton(coderole);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
         pushButtonOk->setMinimumSize(QSize(150, 0));
+        pushButtonOk->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout_11->addWidget(pushButtonOk);
 
@@ -382,6 +407,28 @@ public:
         pushButtonCancel = new QPushButton(coderole);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
         pushButtonCancel->setMinimumSize(QSize(150, 0));
+        pushButtonCancel->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout_11->addWidget(pushButtonCancel);
 

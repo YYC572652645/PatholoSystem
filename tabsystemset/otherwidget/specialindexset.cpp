@@ -10,8 +10,9 @@ SpeciaIndexSet::SpeciaIndexSet(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->initControl();  //初始化控件
-    this->initValue();    //初始化值
+    this->initControl();                      //初始化控件
+    this->initValue();                        //初始化值
+
     typeSetDialog.setInfo();
 }
 
@@ -79,7 +80,7 @@ void SpeciaIndexSet::initValue()
 
     for(int i = 0; i < mapData.keys().size(); i ++)
     {
-        ui->tableWidget->setItem(i, 0, DATA(mapData[mapData.keys().at(i)]));          //名称
+        ui->tableWidget->setItem(i, 0, DATA(mapData.value(mapData.keys().at(i))));          //名称
     }
 }
 
@@ -125,7 +126,7 @@ void SpeciaIndexSet::on_pushButtonUpdate_clicked()
 {
     QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
 
-    QString codeTypeName = mapData[mapData.keys().at(nowRow)];
+    QString codeTypeName = mapData.value(mapData.keys().at(nowRow));
 
     typeSetDialog.showUpdateDialog(NULL, codeTypeName);
 }

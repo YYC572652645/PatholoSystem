@@ -14,13 +14,13 @@ MessageDialog::MessageDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle(tr("系统提示"));
     this->resize(320, 160);                       //重定义界面大小
-    int width=this->width();                      //获取界面宽度
-    int height=this->height();                    //获取界面高度
-    mousePress=false;                             //初始化为未按下鼠标左键
+    int width = this->width();                      //获取界面宽度
+    int height = this->height();                    //获取界面高度
+    mousePress = false;                             //初始化为未按下鼠标左键
     this->setWindowFlags(Qt::FramelessWindowHint);//标题框隐藏
 
     //加载图标
-    QPixmap closePix=style()->standardPixmap(QStyle::SP_TitleBarCloseButton);
+    QPixmap closePix = style()->standardPixmap(QStyle::SP_TitleBarCloseButton);
     closeButton=new QToolButton(this);
     closeButton->setIcon(closePix);
     closeButton->setGeometry(width-30,0,30,30);
@@ -55,15 +55,15 @@ MessageDialog::MessageDialog(QWidget *parent) :
     cancelButton->setObjectName(QString::fromUtf8("PushButtonCancel"));
 
     //确定按钮
-    okButton=new QPushButton(this);
+    okButton = new QPushButton(this);
     okButton->resize(100,25);
     okButton->move(width-okButton->width()-cancelButton->width()-20,height-35);
     okButton->setObjectName(QString::fromUtf8("PushButtonOK"));
 
     //连接信号与槽
-    connect(okButton,SIGNAL(clicked(bool)),this,SLOT(okOperate()));
-    connect(cancelButton,SIGNAL(clicked(bool)),this,SLOT(cancelOperate()));
-    connect(closeButton,SIGNAL(clicked(bool)),this,SLOT(close()));      //关闭按钮
+    connect(okButton,     SIGNAL(clicked(bool)), this, SLOT(okOperate()));
+    connect(cancelButton, SIGNAL(clicked(bool)), this, SLOT(cancelOperate()));
+    connect(closeButton,  SIGNAL(clicked(bool)), this, SLOT(close()));
 }
 
 
@@ -72,7 +72,6 @@ MessageDialog::~MessageDialog()
 {
     delete ui;
 }
-
 
 /****************************************设置函数*******************************/
 int MessageDialog::setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget * parent)

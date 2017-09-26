@@ -8,8 +8,16 @@
 #include<QFile>
 #include<QIODevice>
 #include<QDebug>
-#include "singleton/singleton.h"
 
+typedef struct UserData
+{
+    QString userName;
+    QString passWord;
+    QString isAdministrator;
+    QString authority;
+    QString remark;
+
+}UserData;
 
 /***************************************************************
    功能:登录框
@@ -112,8 +120,23 @@ public:
     /************     打印机设置更新数据              *************/
     bool printUpdateData(PrintData data);
 
+    /************     打印机设置删除数据              *************/
+    bool printDeleteData(QString id, QString printerName);
+
     /************     打印机设置查询数据              *************/
     int printSelectData();
+
+    /************     用户设置插入数据                *************/
+    bool userInsertData(UserData data);
+
+    /************     用户设置更新数据                *************/
+    bool userUpdateData(UserData data);
+
+    /************     用户设置删除数据                *************/
+    bool userDeleteData(QString userName);
+
+    /************     用户设置查询数据                *************/
+    int userSelectData();
 
 public:
     QMap<QString, QString> getCodeBeginSnSetInfo() const;  //获取起始病理号设置信息
@@ -121,6 +144,7 @@ public:
     QMap<QString, QString> getStainTypeName() const;       //获取免疫组化染色类型信息
     QMap<QString, QString> getStainingName() const;        //获取免疫组化染色指标信息
     QList<PrintData> getPrintList() const;                 //打印机设置信息
+    QList<UserData> getUserList() const;                   //用户信息
 
 private:
     QSqlDatabase db;                                       //定义数据库对象
@@ -130,6 +154,7 @@ private:
     QMap<QString, QString>StainTypeName;                   //免疫组化染色类型
     QMap<QString, QString>StainingName;                    //免疫组化染色指标
     QList<PrintData> printList;                            //打印机设置信息
+    QList<UserData>  userList;                             //用户信息
 
 };
 

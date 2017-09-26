@@ -23,11 +23,11 @@ PatientInfo::~PatientInfo()
 /********************       初始化控件      ***********************/
 void PatientInfo::initControl()
 {
-    autoSaveBox = new QCheckBox();
+    autoSaveBox = new QCheckBox(this);
     autoSaveBox->setText("自动保存");
     autoSaveBox->setChecked(false);
 
-    labelInfo = new QLabel();
+    labelInfo = new QLabel(this);
     labelInfo->setText("  患者信息   ");
 
     ui->toolBar->addWidget(autoSaveBox);

@@ -14,13 +14,11 @@ TabSystemSet::TabSystemSet(QWidget *parent) :
     this->initControl();
 }
 
-
 /***************************               析构函数                 ***********************/
 TabSystemSet::~TabSystemSet()
 {
     delete ui;
 }
-
 
 /***************************               初始化控件                 ***********************/
 void TabSystemSet::initControl()
@@ -86,7 +84,7 @@ void TabSystemSet::showCentralwidget()
     SYSTEMDATA->codeBeginSelectData();
     QMap<QString, QString> mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
-    ui->spinBox->setValue(mapData["PCodeBeginSn"].toInt());
+    ui->spinBox->setValue(mapData.value("PCodeBeginSn").toInt());
 
     SETCENTRALWIDGET(ui->centralwidget);
 

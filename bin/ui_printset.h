@@ -33,11 +33,9 @@ public:
     QLabel *label;
     QTableWidget *tableWidget;
     QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButtonOk;
-    QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButtonDelete;
     QPushButton *pushButtonCancel;
-    QSpacerItem *horizontalSpacer_4;
     QSpacerItem *horizontalSpacer;
 
     void setupUi(QWidget *printset)
@@ -85,27 +83,86 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
         pushButtonOk = new QPushButton(printset);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
+        pushButtonOk->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout->addWidget(pushButtonOk);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        pushButtonDelete = new QPushButton(printset);
+        pushButtonDelete->setObjectName(QStringLiteral("pushButtonDelete"));
+        pushButtonDelete->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
-        horizontalLayout->addItem(horizontalSpacer_3);
+        horizontalLayout->addWidget(pushButtonDelete);
 
         pushButtonCancel = new QPushButton(printset);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
+        pushButtonCancel->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout->addWidget(pushButtonCancel);
-
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_4);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -149,6 +206,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget->verticalHeaderItem(1);
         ___qtablewidgetitem8->setText(QApplication::translate("printset", "\346\226\260\345\273\272\350\241\214", 0));
         pushButtonOk->setText(QApplication::translate("printset", "\347\241\256\345\256\232", 0));
+        pushButtonDelete->setText(QApplication::translate("printset", "\345\210\240\351\231\244", 0));
         pushButtonCancel->setText(QApplication::translate("printset", "\345\217\226\346\266\210", 0));
     } // retranslateUi
 

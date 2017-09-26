@@ -34,7 +34,6 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
 
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 
-
     int count = TEMPLATEDATA->selectData(widgetType);
 
     for(int i = 0; i < count; i ++)
@@ -44,16 +43,20 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
         ui->listWidgetTemplate->addItem(TEMPLATEDATA->getDataTemplate().at(i).templateName);
 
         templateName = TEMPLATEDATA->getDataTemplate().at(i).templateName;
+    }
 
+    int rowCount = ui->listWidgetTemplate->count();
+
+    if(rowCount != 0)
+    {
         //选中最后一行
-        QListWidgetItem *item = ui->listWidgetTemplate->item(ui->listWidgetTemplate->count() - 1);
-        item->setSelected(true);
+        ui->listWidgetTemplate->item(rowCount - 1)->setSelected(true);
 
         //滑动至最后一行
         ui->listWidgetTemplate->scrollToBottom();
 
         //设置当前行为最后一行
-        ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
+        ui->listWidgetTemplate->setCurrentRow(rowCount - 1);
     }
 }
 
@@ -89,7 +92,7 @@ void TemplateSetUp::showWidget()
 void TemplateSetUp::on_pushButtonAdd_clicked()
 {
     bool ok;
-    QString text = QInputDialog::getText(this, "系统提示", "请输入模板名称", QLineEdit::Normal, QString::null, &ok);
+    QString text = QInputDialog::getText(this, "系统提示", "请输入模板名称", QLineEdit::Normal, QString::null, &ok, Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 
     bool flage = false;
 
@@ -112,17 +115,19 @@ void TemplateSetUp::on_pushButtonAdd_clicked()
 
     templateName = text;
 
-    ui->widgetControl->show();
+    int rowCount = ui->listWidgetTemplate->count();
 
-    //选中最后一行
-    QListWidgetItem *item = ui->listWidgetTemplate->item(ui->listWidgetTemplate->count() - 1);
-    item->setSelected(true);
+    if(rowCount != 0)
+    {
+        //选中最后一行
+        ui->listWidgetTemplate->item(rowCount - 1)->setSelected(true);
 
-    //滑动至最后一行
-    ui->listWidgetTemplate->scrollToBottom();
+        //滑动至最后一行
+        ui->listWidgetTemplate->scrollToBottom();
 
-    //设置当前行为最后一行
-    ui->listWidgetTemplate->setCurrentRow(ui->listWidgetTemplate->count() - 1);
+        //设置当前行为最后一行
+        ui->listWidgetTemplate->setCurrentRow(rowCount - 1);
+    }
 }
 
 /*********************     删除模板             **************************/
@@ -166,7 +171,7 @@ void TemplateSetUp::initControl()
     ui->tableWidget->verticalHeader()->setVisible(false);
 
     //设置列表控件等宽显示
-    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
+    QHeaderView *headerView = ui->tableWidget->horizontalHeader();
     headerView->setSectionResizeMode(QHeaderView::Stretch);
 
     //设置列表控件等高显示

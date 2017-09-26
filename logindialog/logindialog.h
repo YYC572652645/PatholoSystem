@@ -17,6 +17,10 @@ public:
     explicit LoginDialog(QWidget *parent = 0);
     ~LoginDialog();
 
+    int getAuthority() const;
+
+    int getAdminster() const;
+
 private slots:
     void on_pushButtonOk_clicked();
 
@@ -26,6 +30,8 @@ private:
     Ui::logindialog *ui;
 
     LoginData loginData;
+    int authority;
+    int adminster;
 };
 
 #endif // LOGINDIALOG_H

@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
 
     if(login.exec() == QDialog::Accepted)
     {
-        w.showMaximized();
+        w.setAuthority(login.getAuthority());
+        w.setAdminster(login.getAdminster());
+        w.showMainWindow();
         return a.exec();
     }
 

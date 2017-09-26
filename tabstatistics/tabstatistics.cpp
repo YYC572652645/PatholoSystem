@@ -31,9 +31,7 @@ void TabsSatistics::initControl()
     ui->tableWidget->setAlternatingRowColors(true);
 
     //纵向隐藏序号
-    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);

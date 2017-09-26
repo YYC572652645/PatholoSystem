@@ -79,7 +79,7 @@ void SpeciaTypeSet::initValue()
 
     for(int i = 0; i < mapData.keys().size(); i ++)
     {
-        ui->tableWidget->setItem(i, 0, DATA(mapData[mapData.keys().at(i)]));          //名称
+        ui->tableWidget->setItem(i, 0, DATA(mapData.value(mapData.keys().at(i))));          //名称
     }
 }
 
@@ -125,7 +125,7 @@ void SpeciaTypeSet::on_pushButtonUpdate_clicked()
 {
     QMap<QString , QString> mapData =  SYSTEMDATA->getStainTypeName();
 
-    QString codeTypeName = mapData[mapData.keys().at(nowRow)];
+    QString codeTypeName = mapData.value(mapData.keys().at(nowRow));
 
     typeSetDialog.showUpdateDialog(NULL, codeTypeName);
 }

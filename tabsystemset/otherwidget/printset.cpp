@@ -6,7 +6,7 @@
 
 /****************     构造函数      **********************/
 PrintSet::PrintSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
+    QWidget(parent),
     ui(new Ui::printset)
 {
     ui->setupUi(this);
@@ -24,7 +24,7 @@ PrintSet::~PrintSet()
 /****************     显示对话框    **********************/
 void PrintSet::showDialog()
 {
-    nowRow = 0;
+    initValue();
 
     this->show();
 }
@@ -58,23 +58,29 @@ void PrintSet::initControl()
 /****************     初始化值      **********************/
 void PrintSet::initValue()
 {
-    PrintData data;
-    QHostInfo hostInfo = QHostInfo::fromName(QHostInfo::localHostName());;
+    QStringList printList = QPrinterInfo::availablePrinterNames();
 
-    foreach(QHostAddress address,hostInfo.addresses())
+    for(int i = 0; i <printList.size(); i ++)
     {
-        if(address.protocol() == QAbstractSocket::IPv4Protocol)
+        PrintData data;
+
+        QHostInfo hostInfo = QHostInfo::fromName(QHostInfo::localHostName());;
+
+        foreach(QHostAddress address,hostInfo.addresses())
         {
-            data.computerID   = address.toString();
+            if(address.protocol() == QAbstractSocket::IPv4Protocol)
+            {
+                data.computerID = address.toString();
+            }
         }
+
+        data.computerName = QHostInfo::localHostName();
+        data.cinkModel    = "USB";
+        data.printerPort  = "9100";
+        data.printerModel = printList.at(i);
+
+        SYSTEMDATA->printInsertData(data);
     }
-
-    data.computerName = QHostInfo::localHostName();
-    data.cinkModel    = "USB";
-    data.printerPort  = "9100";
-    data.printerModel = printer.printerName();
-
-    SYSTEMDATA->printInsertData(data);
 
     dataSelect();
 }
@@ -102,15 +108,24 @@ void PrintSet::dataSelect()
     }
 }
 
-/****************     点击列表控件  **********************/
-void PrintSet::on_tableWidget_clicked(const QModelIndex &index)
-{
-    nowRow = index.row();
-}
-
 /****************     确定  **********************/
 void PrintSet::on_pushButtonOk_clicked()
 {
+    for(int row = 0; row < ui->tableWidget->rowCount(); row ++)
+    {
+        PrintData data;
+
+        data.computerID   = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERID)->text();
+        data.computerName = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERNAME)->text();
+        data.cinkModel    = ui->tableWidget->item(row, DAtABASEDEF::PRINTERMODEL)->text();
+        data.printerIP    = ui->tableWidget->item(row, DAtABASEDEF::CINKMODEl)->text();
+        data.printerPort  = ui->tableWidget->item(row, DAtABASEDEF::PRINTERIP)->text();
+        data.printerModel = ui->tableWidget->item(row, DAtABASEDEF::PRINTERPORT)->text();
+        data.remark       = ui->tableWidget->item(row, DAtABASEDEF::PRINTREMARK)->text();
+
+        SYSTEMDATA->printUpdateData(data);
+    }
+
     this->close();
 }
 
@@ -118,4 +133,28 @@ void PrintSet::on_pushButtonOk_clicked()
 void PrintSet::on_pushButtonCancel_clicked()
 {
     this->close();
+}
+
+/****************     双击列表  **********************/
+void PrintSet::on_tableWidget_doubleClicked(const QModelIndex &index)
+{
+    if(index.column() == DAtABASEDEF::PRINTERIP || index.column() == DAtABASEDEF::PRINTERPORT || index.column() == DAtABASEDEF::PRINTREMARK)
+    {
+        ui->tableWidget->editItem(ui->tableWidget->currentItem());
+    }
+}
+
+/****************     删除  **********************/
+void PrintSet::on_pushButtonDelete_clicked()
+{
+    if(NULL == ui->tableWidget->currentItem()) return;
+
+    int row = ui->tableWidget->currentRow();
+
+    QString computerId  = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERID)->text();
+    QString printerName = ui->tableWidget->item(row, DAtABASEDEF::PRINTERMODEL)->text();
+
+    SYSTEMDATA->printDeleteData(computerId, printerName);
+
+    dataSelect();
 }

@@ -31,7 +31,11 @@ void LoginDialog::on_pushButtonOk_clicked()
 
     if(loginData.selectData(userName, passWord))
     {
+        authority = loginData.getUserInfo().authority.toInt();
+        adminster = loginData.getUserInfo().isAdministrator.toInt();
+
         accept();
+
         INICONFIG->writeIni(userName, passWord);
     }
     else
@@ -43,4 +47,14 @@ void LoginDialog::on_pushButtonOk_clicked()
 void LoginDialog::on_pushButtonCancel_clicked()
 {
     this->close();
+}
+
+int LoginDialog::getAdminster() const
+{
+    return adminster;
+}
+
+int LoginDialog::getAuthority() const
+{
+    return authority;
 }

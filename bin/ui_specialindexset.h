@@ -34,8 +34,8 @@ public:
     QTableWidget *tableWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButtonNew;
-    QPushButton *pushButtonDelete;
     QPushButton *pushButtonUpdate;
+    QPushButton *pushButtonDelete;
     QPushButton *pushButtonExit;
     QSpacerItem *horizontalSpacer;
 
@@ -74,21 +74,109 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButtonNew = new QPushButton(specialindexset);
         pushButtonNew->setObjectName(QStringLiteral("pushButtonNew"));
+        pushButtonNew->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout->addWidget(pushButtonNew);
 
-        pushButtonDelete = new QPushButton(specialindexset);
-        pushButtonDelete->setObjectName(QStringLiteral("pushButtonDelete"));
-
-        horizontalLayout->addWidget(pushButtonDelete);
-
         pushButtonUpdate = new QPushButton(specialindexset);
         pushButtonUpdate->setObjectName(QStringLiteral("pushButtonUpdate"));
+        pushButtonUpdate->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout->addWidget(pushButtonUpdate);
 
+        pushButtonDelete = new QPushButton(specialindexset);
+        pushButtonDelete->setObjectName(QStringLiteral("pushButtonDelete"));
+        pushButtonDelete->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonDelete);
+
         pushButtonExit = new QPushButton(specialindexset);
         pushButtonExit->setObjectName(QStringLiteral("pushButtonExit"));
+        pushButtonExit->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout->addWidget(pushButtonExit);
 
@@ -122,8 +210,8 @@ public:
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->verticalHeaderItem(1);
         ___qtablewidgetitem2->setText(QApplication::translate("specialindexset", "\346\226\260\345\273\272\350\241\214", 0));
         pushButtonNew->setText(QApplication::translate("specialindexset", "\346\226\260\345\273\272", 0));
-        pushButtonDelete->setText(QApplication::translate("specialindexset", "\345\210\240\351\231\244", 0));
         pushButtonUpdate->setText(QApplication::translate("specialindexset", "\344\277\256\346\224\271", 0));
+        pushButtonDelete->setText(QApplication::translate("specialindexset", "\345\210\240\351\231\244", 0));
         pushButtonExit->setText(QApplication::translate("specialindexset", "\351\200\200\345\207\272", 0));
     } // retranslateUi
 

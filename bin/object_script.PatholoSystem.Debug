@@ -5,7 +5,6 @@ INPUT(
 ./debug\qreadini.o
 ./debug\logindata.o
 ./debug\messagedialog.o
-./debug\singleton.o
 ./debug\tabregister.o
 ./debug\registerdata.o
 ./debug\newslices.o
@@ -54,6 +53,7 @@ INPUT(
 ./debug\newspecialslice.o
 ./debug\specialslicedata.o
 ./debug\tabstatistics.o
+./debug\userwidget.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -87,4 +87,5 @@ INPUT(
 ./debug\moc_newmorespecialslice.o
 ./debug\moc_newspecialslice.o
 ./debug\moc_tabstatistics.o
+./debug\moc_userwidget.o
 );

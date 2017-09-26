@@ -9,7 +9,6 @@
 #include<QIODevice>
 #include<QDebug>
 #include "globaldef.h"
-#include <../singleton/singleton.h>
 
 #define MATERIALDATA MaterialData::getInstance()
 
@@ -99,18 +98,15 @@ public:
     bool deleteData(int type, QString id = NULL, QString embedCode = NULL);
 
     QList<DataChild> getChildList() const;
-
     QList<DataParent> getParentList() const;
-
     QList<DataStatistics> getStatisticsList() const;
 
 private:
-    QSqlDatabase db;               //定义数据库对象
-
-    static MaterialData * instance;
+    QSqlDatabase db;
+    static MaterialData *instance;
     QList<DataParent> parentList;
     QList<DataChild>  childList;
-    QList<DataStatistics>statisticsList;
+    QList<DataStatistics> statisticsList;
 };
 
 #endif // DATABASE_H

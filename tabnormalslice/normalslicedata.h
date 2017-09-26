@@ -8,7 +8,6 @@
 #include <QFile>
 #include <QIODevice>
 #include <QDebug>
-#include "singleton/singleton.h"
 
 typedef struct DataNormalSlice
 {

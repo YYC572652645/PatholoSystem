@@ -2,7 +2,6 @@
 #define EXCELOPERATE_H
 #include <QAxObject>
 #include "globaldef.h"
-#include "singleton/singleton.h"
 #include "tabmaterial/materialdata.h"
 #include <QThread>
 #include <QMutex>

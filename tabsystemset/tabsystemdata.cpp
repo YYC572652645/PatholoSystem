@@ -326,6 +326,7 @@ bool TabSystemData::codeTypeInsertData(QString typeAbbreviation, QString typeNam
     return success;
 }
 
+/************     打印机设置插入数据              *************/
 bool TabSystemData::printInsertData(PrintData data)
 {
     if(!db.isOpen()) db.open();
@@ -338,7 +339,7 @@ bool TabSystemData::printInsertData(PrintData data)
 
     str += data.computerName + "' , '";
 
-     str += data.printerModel + "' , '";
+    str += data.printerModel + "' , '";
 
     str += data.cinkModel    + "' , '";
 
@@ -355,6 +356,7 @@ bool TabSystemData::printInsertData(PrintData data)
     return success;
 }
 
+/************     打印机设置更新数据              *************/
 bool TabSystemData::printUpdateData(PrintData data)
 {
     if(!db.isOpen()) db.open();
@@ -384,6 +386,23 @@ bool TabSystemData::printUpdateData(PrintData data)
     return success;
 }
 
+/************     打印机设置删除数据              *************/
+bool TabSystemData::printDeleteData(QString id, QString printerName)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("delete from PrinterOption where ComputerID = '%1' and PrinterModel = '%2';").arg(id, printerName);
+
+    if(!query.exec(str)) return false;
+
+    db.close();
+
+    return true;
+}
+
+/************     打印机设置查询数据              *************/
 int TabSystemData::printSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -421,6 +440,108 @@ int TabSystemData::printSelectData()
     return count;
 }
 
+/************     用户设置插入数据                *************/
+bool TabSystemData::userInsertData(UserData data)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("insert into User values ('");
+
+    str += data.userName        + "' , '";
+
+    str += data.passWord        + "' , '";
+
+    str += data.isAdministrator + "' , '";
+
+    str += data.authority       + "' , '";
+
+    str += data.remark          + "' ) ;";
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+/************     用户设置更新数据                *************/
+bool TabSystemData::userUpdateData(UserData data)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("update User set ");
+
+    str += "Password = '"         + data.passWord         + "' , ";
+
+    str += "IsAdministrator = '"  + data.isAdministrator  + "' , ";
+
+    str += "Authority = '"        + data.authority        + "' , ";
+
+    str += "Remark = '"           + data.remark           + "'   ";
+
+    str += "where UserName = '"   + data.userName         + "' ;";
+
+    bool success = query.exec(str);
+
+    db.close();
+
+    return success;
+}
+
+/************     用户设置删除数据                *************/
+bool TabSystemData::userDeleteData(QString userName)
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = QString("delete from User where UserName = '%1';").arg(userName);
+
+    if(!query.exec(str)) return false;
+
+    db.close();
+
+    return true;
+}
+
+/************     用户设置查询数据                *************/
+int TabSystemData::userSelectData()
+{
+    if(!db.isOpen()) db.open();
+
+    QSqlQuery query;
+
+    QString str = "select * from User;";
+
+    if(!query.exec(str)) return -1;
+
+    int count = 0;
+
+    userList.clear();
+
+    while(query.next())
+    {
+        UserData data;
+
+        data.userName        = query.value(DAtABASEDEF::USERNAME).toString();
+        data.passWord        = query.value(DAtABASEDEF::PASSWORD).toString();
+        data.isAdministrator = query.value(DAtABASEDEF::ISADMINISTRATOR).toString();
+        data.authority       = query.value(DAtABASEDEF::AUTHORITY).toString();
+        data.remark          = query.value(DAtABASEDEF::REMARK).toString();
+        count ++;
+
+        userList.append(data);
+    }
+
+    db.close();
+
+    return count;
+}
+
 QMap<QString, QString> TabSystemData::getCodeBeginSnSetInfo() const
 {
     return codeBeginSnSetInfo;
@@ -444,5 +565,10 @@ QMap<QString, QString> TabSystemData::getStainingName() const
 QList<PrintData> TabSystemData::getPrintList() const
 {
     return printList;
+}
+
+QList<UserData> TabSystemData::getUserList() const
+{
+    return userList;
 }
 

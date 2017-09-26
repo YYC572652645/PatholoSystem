@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "tabsystemset/tabsystemdata.h"
 #include "tabsystemset/otherwidget/typesetdialog.h"
-#include <QPrinter>
+#include <QPrinterInfo>
 
 namespace Ui {
 class printset;
@@ -21,11 +21,10 @@ public:
     void showDialog();
 
 private slots:
-    void on_tableWidget_clicked(const QModelIndex &index);
-
     void on_pushButtonOk_clicked();
-
     void on_pushButtonCancel_clicked();
+    void on_tableWidget_doubleClicked(const QModelIndex &index);
+    void on_pushButtonDelete_clicked();
 
 private:
     Ui::printset *ui;
@@ -35,8 +34,7 @@ private:
     void dataSelect();             //查询数据
 
 private:
-    int nowRow;                    //当前选中行
-    QPrinter printer;              //打印对象
+    QPrinterInfo printer;          //打印对象
 };
 
 #endif // TYPESET_H

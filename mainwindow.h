@@ -22,6 +22,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void setAuthority(int value);
+    void showMainWindow();           //显示信息
+    void setAdminster(int value);
+
 signals:
     void sendNumber(QString, QString);
 
@@ -32,7 +36,6 @@ private:
     Ui::MainWindow *ui;
 
     void initControl();              //初始化控件
-    void initConnect();              //初始化信号与槽
 
 private:
     TabRegister *tabRegister;        //登记
@@ -42,6 +45,8 @@ private:
     TabImmuneSlice *tabImmuneSlice;  //免疫组化切片
     TabSpeciaSlice *tabSpecialSlice; //特染切片
     TabsSatistics *tabsSatistics;    //取材统计
+    int authority;                   //权限
+    int adminster;                   //管理员
 };
 
 #endif // MAINWINDOW_H

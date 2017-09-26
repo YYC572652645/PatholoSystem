@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -30,11 +31,14 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
+    QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout_2;
-    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *labelIcoImage;
     QSpacerItem *horizontalSpacer;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer;
+    QPushButton *pushButton;
     QTabWidget *tabWidgetTotal;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
@@ -46,13 +50,13 @@ public:
         MainWindow->resize(1038, 719);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout_2 = new QVBoxLayout(centralWidget);
+        verticalLayout_3 = new QVBoxLayout(centralWidget);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -68,18 +72,42 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalSpacer = new QSpacerItem(20, 52, QSizePolicy::Minimum, QSizePolicy::Maximum);
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addItem(verticalSpacer);
+
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setStyleSheet(QLatin1String("QPushButton:hover\n"
+"{\n"
+"    color:skyblue;\n"
+"}\n"
+"QPushButton\n"
+"{\n"
+"background-color:transparent;\n"
+"color:blue;\n"
+"}"));
+
+        verticalLayout->addWidget(pushButton);
+
+
+        horizontalLayout->addLayout(verticalLayout);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
 
         tabWidgetTotal = new QTabWidget(centralWidget);
         tabWidgetTotal->setObjectName(QStringLiteral("tabWidgetTotal"));
         tabWidgetTotal->setMinimumSize(QSize(0, 0));
         tabWidgetTotal->setMaximumSize(QSize(16777215, 16777215));
 
-        verticalLayout->addWidget(tabWidgetTotal);
+        verticalLayout_2->addWidget(tabWidgetTotal);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout_3->addLayout(verticalLayout_2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -102,6 +130,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         labelIcoImage->setText(QString());
+        pushButton->setText(QApplication::translate("MainWindow", "\346\233\264\346\224\271\345\257\206\347\240\201", 0));
     } // retranslateUi
 
 };

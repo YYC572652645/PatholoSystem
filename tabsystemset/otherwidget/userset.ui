@@ -21,7 +21,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>定义标本类别</string>
+          <string>设置用户及操作权限</string>
          </property>
         </widget>
        </item>
@@ -39,12 +39,47 @@
          </row>
          <column>
           <property name="text">
-           <string>前缀</string>
+           <string>用户名</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>名称</string>
+           <string>管理员</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>登记</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>取材</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>常规切片</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>免疫组化</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>特殊染色</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>查询</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>备注</string>
           </property>
          </column>
         </widget>
@@ -53,27 +88,123 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QPushButton" name="pushButtonNew">
+           <property name="styleSheet">
+            <string notr="true">QPushButton
+{
+    background-color: transparent;
+    border-radius:5px;
+    border:2px solid gray;
+    color:black;
+    height:20px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(0,130,150);
+    border-radius:5px;
+    color:white;
+}
+
+QPushButton:hover:pressed
+{
+    background-color:rgb(85,170,255);
+    border-radius:5px;
+    color:white;
+}</string>
+           </property>
            <property name="text">
             <string>新建</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonDelete">
-           <property name="text">
-            <string>删除</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="pushButtonUpdate">
+           <property name="styleSheet">
+            <string notr="true">QPushButton
+{
+    background-color: transparent;
+    border-radius:5px;
+    border:2px solid gray;
+    color:black;
+    height:20px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(0,130,150);
+    border-radius:5px;
+    color:white;
+}
+
+QPushButton:hover:pressed
+{
+    background-color:rgb(85,170,255);
+    border-radius:5px;
+    color:white;
+}</string>
+           </property>
            <property name="text">
             <string>修改</string>
            </property>
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButtonDelete">
+           <property name="styleSheet">
+            <string notr="true">QPushButton
+{
+    background-color: transparent;
+    border-radius:5px;
+    border:2px solid gray;
+    color:black;
+    height:20px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(0,130,150);
+    border-radius:5px;
+    color:white;
+}
+
+QPushButton:hover:pressed
+{
+    background-color:rgb(85,170,255);
+    border-radius:5px;
+    color:white;
+}</string>
+           </property>
+           <property name="text">
+            <string>删除</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButtonExit">
+           <property name="styleSheet">
+            <string notr="true">QPushButton
+{
+    background-color: transparent;
+    border-radius:5px;
+    border:2px solid gray;
+    color:black;
+    height:20px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(0,130,150);
+    border-radius:5px;
+    color:white;
+}
+
+QPushButton:hover:pressed
+{
+    background-color:rgb(85,170,255);
+    border-radius:5px;
+    color:white;
+}</string>
+           </property>
            <property name="text">
             <string>退出</string>
            </property>

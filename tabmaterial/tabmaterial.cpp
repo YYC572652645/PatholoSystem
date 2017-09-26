@@ -22,6 +22,8 @@ TabMaterial::TabMaterial(QWidget *parent) :
 
     this->selectData(ALLDATA);
 
+    currentItem = NULL;
+
     timer = new QTimer(this);
     movie = new QMovie(":/image/image/refresh.gif");
 
@@ -401,11 +403,10 @@ void TabMaterial::on_actionAddBingLiNumber_triggered()
         data.pCode = recentNumber.left(recentNumber.size() - subFinger(recentNumber)) + data.samplingId;    //病理号
     }
 
-    qDebug()<<data.pCode<<data.samplingId;
 
     INICONFIG->writeQCIni(data.pCode);
 
-    data.createTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");      //取材时间
+    data.createTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");                         //取材时间
 
     MATERIALDATA->insertParentData(data);
 
@@ -521,6 +522,8 @@ void TabMaterial::on_pushButtonFind_clicked()
 /*******************   删除数据             ***********************/
 void TabMaterial::on_actionDeleteInfo_triggered()
 {
+    if(NULL == ui->treeWidget->currentItem()) return;
+
     int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("将删除该信息，此操作不可逆，您确定吗？"), GLOBALDEF::SUCCESSIMAGE, false, this);
     if(ok == QDialog::Accepted)
     {

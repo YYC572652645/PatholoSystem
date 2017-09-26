@@ -2,7 +2,7 @@
 #include <QDebug>
 #include "globaldef.h"
 #include <QTextCodec>
-QReadIni*QReadIni::instance = NULL;
+QReadIni *QReadIni::instance = NULL;
 
 QReadIni *QReadIni::getInstance()
 {
@@ -50,7 +50,7 @@ void QReadIni::readIni()
     SAFEDELETE(configIniRead);
 }
 
-/****************写入配置文件***************/
+/****************          写入配置文件          ***************/
 void QReadIni::writeIni(QString userName, QString passWord)
 {
     QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
@@ -60,6 +60,7 @@ void QReadIni::writeIni(QString userName, QString passWord)
     SAFEDELETE(configIniWrite);
 }
 
+/****************          写入配置文件          ***************/
 void QReadIni::writeIni(QString startNumber)
 {
     QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
@@ -69,7 +70,7 @@ void QReadIni::writeIni(QString startNumber)
     SAFEDELETE(configIniWrite);
 }
 
-/****************写入配置文件***************/
+/****************          写入配置文件           ***************/
 void QReadIni::writeQCIni(QString recentNumber)
 {
     QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象

@@ -12,7 +12,6 @@
 #include <QBitmap>
 #include <QMouseEvent>
 #include <QStyle>
-#include"singleton/singleton.h"
 
 /***************************************************************
    功能:自封装使用的MessageBox

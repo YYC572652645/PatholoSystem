@@ -16,12 +16,15 @@ TabImmuneSlice::TabImmuneSlice(QWidget *parent) :
     //查询数据
     dataSelect(ALLDATA);
 
-    //滑动至最后一行
-    ui->tableWidget->scrollToBottom();
+    if(ui->tableWidget->rowCount() != 0)
+    {
+        //滑动至最后一行
+        ui->tableWidget->scrollToBottom();
 
-    //设置最后一行为当前选中行
-    ui->tableWidget->selectRow(ui->tableWidget->rowCount() - 1);
-    ui->tableWidget->setFocus();
+        //设置最后一行为当前选中行
+        ui->tableWidget->selectRow(ui->tableWidget->rowCount() - 1);
+        ui->tableWidget->setFocus();
+    }
 
     timer = new QTimer(this);
     movie = new QMovie(":/image/image/refresh.gif");
@@ -54,9 +57,7 @@ void TabImmuneSlice::initControl()
     ui->tableWidget->setAlternatingRowColors(true);
 
     //纵向隐藏序号
-    QHeaderView *headerView=ui->tableWidget->horizontalHeader();
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //设置为不可编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -122,19 +123,20 @@ void TabImmuneSlice::updateMovie()
     timer->stop();
 }
 
-
 /*******************   接收查询    ***********************/
 void TabImmuneSlice::receiveSelect()
 {
     dataSelect(ALLDATA);
 
-    //滑动至最后一行
-    ui->tableWidget->scrollToBottom();
+    if(ui->tableWidget->rowCount() != 0)
+    {
+        //滑动至最后一行
+        ui->tableWidget->scrollToBottom();
 
-    //设置最后一行为当前选中行
-    ui->tableWidget->selectRow(ui->tableWidget->rowCount() - 1);
-    ui->tableWidget->setFocus();
-
+        //设置最后一行为当前选中行
+        ui->tableWidget->selectRow(ui->tableWidget->rowCount() - 1);
+        ui->tableWidget->setFocus();
+    }
 }
 
 /*******************   查询并显示数据            ***********************/
@@ -231,9 +233,14 @@ void TabImmuneSlice::on_actionPrintLabel_triggered()
 /*******************   删除信息            ***********************/
 void TabImmuneSlice::on_actionDeleteInfo_triggered()
 {
-    IMMUNESLICEDATA->deleteData(BLDATA, IMMUNESLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
+    if(NULL == ui->tableWidget->currentItem()) return;
 
-    dataSelect(ALLDATA);
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
+    {
+        IMMUNESLICEDATA->deleteData(BLDATA, IMMUNESLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
+        dataSelect(ALLDATA);
+    }
 }
 
 /*******************   刷新数据            ***********************/
@@ -268,7 +275,7 @@ void TabImmuneSlice::on_actionNewMore_triggered()
 /*******************   打印模板            ***********************/
 void TabImmuneSlice::on_actionPrintTemplate_triggered()
 {
-    if(NULL != ui->tableWidget->currentItem())
+    if(NULL != ui->tableWidget->currentItem() && IMMUNESLICEDATA->getDataList().size() > ui->tableWidget->currentRow())
     {
         templateSetUp->setQrCodeNumber(IMMUNESLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionCode);
         templateSetUp->setDataImmuneSlice(IMMUNESLICEDATA->getDataList().at(ui->tableWidget->currentRow()));

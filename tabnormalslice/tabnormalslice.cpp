@@ -261,16 +261,26 @@ void TabNormalSlice::on_actionPrintMoreLabel_triggered()
 /*******************   删除信息            ***********************/
 void TabNormalSlice::on_actionDeleteInfo_triggered()
 {
-    NORMALSLICEDATA->deleteData(BLDATA, NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
+    if(NULL == ui->tableWidget->currentItem()) return;
 
-    dataSelect(ALLDATA);
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定删除该数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
+    {
+        NORMALSLICEDATA->deleteData(BLDATA, NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
+        dataSelect(ALLDATA);
+    }
+
 }
 
 /*******************   清空信息            ***********************/
 void TabNormalSlice::on_actionClearInfo_triggered()
 {
-    NORMALSLICEDATA->deleteData(ALLDATA, NULL);
-    dataSelect(ALLDATA);
+    int ok = MESSAGEBOX->setInfo(tr("系统提示"),tr("确定清空数据吗？此操作不可逆！"),GLOBALDEF::SUCCESSIMAGE, false, this);
+    if(ok == QDialog::Accepted)
+    {
+        NORMALSLICEDATA->deleteData(ALLDATA, NULL);
+        dataSelect(ALLDATA);
+    }
 }
 
 /*******************   刷新数据            ***********************/
@@ -312,7 +322,7 @@ void TabNormalSlice::on_actionNewMore_triggered()
 /*******************   打印模板            ***********************/
 void TabNormalSlice::on_actionPrintTemplate_triggered()
 {
-    if(NULL != ui->tableWidget->currentItem())
+    if(NULL != ui->tableWidget->currentItem() && NORMALSLICEDATA->getDataList().size() > ui->tableWidget->currentRow())
     {
         templateSetUp->setQrCodeNumber(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionCode);
         templateSetUp->setDataNormalSlice(NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()));
