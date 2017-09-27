@@ -9,6 +9,7 @@
 #include "tabimmuneslice/tabimmuneslice.h"
 #include "tabspecialslice/tabspecialslice.h"
 #include "tabstatistics/tabstatistics.h"
+#include "alterpassword/alterpassword.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,8 @@ signals:
 private slots:
     void receiveNumber(QString number, QString id);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -45,6 +48,7 @@ private:
     TabImmuneSlice *tabImmuneSlice;  //免疫组化切片
     TabSpeciaSlice *tabSpecialSlice; //特染切片
     TabsSatistics *tabsSatistics;    //取材统计
+    AlterPassword *alterPassword;    //更改密码
     int authority;                   //权限
     int adminster;                   //管理员
 };

@@ -2,6 +2,7 @@
 #define NEWIMMUNESLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "immuneslicedata.h"
 
 namespace Ui {
@@ -28,7 +29,8 @@ private slots:
 
 private:
     Ui::newimmuneslice *ui;
-    void setComboBoxInfo();                 //设置信息
+    void setComboBoxInfo();                  //设置信息
+    void keyPressEvent(QKeyEvent * event);   //确定点击
 };
 
 #endif // NEWNORMALSLICE_H

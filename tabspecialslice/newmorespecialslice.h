@@ -2,6 +2,7 @@
 #define NEWMORESPECIALSLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "specialslicedata.h"
 
 namespace Ui {
@@ -26,7 +27,7 @@ private slots:
 
 private:
     Ui::newmorespecialslice *ui;
-
+void keyPressEvent(QKeyEvent * event);
     QString subFinger(QString number);
 
     void setComboBoxInfo();

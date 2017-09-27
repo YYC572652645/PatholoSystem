@@ -89,17 +89,18 @@ bool LoginData::selectData(QString userName, QString passWord)
     return false;
 }
 
-/***************************更改数据***********************/
-bool LoginData::updateData()
+/***************************修改数据***********************/
+bool LoginData::updateData(QString userName, QString passWord)
 {
-    if(!db.isOpen())
-    {
-        db.open();
-    }
-    QSqlQuery query;
-    QString Str = QString("update  table set('','');");
-    bool success = query.exec(Str);  //执行sql语句
+    if(!db.isOpen()) db.open();
 
+    QSqlQuery query;
+
+    QString str = QString("update User set Password = '%1' where UserName = '%2';").arg(passWord, userName);
+
+    bool success = query.exec(str);  //执行sql语句
+
+        qDebug()<<success<<str;
     db.close();
 
     return success;

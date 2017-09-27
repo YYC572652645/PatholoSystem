@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "logindata.h"
-
+#include "messagebox/messagedialog.h"
 
 namespace Ui {
 class logindialog;
@@ -18,12 +18,10 @@ public:
     ~LoginDialog();
 
     int getAuthority() const;
-
     int getAdminster() const;
 
 private slots:
     void on_pushButtonOk_clicked();
-
     void on_pushButtonCancel_clicked();
 
 private:
@@ -32,6 +30,9 @@ private:
     LoginData loginData;
     int authority;
     int adminster;
+
+
+    MessageDialog messageDialog;
 };
 
 #endif // LOGINDIALOG_H

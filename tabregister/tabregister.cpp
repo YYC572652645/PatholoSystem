@@ -17,6 +17,16 @@ TabRegister::TabRegister(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    newSlices      = NULL;
+    newMoreSlices  = NULL;
+    templateSetUp  = NULL;
+    movie   = NULL;
+    timer   = NULL;
+    menu    = NULL;
+    print   = NULL;
+    del     = NULL;
+    refresh = NULL;
+
     this->initControl();
     this->initData();
 
@@ -235,9 +245,11 @@ void TabRegister::on_actionDeleteInfo_triggered()
             if(currentRow >= registerData.registerInfo.size()) continue;
 
             registerData.deleteRowData(registerData.registerInfo.at(currentRow).id);
+
+            ui->tableWidget->removeRow(currentRow);
         }
 
-        this->selectData(ALLDATA, false);
+        registerData.selectData();
     }
 }
 
@@ -255,6 +267,8 @@ void TabRegister::on_actionClearInfo_triggered()
 /*******************       导出Excel               ***********************/
 void TabRegister::on_actionExtendExcel_triggered()
 {
+    registerData.selectData();
+
     QList<QString>itemName;
 
     itemName.append(PCODE);
@@ -374,7 +388,6 @@ void TabRegister::on_actionPrintMoreLabel_triggered()
                 registerData.updateBLData("1", registerData.registerInfo.at(i).id);
             }
         }
-
         selectData(ALLDATA, false);
     }
 }

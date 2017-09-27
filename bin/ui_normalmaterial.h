@@ -315,6 +315,16 @@ public:
         verticalLayout_4->addLayout(verticalLayout_3);
 
         normalmaterial->setCentralWidget(centralwidget);
+        QWidget::setTabOrder(pushButtonOk, spinBoxMaterialNumber);
+        QWidget::setTabOrder(spinBoxMaterialNumber, lineEditName);
+        QWidget::setTabOrder(lineEditName, lineEditNumber);
+        QWidget::setTabOrder(lineEditNumber, lineEditSize);
+        QWidget::setTabOrder(lineEditSize, lineEditWeight);
+        QWidget::setTabOrder(lineEditWeight, comboBoxPeople);
+        QWidget::setTabOrder(comboBoxPeople, textEditRecord);
+        QWidget::setTabOrder(textEditRecord, comboBoxRegPeople);
+        QWidget::setTabOrder(comboBoxRegPeople, lineEditBlNumber);
+        QWidget::setTabOrder(lineEditBlNumber, pushButtonCancel);
 
         retranslateUi(normalmaterial);
 

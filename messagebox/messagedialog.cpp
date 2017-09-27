@@ -12,12 +12,20 @@ MessageDialog::MessageDialog(QWidget *parent) :
     ui(new Ui::MessageDialog)
 {
     ui->setupUi(this);
+
+    closeButton  = NULL;
+    titleLabel   = NULL;
+    imgLabel     = NULL;
+    msgLabel     = NULL;
+    cancelButton = NULL;
+    okButton     = NULL;
+
     this->setWindowTitle(tr("系统提示"));
-    this->resize(320, 160);                       //重定义界面大小
+    this->resize(320, 160);                         //重定义界面大小
     int width = this->width();                      //获取界面宽度
     int height = this->height();                    //获取界面高度
     mousePress = false;                             //初始化为未按下鼠标左键
-    this->setWindowFlags(Qt::FramelessWindowHint);//标题框隐藏
+    this->setWindowFlags(Qt::FramelessWindowHint);  //标题框隐藏
 
     //加载图标
     QPixmap closePix = style()->standardPixmap(QStyle::SP_TitleBarCloseButton);

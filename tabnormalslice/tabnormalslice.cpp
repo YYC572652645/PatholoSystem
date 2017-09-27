@@ -12,6 +12,17 @@ TabNormalSlice::TabNormalSlice(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    newNormalSlice = NULL;
+    newMoreSlice   = NULL;
+    templateSetUp  = NULL;
+    movie   = NULL;
+    timer   = NULL;
+    menu    = NULL;
+    print   = NULL;
+    del     = NULL;
+    refresh = NULL;
+
+
     this->initControl();
     this->initData();
     this->dataSelect(ALLDATA);
@@ -267,7 +278,10 @@ void TabNormalSlice::on_actionDeleteInfo_triggered()
     if(ok == QDialog::Accepted)
     {
         NORMALSLICEDATA->deleteData(BLDATA, NORMALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
-        dataSelect(ALLDATA);
+
+        ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+
+        NORMALSLICEDATA->selectData(ALLDATA, NULL);
     }
 
 }

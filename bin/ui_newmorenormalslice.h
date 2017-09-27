@@ -377,6 +377,21 @@ public:
         verticalLayout_4->addLayout(verticalLayout_3);
 
         newmorenormalslice->setCentralWidget(centralwidget);
+        QWidget::setTabOrder(pushButtonOk, spinBoxNumber);
+        QWidget::setTabOrder(spinBoxNumber, radioButtonAddBLNumber);
+        QWidget::setTabOrder(radioButtonAddBLNumber, radioButtonAddBlAndCode);
+        QWidget::setTabOrder(radioButtonAddBlAndCode, radioButtonAddBlAndCancel);
+        QWidget::setTabOrder(radioButtonAddBlAndCancel, radioButtonAddAll);
+        QWidget::setTabOrder(radioButtonAddAll, spinBoxPrintNumber);
+        QWidget::setTabOrder(spinBoxPrintNumber, lineEditRSType);
+        QWidget::setTabOrder(lineEditRSType, lineEditRSIndex);
+        QWidget::setTabOrder(lineEditRSIndex, lineEditOther);
+        QWidget::setTabOrder(lineEditOther, comboBoxQPPeople);
+        QWidget::setTabOrder(comboBoxQPPeople, dateEditQPTime);
+        QWidget::setTabOrder(dateEditQPTime, comboBoxRSPeople);
+        QWidget::setTabOrder(comboBoxRSPeople, dateEditRSTime);
+        QWidget::setTabOrder(dateEditRSTime, lineEditBlNumber);
+        QWidget::setTabOrder(lineEditBlNumber, pushButtonCancel);
 
         retranslateUi(newmorenormalslice);
 

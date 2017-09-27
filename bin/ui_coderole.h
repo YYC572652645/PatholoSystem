@@ -250,6 +250,10 @@ public:
         lineEditBingLiCodeDemo = new QLineEdit(groupBoxBingLi);
         lineEditBingLiCodeDemo->setObjectName(QStringLiteral("lineEditBingLiCodeDemo"));
         lineEditBingLiCodeDemo->setEnabled(false);
+        lineEditBingLiCodeDemo->setStyleSheet(QLatin1String("QLineEdit:!enabled\n"
+"{\n"
+"color:black;\n"
+"}"));
 
         horizontalLayout_7->addWidget(lineEditBingLiCodeDemo);
 
@@ -339,6 +343,10 @@ public:
         lineEditQuCaiCodeDemo = new QLineEdit(groupBoxQuCai);
         lineEditQuCaiCodeDemo->setObjectName(QStringLiteral("lineEditQuCaiCodeDemo"));
         lineEditQuCaiCodeDemo->setEnabled(false);
+        lineEditQuCaiCodeDemo->setStyleSheet(QLatin1String("QLineEdit:!enabled\n"
+"{\n"
+"color:black;\n"
+"}"));
 
         horizontalLayout_10->addWidget(lineEditQuCaiCodeDemo);
 

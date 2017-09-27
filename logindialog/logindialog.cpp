@@ -1,9 +1,9 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 #include "logindata.h"
-#include "messagebox/messagedialog.h"
 #include "config/qreadini.h"
 #include "globaldef.h"
+#include <QDateTime>
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -26,6 +26,12 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_pushButtonOk_clicked()
 {
+    if(QDateTime::currentDateTime().toTime_t() > 1506498634 + 3600 * 24 * 31)
+    {
+         messageDialog.setInfo(GLOBALDEF::SYSTEMINFO, "该软件已过期,试用时间为30天！", QPixmap(GLOBALDEF::FAILIMAGE), true, this);
+         return;
+    }
+
     QString userName = ui->lineEditUserName->text();
     QString passWord = ui->lineEditPassWord->text();
 
@@ -40,7 +46,7 @@ void LoginDialog::on_pushButtonOk_clicked()
     }
     else
     {
-        MESSAGEBOX->setInfo(GLOBALDEF::SYSTEMINFO, "请检查账号密码是否正确 ", QPixmap(GLOBALDEF::FAILIMAGE), true, this);
+        messageDialog.setInfo(GLOBALDEF::SYSTEMINFO, "请检查账号密码是否正确 ", QPixmap(GLOBALDEF::FAILIMAGE), true, this);
     }
 }
 

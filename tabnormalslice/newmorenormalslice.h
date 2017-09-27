@@ -2,6 +2,7 @@
 #define NEWMORENORMALSLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "normalslicedata.h"
 
 namespace Ui {
@@ -29,6 +30,8 @@ private:
     Ui::newmorenormalslice *ui;
 
     QString subFinger(QString number);
+
+    void keyPressEvent(QKeyEvent * event);
 };
 
 #endif // NEWMORENORMALSLICE_H

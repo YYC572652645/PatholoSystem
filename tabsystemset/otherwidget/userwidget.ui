@@ -88,7 +88,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEditPassWord"/>
+               <widget class="QLineEdit" name="lineEditPassWord">
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -115,7 +119,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEditPassWordMore"/>
+               <widget class="QLineEdit" name="lineEditPassWordMore">
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -137,7 +145,7 @@
               <item>
                <widget class="QLabel" name="label_5">
                 <property name="text">
-                 <string>备注：</string>
+                 <string>    备注：</string>
                 </property>
                </widget>
               </item>

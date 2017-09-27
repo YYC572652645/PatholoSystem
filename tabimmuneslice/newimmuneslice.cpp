@@ -117,3 +117,18 @@ void NewImmuneSlice::setComboBoxInfo()
         ui->comboBoxColorIndex->addItem(mapData[mapData.keys().at(i)]);
     }
 }
+
+/*******************   按钮点击    ***********************/
+void NewImmuneSlice::keyPressEvent(QKeyEvent * event)
+{
+    static QString strNumber;
+    if(event->key() == Qt::Key_Return)
+    {
+        ui->lineEditCodeNumber->setText(strNumber);
+        strNumber.clear();
+    }
+    else
+    {
+        strNumber += event->text();
+    }
+}

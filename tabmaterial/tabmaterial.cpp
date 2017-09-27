@@ -16,13 +16,21 @@ TabMaterial::TabMaterial(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    currentItem = NULL;
+    normalMaterial= NULL;
+    templateSetUp = NULL;
+    movie = NULL;
+    timer = NULL;
+    menu = NULL;
+    print = NULL;
+    del = NULL;
+    refresh = NULL;
+
     this->initControl();
     this->initData();
     this->initConnect();
 
     this->selectData(ALLDATA);
-
-    currentItem = NULL;
 
     timer = new QTimer(this);
     movie = new QMovie(":/image/image/refresh.gif");
@@ -226,17 +234,8 @@ void TabMaterial::selectData(int type)
                     childItem->setCheckState(ISMATERIAL, Qt::Checked);
                 }
 
-
                 childItem->setText(MATERIALTIME,     childList.at(j).samplingTime);
                 childItem->setText(MATERIALPEOPLE,   childList.at(j).sampler);
-
-                if(currentCode == childList.at(j).embedCode)
-                {
-                    childItem->setSelected(true);
-                    ui->treeWidget->setCurrentItem(childItem);
-                    ui->treeWidget->scrollToItem(childItem);
-                    currentCode.clear();
-                }
             }
         }
     }
@@ -311,9 +310,62 @@ void TabMaterial::on_actionAddBaoMai_triggered()
 
     MATERIALDATA->insertChildData(dataChild);
 
-    currentCode = dataChild.embedCode;
+    QTreeWidgetItem* childItem = TREEITEM();
 
-    selectData(ALLDATA);
+    if(NULL == ui->treeWidget->currentItem()->parent())
+    {
+        ui->treeWidget->currentItem()->addChild(childItem);
+    }
+    else
+    {
+        ui->treeWidget->currentItem()->parent()->addChild(childItem);
+    }
+
+    childItem->setText(NUMBERING,        dataChild.embedCode);
+    childItem->setText(SERIALNUMBER,     dataChild.sn);
+    childItem->setText(ORGANIZATIONNAME, dataChild.tissue);
+
+    {
+        QWidget     *widget     = new QWidget(this);
+        QCheckBox   *checkBox   = new QCheckBox(this);
+        QHBoxLayout *hboxLayout = new QHBoxLayout(this);
+        checkBox->setMinimumHeight(16);
+        hboxLayout->addWidget(checkBox);
+        hboxLayout->setAlignment(checkBox, Qt::AlignCenter);
+        widget->setLayout(hboxLayout);
+        ui->treeWidget->setItemWidget(childItem, ISPRINTED, widget);
+
+        if(dataChild.printed == GLOBALDEF::PRINTFLAGE)
+        {
+            checkBox->setChecked(true);
+        }
+        checkBox->setEnabled(false);
+    }
+
+    childItem->setText(PRINTTIME, dataChild.printTime);
+
+    if(dataChild.sampled == "0")
+    {
+        childItem->setCheckState(ISMATERIAL, Qt::Unchecked);
+    }
+    else
+    {
+        childItem->setCheckState(ISMATERIAL, Qt::Checked);
+    }
+
+    childItem->setText(MATERIALTIME,     dataChild.samplingTime);
+    childItem->setText(MATERIALPEOPLE,   dataChild.sampler);
+
+    for(int i = 0; i < childItem->parent()->childCount(); i ++)
+    {
+        childItem->parent()->child(i)->setSelected(false);
+    }
+
+    childItem->parent()->setSelected(false);
+    childItem->setSelected(true);
+    ui->treeWidget->scrollToItem(childItem);
+
+    MATERIALDATA->selectData(ALLDATA);
 }
 
 /*******************   打印               ***********************/
@@ -441,8 +493,6 @@ void TabMaterial::on_actionAddBingLiNumber_triggered()
 
     MATERIALDATA->insertChildData(dataChild);
 
-    currentCode = data.pCode;
-
     selectData(ALLDATA);
 
     ui->treeWidget->scrollToBottom();
@@ -530,13 +580,14 @@ void TabMaterial::on_actionDeleteInfo_triggered()
         if(NULL == ui->treeWidget->currentItem()->parent())
         {
             MATERIALDATA->deleteData(BLDATA, getIndexNumber(BLDATA, ui->treeWidget->currentItem()->text(0)));
+            selectData(ALLDATA);
         }
         else
         {
             MATERIALDATA->deleteData(CHILDDATA, getIndexNumber(CHILDDATA, ui->treeWidget->currentItem()->text(0)), ui->treeWidget->currentItem()->text(0));
+            ui->treeWidget->currentItem()->parent()->removeChild(ui->treeWidget->currentItem());
+            MATERIALDATA->selectData(ALLDATA);
         }
-
-        selectData(ALLDATA);
     }
 }
 
@@ -597,6 +648,7 @@ QString TabMaterial::numberToLetter(int type, int number)
 
     int count = 1 + number / 26;     //是26个字母的多少倍
     int remainder = number % 26;     //余数
+
     for(int i = 0; i < count; i ++)
     {
         if(i + 1 < count)
@@ -612,6 +664,8 @@ QString TabMaterial::numberToLetter(int type, int number)
         }
         else
         {
+            if(remainder == 0) continue;
+
             char figer;
 
             if(type == CAPITAL)
@@ -738,6 +792,8 @@ void TabMaterial::on_treeWidget_itemChanged(QTreeWidgetItem *item, int column)
 /*******************   导出Excel               ***********************/
 void TabMaterial::on_actionExtendExcel_triggered()
 {
+    MATERIALDATA->selectData(ALLDATA);
+
     QString fileName = QFileDialog::getSaveFileName(NULL, "保存文件",".","Excel(*.xlsx *.xls);;txt(*.txt)");
 
     if(fileName.contains(".txt"))

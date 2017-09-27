@@ -2,6 +2,7 @@
 #define NEWSPECIALSLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "specialslicedata.h"
 
 namespace Ui {
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::newspecialslice *ui;
     void setComboBoxInfo();                 //设置信息
+    void keyPressEvent(QKeyEvent * event);
 };
 
 #endif // NEWNORMALSLICE_H

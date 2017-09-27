@@ -16,7 +16,6 @@ public:
 public:
     Selection *selectWidget;
     void clearBox();
-
 };
 
 #endif // MOVEWIDGETCONTROL_H

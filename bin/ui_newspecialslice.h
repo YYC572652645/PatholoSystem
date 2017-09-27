@@ -307,6 +307,16 @@ public:
         verticalLayout_4->addLayout(verticalLayout_3);
 
         newspecialslice->setCentralWidget(centralwidget);
+        QWidget::setTabOrder(pushButtonOk, spinBoxPrintNumber);
+        QWidget::setTabOrder(spinBoxPrintNumber, comboBoxColorType);
+        QWidget::setTabOrder(comboBoxColorType, comboBoxColorIndex);
+        QWidget::setTabOrder(comboBoxColorIndex, lineEditClone);
+        QWidget::setTabOrder(lineEditClone, comboBoxQPPeople);
+        QWidget::setTabOrder(comboBoxQPPeople, dateEditQPTime);
+        QWidget::setTabOrder(dateEditQPTime, comboBoxRSPeople);
+        QWidget::setTabOrder(comboBoxRSPeople, dateEditRSTime);
+        QWidget::setTabOrder(dateEditRSTime, lineEditCodeNumber);
+        QWidget::setTabOrder(lineEditCodeNumber, pushButtonCancel);
 
         retranslateUi(newspecialslice);
 

@@ -39,14 +39,16 @@ public:
     void writeIni(QString userName, QString passWord);  //写入配置文件
     void writeIni(QString startNumber);                 //写入配置文件
     void writeQCIni(QString recentNumber);              //写入配置文件
+    void writeTemplateIni();                            //写入配置文件
 
     const DataConfig &getDataConfig();
 
     LoginConfig getLoginConfig() const;
-
     QString getStartNumber() const;
-
     QString getRecentNumber() const;
+    QList<QString> getTemplateList() const;
+
+    void setTemplateList(const QList<QString> &value);
 
 private:
     QReadIni();
@@ -55,7 +57,7 @@ private:
     LoginConfig loginConfig;
     QString startNumber;
     QString recentNumber;
-
+    QList<QString>templateList;
     static QReadIni*instance;
 
 };

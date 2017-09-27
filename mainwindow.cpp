@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     tabImmuneSlice = NULL;;   //免疫组化切片
     tabSpecialSlice = NULL;;  //特染切片
     tabsSatistics = NULL;;    //取材统计
+    alterPassword = NULL;     //更改密码
+
+
+    alterPassword = new AlterPassword(this);
 
     this->setWindowTitle("病理科专用打码软件 ");
 }
@@ -93,11 +97,6 @@ void MainWindow::initControl()
     }
 }
 
-void MainWindow::setAdminster(int value)
-{
-    adminster = value;
-}
-
 /*******************   显示信息    ***********************/
 void MainWindow::showMainWindow()
 {
@@ -108,4 +107,14 @@ void MainWindow::showMainWindow()
 void MainWindow::setAuthority(int value)
 {
     authority = value;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    alterPassword->show();
+}
+
+void MainWindow::setAdminster(int value)
+{
+    adminster = value;
 }

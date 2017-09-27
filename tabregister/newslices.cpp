@@ -31,8 +31,10 @@ void NewSlices::on_pushButtonOk_clicked()
 
     //序号
     {
-        int setBeginNumber = mapData[PCODEBEGINSN].toInt();
+        int setBeginNumber = mapData.value(PCODEBEGINSN).toInt();
         int maxId = registerData.selectMaxId();
+
+        INICONFIG ->readIni();
 
         if(INICONFIG->getStartNumber().toInt() > maxId)
         {
@@ -51,15 +53,15 @@ void NewSlices::on_pushButtonOk_clicked()
         QDate date = QDate::currentDate();
 
         QString str;
-        str += mapData[CUSTOMPREFIX];
-        if(0 != mapData[USERPREFIX].toInt())
+        str += mapData.value(CUSTOMPREFIX);
+        if(0 != mapData.value(USERPREFIX).toInt())
         {
             if(ui->comboBoxType->currentIndex() >= dataInfo.size()) return;
-            str += dataInfo[ui->comboBoxType->currentIndex()].codeTypeAbbr;
+            str += dataInfo.value(ui->comboBoxType->currentIndex()).codeTypeAbbr;
         }
 
         const static int HUNDREDTIME = 100;
-        if(0 != mapData[USEYEAR].toInt())
+        if(0 != mapData.value(USEYEAR).toInt())
         {
             if(mapData[YEARTYPE].toInt() == 2)
             {
@@ -71,19 +73,19 @@ void NewSlices::on_pushButtonOk_clicked()
             }
         }
 
-        if(0 != mapData[USEMONTH].toInt())
+        if(0 != mapData.value(USEMONTH).toInt())
         {
             str += QString::number((date.month()));
         }
 
-        if(0 != mapData[USEDAY].toInt())
+        if(0 != mapData.value(USEDAY).toInt())
         {
             str += QString::number((date.day()));
         }
 
         str += mapData[SPIN];
 
-        for(int i = 0; i < mapData[SNLENGTH].toInt() - data.pCode.length(); i++)
+        for(int i = 0; i < mapData.value(SNLENGTH).toInt() - data.pCode.length(); i++)
         {
             str += "0";
         }

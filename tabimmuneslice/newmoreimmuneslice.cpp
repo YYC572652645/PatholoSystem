@@ -3,7 +3,7 @@
 #include "globaldef.h"
 #include "tabsystemset/tabsystemdata.h"
 
-/*******************   构造函数            ***********************/
+/*******************   构造函数           ***********************/
 NewMoreImmuneSlice::NewMoreImmuneSlice(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::newmoreimmuneslice)
@@ -103,7 +103,7 @@ void NewMoreImmuneSlice::on_pushButtonCancel_clicked()
     this->close();
 }
 
-/*******************   去字母    ***********************/
+/*******************   去字母              ***********************/
 QString NewMoreImmuneSlice::subFinger(QString number)
 {
     int  count = 0;
@@ -122,7 +122,7 @@ QString NewMoreImmuneSlice::subFinger(QString number)
     return number.right(count);
 }
 
-
+/*******************   设置信息             ***********************/
 void NewMoreImmuneSlice::setComboBoxInfo()
 {
     ui->comboBoxColorType->clear();
@@ -152,3 +152,19 @@ void NewMoreImmuneSlice::setComboBoxInfo()
         ui->comboBoxColorIndex->addItem(mapData[mapData.keys().at(i)]);
     }
 }
+
+/*******************   按钮点击             ***********************/
+void NewMoreImmuneSlice::keyPressEvent(QKeyEvent * event)
+{
+    static QString strNumber;
+    if(event->key() == Qt::Key_Return)
+    {
+        ui->lineEditBlNumber->setText(strNumber);
+        strNumber.clear();
+    }
+    else
+    {
+        strNumber += event->text();
+    }
+}
+

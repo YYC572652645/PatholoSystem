@@ -494,6 +494,19 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>spinBoxMaterialNumber</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditNumber</tabstop>
+  <tabstop>lineEditSize</tabstop>
+  <tabstop>lineEditWeight</tabstop>
+  <tabstop>comboBoxPeople</tabstop>
+  <tabstop>textEditRecord</tabstop>
+  <tabstop>comboBoxRegPeople</tabstop>
+  <tabstop>lineEditBlNumber</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -152,3 +152,18 @@ void NewMoreSpecialSlice::setComboBoxInfo()
         ui->comboBoxColorIndex->addItem(mapData[mapData.keys().at(i)]);
     }
 }
+
+/*******************   按钮点击            ***********************/
+void NewMoreSpecialSlice::keyPressEvent(QKeyEvent * event)
+{
+    static QString strNumber;
+    if(event->key() == Qt::Key_Return)
+    {
+        ui->lineEditBlNumber->setText(strNumber);
+        strNumber.clear();
+    }
+    else
+    {
+        strNumber += event->text();
+    }
+}

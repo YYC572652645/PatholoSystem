@@ -74,7 +74,6 @@ private:
     QAction *print;                                      //打印
     QAction *del;                                        //删除
     QAction *refresh;                                    //刷新
-    QString currentCode;                                 //当前病理号
     DataChild dataUpdate;                                //需要更新的数据
 
 };

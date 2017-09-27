@@ -54,6 +54,7 @@ INPUT(
 ./debug\specialslicedata.o
 ./debug\tabstatistics.o
 ./debug\userwidget.o
+./debug\alterpassword.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
@@ -88,4 +89,5 @@ INPUT(
 ./debug\moc_newspecialslice.o
 ./debug\moc_tabstatistics.o
 ./debug\moc_userwidget.o
+./debug\moc_alterpassword.o
 );

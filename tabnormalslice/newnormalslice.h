@@ -2,6 +2,7 @@
 #define NEWNORMALSLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "normalslicedata.h"
 
 namespace Ui {
@@ -27,6 +28,7 @@ private slots:
 
 private:
     Ui::newnormalslice *ui;
+    void keyPressEvent(QKeyEvent * event);
 };
 
 #endif // NEWNORMALSLICE_H

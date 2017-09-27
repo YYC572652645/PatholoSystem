@@ -83,6 +83,7 @@ QPushButton
 {
 background-color:transparent;
 color:blue;
+font-size:14px;
 }</string>
             </property>
             <property name="text">

@@ -147,13 +147,14 @@ const static QString EXCELICON    = ":/image/image/excel.png";    //Excel图片
 const static QString SYSTEMINFO   = "系统提示";                    //系统提示
 const static int     REFRESHTIME  = 3500;                         //刷新时间
 
-
+//数据操作
 enum DATATYPE
 {
     TYPEINSERT,
     TYPEUPDATE,
 };
 
+//导出类型
 enum EXTENDTYPE
 {
     REGTYPE,

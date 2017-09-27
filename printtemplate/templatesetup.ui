@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>899</width>
+    <width>904</width>
     <height>630</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>899</width>
+    <width>904</width>
     <height>630</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>899</width>
+    <width>906</width>
     <height>630</height>
    </size>
   </property>
@@ -35,7 +35,7 @@
          <widget class="QGroupBox" name="groupBox_2">
           <property name="maximumSize">
            <size>
-            <width>645</width>
+            <width>680</width>
             <height>520</height>
            </size>
           </property>
@@ -63,13 +63,13 @@ padding: 0 3px;
             <widget class="MoveWidgetControl" name="widgetControl" native="true">
              <property name="minimumSize">
               <size>
-               <width>625</width>
+               <width>650</width>
                <height>500</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>625</width>
+               <width>650</width>
                <height>500</height>
               </size>
              </property>
@@ -138,12 +138,66 @@ padding: 0 3px;
               <widget class="QPushButton" name="pushButtonSave">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
+                 <width>131</width>
                  <height>0</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+    background-color: transparent;
+    border-radius:5px;
+    border:2px solid gray;
+    color:black;
+    height:20px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(0,130,150);
+    border-radius:5px;
+    color:white;
+}
+
+QPushButton:hover:pressed
+{
+    background-color:rgb(85,170,255);
+    border-radius:5px;
+    color:white;
+}</string>
+               </property>
                <property name="text">
                 <string>保存</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Maximum</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>30</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelInfo">
+               <property name="styleSheet">
+                <string notr="true">QLabel
+{
+color:darkred;
+font-size:14px;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
                </property>
               </widget>
              </item>

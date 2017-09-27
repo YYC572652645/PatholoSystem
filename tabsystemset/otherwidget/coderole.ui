@@ -239,6 +239,12 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit:!enabled
+{
+color:black;
+}</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -417,6 +423,12 @@
                  <widget class="QLineEdit" name="lineEditQuCaiCodeDemo">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit:!enabled
+{
+color:black;
+}</string>
                   </property>
                  </widget>
                 </item>

@@ -118,3 +118,18 @@ QString NewMoreNormalSlice::subFinger(QString number)
 
     return number.right(count);
 }
+
+/*******************   按钮点击            ***********************/
+void NewMoreNormalSlice::keyPressEvent(QKeyEvent * event)
+{
+    static QString strNumber;
+    if(event->key() == Qt::Key_Return)
+    {
+        ui->lineEditBlNumber->setText(strNumber);
+        strNumber.clear();
+    }
+    else
+    {
+        strNumber += event->text();
+    }
+}

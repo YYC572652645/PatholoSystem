@@ -1,21 +1,21 @@
 QTableWidget::item:selected:active
 {
-background-color:#708069;
-color:black;
+background-color:#828282;
+color:white;
 }
 
 QTableWidget::item:selected:!active
 {
-background-color:#708069;
-color:black;
+background-color:#828282;
+color:white;
 }
 
 QHeaderView::section
 {
-    font:12pt;
-    background-color:rgb(0,130,150);
-    color:white;
-    height:30px;
+font:12pt;
+background-color:rgb(0,130,150);
+color:white;
+height:30px;
 }
 
 QGroupBox
@@ -74,35 +74,38 @@ background: #888888;
 
 QListWidget::item#systemList
 {
-    height:50px;
+height:50px;
 }
 
 QListWidget::item::hover#systemList
 {
-    background-color:rgb(9,150,200,100);
+background-color:rgb(9,150,200,100);
+color:white;
 }
 
 QListWidget::item:selected#systemList
 {
-    background-color:rgb(9,150,200,255);
+background-color:rgb(9,150,200,255);
+color:white;
 }
 QListWidget#systemList
 {
-background-color: #458B74;
+background-color:#2c3e50;
+color:white;
+font-weight:bold;
 }
 
 QTreeWidget::item:selected:active
 {
-background-color: #9C9C9C;
-color:black;
+background-color: #828282;
+color:white;
 }
 
 QTreeWidget::item:selected:!active
 {
-background-color: #9C9C9C;
-color:black;
+background-color: #828282;
+color:white;
 }
-
 
 QTabBar::tab
 {

@@ -581,6 +581,24 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>spinBoxNumber</tabstop>
+  <tabstop>radioButtonAddBLNumber</tabstop>
+  <tabstop>radioButtonAddBlAndCode</tabstop>
+  <tabstop>radioButtonAddBlAndCancel</tabstop>
+  <tabstop>radioButtonAddAll</tabstop>
+  <tabstop>spinBoxPrintNumber</tabstop>
+  <tabstop>lineEditRSType</tabstop>
+  <tabstop>lineEditRSIndex</tabstop>
+  <tabstop>lineEditOther</tabstop>
+  <tabstop>comboBoxQPPeople</tabstop>
+  <tabstop>dateEditQPTime</tabstop>
+  <tabstop>comboBoxRSPeople</tabstop>
+  <tabstop>dateEditRSTime</tabstop>
+  <tabstop>lineEditBlNumber</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -46,6 +46,8 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButtonSave;
+    QSpacerItem *horizontalSpacer;
+    QLabel *labelInfo;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_8;
@@ -66,9 +68,9 @@ public:
     {
         if (templatesetup->objectName().isEmpty())
             templatesetup->setObjectName(QStringLiteral("templatesetup"));
-        templatesetup->resize(899, 630);
-        templatesetup->setMinimumSize(QSize(899, 630));
-        templatesetup->setMaximumSize(QSize(899, 630));
+        templatesetup->resize(904, 630);
+        templatesetup->setMinimumSize(QSize(904, 630));
+        templatesetup->setMaximumSize(QSize(906, 630));
         actionDelete = new QAction(templatesetup);
         actionDelete->setObjectName(QStringLiteral("actionDelete"));
         QIcon icon;
@@ -88,7 +90,7 @@ public:
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMaximumSize(QSize(645, 520));
+        groupBox_2->setMaximumSize(QSize(680, 520));
         groupBox_2->setStyleSheet(QLatin1String("QGroupBox\n"
 "{\n"
 "border-radius: 5px;\n"
@@ -109,8 +111,8 @@ public:
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         widgetControl = new MoveWidgetControl(groupBox_2);
         widgetControl->setObjectName(QStringLiteral("widgetControl"));
-        widgetControl->setMinimumSize(QSize(625, 500));
-        widgetControl->setMaximumSize(QSize(625, 500));
+        widgetControl->setMinimumSize(QSize(650, 500));
+        widgetControl->setMaximumSize(QSize(650, 500));
         widgetControl->setStyleSheet(QStringLiteral("background-color:white"));
         verticalLayout_9 = new QVBoxLayout(widgetControl);
         verticalLayout_9->setSpacing(6);
@@ -152,9 +154,45 @@ public:
 
         pushButtonSave = new QPushButton(groupBox_3);
         pushButtonSave->setObjectName(QStringLiteral("pushButtonSave"));
-        pushButtonSave->setMinimumSize(QSize(120, 0));
+        pushButtonSave->setMinimumSize(QSize(131, 0));
+        pushButtonSave->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
 
         horizontalLayout_2->addWidget(pushButtonSave);
+
+        horizontalSpacer = new QSpacerItem(30, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+        labelInfo = new QLabel(groupBox_3);
+        labelInfo->setObjectName(QStringLiteral("labelInfo"));
+        labelInfo->setStyleSheet(QLatin1String("QLabel\n"
+"{\n"
+"color:darkred;\n"
+"font-size:14px;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(labelInfo);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -437,6 +475,7 @@ public:
 #endif // QT_NO_WHATSTHIS
         groupBox_3->setTitle(QString());
         pushButtonSave->setText(QApplication::translate("templatesetup", "\344\277\235\345\255\230", 0));
+        labelInfo->setText(QString());
         groupBox->setTitle(QString());
         pushButtonAdd->setText(QApplication::translate("templatesetup", "  \346\267\273\345\212\240\346\250\241\346\235\277", 0));
         pushButtonSub->setText(QApplication::translate("templatesetup", "  \345\210\240\351\231\244\346\250\241\346\235\277", 0));

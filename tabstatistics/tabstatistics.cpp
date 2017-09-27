@@ -12,6 +12,10 @@ TabsSatistics::TabsSatistics(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    extend  = NULL;
+    menu    = NULL;
+    refresh = NULL;
+
     this->initControl();
     this->initData();
 }

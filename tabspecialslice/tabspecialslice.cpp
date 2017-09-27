@@ -10,6 +10,16 @@ TabSpeciaSlice::TabSpeciaSlice(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    newSpecialSlice = NULL;
+    newMoreSlice    = NULL;
+    templateSetUp   = NULL;
+    movie   = NULL;
+    timer   = NULL;
+    menu    = NULL;
+    print   = NULL;
+    del     = NULL;
+    refresh = NULL;
+
     this->initControl();
     this->initData();
 
@@ -240,7 +250,9 @@ void TabSpeciaSlice::on_actionDeleteInfo_triggered()
     {
         SPECIALSLICEDATA->deleteData(BLDATA, SPECIALSLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
 
-        dataSelect(ALLDATA);
+        ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+
+        SPECIALSLICEDATA->selectData(ALLDATA, NULL);
     }
 }
 

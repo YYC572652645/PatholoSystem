@@ -80,3 +80,18 @@ void NewNormalSlice::on_pushButtonCancel_clicked()
 {
     this->close();
 }
+
+/*******************   按钮点击            ***********************/
+void NewNormalSlice::keyPressEvent(QKeyEvent * event)
+{
+    static QString strNumber;
+    if(event->key() == Qt::Key_Return)
+    {
+        ui->lineEditCodeNumber->setText(strNumber);
+        strNumber.clear();
+    }
+    else
+    {
+        strNumber += event->text();
+    }
+}

@@ -13,6 +13,7 @@
 #include <QListWidgetItem>
 #include "templatedata/templatedata.h"
 #include "messagebox/messagedialog.h"
+#include "config/qreadini.h"
 #include "../globaldef.h"
 #include <QJsonArray>
 
@@ -24,6 +25,14 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+    textEdit    = NULL;
+    fontBox     = NULL;
+    fontSizeBox = NULL;
+    widthEdit   = NULL;
+    heightEdit  = NULL;
+    qrcode      = NULL;
+
     widgetType = type;
 
     this->setWindowTitle("打印模板");
@@ -33,31 +42,6 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
     this->initValue();       //初始化数据
 
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
-
-    int count = TEMPLATEDATA->selectData(widgetType);
-
-    for(int i = 0; i < count; i ++)
-    {
-        readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
-
-        ui->listWidgetTemplate->addItem(TEMPLATEDATA->getDataTemplate().at(i).templateName);
-
-        templateName = TEMPLATEDATA->getDataTemplate().at(i).templateName;
-    }
-
-    int rowCount = ui->listWidgetTemplate->count();
-
-    if(rowCount != 0)
-    {
-        //选中最后一行
-        ui->listWidgetTemplate->item(rowCount - 1)->setSelected(true);
-
-        //滑动至最后一行
-        ui->listWidgetTemplate->scrollToBottom();
-
-        //设置当前行为最后一行
-        ui->listWidgetTemplate->setCurrentRow(rowCount - 1);
-    }
 }
 
 /*********************     析构函数             **************************/
@@ -267,6 +251,35 @@ void TemplateSetUp::initConnect()
 /*********************     初始化数据         *************************/
 void TemplateSetUp::initValue()
 {
+    QList<QString>templateList = INICONFIG->getTemplateList();
+
+    for(int i = 0; i < TEMPLATEDATA->selectData(widgetType); i ++)
+    {
+        readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
+
+        ui->listWidgetTemplate->addItem(TEMPLATEDATA->getDataTemplate().at(i).templateName);
+
+        if(widgetType >= templateList.size()) continue;
+
+        if(TEMPLATEDATA->getDataTemplate().at(i).templateName == templateList.at(widgetType))
+        {
+            templateName = templateList.at(widgetType);
+
+            ui->listWidgetTemplate->item(i)->setSelected(true);
+            ui->listWidgetTemplate->setCurrentRow(i);
+
+            if(!deleteFlage) deleteAll();         //先删除
+            writeAll();                           //再写入
+
+            this->setInfo();                      //设置信息
+            this->generateQrCode(qrCodeNumber);   //生成二维码
+
+            ui->widgetControl->clearBox();        //将边界去掉
+
+            ui->labelInfo->setText("当前模板为 <" + templateName + ">");
+        }
+    }
+
     //常规切片
     if(widgetType == THIRDWIDGET)
     {
@@ -755,7 +768,7 @@ void TemplateSetUp::printImage(QString number)
 
     ui->widgetControl->clearBox();
 
-    QPixmap printPixMap = QWidget::grab(QRect(STARTPOINT.x(), STARTPOINT.y(), ui->widgetControl->width() - PAINTDATA , ui->widgetControl->height() - PAINTDATA));
+    QPixmap printPixMap = QWidget::grab(QRect(STARTPOINT.x(), STARTPOINT.y(), ui->widgetControl->width() , ui->widgetControl->height()));
 
     this->printQrCode(printPixMap);
 }
@@ -946,12 +959,12 @@ void TemplateSetUp::writeJson()
     QJsonObject jsonTotal;
     QJsonArray  jsonArray;
 
-    for(int i = 0; i < dataList[templateName].size(); i ++)
+    for(int i = 0; i < dataList.value(templateName).size(); i ++)
     {
         QJsonObject jsonData;
         QMap<QString, QString> mapData;
 
-        const QList<LabelData> &dataLabel = dataList[templateName];
+        const QList<LabelData> &dataLabel = dataList.value(templateName);
 
         mapData[labelType]   = dataLabel.at(i).labelType;
         mapData[labelText]   = dataLabel.at(i).labelText;
@@ -1044,5 +1057,12 @@ void TemplateSetUp::on_pushButtonSave_clicked()
 {
     writeJson();
 
-    MESSAGEBOX->setInfo(tr("系统提示"),tr("当前模板为 <%1>").arg(templateName),GLOBALDEF::SUCCESSIMAGE, true, NULL);
+    QList<QString>templateList = INICONFIG->getTemplateList();
+
+    templateList[widgetType] = templateName;
+    INICONFIG->setTemplateList(templateList);
+
+    INICONFIG->writeTemplateIni();
+
+    ui->labelInfo->setText("当前模板为 <" + templateName + ">");
 }

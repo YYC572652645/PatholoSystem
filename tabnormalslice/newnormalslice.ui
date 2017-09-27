@@ -468,6 +468,19 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>spinBoxPrintNumber</tabstop>
+  <tabstop>lineEditColorType</tabstop>
+  <tabstop>lineEditColorIndex</tabstop>
+  <tabstop>lineEditOther</tabstop>
+  <tabstop>comboBoxQPPeople</tabstop>
+  <tabstop>dateEditQPTime</tabstop>
+  <tabstop>comboBoxRSPeople</tabstop>
+  <tabstop>dateEditRSTime</tabstop>
+  <tabstop>lineEditCodeNumber</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

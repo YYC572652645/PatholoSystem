@@ -10,6 +10,16 @@ TabImmuneSlice::TabImmuneSlice(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    newImmuneSlice = NULL;
+    newMoreSlice   = NULL;
+    templateSetUp  = NULL;
+    menu           = NULL;
+    print          = NULL;
+    del            = NULL;
+    refresh        = NULL;
+    movie          = NULL;
+    timer          = NULL;
+
     this->initControl();
     this->initData();
 
@@ -239,7 +249,9 @@ void TabImmuneSlice::on_actionDeleteInfo_triggered()
     if(ok == QDialog::Accepted)
     {
         IMMUNESLICEDATA->deleteData(BLDATA, IMMUNESLICEDATA->getDataList().at(ui->tableWidget->currentRow()).sectionId);
-        dataSelect(ALLDATA);
+        ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+
+        IMMUNESLICEDATA->selectData(ALLDATA, NULL);
     }
 }
 

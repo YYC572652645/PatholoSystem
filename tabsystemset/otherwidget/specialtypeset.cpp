@@ -46,12 +46,10 @@ void SpeciaTypeSet::initControl()
     ui->tableWidget->setAlternatingRowColors(true);
 
     //等宽显示
-    QHeaderView *headerView = ui->tableWidget->horizontalHeader();
-    headerView->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     //纵向隐藏序号
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //去除点击的虚线
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);

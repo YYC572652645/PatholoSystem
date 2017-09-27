@@ -2,6 +2,7 @@
 #define NEWMOREIMMUNESLICE_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "immuneslicedata.h"
 
 namespace Ui {
@@ -27,8 +28,8 @@ private slots:
 private:
     Ui::newmoreimmuneslice *ui;
 
+    void keyPressEvent(QKeyEvent * event);
     QString subFinger(QString number);
-
     void setComboBoxInfo();
 };
 

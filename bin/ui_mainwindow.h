@@ -89,6 +89,7 @@ public:
 "{\n"
 "background-color:transparent;\n"
 "color:blue;\n"
+"font-size:14px;\n"
 "}"));
 
         verticalLayout->addWidget(pushButton);

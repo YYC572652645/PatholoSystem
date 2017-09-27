@@ -67,7 +67,8 @@ SOURCES += main.cpp\
     tabspecialslice/newspecialslice.cpp \
     tabspecialslice/specialslicedata.cpp \
     tabstatistics/tabstatistics.cpp \
-    tabsystemset/otherwidget/userwidget.cpp
+    tabsystemset/otherwidget/userwidget.cpp \
+    alterpassword/alterpassword.cpp
 
 HEADERS  += mainwindow.h \
     logindialog/logindialog.h \
@@ -147,7 +148,8 @@ HEADERS  += mainwindow.h \
     tabspecialslice/newspecialslice.h \
     tabspecialslice/specialslicedata.h \
     tabstatistics/tabstatistics.h \
-    tabsystemset/otherwidget/userwidget.h
+    tabsystemset/otherwidget/userwidget.h \
+    alterpassword/alterpassword.h
 
 FORMS  += mainwindow.ui \
     logindialog/logindialog.ui \
@@ -179,7 +181,8 @@ FORMS  += mainwindow.ui \
     tabspecialslice/newmorespecialslice.ui \
     tabspecialslice/newspecialslice.ui \
     tabstatistics/tabstatistics.ui \
-    tabsystemset/otherwidget/userwidget.ui
+    tabsystemset/otherwidget/userwidget.ui \
+    alterpassword/alterpassword.ui
 
 RESOURCES += \
     res.qrc

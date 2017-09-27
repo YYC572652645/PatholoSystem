@@ -54,6 +54,7 @@ INPUT(
 ./release\specialslicedata.o
 ./release\tabstatistics.o
 ./release\userwidget.o
+./release\alterpassword.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
@@ -88,4 +89,5 @@ INPUT(
 ./release\moc_newspecialslice.o
 ./release\moc_tabstatistics.o
 ./release\moc_userwidget.o
+./release\moc_alterpassword.o
 );

@@ -122,6 +122,7 @@ public:
 
         lineEditPassWord = new QLineEdit(groupBox);
         lineEditPassWord->setObjectName(QStringLiteral("lineEditPassWord"));
+        lineEditPassWord->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_3->addWidget(lineEditPassWord);
 
@@ -141,6 +142,7 @@ public:
 
         lineEditPassWordMore = new QLineEdit(groupBox);
         lineEditPassWordMore->setObjectName(QStringLiteral("lineEditPassWordMore"));
+        lineEditPassWordMore->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_4->addWidget(lineEditPassWordMore);
 
@@ -279,7 +281,7 @@ public:
         label->setText(QApplication::translate("userwidget", "\347\231\273\345\275\225\345\220\215\347\247\260\357\274\232", 0));
         label_3->setText(QApplication::translate("userwidget", "\347\231\273\345\275\225\345\257\206\347\240\201\357\274\232", 0));
         label_4->setText(QApplication::translate("userwidget", "\345\257\206\347\240\201\347\241\256\350\256\244\357\274\232", 0));
-        label_5->setText(QApplication::translate("userwidget", "\345\244\207\346\263\250\357\274\232", 0));
+        label_5->setText(QApplication::translate("userwidget", "    \345\244\207\346\263\250\357\274\232", 0));
         checkBoxAdminster->setText(QApplication::translate("userwidget", "\347\256\241\347\220\206\345\221\230\350\272\253\344\273\275", 0));
         groupBox_2->setTitle(QApplication::translate("userwidget", "\346\223\215\344\275\234\346\235\203\351\231\220", 0));
         checkBoxReg->setText(QApplication::translate("userwidget", "\347\231\273\350\256\260", 0));

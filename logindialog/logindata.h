@@ -28,29 +28,23 @@ typedef struct UserInfo
 
 }UserInfo;
 
-
 class LoginData
 {
 public:
     /************构造函数*************/
     LoginData();
 
-
     /************连接数据库*************/
     bool dataCnn();
-
 
     /************插入数据*************/
     bool insertData();
 
-
     /************查询数据*************/
     bool selectData(QString userName, QString passWord);
 
-
     /************更改数据*************/
-    bool updateData();
-
+    bool updateData(QString userName, QString passWord);
 
     /************删除数据*************/
     bool deleteData();

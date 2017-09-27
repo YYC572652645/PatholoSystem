@@ -21,7 +21,6 @@
    创建时间:2017-6-20
 **************************************************************/
 
-
 #define MESSAGEBOX MessageDialog::getInstance()
 
 namespace Ui {
