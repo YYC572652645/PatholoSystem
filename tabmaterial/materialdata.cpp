@@ -392,6 +392,8 @@ bool MaterialData::deleteData(int type, QString id, QString embedCode)
         success = query.exec(str);
     }
 
+    qDebug()<<str;
+
     db.close();
 
     return success;
