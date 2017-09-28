@@ -10,8 +10,9 @@ TypeSet::TypeSet(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->initControl();  //初始化控件
+    typeSetDialog = NULL;
 
+    this->initControl();  //初始化控件
     this->initValue();    //初始化值
 }
 
@@ -62,8 +63,10 @@ void TypeSet::initControl()
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
+    typeSetDialog = new TypeSetDialog(this);
+
     //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
+    connect(typeSetDialog, SIGNAL(sendString(QString, QString, int)), this,SLOT(receiveData(QString, QString, int)));
 }
 
 /****************     初始化值      **********************/
@@ -102,14 +105,14 @@ void TypeSet::receiveData(QString typeAbbreviation, QString typeName, int type)
 /****************     新建         **********************/
 void TypeSet::on_pushButtonNew_clicked()
 {
-    typeSetDialog.showNewDialog();
+    typeSetDialog->showNewDialog();
 }
 
 /****************     删除         **********************/
 void TypeSet::on_pushButtonDelete_clicked()
 {
     if(nowRow < 0) return;
-
+    if(NULL == ui->tableWidget->currentItem()) return;
     if(nowRow >= SYSTEMDATA->getCodeTypeInfo().size()) return;
 
     bool success = SYSTEMDATA->codeTypeDeleteData(SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeID);
@@ -117,15 +120,18 @@ void TypeSet::on_pushButtonDelete_clicked()
     if(!success) return;
 
     ui->tableWidget->removeRow(nowRow); //移除删除的一行
+    SYSTEMDATA->codeTypeSelectData();
 }
 
 /****************     更新         **********************/
 void TypeSet::on_pushButtonUpdate_clicked()
 {
+    if(NULL == ui->tableWidget->currentItem()) return;
+
     QString codeTypeAbbr = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeAbbr;
     QString codeTypeName = SYSTEMDATA->getCodeTypeInfo().at(nowRow).codeTypeName;
 
-    typeSetDialog.showUpdateDialog(codeTypeAbbr, codeTypeName);
+    typeSetDialog->showUpdateDialog(codeTypeAbbr, codeTypeName);
 }
 
 /****************     退出         **********************/

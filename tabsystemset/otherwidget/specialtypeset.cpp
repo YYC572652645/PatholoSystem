@@ -10,9 +10,10 @@ SpeciaTypeSet::SpeciaTypeSet(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    typeSetDialog = NULL;
+
     this->initControl();  //初始化控件
     this->initValue();    //初始化值
-    typeSetDialog.setInfo();
 }
 
 /****************     析构函数      **********************/
@@ -28,11 +29,13 @@ void SpeciaTypeSet::showDialog()
 
     nowRow = 0;
 
-    if(SYSTEMDATA->getStainTypeName().size() != 0)
+    if(SYSTEMDATA->getSpecialTypeName().size() != 0)
     {
         ui->tableWidget->selectRow(0);
         ui->tableWidget->setFocus();
     }
+
+    SYSTEMDATA->selectStainTypeData(GLOBALDEF::SECONDTYPE);
 
     this->show();
 }
@@ -60,8 +63,11 @@ void SpeciaTypeSet::initControl()
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
+    typeSetDialog = new TypeSetDialog(this);
+    typeSetDialog->setInfo();
+
     //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
+    connect(typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
 }
 
 /****************     初始化值      **********************/
@@ -73,7 +79,7 @@ void SpeciaTypeSet::initValue()
 
     ui->tableWidget->setRowCount(count);
 
-    QMap<QString , QString> mapData =  SYSTEMDATA->getStainTypeName();
+    QMap<QString , QString> mapData =  SYSTEMDATA->getSpecialTypeName();
 
     for(int i = 0; i < mapData.keys().size(); i ++)
     {
@@ -90,9 +96,9 @@ void SpeciaTypeSet::receiveData(QString typeName, int type)
     }
     else if(type ==  GLOBALDEF::TYPEUPDATE)
     {
-        if(nowRow >= SYSTEMDATA->getStainTypeName().size()) return;
+        if(nowRow >= SYSTEMDATA->getSpecialTypeName().size()) return;
 
-        SYSTEMDATA->updateStainTypeData(typeName, SYSTEMDATA->getStainTypeName().keys().at(nowRow));
+        SYSTEMDATA->updateStainTypeData(typeName, SYSTEMDATA->getSpecialTypeName().keys().at(nowRow));
     }
 
     this->initValue();
@@ -101,7 +107,7 @@ void SpeciaTypeSet::receiveData(QString typeName, int type)
 /****************     新建         **********************/
 void SpeciaTypeSet::on_pushButtonNew_clicked()
 {
-    typeSetDialog.showNewDialog();
+    typeSetDialog->showNewDialog();
 }
 
 /****************     删除         **********************/
@@ -109,23 +115,26 @@ void SpeciaTypeSet::on_pushButtonDelete_clicked()
 {
     if(nowRow < 0) return;
 
-    if(nowRow >= SYSTEMDATA->getStainTypeName().size()) return;
+    if(nowRow >= SYSTEMDATA->getSpecialTypeName().size()) return;
 
-    bool success = SYSTEMDATA->deleteStainTypeData(SYSTEMDATA->getStainTypeName().keys().at(nowRow));
+    bool success = SYSTEMDATA->deleteStainTypeData(SYSTEMDATA->getSpecialTypeName().keys().at(nowRow));
 
     if(!success) return;
 
     ui->tableWidget->removeRow(nowRow); //移除删除的一行
+    SYSTEMDATA->selectStainTypeData(GLOBALDEF::SECONDTYPE);
 }
 
 /****************     更新         **********************/
 void SpeciaTypeSet::on_pushButtonUpdate_clicked()
 {
-    QMap<QString , QString> mapData =  SYSTEMDATA->getStainTypeName();
+    if(NULL == ui->tableWidget->currentItem()) return;
+
+    QMap<QString , QString> mapData =  SYSTEMDATA->getSpecialTypeName();
 
     QString codeTypeName = mapData.value(mapData.keys().at(nowRow));
 
-    typeSetDialog.showUpdateDialog(NULL, codeTypeName);
+    typeSetDialog->showUpdateDialog(NULL, codeTypeName);
 }
 
 /****************     退出         **********************/

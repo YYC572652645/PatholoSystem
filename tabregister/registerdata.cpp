@@ -49,14 +49,18 @@ bool RegisterData::insertRegData(RegisterInfo & data)
     QSqlQuery query;
 
     QString str = QString("insert into Reg(PCode,Sn,PrintQuantity,Printed,CreateTime) values('");
+
     str +=  data.pCode         + "','";
+
     str +=  data.sn            + "','";
+
     str +=  data.printQuantity + "','";
+
     str +=  data.printed       + "','";
+
     str +=  data.createTime    + "');";
 
 
-    qDebug()<<str;
     bool success = query.exec(str);  //执行sql语句
 
     db.close();
@@ -69,6 +73,7 @@ bool RegisterData::insertRegData(RegisterInfo & data)
 int RegisterData::selectMaxId()
 {
     int maxId = 0;
+
     if(!db.isOpen()) db.open();
 
     QSqlQuery query;
@@ -116,7 +121,7 @@ int RegisterData::selectData()
         data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
         data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
 
-        registerInfo << data;
+        registerInfo.append(data);
 
         count ++;
     }

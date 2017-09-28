@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>userwidget</class>
- <widget class="QWidget" name="userwidget">
+ <widget class="QMainWindow" name="userwidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,8 +23,9 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>MainWindow</string>
   </property>
+    <widget class="QWidget" name="centralwidget">
   <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -305,6 +306,7 @@
    </item>
   </layout>
  </widget>
+  </widget>
  <resources/>
  <connections/>
 </ui>

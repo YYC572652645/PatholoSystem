@@ -37,13 +37,8 @@ void PrintSet::initControl()
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
 
-    //等宽显示
-    QHeaderView *headerView = ui->tableWidget->horizontalHeader();
-    headerView->setSectionResizeMode(QHeaderView::Stretch);
-
     //纵向隐藏序号
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //去除点击的虚线
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
@@ -53,6 +48,12 @@ void PrintSet::initControl()
 
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
+
+    //设置根据内容调整列宽
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+
+    //设置列宽
+    ui->tableWidget->setColumnWidth(1, 120);
 }
 
 /****************     初始化值      **********************/

@@ -13,21 +13,23 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDialog>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_typesetdialog
 {
 public:
+    QWidget *centralwidget;
     QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout_3;
     QGroupBox *groupBox;
@@ -50,18 +52,20 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButtonCancel;
 
-    void setupUi(QDialog *typesetdialog)
+    void setupUi(QMainWindow *typesetdialog)
     {
         if (typesetdialog->objectName().isEmpty())
             typesetdialog->setObjectName(QStringLiteral("typesetdialog"));
         typesetdialog->resize(350, 231);
         typesetdialog->setMinimumSize(QSize(350, 231));
         typesetdialog->setMaximumSize(QSize(350, 231));
-        verticalLayout_4 = new QVBoxLayout(typesetdialog);
+        centralwidget = new QWidget(typesetdialog);
+        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        verticalLayout_4 = new QVBoxLayout(centralwidget);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        groupBox = new QGroupBox(typesetdialog);
+        groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         verticalLayout_2 = new QVBoxLayout(groupBox);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -127,7 +131,7 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        pushButtonOk = new QPushButton(typesetdialog);
+        pushButtonOk = new QPushButton(centralwidget);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
 
         horizontalLayout_3->addWidget(pushButtonOk);
@@ -140,7 +144,7 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        pushButtonCancel = new QPushButton(typesetdialog);
+        pushButtonCancel = new QPushButton(centralwidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
 
         horizontalLayout_3->addWidget(pushButtonCancel);
@@ -151,15 +155,16 @@ public:
 
         verticalLayout_4->addLayout(verticalLayout_3);
 
+        typesetdialog->setCentralWidget(centralwidget);
 
         retranslateUi(typesetdialog);
 
         QMetaObject::connectSlotsByName(typesetdialog);
     } // setupUi
 
-    void retranslateUi(QDialog *typesetdialog)
+    void retranslateUi(QMainWindow *typesetdialog)
     {
-        typesetdialog->setWindowTitle(QApplication::translate("typesetdialog", "Form", 0));
+        typesetdialog->setWindowTitle(QApplication::translate("typesetdialog", "MainWindow", 0));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("typesetdialog", "\347\261\273\345\210\253\347\274\251\345\206\231\357\274\232", 0));
         label_2->setText(QApplication::translate("typesetdialog", "\347\261\273\345\210\253\345\220\215\347\247\260\357\274\232", 0));

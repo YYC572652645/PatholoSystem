@@ -66,6 +66,7 @@ void QReadIni::readIni()
     templateList.append(configIniRead->value("template/templateFourth").toString());
     templateList.append(configIniRead->value("template/templateFiveth").toString());
     templateList.append(configIniRead->value("template/templateSixth").toString());
+    templateList.append(configIniRead->value("template/templateSeventh").toString());
 
     SAFEDELETE(configIniRead);
 }
@@ -106,14 +107,15 @@ void QReadIni::writeTemplateIni()
     QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
     configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
 
-    if(templateList.size() < 6) return;
+    if(templateList.size() < 7) return;
 
-    configIniWrite->setValue("template/templateFirst", templateList.at(0));
-    configIniWrite->setValue("template/templateSecond",templateList.at(1));
-    configIniWrite->setValue("template/templateThird", templateList.at(2));
-    configIniWrite->setValue("template/templateFourth",templateList.at(3));
-    configIniWrite->setValue("template/templateFiveth",templateList.at(4));
-    configIniWrite->setValue("template/templateSixth", templateList.at(5));
+    configIniWrite->setValue("template/templateFirst",   templateList.at(0));
+    configIniWrite->setValue("template/templateSecond",  templateList.at(1));
+    configIniWrite->setValue("template/templateThird",   templateList.at(2));
+    configIniWrite->setValue("template/templateFourth",  templateList.at(3));
+    configIniWrite->setValue("template/templateFiveth",  templateList.at(4));
+    configIniWrite->setValue("template/templateSixth",   templateList.at(5));
+    configIniWrite->setValue("template/templateSeventh", templateList.at(6));
 
     SAFEDELETE(configIniWrite);
 }

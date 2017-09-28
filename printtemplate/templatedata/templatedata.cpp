@@ -2,8 +2,6 @@
 #include "../../config/qreadini.h"
 #include "../globaldef.h"
 
-TemplateData * TemplateData::instance = NULL;
-
 /***************************构造函数***********************/
 TemplateData::TemplateData()
 {   

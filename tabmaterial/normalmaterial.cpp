@@ -17,7 +17,6 @@ NormalMaterial::NormalMaterial(QWidget *parent) :
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
-
 /*******************   析构函数    ***********************/
 NormalMaterial::~NormalMaterial()
 {
@@ -106,37 +105,40 @@ void NormalMaterial::on_pushButtonOk_clicked()
         return;
     }
 
-    //获取编码规则
-    SYSTEMDATA->codeBeginSelectData();
-    QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
-
-    DataChild dataChild;
-
-    dataChild.samplingId = data.samplingId;               //取材ID
-    dataChild.sn = "1";                                   //序号
-
+    for(int i = 0; i < ui->spinBoxMaterialNumber->value(); i ++)
     {
-        dataChild.embedCode = data.pCode;                 //病理号子序号
+        //获取编码规则
+        SYSTEMDATA->codeBeginSelectData();
+        QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
-        if(mapData[HYPHEN] != "0")
+        DataChild dataChild;
+
+        dataChild.samplingId = data.samplingId;               //取材ID
+        dataChild.sn = QString::number(i + 1);                //序号
+
         {
-            dataChild.embedCode +=  "-";                 //病理号子序号
+            dataChild.embedCode = data.pCode;                 //病理号子序号
+
+            if(mapData[HYPHEN] != "0")
+            {
+                dataChild.embedCode +=  "-";                 //病理号子序号
+            }
+
+            switch(mapData[NUMBERTYPE].toInt())
+            {
+            case 0: dataChild.embedCode +=  QString::number(i + 1);         break;      //病理号子序号
+            case 1: dataChild.embedCode +=  numberToLetter(LOWER, i + 1);   break;      //病理号子序号
+            case 2: dataChild.embedCode +=  numberToLetter(CAPITAL, i + 1); break;      //病理号子序号
+            }
         }
 
-        switch(mapData[NUMBERTYPE].toInt())
-        {
-        case 0: dataChild.embedCode +=  "1";  break;      //病理号子序号
-        case 1: dataChild.embedCode +=  "a";  break;      //病理号子序号
-        case 2: dataChild.embedCode +=  "A";  break;      //病理号子序号
-        }
+        dataChild.printed = "0";                              //是否打印
+        dataChild.sampled = "0";                              //是否取材
+        dataChild.sampler =  data.sampler;                    //取材人
+        dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");;     //取材时间
+
+        MATERIALDATA->insertChildData(dataChild);
     }
-
-    dataChild.printed = "0";                              //是否打印
-    dataChild.sampled = "0";                              //是否取材
-    dataChild.sampler =  data.sampler;                    //取材人
-    dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");;     //取材时间
-
-    MATERIALDATA->insertChildData(dataChild);
 
     emit sendSelect();
 
@@ -181,4 +183,47 @@ void NormalMaterial::keyPressEvent(QKeyEvent * event)
     {
         strNumber += event->text();
     }
+}
+
+/*******************   数字转字母            ***********************/
+QString NormalMaterial::numberToLetter(int type, int number)
+{
+    QString str;
+
+    int count = 1 + number / 26;     //是26个字母的多少倍
+    int remainder = number % 26;     //余数
+
+    for(int i = 0; i < count; i ++)
+    {
+        if(i + 1 < count)
+        {
+            if(type == CAPITAL)
+            {
+                str += 'Z';
+            }
+            else
+            {
+                str += 'z';
+            }
+        }
+        else
+        {
+            if(remainder == 0) continue;
+
+            char figer;
+
+            if(type == CAPITAL)
+            {
+                figer = remainder + 64;
+            }
+            else
+            {
+                figer = remainder + 96;
+            }
+
+            str += figer;
+        }
+    }
+
+    return str;
 }

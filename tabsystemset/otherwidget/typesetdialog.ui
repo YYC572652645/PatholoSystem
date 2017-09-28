@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>typesetdialog</class>
- <widget class="QDialog" name="typesetdialog">
+ <widget class="QMainWindow" name="typesetdialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,8 +23,9 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>MainWindow</string>
   </property>
+   <widget class="QWidget" name="centralwidget">
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -195,6 +196,7 @@
     </layout>
    </item>
   </layout>
+ </widget>
  </widget>
  <resources/>
  <connections/>

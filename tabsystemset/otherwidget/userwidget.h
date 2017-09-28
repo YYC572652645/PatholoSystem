@@ -1,14 +1,14 @@
 #ifndef USERWIDGET_H
 #define USERWIDGET_H
 
-#include <QWidget>
+#include <QMainWindow>
 #include "../tabsystemdata.h"
 
 namespace Ui {
 class userwidget;
 }
 
-class UserWidget : public QWidget
+class UserWidget : public QMainWindow
 {
     Q_OBJECT
 

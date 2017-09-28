@@ -11,11 +11,11 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QListWidgetItem>
-#include "templatedata/templatedata.h"
 #include "messagebox/messagedialog.h"
 #include "config/qreadini.h"
 #include "../globaldef.h"
 #include <QJsonArray>
+#include <QPrinterInfo>
 
 /*********************     构造函数             **************************/
 TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
@@ -126,7 +126,7 @@ void TemplateSetUp::on_pushButtonSub_clicked()
     delete item;
 
     //删除数据库信息
-    TEMPLATEDATA->deleteData(templateName, widgetType);
+    templateData.deleteData(templateName, widgetType);
 
     //移除控件中的内容
     deleteAll();
@@ -144,7 +144,15 @@ void TemplateSetUp::on_pushButtonSub_clicked()
         templateName = item->text();
 
         writeAll();
+
+        ui->labelInfo->setText(templateName);
     }
+    else
+    {
+        ui->labelInfo->setText("");
+    }
+
+    templateData.selectData(widgetType);
 }
 
 /*********************     初始化控件         *************************/
@@ -253,15 +261,15 @@ void TemplateSetUp::initValue()
 {
     QList<QString>templateList = INICONFIG->getTemplateList();
 
-    for(int i = 0; i < TEMPLATEDATA->selectData(widgetType); i ++)
+    for(int i = 0; i < templateData.selectData(widgetType); i ++)
     {
-        readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
+        readJson(templateData.getDataTemplate().at(i).templateText, templateData.getDataTemplate().at(i).templateName);
 
-        ui->listWidgetTemplate->addItem(TEMPLATEDATA->getDataTemplate().at(i).templateName);
+        ui->listWidgetTemplate->addItem(templateData.getDataTemplate().at(i).templateName);
 
         if(widgetType >= templateList.size()) continue;
 
-        if(TEMPLATEDATA->getDataTemplate().at(i).templateName == templateList.at(widgetType))
+        if(templateData.getDataTemplate().at(i).templateName == templateList.at(widgetType))
         {
             templateName = templateList.at(widgetType);
 
@@ -280,8 +288,15 @@ void TemplateSetUp::initValue()
         }
     }
 
+    //登记和取材
+    if(widgetType == FIRSTWIDGET || widgetType == SECONDWIDGET)
+    {
+        ui->listWidgetControl->addItem("文字");
+        ui->listWidgetControl->addItem("病理号");
+        ui->listWidgetControl->addItem("二维条码");
+    }
     //常规切片
-    if(widgetType == THIRDWIDGET)
+    else if(widgetType == THIRDWIDGET)
     {
         ui->listWidgetControl->addItem("染色类型");
         ui->listWidgetControl->addItem("染色指标");
@@ -317,6 +332,13 @@ void TemplateSetUp::initValue()
         ui->listWidgetControl->addItem("染色时间");
         ui->listWidgetControl->addItem("染色人");
         ui->listWidgetControl->addItem("单位名称");
+    }
+    //免疫组化和特染指标设置
+    else if(widgetType == SIXTHWIDGET || widgetType == SEVENTHWIDGET)
+    {
+        ui->listWidgetControl->addItem("文字");
+        ui->listWidgetControl->addItem("染色指标");
+        ui->listWidgetControl->addItem("二维条码");
     }
 }
 
@@ -366,10 +388,10 @@ void TemplateSetUp::writeAll()
 
     dataList.clear();
 
-    int count = TEMPLATEDATA->selectData(widgetType);
+    int count = templateData.selectData(widgetType);
     for(int i = 0; i < count; i ++)
     {
-        readJson(TEMPLATEDATA->getDataTemplate().at(i).templateText, TEMPLATEDATA->getDataTemplate().at(i).templateName);
+        readJson(templateData.getDataTemplate().at(i).templateText, templateData.getDataTemplate().at(i).templateName);
     }
 
     textLabel.clear();
@@ -703,7 +725,7 @@ const QImage TemplateSetUp::generateQrCode(QString number)
 
     qint32 width = qrCodeLabel.first()->width();                   //二维码图片的宽度
     qint32 height = qrCodeLabel.first()->height();                 //二维码图片的高度
-    qint32 qrcodeWidth =  qrcode->width > 0 ? qrcode->width : 1;   //判断二维码宽度是否大于0
+    qint32 qrcodeWidth = qrcode->width > 0 ? qrcode->width : 1;   //判断二维码宽度是否大于0
 
     double scaleX = (double)width / (double)qrcodeWidth;           //二维码图片的缩放比例
     double scaleY = (double)height / (double)qrcodeWidth;          //二维码图片缩放比例
@@ -762,6 +784,8 @@ void TemplateSetUp::printQrCode(QPixmap & pixmap)
 /*********************     打印图像            ************************/
 void TemplateSetUp::printImage(QString number)
 {
+    if(QPrinterInfo::availablePrinters().size() == 0) return;
+
     this->setInfo();
 
     this->generateQrCode(number);
@@ -990,9 +1014,9 @@ void TemplateSetUp::writeJson()
 
     QString arrayData = document.toJson();
 
-    if(!TEMPLATEDATA->insertData(templateName, arrayData, widgetType))
+    if(!templateData.insertData(templateName, arrayData, widgetType))
     {
-        TEMPLATEDATA->updateData(templateName, arrayData, widgetType);
+        templateData.updateData(templateName, arrayData, widgetType);
     }
 }
 

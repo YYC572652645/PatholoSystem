@@ -460,21 +460,6 @@ QListWidget::item:selected
                <property name="lineWidth">
                 <number>1</number>
                </property>
-               <item>
-                <property name="text">
-                 <string>文字</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>病理号</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>二维条码</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item>

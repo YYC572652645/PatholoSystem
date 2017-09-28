@@ -35,7 +35,7 @@ private:
     void dataSelect();             //数据查询
 
 private:
-    UserWidget userWidget;
+    UserWidget *userWidget;
 };
 
 #endif // TYPESET_H

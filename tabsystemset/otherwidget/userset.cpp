@@ -9,12 +9,13 @@ UserSet::UserSet(QWidget *parent) :
     ui(new Ui::userset)
 {
     ui->setupUi(this);
+    userWidget = NULL;
 
     this->initControl();  //初始化控件
-
     this->initValue();    //初始化值
 
-    connect(&userWidget, SIGNAL(sendData(UserData)), this, SLOT(receiveData(UserData)));
+    userWidget = new UserWidget(this);
+    connect(userWidget, SIGNAL(sendData(UserData)), this, SLOT(receiveData(UserData)));
 }
 
 /****************     析构函数      **********************/
@@ -47,13 +48,8 @@ void UserSet::initControl()
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
 
-    //等宽显示
-    QHeaderView *headerView = ui->tableWidget->horizontalHeader();
-    headerView->setSectionResizeMode(QHeaderView::Stretch);
-
     //纵向隐藏序号
-    headerView=ui->tableWidget->verticalHeader();
-    headerView->setHidden(true);
+    ui->tableWidget->verticalHeader()->setHidden(true);
 
     //去除点击的虚线
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
@@ -63,6 +59,17 @@ void UserSet::initControl()
 
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
+
+    //设置根据内容调整列宽
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->setColumnWidth(0, 60);
+    ui->tableWidget->setColumnWidth(1, 60);
+    ui->tableWidget->setColumnWidth(2, 60);
+    ui->tableWidget->setColumnWidth(3, 60);
+    ui->tableWidget->setColumnWidth(4, 100);
+    ui->tableWidget->setColumnWidth(5, 100);
+    ui->tableWidget->setColumnWidth(6, 100);
+    ui->tableWidget->setColumnWidth(7, 60);
 }
 
 /****************     初始化值      **********************/
@@ -74,7 +81,7 @@ void UserSet::initValue()
 /****************     新建         **********************/
 void UserSet::on_pushButtonNew_clicked()
 {
-    userWidget.show();
+    userWidget->show();
 }
 
 /****************     删除         **********************/
@@ -91,6 +98,8 @@ void UserSet::on_pushButtonDelete_clicked()
     if(!success) return;
 
     ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+
+    dataSelect();
 }
 
 /****************     更新         **********************/
@@ -100,7 +109,7 @@ void UserSet::on_pushButtonUpdate_clicked()
 
     if(ui->tableWidget->currentRow() >= SYSTEMDATA->getUserList().size()) return;
 
-    userWidget.showWidget(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()));
+    userWidget->showWidget(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()));
 }
 
 /****************     退出         **********************/

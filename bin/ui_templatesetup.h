@@ -364,9 +364,6 @@ public:
         verticalLayout->addWidget(labelTitle);
 
         listWidgetControl = new QListWidget(groupBox);
-        new QListWidgetItem(listWidgetControl);
-        new QListWidgetItem(listWidgetControl);
-        new QListWidgetItem(listWidgetControl);
         listWidgetControl->setObjectName(QStringLiteral("listWidgetControl"));
         listWidgetControl->setMinimumSize(QSize(0, 120));
         listWidgetControl->setStyleSheet(QLatin1String("QListWidget::item\n"
@@ -481,17 +478,6 @@ public:
         pushButtonSub->setText(QApplication::translate("templatesetup", "  \345\210\240\351\231\244\346\250\241\346\235\277", 0));
         labelTemplateTitle->setText(QApplication::translate("templatesetup", "\346\250\241\346\235\277\345\220\215\347\247\260", 0));
         labelTitle->setText(QApplication::translate("templatesetup", "\345\267\245\345\205\267\347\256\261", 0));
-
-        const bool __sortingEnabled = listWidgetControl->isSortingEnabled();
-        listWidgetControl->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem = listWidgetControl->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("templatesetup", "\346\226\207\345\255\227", 0));
-        QListWidgetItem *___qlistwidgetitem1 = listWidgetControl->item(1);
-        ___qlistwidgetitem1->setText(QApplication::translate("templatesetup", "\347\227\205\347\220\206\345\217\267", 0));
-        QListWidgetItem *___qlistwidgetitem2 = listWidgetControl->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("templatesetup", "\344\272\214\347\273\264\346\235\241\347\240\201", 0));
-        listWidgetControl->setSortingEnabled(__sortingEnabled);
-
         labelTitle_2->setText(QApplication::translate("templatesetup", "\350\256\276\347\275\256", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("templatesetup", "\346\226\260\345\273\272\345\210\227", 0));

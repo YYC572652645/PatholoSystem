@@ -3,7 +3,7 @@
 
 /****************     构造函数      **********************/
 UserWidget::UserWidget(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::userwidget)
 {
     ui->setupUi(this);

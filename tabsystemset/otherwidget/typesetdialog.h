@@ -1,13 +1,13 @@
 #ifndef TYPESETDIALOG_H
 #define TYPESETDIALOG_H
 
-#include <QDialog>
+#include <QMainWindow>
 
 namespace Ui {
 class typesetdialog;
 }
 
-class TypeSetDialog : public QDialog
+class TypeSetDialog : public QMainWindow
 {
     Q_OBJECT
 

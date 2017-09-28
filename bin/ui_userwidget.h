@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -29,6 +30,7 @@ QT_BEGIN_NAMESPACE
 class Ui_userwidget
 {
 public:
+    QWidget *centralwidget;
     QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_6;
     QGroupBox *groupBox;
@@ -71,18 +73,20 @@ public:
     QPushButton *pushButtonOk;
     QPushButton *pushButtonCancel;
 
-    void setupUi(QWidget *userwidget)
+    void setupUi(QMainWindow *userwidget)
     {
         if (userwidget->objectName().isEmpty())
             userwidget->setObjectName(QStringLiteral("userwidget"));
         userwidget->resize(475, 534);
         userwidget->setMinimumSize(QSize(475, 534));
         userwidget->setMaximumSize(QSize(475, 534));
-        verticalLayout_7 = new QVBoxLayout(userwidget);
+        centralwidget = new QWidget(userwidget);
+        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        verticalLayout_7 = new QVBoxLayout(centralwidget);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        groupBox = new QGroupBox(userwidget);
+        groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         verticalLayout_3 = new QVBoxLayout(groupBox);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -190,7 +194,7 @@ public:
 
         verticalLayout_6->addItem(horizontalSpacer_6);
 
-        groupBox_2 = new QGroupBox(userwidget);
+        groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         verticalLayout_5 = new QVBoxLayout(groupBox_2);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
@@ -252,12 +256,12 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        pushButtonOk = new QPushButton(userwidget);
+        pushButtonOk = new QPushButton(centralwidget);
         pushButtonOk->setObjectName(QStringLiteral("pushButtonOk"));
 
         horizontalLayout_7->addWidget(pushButtonOk);
 
-        pushButtonCancel = new QPushButton(userwidget);
+        pushButtonCancel = new QPushButton(centralwidget);
         pushButtonCancel->setObjectName(QStringLiteral("pushButtonCancel"));
 
         horizontalLayout_7->addWidget(pushButtonCancel);
@@ -268,15 +272,16 @@ public:
 
         verticalLayout_7->addLayout(verticalLayout_6);
 
+        userwidget->setCentralWidget(centralwidget);
 
         retranslateUi(userwidget);
 
         QMetaObject::connectSlotsByName(userwidget);
     } // setupUi
 
-    void retranslateUi(QWidget *userwidget)
+    void retranslateUi(QMainWindow *userwidget)
     {
-        userwidget->setWindowTitle(QApplication::translate("userwidget", "Form", 0));
+        userwidget->setWindowTitle(QApplication::translate("userwidget", "MainWindow", 0));
         groupBox->setTitle(QApplication::translate("userwidget", "\344\270\252\344\272\272\344\277\241\346\201\257", 0));
         label->setText(QApplication::translate("userwidget", "\347\231\273\345\275\225\345\220\215\347\247\260\357\274\232", 0));
         label_3->setText(QApplication::translate("userwidget", "\347\231\273\345\275\225\345\257\206\347\240\201\357\274\232", 0));

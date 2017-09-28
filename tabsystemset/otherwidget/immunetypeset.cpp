@@ -10,11 +10,10 @@ ImmuneTypeSet::ImmuneTypeSet(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    typeSetDialog = NULL;
+
     this->initControl();  //初始化控件
-
     this->initValue();    //初始化值
-
-    typeSetDialog.setInfo();
 }
 
 /****************     析构函数      **********************/
@@ -35,6 +34,8 @@ void ImmuneTypeSet::showDialog()
         ui->tableWidget->selectRow(0);
         ui->tableWidget->setFocus();
     }
+
+    SYSTEMDATA->selectStainTypeData(GLOBALDEF::FIRSTTYPE);
 
     this->show();
 }
@@ -64,8 +65,12 @@ void ImmuneTypeSet::initControl()
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
+    typeSetDialog = new TypeSetDialog(this);
+
+    typeSetDialog->setInfo();
+
     //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
+    connect(typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
 }
 
 /****************     初始化值      **********************/
@@ -105,7 +110,7 @@ void ImmuneTypeSet::receiveData(QString typeName, int type)
 /****************     新建         **********************/
 void ImmuneTypeSet::on_pushButtonNew_clicked()
 {
-    typeSetDialog.showNewDialog();
+    typeSetDialog->showNewDialog();
 }
 
 /****************     删除         **********************/
@@ -120,16 +125,20 @@ void ImmuneTypeSet::on_pushButtonDelete_clicked()
     if(!success) return;
 
     ui->tableWidget->removeRow(nowRow); //移除删除的一行
+
+    SYSTEMDATA->selectStainTypeData(GLOBALDEF::FIRSTTYPE);
 }
 
 /****************     更新         **********************/
 void ImmuneTypeSet::on_pushButtonUpdate_clicked()
 {
+    if(NULL == ui->tableWidget->currentItem()) return;
+
     QMap<QString , QString> mapData =  SYSTEMDATA->getStainTypeName();
 
     QString codeTypeName = mapData.value(mapData.keys().at(nowRow));
 
-    typeSetDialog.showUpdateDialog(NULL, codeTypeName);
+    typeSetDialog->showUpdateDialog(NULL, codeTypeName);
 }
 
 /****************     退出         **********************/

@@ -39,6 +39,8 @@ private:
 
     int extendType;
     QString fileName;
+
+    QMutex mutex;
 };
 
 #endif // EXCELOPERATE_H

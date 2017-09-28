@@ -85,11 +85,25 @@ int TabSystemData::selectStainTypeData(int type)
 
     if(!query.exec(str)) return -1;
 
-    StainTypeName.clear();
+    if(type == GLOBALDEF::FIRSTTYPE)
+    {
+        StainTypeName.clear();
+    }
+    else
+    {
+        SpecialTypeName.clear();
+    }
 
     while(query.next())
     {
-        StainTypeName[query.value(0).toString()] = query.value(1).toString();;
+        if(type == GLOBALDEF::FIRSTTYPE)
+        {
+            StainTypeName[query.value(0).toString()] = query.value(1).toString();
+        }
+        else
+        {
+            SpecialTypeName[query.value(0).toString()] = query.value(1).toString();
+        }
 
         count ++;
     }
@@ -160,11 +174,25 @@ int TabSystemData::selectStainingData(int type)
 
     if(!query.exec(str)) return -1;
 
-    StainingName.clear();
+    if(type == GLOBALDEF::FIRSTTYPE)
+    {
+        StainingName.clear();
+    }
+    else
+    {
+        SpecialingName.clear();
+    }
 
     while(query.next())
     {
-        StainingName[query.value(0).toString()] = query.value(1).toString();;
+        if(type == GLOBALDEF::FIRSTTYPE)
+        {
+            StainingName[query.value(0).toString()] = query.value(1).toString();
+        }
+        else
+        {
+            SpecialingName[query.value(0).toString()] = query.value(1).toString();
+        }
 
         count ++;
     }
@@ -570,5 +598,15 @@ QList<PrintData> TabSystemData::getPrintList() const
 QList<UserData> TabSystemData::getUserList() const
 {
     return userList;
+}
+
+QMap<QString, QString> TabSystemData::getSpecialingName() const
+{
+    return SpecialingName;
+}
+
+QMap<QString, QString> TabSystemData::getSpecialTypeName() const
+{
+    return SpecialTypeName;
 }
 

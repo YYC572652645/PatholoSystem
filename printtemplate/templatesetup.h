@@ -10,6 +10,8 @@
 #include "../tabnormalslice/normalslicedata.h"
 #include "../tabimmuneslice/immuneslicedata.h"
 #include "../tabspecialslice/specialslicedata.h"
+#include "templatedata/templatedata.h"
+
 
 namespace Ui {
 class templatesetup;
@@ -91,6 +93,7 @@ private:
     DataNormalSlice dataNormalSlice;                               //常规切片数据
     DataImmuneSlice dataImmuneSlice;                               //免疫组化切片
     DataSpecialSlice dataSpecialSlice;                             //特染切片数据
+    TemplateData templateData;                                     //数据库
 
 private:
     void initControl();                                            //初始化控件

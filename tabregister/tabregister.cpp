@@ -8,6 +8,7 @@
 #include <QModelIndex>
 #include <QAbstractItemModel>
 #include "messagebox/messagedialog.h"
+#include "config/qreadini.h"
 #include <QFileDialog>
 
 /*******************       构造函数                ***********************/
@@ -249,6 +250,8 @@ void TabRegister::on_actionDeleteInfo_triggered()
             ui->tableWidget->removeRow(currentRow);
         }
 
+        INICONFIG->writeIni(QString::number(registerData.selectMaxId()));
+
         registerData.selectData();
     }
 }
@@ -285,8 +288,6 @@ void TabRegister::on_actionExtendExcel_triggered()
     excelOperate->setItemName(itemName);
     excelOperate->setRegisterInfo(registerData.registerInfo);
     excelOperate->setFileName(fileName);
-
-    connect(excelOperate, SIGNAL(finished()), excelOperate, SLOT(terminate()));
 
     excelOperate->start();
 }
@@ -343,7 +344,7 @@ void TabRegister::on_tableWidget_doubleClicked(const QModelIndex &currentIndex)
 /*******************       打印标签                 ***********************/
 void TabRegister::on_actionPrintLabel_triggered()
 {
-    for(int i = 0; i < ui->tableWidget->selectedItems().size() ; i += 4)
+    for(int i = 0; i < ui->tableWidget->selectedItems().size(); i += 4)
     {
         int currentRow = ui->tableWidget->selectedItems().at(i)->row();
 

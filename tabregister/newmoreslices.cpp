@@ -33,6 +33,8 @@ void NewMoreSlices::on_pushButtonOk_clicked()
             int setBeginNumber = mapData[PCODEBEGINSN].toInt();
             int maxId = registerData.selectMaxId();
 
+            INICONFIG ->readIni();
+
             if(INICONFIG->getStartNumber().toInt() != maxId)
             {
                 data.pCode = QString::number(setBeginNumber);

@@ -1,5 +1,5 @@
-﻿#ifndef DATABASE_H
-#define DATABASE_H
+﻿#ifndef TEMPLATEDATA_H
+#define TEMPLATEDATA_H
 #include<QString>
 #include<QSqlDriver>
 #include<QSqlRecord>
@@ -8,8 +8,6 @@
 #include<QFile>
 #include<QIODevice>
 #include<QDebug>
-
-#define TEMPLATEDATA TemplateData::getInstance()
 
 typedef struct DataTemplate
 {
@@ -21,16 +19,6 @@ typedef struct DataTemplate
 class TemplateData
 {
 public:
-
-    static TemplateData * getInstance()
-    {
-        if(NULL == instance)
-        {
-            instance = new TemplateData();
-        }
-
-        return instance;
-    }
 
     /************构造函数*************/
     TemplateData();
@@ -53,7 +41,6 @@ public:
     QList<DataTemplate> getDataTemplate() const;
 
 private:
-    static TemplateData * instance; //单例模式
     QSqlDatabase db;                //定义数据库对象
 
     QList<DataTemplate> dataTemplate;

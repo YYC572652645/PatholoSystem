@@ -10,11 +10,11 @@ ImmuneIndexSet::ImmuneIndexSet(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    templateSetUp = NULL;
+    typeSetDialog = NULL;
+
     this->initControl();  //初始化控件
-
     this->initValue();    //初始化值
-
-    typeSetDialog.setInfo();
 }
 
 /****************     析构函数      **********************/
@@ -35,6 +35,8 @@ void ImmuneIndexSet::showDialog()
         ui->tableWidget->selectRow(0);
         ui->tableWidget->setFocus();
     }
+
+    SYSTEMDATA->selectStainingData(GLOBALDEF::FIRSTTYPE);
 
     this->show();
 }
@@ -64,8 +66,14 @@ void ImmuneIndexSet::initControl()
     //设置表头点击禁止塌陷
     ui->tableWidget->horizontalHeader()->setHighlightSections(false);
 
+    //创建打印模板对象
+    templateSetUp = new TemplateSetUp(SIXTHWIDGET, this);
+    typeSetDialog = new TypeSetDialog(this);
+
+    typeSetDialog->setInfo();
+
     //连接信号和槽
-    connect(&typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
+    connect(typeSetDialog, SIGNAL(sendString(QString, int)), this,SLOT(receiveData(QString, int)));
 }
 
 /****************     初始化值      **********************/
@@ -105,7 +113,7 @@ void ImmuneIndexSet::receiveData(QString typeName, int type)
 /****************     新建         **********************/
 void ImmuneIndexSet::on_pushButtonNew_clicked()
 {
-    typeSetDialog.showNewDialog();
+    typeSetDialog->showNewDialog();
 }
 
 /****************     删除         **********************/
@@ -120,16 +128,20 @@ void ImmuneIndexSet::on_pushButtonDelete_clicked()
     if(!success) return;
 
     ui->tableWidget->removeRow(nowRow); //移除删除的一行
+
+    SYSTEMDATA->selectStainingData(GLOBALDEF::FIRSTTYPE);
 }
 
 /****************     更新         **********************/
 void ImmuneIndexSet::on_pushButtonUpdate_clicked()
 {
+    if(NULL == ui->tableWidget->currentItem()) return;
+
     QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
 
     QString codeTypeName = mapData[mapData.keys().at(nowRow)];
 
-    typeSetDialog.showUpdateDialog(NULL, codeTypeName);
+    typeSetDialog->showUpdateDialog(NULL, codeTypeName);
 }
 
 /****************     退出         **********************/
@@ -142,4 +154,38 @@ void ImmuneIndexSet::on_pushButtonExit_clicked()
 void ImmuneIndexSet::on_tableWidget_clicked(const QModelIndex &index)
 {
     nowRow = index.row();
+}
+
+/****************     打印标签  **********************/
+void ImmuneIndexSet::on_pushButtonPrint_clicked()
+{
+    if(NULL == ui->tableWidget->currentItem()) return;
+
+    QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
+
+    templateSetUp->printImage(mapData.value(mapData.keys().at(nowRow)));
+}
+
+/****************     全部打印  **********************/
+void ImmuneIndexSet::on_pushButtonPrintAll_clicked()
+{
+    QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
+
+    for(int i = 0; i < mapData.keys().size(); i ++)
+    {
+        templateSetUp->printImage(mapData.value(mapData.keys().at(i)));
+    }
+}
+
+/****************     设置模板  **********************/
+void ImmuneIndexSet::on_pushButtonTemplateSet_clicked()
+{
+    QMap<QString , QString> mapData =  SYSTEMDATA->getStainingName();
+
+    if(NULL != ui->tableWidget->currentItem())
+    {
+        templateSetUp->setQrCodeNumber(mapData.value(mapData.keys().at(nowRow)));
+    }
+
+    templateSetUp->showWidget();
 }

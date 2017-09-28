@@ -145,6 +145,8 @@ public:
     QMap<QString, QString> getStainingName() const;        //获取免疫组化染色指标信息
     QList<PrintData> getPrintList() const;                 //打印机设置信息
     QList<UserData> getUserList() const;                   //用户信息
+    QMap<QString, QString> getSpecialingName() const;      //获取特殊染色指标信息
+    QMap<QString, QString> getSpecialTypeName() const;     //获取特殊染色类型信息
 
 private:
     QSqlDatabase db;                                       //定义数据库对象
@@ -153,6 +155,8 @@ private:
     QList<CodeTypeInfo> codeTypeInfo;                      //标本类别设置信息
     QMap<QString, QString>StainTypeName;                   //免疫组化染色类型
     QMap<QString, QString>StainingName;                    //免疫组化染色指标
+    QMap<QString, QString>SpecialTypeName;                 //特殊染色类型
+    QMap<QString, QString>SpecialingName;                  //特殊染色指标
     QList<PrintData> printList;                            //打印机设置信息
     QList<UserData>  userList;                             //用户信息
 

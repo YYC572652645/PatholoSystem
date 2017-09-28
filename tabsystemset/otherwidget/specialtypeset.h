@@ -40,7 +40,7 @@ private:
 
 private:
     int nowRow;                   //当前选中行
-    TypeSetDialog typeSetDialog;  //新建输入框
+    TypeSetDialog *typeSetDialog; //新建输入框
 };
 
 #endif // TYPESET_H

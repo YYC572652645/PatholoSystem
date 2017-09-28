@@ -1,5 +1,5 @@
-﻿#ifndef DATABASE_H
-#define DATABASE_H
+﻿#ifndef MATERIALDATA_H
+#define MATERIALDATA_H
 #include<QString>
 #include<QSqlDriver>
 #include<QSqlRecord>

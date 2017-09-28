@@ -31,7 +31,8 @@ private slots:
 
 private:
     Ui::normalmaterial *ui;
-    void keyPressEvent(QKeyEvent *event); //按键点击
+    void keyPressEvent(QKeyEvent *event);         //按键点击
+    QString numberToLetter(int type, int number); //数字转字母
     QString id;
 };
 

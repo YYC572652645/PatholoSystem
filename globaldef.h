@@ -73,6 +73,7 @@ enum WIDGETTYPE
     FOURTHWIDGET,
     FIVETHWIDGET,
     SIXTHWIDGET,
+    SEVENTHWIDGET,
 };
 
 typedef struct RegisterInfo

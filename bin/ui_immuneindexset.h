@@ -36,6 +36,9 @@ public:
     QPushButton *pushButtonNew;
     QPushButton *pushButtonUpdate;
     QPushButton *pushButtonDelete;
+    QPushButton *pushButtonPrint;
+    QPushButton *pushButtonPrintAll;
+    QPushButton *pushButtonTemplateSet;
     QPushButton *pushButtonExit;
     QSpacerItem *horizontalSpacer;
 
@@ -43,7 +46,7 @@ public:
     {
         if (immuneindexset->objectName().isEmpty())
             immuneindexset->setObjectName(QStringLiteral("immuneindexset"));
-        immuneindexset->resize(409, 451);
+        immuneindexset->resize(616, 551);
         verticalLayout_2 = new QVBoxLayout(immuneindexset);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
@@ -74,6 +77,7 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         pushButtonNew = new QPushButton(immuneindexset);
         pushButtonNew->setObjectName(QStringLiteral("pushButtonNew"));
+        pushButtonNew->setMinimumSize(QSize(70, 0));
         pushButtonNew->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "    background-color: transparent;\n"
@@ -101,6 +105,7 @@ public:
 
         pushButtonUpdate = new QPushButton(immuneindexset);
         pushButtonUpdate->setObjectName(QStringLiteral("pushButtonUpdate"));
+        pushButtonUpdate->setMinimumSize(QSize(70, 0));
         pushButtonUpdate->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "    background-color: transparent;\n"
@@ -128,6 +133,7 @@ public:
 
         pushButtonDelete = new QPushButton(immuneindexset);
         pushButtonDelete->setObjectName(QStringLiteral("pushButtonDelete"));
+        pushButtonDelete->setMinimumSize(QSize(70, 0));
         pushButtonDelete->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "    background-color: transparent;\n"
@@ -153,8 +159,93 @@ public:
 
         horizontalLayout->addWidget(pushButtonDelete);
 
+        pushButtonPrint = new QPushButton(immuneindexset);
+        pushButtonPrint->setObjectName(QStringLiteral("pushButtonPrint"));
+        pushButtonPrint->setMinimumSize(QSize(70, 0));
+        pushButtonPrint->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonPrint);
+
+        pushButtonPrintAll = new QPushButton(immuneindexset);
+        pushButtonPrintAll->setObjectName(QStringLiteral("pushButtonPrintAll"));
+        pushButtonPrintAll->setMinimumSize(QSize(70, 0));
+        pushButtonPrintAll->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonPrintAll);
+
+        pushButtonTemplateSet = new QPushButton(immuneindexset);
+        pushButtonTemplateSet->setObjectName(QStringLiteral("pushButtonTemplateSet"));
+        pushButtonTemplateSet->setMinimumSize(QSize(70, 0));
+        pushButtonTemplateSet->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    background-color: transparent;\n"
+"    border-radius:5px;\n"
+"    border:2px solid gray;\n"
+"    color:black;\n"
+"    height:20px;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"    background-color: rgb(0,130,150);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover:pressed\n"
+"{\n"
+"    background-color:rgb(85,170,255);\n"
+"    border-radius:5px;\n"
+"    color:white;\n"
+"}"));
+
+        horizontalLayout->addWidget(pushButtonTemplateSet);
+
         pushButtonExit = new QPushButton(immuneindexset);
         pushButtonExit->setObjectName(QStringLiteral("pushButtonExit"));
+        pushButtonExit->setMinimumSize(QSize(70, 0));
         pushButtonExit->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "    background-color: transparent;\n"
@@ -212,6 +303,9 @@ public:
         pushButtonNew->setText(QApplication::translate("immuneindexset", "\346\226\260\345\273\272", 0));
         pushButtonUpdate->setText(QApplication::translate("immuneindexset", "\344\277\256\346\224\271", 0));
         pushButtonDelete->setText(QApplication::translate("immuneindexset", "\345\210\240\351\231\244", 0));
+        pushButtonPrint->setText(QApplication::translate("immuneindexset", "\346\211\223\345\215\260\346\240\207\347\255\276", 0));
+        pushButtonPrintAll->setText(QApplication::translate("immuneindexset", "\345\205\250\351\203\250\346\211\223\345\215\260", 0));
+        pushButtonTemplateSet->setText(QApplication::translate("immuneindexset", "\350\256\276\347\275\256\346\250\241\346\235\277", 0));
         pushButtonExit->setText(QApplication::translate("immuneindexset", "\351\200\200\345\207\272", 0));
     } // retranslateUi
 

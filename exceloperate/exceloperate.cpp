@@ -11,15 +11,19 @@ ExcelOperate::ExcelOperate()
 
 void ExcelOperate::run()
 {
+    mutex.lock();
+
     switch(extendType)
     {
-    case GLOBALDEF::REGTYPE:       extendRegExcel();
-    case GLOBALDEF::MATERIALTYPE:  extendSampleExcel();
-    case GLOBALDEF::STATISTICSTYPE:extendStatisticsExcel();
+    case GLOBALDEF::REGTYPE:       extendRegExcel();        break;
+    case GLOBALDEF::MATERIALTYPE:  extendSampleExcel();     break;
+    case GLOBALDEF::STATISTICSTYPE:extendStatisticsExcel(); break;
     }
+
+    mutex.unlock();
 }
 
-void ExcelOperate::extendRegExcel()
+void ExcelOperate::extendSampleExcel()
 {
     /******************        创建操作excel对象      ***************/
     QAxObject *excel = NULL;
@@ -33,7 +37,11 @@ void ExcelOperate::extendRegExcel()
 
     excel = new QAxObject("Excel.Application");                     //加载Excel驱动
 
-    if(excel->isNull()) return;
+    if(excel->isNull())
+    {
+        this->terminate();
+        return;
+    }
 
     excel->setProperty("Visible", false);                           //不显示任何警告信息
     workBooks = excel->querySubObject("WorkBooks");
@@ -61,7 +69,7 @@ void ExcelOperate::extendRegExcel()
 
             int dataCount = i - STARTROW;
 
-            switch(j)
+            switch(j - 1)
             {
             case NUMBERING:        cell->setProperty("Value", childInfo.at(dataCount).embedCode);     break;
             case SERIALNUMBER:     cell->setProperty("Value", childInfo.at(dataCount).sn);            break;
@@ -80,7 +88,7 @@ void ExcelOperate::extendRegExcel()
     excel->dynamicCall("Quit(void)");                                                    //退出
 }
 
-void ExcelOperate::extendSampleExcel()
+void ExcelOperate::extendRegExcel()
 {
     /******************        创建操作excel对象      ***************/
     QAxObject *excel = NULL;
@@ -94,7 +102,11 @@ void ExcelOperate::extendSampleExcel()
 
     excel = new QAxObject("Excel.Application");                     //加载Excel驱动
 
-    if(excel->isNull()) return;
+    if(excel->isNull())
+    {
+        this->terminate();
+        return;
+    }
 
     excel->setProperty("Visible", false);                           //不显示任何警告信息
     workBooks = excel->querySubObject("WorkBooks");
@@ -152,7 +164,11 @@ void ExcelOperate::extendStatisticsExcel()
 
     excel = new QAxObject("Excel.Application");                     //加载Excel驱动
 
-    if(excel->isNull()) return;
+    if(excel->isNull())
+    {
+        this->terminate();
+        return;
+    }
 
     excel->setProperty("Visible", false);                           //不显示任何警告信息
     workBooks = excel->querySubObject("WorkBooks");
@@ -180,7 +196,7 @@ void ExcelOperate::extendStatisticsExcel()
 
             int dataCount = i - STARTROW;
 
-            switch(j)
+            switch(j - 1)
             {
             case DAtABASEDEF::DATE:           cell->setProperty("Value", statisticsList.at(dataCount).date);            break;
             case DAtABASEDEF::MATERIALTOTAL:  cell->setProperty("Value", statisticsList.at(dataCount).materialTotal);   break;
