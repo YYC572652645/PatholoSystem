@@ -3,15 +3,15 @@
 #include "messagebox/messagedialog.h"
 #include "globaldef.h"
 TypeSetDialog::TypeSetDialog(QWidget *parent) :
-    QMainWindow(parent),dataType(0),
-    ui(new Ui::typesetdialog)
+    QMainWindow(parent)
+  ,ui(new Ui::typesetdialog)
+  ,dataType(0)
 {
     ui->setupUi(this);
 
     this->setWindowTitle("类别");
 
-     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
-    //this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
 TypeSetDialog::~TypeSetDialog()

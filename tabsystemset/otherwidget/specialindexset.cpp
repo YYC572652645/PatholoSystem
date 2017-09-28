@@ -5,13 +5,15 @@
 
 /****************     构造函数      **********************/
 SpeciaIndexSet::SpeciaIndexSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
-    ui(new Ui::specialindexset)
+    QWidget(parent)
+  ,ui(new Ui::specialindexset)
+  ,nowRow(-1)
+  ,typeSetDialog(NULL)
+  ,templateSetUp(NULL)
 {
     ui->setupUi(this);
 
-    typeSetDialog = NULL;
-    templateSetUp = NULL;
+
 
     this->initControl();                      //初始化控件
     this->initValue();                        //初始化值

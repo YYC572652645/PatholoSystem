@@ -33,11 +33,10 @@ signals:
 private slots:
     void receiveNumber(QString number, QString id);
 
-    void on_pushButton_clicked();
+    void on_pushButton_clicked();    //更改密码
 
 private:
     Ui::MainWindow *ui;
-
     void initControl();              //初始化控件
 
 private:

@@ -5,12 +5,14 @@
 
 /****************     构造函数      **********************/
 SpeciaTypeSet::SpeciaTypeSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
-    ui(new Ui::speciatypeset)
+    QWidget(parent)
+  ,ui(new Ui::speciatypeset)
+  ,nowRow(-1)
+  ,typeSetDialog(NULL)
 {
     ui->setupUi(this);
 
-    typeSetDialog = NULL;
+
 
     this->initControl();  //初始化控件
     this->initValue();    //初始化值

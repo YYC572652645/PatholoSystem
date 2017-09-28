@@ -5,12 +5,12 @@
 
 /****************     构造函数      **********************/
 ImmuneTypeSet::ImmuneTypeSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
-    ui(new Ui::immunetypeset)
+    QWidget(parent)
+  ,ui(new Ui::immunetypeset)
+  ,nowRow(-1)
+  ,typeSetDialog(NULL)
 {
     ui->setupUi(this);
-
-    typeSetDialog = NULL;
 
     this->initControl();  //初始化控件
     this->initValue();    //初始化值

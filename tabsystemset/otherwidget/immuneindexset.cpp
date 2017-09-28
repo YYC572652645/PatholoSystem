@@ -5,13 +5,13 @@
 
 /****************     构造函数      **********************/
 ImmuneIndexSet::ImmuneIndexSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
-    ui(new Ui::immuneindexset)
+    QWidget(parent)
+  ,ui(new Ui::immuneindexset)
+  ,nowRow(-1)
+  ,typeSetDialog(NULL)
+  ,templateSetUp(NULL)
 {
     ui->setupUi(this);
-
-    templateSetUp = NULL;
-    typeSetDialog = NULL;
 
     this->initControl();  //初始化控件
     this->initValue();    //初始化值

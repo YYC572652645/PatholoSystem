@@ -7,14 +7,13 @@
 
 /*******************       构造函数              ***********************/
 TabsSatistics::TabsSatistics(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabstatistics)
+    QMainWindow(parent)
+  ,ui(new Ui::tabstatistics)
+  ,menu (NULL)
+  ,refresh(NULL)
+  ,extend(NULL)
 {
     ui->setupUi(this);
-
-    extend  = NULL;
-    menu    = NULL;
-    refresh = NULL;
 
     this->initControl();
     this->initData();

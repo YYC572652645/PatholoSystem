@@ -8,6 +8,7 @@
 TabSystemSet::TabSystemSet(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::tabsystemset)
+  ,listWidget(NULL)
 {
     ui->setupUi(this);
 

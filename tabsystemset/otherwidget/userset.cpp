@@ -7,9 +7,9 @@
 UserSet::UserSet(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::userset)
+  ,userWidget(NULL)
 {
     ui->setupUi(this);
-    userWidget = NULL;
 
     this->initControl();  //初始化控件
     this->initValue();    //初始化值
@@ -30,6 +30,7 @@ void UserSet::showDialog()
     this->show();
 }
 
+/****************     接收信息    **********************/
 void UserSet::receiveData(UserData data)
 {
     if(!SYSTEMDATA->userInsertData(data))

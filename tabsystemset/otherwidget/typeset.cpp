@@ -5,12 +5,14 @@
 
 /****************     构造函数      **********************/
 TypeSet::TypeSet(QWidget *parent) :
-    QWidget(parent),nowRow(-1),
-    ui(new Ui::typeset)
+    QWidget(parent)
+  ,ui(new Ui::typeset)
+  ,nowRow(-1)
+  ,typeSetDialog(NULL)
 {
     ui->setupUi(this);
 
-    typeSetDialog = NULL;
+
 
     this->initControl();  //初始化控件
     this->initValue();    //初始化值

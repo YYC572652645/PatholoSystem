@@ -4,20 +4,21 @@
 
 /*******************   构造函数    ***********************/
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+
+    QMainWindow(parent)
+  ,ui(new Ui::MainWindow)
+  ,tabRegister(NULL)
+  ,tabSystemSet(NULL)
+  ,tabMaterial(NULL)
+  ,tabNormalSlice(NULL)
+  ,tabImmuneSlice(NULL)
+  ,tabSpecialSlice(NULL)
+  ,tabsSatistics(NULL)
+  ,alterPassword(NULL)
+  ,authority(0)
+  ,adminster(0)
 {
     ui->setupUi(this);
-
-    tabRegister = NULL;       //登记
-    tabSystemSet = NULL;;     //系统设置
-    tabMaterial = NULL;;      //取材
-    tabNormalSlice = NULL;;   //常规切片
-    tabImmuneSlice = NULL;;   //免疫组化切片
-    tabSpecialSlice = NULL;;  //特染切片
-    tabsSatistics = NULL;;    //取材统计
-    alterPassword = NULL;     //更改密码
-
 
     alterPassword = new AlterPassword(this);
 
