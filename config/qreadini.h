@@ -33,32 +33,28 @@ typedef struct LoginConfig
 class QReadIni
 {
 public:
-    static QReadIni*getInstance();
+    static QReadIni*getInstance();                      //单例模式
+    void readIni();                                     //读取所有配置文件
+    void writeIni(QString userName, QString passWord);  //写入用户信息
+    void writeIni(QString startNumber);                 //写入开始病理号
+    void writeQCIni(QString recentNumber);              //写入最新病理号
+    void writeTemplateIni();                            //写入模板信息
 
-    void readIni();                                     //读取配置文件
-    void writeIni(QString userName, QString passWord);  //写入配置文件
-    void writeIni(QString startNumber);                 //写入配置文件
-    void writeQCIni(QString recentNumber);              //写入配置文件
-    void writeTemplateIni();                            //写入配置文件
-
-    const DataConfig &getDataConfig();
-
-    LoginConfig getLoginConfig() const;
-    QString getStartNumber() const;
-    QString getRecentNumber() const;
-    QList<QString> getTemplateList() const;
-
-    void setTemplateList(const QList<QString> &value);
+    const DataConfig &getDataConfig();                  //获取数据库配置信息
+    LoginConfig getLoginConfig() const;                 //获取登录配置信息
+    QString getStartNumber() const;                     //获取开始病理号信息
+    QString getRecentNumber() const;                    //获取最新病理号
+    QList<QString> getTemplateList() const;             //获取使用的模板名称
+    void setTemplateList(const QList<QString> &value);  //设置当前模板名称
 
 private:
-    QReadIni();
-
-    DataConfig dataConfig;
-    LoginConfig loginConfig;
-    QString startNumber;
-    QString recentNumber;
-    QList<QString>templateList;
-    static QReadIni*instance;
+    QReadIni();                  //私有构造
+    DataConfig dataConfig;       //数据库配置信息
+    LoginConfig loginConfig;     //用户配置信息
+    QString startNumber;         //开始病理号
+    QString recentNumber;        //最新病理号
+    QList<QString>templateList;  //使用的模板名称
+    static QReadIni*instance;    //单例模式
 
 };
 

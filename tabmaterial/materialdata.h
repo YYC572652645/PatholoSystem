@@ -1,5 +1,14 @@
 ﻿#ifndef MATERIALDATA_H
 #define MATERIALDATA_H
+
+/***************************************************************
+   功能:取材数据库信息
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include<QString>
 #include<QSqlDriver>
 #include<QSqlRecord>
@@ -55,15 +64,17 @@ typedef struct DataStatistics
 class MaterialData
 {
 public:
+    /************     单例模式       *************/
     static MaterialData * getInstance()
     {
         if(NULL == instance)
         {
-             instance = new MaterialData();
+            instance = new MaterialData();
         }
 
         return instance;
     }
+
     /************     构造函数       *************/
     MaterialData();
 
@@ -85,7 +96,7 @@ public:
     /************    查询包埋数量     *************/
     int selectBaoMai(QString blNumber);
 
-    /************    统计数据     *************/
+    /************    统计数据        *************/
     int selectStatistics(QString beginTime = NULL, QString endTime = NULL);
 
     /************    更改子类数据     *************/
@@ -97,16 +108,21 @@ public:
     /************    删除数据         *************/
     bool deleteData(int type, QString id = NULL, QString embedCode = NULL);
 
+    /************    获取子节点数据    *************/
     QList<DataChild> getChildList() const;
+
+    /************    获取父节点数据    *************/
     QList<DataParent> getParentList() const;
+
+    /************    获取统计数据      *************/
     QList<DataStatistics> getStatisticsList() const;
 
 private:
-    QSqlDatabase db;
-    static MaterialData *instance;
-    QList<DataParent> parentList;
-    QList<DataChild>  childList;
-    QList<DataStatistics> statisticsList;
+    QSqlDatabase db;                      //数据库对象
+    static MaterialData *instance;        //单例模式
+    QList<DataParent> parentList;         //父节点数据
+    QList<DataChild>  childList;          //子节点数据
+    QList<DataStatistics> statisticsList; //统计数据
 };
 
 #endif // DATABASE_H

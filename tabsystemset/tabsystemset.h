@@ -1,6 +1,14 @@
 #ifndef TABSYSTEMSET_H
 #define TABSYSTEMSET_H
 
+/***************************************************************
+   功能:系统设置
+
+   创建人:殷宇辰
+
+   创建时间:2017-7-25
+**************************************************************/
+
 #include <QMainWindow>
 #include <QListWidget>
 #include <QAction>
@@ -23,25 +31,22 @@ class TabSystemSet : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TabSystemSet(QWidget *parent = 0);
-    ~TabSystemSet();
+    explicit TabSystemSet(QWidget *parent = 0);       //构造函数
+    ~TabSystemSet();                                  //析构函数
 
 private slots:
-    void listWidgetClicked(const QModelIndex &index);
-
-    void on_pushButtonOk_clicked();
-
-    void on_pushButtonCancel_clicked();
+    void listWidgetClicked(const QModelIndex &index); //点击列表
+    void on_pushButtonOk_clicked();                   //确定按钮
+    void on_pushButtonCancel_clicked();               //取消按钮
 
 private:
     Ui::tabsystemset *ui;
-
-    void initControl();      //初始化控件
-
-private:
-    QListWidget *listWidget; //列表控件
+    void initControl();       //初始化控件
 
 private:
+    QListWidget *listWidget;  //列表控件
+
+    //系统设置窗口
     TypeSet typeSet;
     CodeRole codeRole;
     PrintSet printSet;

@@ -1,6 +1,14 @@
 #ifndef NEWMORENORMALSLICE_H
 #define NEWMORENORMALSLICE_H
 
+/***************************************************************
+   功能:批量切片
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QKeyEvent>
 #include "normalslicedata.h"

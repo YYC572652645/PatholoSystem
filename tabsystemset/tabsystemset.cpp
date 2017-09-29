@@ -4,10 +4,10 @@
 #include "config/qreadini.h"
 #include <QDebug>
 
-/***************************               构造函数                 ***********************/
+/***************************               构造函数                   ***********************/
 TabSystemSet::TabSystemSet(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabsystemset)
+    QMainWindow(parent)
+  ,ui(new Ui::tabsystemset)
   ,listWidget(NULL)
 {
     ui->setupUi(this);
@@ -15,13 +15,13 @@ TabSystemSet::TabSystemSet(QWidget *parent) :
     this->initControl();
 }
 
-/***************************               析构函数                 ***********************/
+/***************************               析构函数                    ***********************/
 TabSystemSet::~TabSystemSet()
 {
     delete ui;
 }
 
-/***************************               初始化控件                 ***********************/
+/***************************               初始化控件                   ***********************/
 void TabSystemSet::initControl()
 {
     ui->centralwidget->hide();
@@ -92,57 +92,56 @@ void TabSystemSet::showCentralwidget()
     ui->centralwidget->show();
 }
 
-/***************************               显示标本类别设置                 ***********************/
+/***************************               显示标本类别设置              ***********************/
 void TabSystemSet::showTypeSet()
 {
     SETCENTRALWIDGET(&typeSet);
     typeSet.showDialog();
 }
 
-/***************************               显示编码规则设置                 ***********************/
+/***************************               显示编码规则设置              ***********************/
 void TabSystemSet::showCodeRule()
 {
     SETCENTRALWIDGET(&codeRole);
     codeRole.show();
 }
 
-
-/***************************               打印设置                 ***********************/
+/***************************               打印设置                     ***********************/
 void TabSystemSet::showPrintSet()
 {
     SETCENTRALWIDGET(&printSet);
     printSet.show();
 }
 
-/***************************               用户设置                 ***********************/
+/***************************               用户设置                     ***********************/
 void TabSystemSet::showUserSet()
 {
     SETCENTRALWIDGET(&userSet);
     userSet.show();
 }
 
-/***************************               免疫组化类型设置                 ***********************/
+/***************************               免疫组化类型设置               ***********************/
 void TabSystemSet::showImmuneTypeSet()
 {
     SETCENTRALWIDGET(&immuneTypeSet);
     immuneTypeSet.show();
 }
 
-/***************************               免疫组化指标设置                 ***********************/
+/***************************               免疫组化指标设置               ***********************/
 void TabSystemSet::showImmuneIndexSet()
 {
     SETCENTRALWIDGET(&immuneIndexSet);
     immuneIndexSet.show();
 }
 
-/***************************               特染组化类型设置                 ***********************/
+/***************************               特染组化类型设置               ***********************/
 void TabSystemSet::showSpecialTypeSet()
 {
     SETCENTRALWIDGET(&speciaTypeSet);
     speciaTypeSet.show();
 }
 
-/***************************               特染组化指标设置                 ***********************/
+/***************************               特染组化指标设置               ***********************/
 void TabSystemSet::showSpecialIndexSet()
 {
     SETCENTRALWIDGET(&speciaIndexSet);

@@ -2,7 +2,7 @@
 #include "../../config/qreadini.h"
 #include "../globaldef.h"
 
-/***************************构造函数***********************/
+/****************          构造函数              ***************/
 TemplateData::TemplateData()
 {   
     if(!dataCnn())
@@ -11,7 +11,7 @@ TemplateData::TemplateData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库            ***************/
 bool TemplateData::dataCnn()
 {
     //是否为默认连接
@@ -37,7 +37,7 @@ bool TemplateData::dataCnn()
     return db.open();
 }
 
-/***************************插入数据***********************/
+/****************          插入数据              ***************/
 bool TemplateData::insertData(QString name, QString templateText, int type)
 {
     if(!db.isOpen())
@@ -55,7 +55,7 @@ bool TemplateData::insertData(QString name, QString templateText, int type)
     return success;
 }
 
-/***************************查询数据***********************/
+/****************          查询数据              ***************/
 int TemplateData::selectData(int type)
 {
     int count = 0;
@@ -84,7 +84,7 @@ int TemplateData::selectData(int type)
     return count;
 }
 
-/***************************更改数据***********************/
+/****************          更改数据              ***************/
 bool TemplateData::updateData(QString name, QString templateText, int type)
 {
     if(!db.isOpen())
@@ -102,7 +102,7 @@ bool TemplateData::updateData(QString name, QString templateText, int type)
     return success;
 }
 
-/***************************删除数据***********************/
+/****************          删除数据              ***************/
 bool TemplateData::deleteData(QString name, int type)
 {
     if(!db.isOpen())
@@ -118,6 +118,7 @@ bool TemplateData::deleteData(QString name, int type)
     return success;
 }
 
+/****************          获取信息              ***************/
 QList<DataTemplate> TemplateData::getDataTemplate() const
 {
     return dataTemplate;

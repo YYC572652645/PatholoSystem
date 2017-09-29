@@ -3,22 +3,21 @@
 #include "globaldef.h"
 #include "messagebox/messagedialog.h"
 
-/*******************   析构函数    ***********************/
+/*******************   构造函数          ***********************/
 TabSpeciaSlice::TabSpeciaSlice(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabspecialslice)
+    QMainWindow(parent)
+  ,ui(new Ui::tabspecialslice)
+  ,newSpecialSlice(NULL)
+  ,newMoreSlice(NULL)
+  ,templateSetUp(NULL)
+  ,movie(NULL)
+  ,timer(NULL)
+  ,menu(NULL)
+  ,print(NULL)
+  ,del(NULL)
+  ,refresh(NULL)
 {
     ui->setupUi(this);
-
-    newSpecialSlice = NULL;
-    newMoreSlice    = NULL;
-    templateSetUp   = NULL;
-    movie   = NULL;
-    timer   = NULL;
-    menu    = NULL;
-    print   = NULL;
-    del     = NULL;
-    refresh = NULL;
 
     this->initControl();
     this->initData();
@@ -42,7 +41,7 @@ TabSpeciaSlice::TabSpeciaSlice(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateMovie()));
 }
 
-/*******************   构造函数    ***********************/
+/*******************   析构函数           ***********************/
 TabSpeciaSlice::~TabSpeciaSlice()
 {
     SAFEDELETE(newSpecialSlice);
@@ -57,7 +56,7 @@ TabSpeciaSlice::~TabSpeciaSlice()
     delete ui;
 }
 
-/*******************   初始化控件    ***********************/
+/*******************   初始化控件         ***********************/
 void TabSpeciaSlice::initControl()
 {
     //设置单行选中
@@ -87,7 +86,7 @@ void TabSpeciaSlice::initControl()
     this->createActions();
 }
 
-/*******************   初始化数据    ***********************/
+/*******************   初始化数据         ***********************/
 void TabSpeciaSlice::initData()
 {
     newSpecialSlice = new NewSpecialSlice(this);             //新建切片
@@ -98,7 +97,7 @@ void TabSpeciaSlice::initData()
     connect(newMoreSlice, SIGNAL(sendSelect()), this, SLOT(receiveSelect()));
 }
 
-/*******************   创建菜单            ***********************/
+/*******************   创建菜单           ***********************/
 void TabSpeciaSlice::createActions()
 {
     menu    = new QMenu(this);
@@ -111,7 +110,7 @@ void TabSpeciaSlice::createActions()
     connect(del,     SIGNAL(triggered(bool)), this,SLOT(on_actionDeleteInfo_triggered()));
 }
 
-/*******************   显示菜单            ***********************/
+/*******************   显示菜单           ***********************/
 void TabSpeciaSlice::contextMenuEvent(QContextMenuEvent *event)
 {
     menu->clear();
@@ -132,8 +131,7 @@ void TabSpeciaSlice::updateMovie()
     timer->stop();
 }
 
-
-/*******************   接收查询    ***********************/
+/*******************   接收查询            ***********************/
 void TabSpeciaSlice::receiveSelect()
 {
     dataSelect(ALLDATA);
@@ -149,7 +147,7 @@ void TabSpeciaSlice::receiveSelect()
     }
 }
 
-/*******************   查询并显示数据            ***********************/
+/*******************   查询并显示数据       ***********************/
 void TabSpeciaSlice::dataSelect(int type)
 {
     int dataCount = 0;
@@ -201,7 +199,7 @@ void TabSpeciaSlice::dataSelect(int type)
     }
 }
 
-/*******************   打印            ***********************/
+/*******************   打印               ***********************/
 void TabSpeciaSlice::on_actionPrintLabel_triggered()
 {
     if(NULL == ui->tableWidget->currentItem()) return;

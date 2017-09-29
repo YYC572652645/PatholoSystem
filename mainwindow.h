@@ -23,9 +23,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void setAuthority(int value);
+    void setAuthority(int value);    //设置权限信息
     void showMainWindow();           //显示信息
-    void setAdminster(int value);
+    void setAdminster(int value);    //设置管理员信息
 
 signals:
     void sendNumber(QString, QString);

@@ -1,6 +1,14 @@
 #ifndef TABIMMUNESLICE_H
 #define TABIMMUNESLICE_H
 
+/***************************************************************
+   功能:免疫组化切片
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QMenu>
@@ -27,16 +35,16 @@ public:
     ~TabImmuneSlice();
 
 private slots:
-    void receiveSelect();                               //接收查询
-    void updateMovie();                                 //更新Gif
-    void on_actionNewSlice_triggered();                 //新建切片
-    void on_actionNewMore_triggered();                  //批量打印
-    void on_actionPrintLabel_triggered();               //打印标签
-    void on_actionDeleteInfo_triggered();               //删除信息
-    void on_actionPrintTemplate_triggered();            //打印模板
-    void on_pushButtonRefresh_clicked();                //刷新数据
+    void receiveSelect();                                //接收查询
+    void updateMovie();                                  //更新Gif
+    void on_actionNewSlice_triggered();                  //新建切片
+    void on_actionNewMore_triggered();                   //批量打印
+    void on_actionPrintLabel_triggered();                //打印标签
+    void on_actionDeleteInfo_triggered();                //删除信息
+    void on_actionPrintTemplate_triggered();             //打印模板
+    void on_pushButtonRefresh_clicked();                 //刷新数据
     void on_tableWidget_doubleClicked(const QModelIndex &index);
-    void on_pushButtonFind_clicked();                   //查找数据
+    void on_pushButtonFind_clicked();                    //查找数据
 
 private:
     Ui::tabimmuneslice *ui;

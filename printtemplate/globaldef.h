@@ -44,7 +44,7 @@ const static QString  gemoryY     = "gemoryY";
     pointer = NULL;         \
 }
 
-/*******************   label类型   *******************/
+//label类型
 enum CONTROLTYPE
 {
     TEXTTYPE,
@@ -62,12 +62,14 @@ enum CONTROLTYPE
     TYPEMAX,
 };
 
+//模板数据
 enum PRINTDATA
 {
     TEMPLATENAME,
     TEMPLATETEXT,
 };
 
+//模板控件信息
 enum CHANGETYPE
 {
     FONTTYPECHANGE,

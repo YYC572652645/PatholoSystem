@@ -9,7 +9,7 @@
    创建时间:2017-6-20
 **************************************************************/
 
-namespace DAtABASEDEF
+namespace DATABASEDEF
 {
 
 //用户数据库表
@@ -124,8 +124,5 @@ enum PRINTDATA
 };
 
 }
-
-
-
 
 #endif // DATABASEDEF_H

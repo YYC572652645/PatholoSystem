@@ -1,5 +1,14 @@
 ﻿#ifndef IMMUNESLICEDATA_H
 #define IMMUNESLICEDATA_H
+
+/***************************************************************
+   功能:免疫组化切片数据库信息
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QString>
 #include <QSqlDriver>
 #include <QSqlRecord>
@@ -30,6 +39,7 @@ typedef struct DataImmuneSlice
 class ImmuneSliceData
 {
 public:
+    /************         单例模式         *************/
     static ImmuneSliceData * getInstance()
     {
         if(NULL == instance)
@@ -40,24 +50,25 @@ public:
         return instance;
     }
 
-    /************构造函数***************/
+    /************         构造函数         *************/
     ImmuneSliceData();
 
-    /************连接数据库*************/
+    /************         连接数据库         *************/
     bool dataCnn();
 
-    /************插入数据***************/
+    /************         插入数据         *************/
     bool insertData(DataImmuneSlice data);
 
-    /************查询数据***************/
+    /************         查询数据         *************/
     int selectData(int type, QString text);
 
-    /************更改数据***************/
+    /************         更改数据         *************/
     bool updateData(DataImmuneSlice data);
 
-    /************删除数据***************/
+    /************         删除数据         *************/
     bool deleteData(int type, QString id);
 
+    /************         获取数据         *************/
     QList<DataImmuneSlice> getDataList() const;
 
 private:

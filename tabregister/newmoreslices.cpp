@@ -4,6 +4,7 @@
 #include "tabsystemset/tabsystemdata.h"
 #include <QDate>
 
+/*******************   构造函数    ***********************/
 NewMoreSlices::NewMoreSlices(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::newmoreslices)
@@ -14,11 +15,13 @@ NewMoreSlices::NewMoreSlices(QWidget *parent) :
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
+/*******************   析构函数    ***********************/
 NewMoreSlices::~NewMoreSlices()
 {
     delete ui;
 }
 
+/*******************   确定按钮    ***********************/
 void NewMoreSlices::on_pushButtonOk_clicked()
 {
     SYSTEMDATA->codeTypeSelectData();

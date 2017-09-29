@@ -15,18 +15,17 @@
 TabRegister::TabRegister(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::tabregister)
+  ,newSlices(NULL)
+  ,newMoreSlices(NULL)
+  ,templateSetUp(NULL)
+  ,movie(NULL)
+  ,timer(NULL)
+  ,menu(NULL)
+  ,print(NULL)
+  ,del(NULL)
+  ,refresh(NULL)
 {
     ui->setupUi(this);
-
-    newSlices      = NULL;
-    newMoreSlices  = NULL;
-    templateSetUp  = NULL;
-    movie   = NULL;
-    timer   = NULL;
-    menu    = NULL;
-    print   = NULL;
-    del     = NULL;
-    refresh = NULL;
 
     this->initControl();
     this->initData();

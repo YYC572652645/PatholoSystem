@@ -3,10 +3,13 @@
 #include "paintdata.h"
 #include <QDebug>
 
-/********************       构造函数      ***********************/
+/********************       构造函数       ***********************/
 PatientInfo::PatientInfo(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::patientinfo)
+    QMainWindow(parent)
+  ,ui(new Ui::patientinfo)
+  ,labelInfo(NULL)
+  ,autoSaveBox(NULL)
+  ,isAutoSaveFlage(NULL)
 {
     ui->setupUi(this);
 
@@ -14,13 +17,13 @@ PatientInfo::PatientInfo(QWidget *parent) :
     this->initConnect();
 }
 
-/********************       析构函数      ***********************/
+/********************       析构函数         ***********************/
 PatientInfo::~PatientInfo()
 {
     delete ui;
 }
 
-/********************       初始化控件      ***********************/
+/********************       初始化控件        ***********************/
 void PatientInfo::initControl()
 {
     autoSaveBox = new QCheckBox(this);
@@ -99,13 +102,13 @@ void PatientInfo::initControl()
     ui->tabWidget->setCurrentIndex(0);
 }
 
-/********************       设置患者Id      ***********************/
+/********************       设置患者Id        ***********************/
 void PatientInfo::setPaintId(const QString &value)
 {
     paintId = value;
 }
 
-/********************       查询数据       ***********************/
+/********************       查询数据          ***********************/
 void PatientInfo::setSelect()
 {
     //清除信息
@@ -150,7 +153,7 @@ void PatientInfo::setSelect()
     ui->textEditTiZheng->setText(data.clinical);
 }
 
-/********************       初始化信号与槽      ***********************/
+/********************       初始化信号与槽     ***********************/
 void PatientInfo::initConnect()
 {
     isAutoSaveFlage = false;
@@ -158,19 +161,19 @@ void PatientInfo::initConnect()
     connect(autoSaveBox, SIGNAL(stateChanged(int)), this, SLOT(flageChange()));
 }
 
-/********************       内容改变      ***********************/
+/********************       内容改变          ***********************/
 void PatientInfo::flageChange()
 {
     isAutoSaveFlage =  autoSaveBox->isChecked() ? true : false;
 }
 
-/********************       设置病理号      ***********************/
+/********************       设置病理号         ***********************/
 void PatientInfo::setRegId(const QString &value)
 {
     regId = value;
 }
 
-/********************       录入数据       ***********************/
+/********************       录入数据           ***********************/
 void PatientInfo::on_actionSavePatientInfo_triggered()
 {
     DataPaint data;
@@ -217,7 +220,7 @@ void PatientInfo::on_actionSavePatientInfo_triggered()
     }
 }
 
-/********************       清除患者信息    ***********************/
+/********************       清除患者信息        ***********************/
 void PatientInfo::on_actionClearPatientInfo_triggered()
 {
     PAINTDATA->deleteData(regId, paintId);
@@ -225,7 +228,7 @@ void PatientInfo::on_actionClearPatientInfo_triggered()
     clearInfo();
 }
 
-/********************       清除信息        ***********************/
+/********************       清除信息            ***********************/
 void PatientInfo::clearInfo()
 {
     ui->lineEditID->clear();
@@ -267,6 +270,7 @@ void PatientInfo::clearInfo()
     ui->dateTimeEditSongJian->setDateTime(QDateTime::currentDateTime());
 }
 
+/********************       获取是否自动保存     ***********************/
 bool PatientInfo::getIsAutoSaveFlage() const
 {
     return isAutoSaveFlage;

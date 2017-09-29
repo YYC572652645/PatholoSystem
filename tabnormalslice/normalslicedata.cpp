@@ -24,7 +24,7 @@ bool NormalSliceData::dataCnn()
     }
     else
     {
-        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);         //设置数据库类型
+        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);       //设置数据库类型
     }
 
     db.setHostName(DATACONFIG.ip);                                        //设置数据库主机名
@@ -32,11 +32,9 @@ bool NormalSliceData::dataCnn()
     db.setDatabaseName(DATACONFIG.dataBaseName);                          //设置数据库名
     db.setUserName(DATACONFIG.userName);                                  //设置用户名
     db.setPassword(DATACONFIG.passWord);                                  //设置密码
-    //如果数据库处于打开状态，则关闭
-    if(db.isOpen())
-    {
-        db.close();
-    }
+
+    if(db.isOpen()) db.close();                                           //如果数据库处于打开状态，则关闭
+
     return db.open();
 }
 
@@ -108,18 +106,18 @@ int NormalSliceData::selectData(int type, QString text)
     {
         DataNormalSlice data;
 
-        data.sectionId     = query.value(DAtABASEDEF::SECTIONID).toString();
-        data.sectionCode   = query.value(DAtABASEDEF::SECTIONCODE).toString();
-        data.embedCode     = query.value(DAtABASEDEF::EMBEDCODE).toString();
-        data.stainTypeName = query.value(DAtABASEDEF::STAINTYPENAME).toString();
-        data.staining      = query.value(DAtABASEDEF::STAINING).toString();
-        data.sectionTime   = query.value(DAtABASEDEF::SECTIONTIME).toString();
-        data.sectioner     = query.value(DAtABASEDEF::SECTIONER).toString();
-        data.stainTime     = query.value(DAtABASEDEF::STAINTIME).toString();
-        data.stainer       = query.value(DAtABASEDEF::STAINER).toString();
-        data.printNum      = query.value(DAtABASEDEF::PRINTNUM).toString();
-        data.printed       = query.value(DAtABASEDEF::PRINTED).toString();
-        data.other         = query.value(DAtABASEDEF::OTHER).toString();
+        data.sectionId     = query.value(DATABASEDEF::SECTIONID).toString();
+        data.sectionCode   = query.value(DATABASEDEF::SECTIONCODE).toString();
+        data.embedCode     = query.value(DATABASEDEF::EMBEDCODE).toString();
+        data.stainTypeName = query.value(DATABASEDEF::STAINTYPENAME).toString();
+        data.staining      = query.value(DATABASEDEF::STAINING).toString();
+        data.sectionTime   = query.value(DATABASEDEF::SECTIONTIME).toString();
+        data.sectioner     = query.value(DATABASEDEF::SECTIONER).toString();
+        data.stainTime     = query.value(DATABASEDEF::STAINTIME).toString();
+        data.stainer       = query.value(DATABASEDEF::STAINER).toString();
+        data.printNum      = query.value(DATABASEDEF::PRINTNUM).toString();
+        data.printed       = query.value(DATABASEDEF::PRINTED).toString();
+        data.other         = query.value(DATABASEDEF::OTHER).toString();
 
         dataList.append(data);
 

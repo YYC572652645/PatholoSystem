@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPixmap>
 
-/*******************   构造函数    ***********************/
+/*******************   构造函数       ***********************/
 MainWindow::MainWindow(QWidget *parent) :
 
     QMainWindow(parent)
@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("病理科专用打码软件 ");
 }
 
-/*******************   析构函数    ***********************/
+/*******************   析构函数       ***********************/
 MainWindow::~MainWindow()
 {
     SAFEDELETE(tabRegister);
@@ -45,7 +45,7 @@ void MainWindow::receiveNumber(QString number, QString id)
     emit sendNumber(number, id);
 }
 
-/*******************   初始化控件    ***********************/
+/*******************   初始化控件      ***********************/
 void MainWindow::initControl()
 {
     //如果是管理员则全部显示
@@ -98,23 +98,26 @@ void MainWindow::initControl()
     }
 }
 
-/*******************   显示信息    ***********************/
+/*******************   显示信息        ***********************/
 void MainWindow::showMainWindow()
 {
     this->initControl();
     this->showMaximized();
 }
 
+/*******************   设置权限信息     ***********************/
 void MainWindow::setAuthority(int value)
 {
     authority = value;
 }
 
+/*******************   更改密码         ***********************/
 void MainWindow::on_pushButton_clicked()
 {
     alterPassword->show();
 }
 
+/*******************   设置管理员信息    ***********************/
 void MainWindow::setAdminster(int value)
 {
     adminster = value;

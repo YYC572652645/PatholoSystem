@@ -47,6 +47,7 @@ private:
     void initCodeRule();           //初始化编码规则
 };
 
+//线程类，用于插入数据
 class InsertThread: public QThread
 {
 public:

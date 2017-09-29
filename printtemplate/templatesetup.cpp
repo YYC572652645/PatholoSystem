@@ -19,20 +19,19 @@
 
 /*********************     构造函数             **************************/
 TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
-    QMainWindow(parent), selectIndex(INVALIDVALUE),typeFlage(INVALIDVALUE),
-    selectLabelIndex(INVALIDVALUE),
-    ui(new Ui::templatesetup)
+    QMainWindow(parent)
+  ,ui(new Ui::templatesetup)
+  ,textEdit(NULL)
+  ,fontBox(NULL)
+  ,fontSizeBox(NULL)
+  ,widthEdit (NULL)
+  ,heightEdit(NULL)
+  ,qrcode(NULL)
+  ,selectLabelIndex(INVALIDVALUE)
+  ,selectIndex(INVALIDVALUE)
+  ,typeFlage(INVALIDVALUE)
 {
     ui->setupUi(this);
-
-
-    textEdit    = NULL;
-    fontBox     = NULL;
-    fontSizeBox = NULL;
-    widthEdit   = NULL;
-    heightEdit  = NULL;
-    qrcode      = NULL;
-
     widgetType = type;
 
     this->setWindowTitle("打印模板");
@@ -155,7 +154,7 @@ void TemplateSetUp::on_pushButtonSub_clicked()
     templateData.selectData(widgetType);
 }
 
-/*********************     初始化控件         *************************/
+/*********************     初始化控件           *************************/
 void TemplateSetUp::initControl()
 {
     //把表头上面去掉
@@ -256,7 +255,7 @@ void TemplateSetUp::initConnect()
     connect(heightEdit,  SIGNAL(textEdited(QString)),             this, SLOT(sizeChange()));
 }
 
-/*********************     初始化数据         *************************/
+/*********************     初始化数据           *************************/
 void TemplateSetUp::initValue()
 {
     QList<QString>templateList = INICONFIG->getTemplateList();
@@ -464,7 +463,7 @@ void TemplateSetUp::writeAll()
     deleteFlage = false;
 }
 
-/*********************     设置控件信息     *************************/
+/*********************     设置控件信息         *************************/
 void TemplateSetUp::setInfo()
 {
     for(int i = 0; i < bingLiLabel.size(); i ++)
@@ -567,7 +566,7 @@ void TemplateSetUp::setInfo()
     }
 }
 
-/*********************     点击列表框中控件     *************************/
+/*********************     点击列表框中控件      *************************/
 void TemplateSetUp::on_listWidgetControl_clicked(const QModelIndex &index)
 {
     if(NULL == ui->listWidgetTemplate->currentItem()) return;
@@ -924,7 +923,7 @@ void TemplateSetUp::textChange()
     listLabel.at(selectLabelIndex)->setText(textEdit->text());
 }
 
-/**********************    改变大小        *************************/
+/**********************    改变大小            *************************/
 void TemplateSetUp::sizeChange()
 {
     if(selectLabelIndex == INVALIDVALUE) return;
@@ -952,27 +951,6 @@ void TemplateSetUp::sizeChange()
     int y = listLabel.at(selectLabelIndex)->geometry().y();
 
     listLabel.at(selectLabelIndex)->setGeometry(x, y, widthEdit->text().toInt(), heightEdit->text().toInt());
-}
-
-void TemplateSetUp::setDataSpecialSlice(const DataSpecialSlice &value)
-{
-    dataSpecialSlice = value;
-}
-
-void TemplateSetUp::setDataImmuneSlice(const DataImmuneSlice &value)
-{
-    dataImmuneSlice = value;
-}
-
-void TemplateSetUp::setDataNormalSlice(const DataNormalSlice &value)
-{
-    dataNormalSlice = value;
-}
-
-/**********************    设置病理号        *************************/
-void TemplateSetUp::setQrCodeNumber(const QString &value)
-{
-    qrCodeNumber = value;
 }
 
 /**********************    组合json数据        *************************/
@@ -1089,4 +1067,28 @@ void TemplateSetUp::on_pushButtonSave_clicked()
     INICONFIG->writeTemplateIni();
 
     ui->labelInfo->setText("当前模板为 <" + templateName + ">");
+}
+
+/**********************    设置特染切片信息      *************************/
+void TemplateSetUp::setDataSpecialSlice(const DataSpecialSlice &value)
+{
+    dataSpecialSlice = value;
+}
+
+/**********************    设置免疫切片信息      *************************/
+void TemplateSetUp::setDataImmuneSlice(const DataImmuneSlice &value)
+{
+    dataImmuneSlice = value;
+}
+
+/**********************    设置常规切片信息      *************************/
+void TemplateSetUp::setDataNormalSlice(const DataNormalSlice &value)
+{
+    dataNormalSlice = value;
+}
+
+/**********************    设置病理号信息        *************************/
+void TemplateSetUp::setQrCodeNumber(const QString &value)
+{
+    qrCodeNumber = value;
 }

@@ -5,7 +5,7 @@
 
 ImmuneSliceData * ImmuneSliceData::instance = NULL;
 
-/***************************构造函数***********************/
+/****************          构造函数             ***************/
 ImmuneSliceData::ImmuneSliceData()
 {
     if(!dataCnn())
@@ -14,7 +14,7 @@ ImmuneSliceData::ImmuneSliceData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库            ***************/
 bool ImmuneSliceData::dataCnn()
 {
     //是否为默认连接
@@ -24,7 +24,7 @@ bool ImmuneSliceData::dataCnn()
     }
     else
     {
-        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);         //设置数据库类型
+        db = QSqlDatabase::addDatabase(DATACONFIG.dataBaseVersion);       //设置数据库类型
     }
 
     db.setHostName(DATACONFIG.ip);                                        //设置数据库主机名
@@ -32,15 +32,13 @@ bool ImmuneSliceData::dataCnn()
     db.setDatabaseName(DATACONFIG.dataBaseName);                          //设置数据库名
     db.setUserName(DATACONFIG.userName);                                  //设置用户名
     db.setPassword(DATACONFIG.passWord);                                  //设置密码
-    //如果数据库处于打开状态，则关闭
-    if(db.isOpen())
-    {
-        db.close();
-    }
+
+    if(db.isOpen())  db.close();                                          //如果数据库处于打开状态，则关闭
+
     return db.open();
 }
 
-/***************************插入数据***********************/
+/****************          插入数据              ***************/
 bool ImmuneSliceData::insertData(DataImmuneSlice data)
 {
     if(!db.isOpen()) db.open();
@@ -78,7 +76,7 @@ bool ImmuneSliceData::insertData(DataImmuneSlice data)
     return success;
 }
 
-/***************************查询数据***********************/
+/****************          查询数据              ***************/
 int ImmuneSliceData::selectData(int type, QString text)
 {
     int count = 0;
@@ -108,18 +106,18 @@ int ImmuneSliceData::selectData(int type, QString text)
     {
         DataImmuneSlice data;
 
-        data.sectionId     = query.value(DAtABASEDEF::IHCSECTIONID).toString();
-        data.sectionCode   = query.value(DAtABASEDEF::IHCSECTIONCODE).toString();
-        data.embedCode     = query.value(DAtABASEDEF::IHCEMBEDCODE).toString();
-        data.stainTypeName = query.value(DAtABASEDEF::IHCSTAINTYPENAME).toString();
-        data.staining      = query.value(DAtABASEDEF::IHCSTAINING).toString();
-        data.sectionTime   = query.value(DAtABASEDEF::IHCSECTIONTIME).toString();
-        data.sectioner     = query.value(DAtABASEDEF::IHCSECTIONER).toString();
-        data.stainTime     = query.value(DAtABASEDEF::IHCSTAINTIME).toString();
-        data.stainer       = query.value(DAtABASEDEF::IHCSTAINER).toString();
-        data.printNum      = query.value(DAtABASEDEF::IHCPRINTNUM).toString();
-        data.printed       = query.value(DAtABASEDEF::IHCPRINTED).toString();
-        data.cloneNumber   = query.value(DAtABASEDEF::IHCCLONENO).toString();
+        data.sectionId     = query.value(DATABASEDEF::IHCSECTIONID).toString();
+        data.sectionCode   = query.value(DATABASEDEF::IHCSECTIONCODE).toString();
+        data.embedCode     = query.value(DATABASEDEF::IHCEMBEDCODE).toString();
+        data.stainTypeName = query.value(DATABASEDEF::IHCSTAINTYPENAME).toString();
+        data.staining      = query.value(DATABASEDEF::IHCSTAINING).toString();
+        data.sectionTime   = query.value(DATABASEDEF::IHCSECTIONTIME).toString();
+        data.sectioner     = query.value(DATABASEDEF::IHCSECTIONER).toString();
+        data.stainTime     = query.value(DATABASEDEF::IHCSTAINTIME).toString();
+        data.stainer       = query.value(DATABASEDEF::IHCSTAINER).toString();
+        data.printNum      = query.value(DATABASEDEF::IHCPRINTNUM).toString();
+        data.printed       = query.value(DATABASEDEF::IHCPRINTED).toString();
+        data.cloneNumber   = query.value(DATABASEDEF::IHCCLONENO).toString();
 
         dataList.append(data);
 
@@ -131,7 +129,7 @@ int ImmuneSliceData::selectData(int type, QString text)
     return count;
 }
 
-/***************************更改数据***********************/
+/****************          更改数据              ***************/
 bool ImmuneSliceData::updateData(DataImmuneSlice data)
 {
     if(!db.isOpen()) db.open();
@@ -172,7 +170,7 @@ bool ImmuneSliceData::updateData(DataImmuneSlice data)
     return success;
 }
 
-/***************************删除数据***********************/
+/****************          删除数据              ***************/
 bool ImmuneSliceData::deleteData(int type, QString id)
 {
     if(!db.isOpen()) db.open();
@@ -197,6 +195,7 @@ bool ImmuneSliceData::deleteData(int type, QString id)
     return success;
 }
 
+/****************          获取数据              ***************/
 QList<DataImmuneSlice> ImmuneSliceData::getDataList() const
 {
     return dataList;

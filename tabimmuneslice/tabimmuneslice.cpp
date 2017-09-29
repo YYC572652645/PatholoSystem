@@ -5,20 +5,19 @@
 
 /*******************   析构函数    ***********************/
 TabImmuneSlice::TabImmuneSlice(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabimmuneslice)
+    QMainWindow(parent)
+  ,ui(new Ui::tabimmuneslice)
+  ,newImmuneSlice(NULL)
+  ,newMoreSlice(NULL)
+  ,templateSetUp(NULL)
+  ,menu(NULL)
+  ,print(NULL)
+  ,del(NULL)
+  ,refresh(NULL)
+  ,movie(NULL)
+  ,timer(NULL)
 {
     ui->setupUi(this);
-
-    newImmuneSlice = NULL;
-    newMoreSlice   = NULL;
-    templateSetUp  = NULL;
-    menu           = NULL;
-    print          = NULL;
-    del            = NULL;
-    refresh        = NULL;
-    movie          = NULL;
-    timer          = NULL;
 
     this->initControl();
     this->initData();

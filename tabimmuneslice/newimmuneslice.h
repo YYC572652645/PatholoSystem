@@ -1,6 +1,14 @@
 #ifndef NEWIMMUNESLICE_H
 #define NEWIMMUNESLICE_H
 
+/***************************************************************
+   功能:新建切片
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QKeyEvent>
 #include "immuneslicedata.h"
@@ -19,7 +27,6 @@ public:
 
     void showWidget();                       //显示窗口
     void showWidget(DataImmuneSlice data);   //显示窗口
-
 signals:
     void sendSelect();                       //发送查询信号
 

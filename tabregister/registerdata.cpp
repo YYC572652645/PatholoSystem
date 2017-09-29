@@ -3,7 +3,7 @@
 #include "databasedef.h"
 #include "globaldef.h"
 
-/********************         构造函数       ******************/
+/********************         构造函数              ******************/
 RegisterData::RegisterData()
 {   
     if(!dataCnn())
@@ -12,7 +12,7 @@ RegisterData::RegisterData()
     }
 }
 
-/********************         连接数据库       ******************/
+/********************         连接数据库             ******************/
 bool RegisterData::dataCnn()
 {
     //是否为默认连接
@@ -30,16 +30,12 @@ bool RegisterData::dataCnn()
     db.setDatabaseName(DATACONFIG.dataBaseName);                          //设置数据库名
     db.setUserName(DATACONFIG.userName);                                  //设置用户名
     db.setPassword(DATACONFIG.passWord);                                  //设置密码
-    //如果数据库处于打开状态，则关闭
-    if(db.isOpen())
-    {
-        db.close();
-    }
+
+    if(db.isOpen()) db.close();                                           //如果数据库处于打开状态，则关闭
     return db.open();
 }
 
-
-/********************         插入数据       ******************/
+/********************         插入数据               ******************/
 bool RegisterData::insertRegData(RegisterInfo & data)
 {
     if(!db.isOpen())
@@ -68,8 +64,7 @@ bool RegisterData::insertRegData(RegisterInfo & data)
     return success;
 }
 
-
-/********************         查询最大ID       ******************/
+/********************         查询最大ID             ******************/
 int RegisterData::selectMaxId()
 {
     int maxId = 0;
@@ -91,8 +86,7 @@ int RegisterData::selectMaxId()
     return maxId;
 }
 
-
-/********************         查询数据       ******************/
+/********************         查询数据               ******************/
 int RegisterData::selectData()
 { 
     int count = 0;
@@ -114,12 +108,12 @@ int RegisterData::selectData()
     {
         RegisterInfo data;
 
-        data.id            = query.value(DAtABASEDEF::REGID).toString();
-        data.pCode         = query.value(DAtABASEDEF::REGPCODE).toString();
-        data.sn            = query.value(DAtABASEDEF::REGSN).toString();
-        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
-        data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
-        data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
+        data.id            = query.value(DATABASEDEF::REGID).toString();
+        data.pCode         = query.value(DATABASEDEF::REGPCODE).toString();
+        data.sn            = query.value(DATABASEDEF::REGSN).toString();
+        data.printQuantity = query.value(DATABASEDEF::REGPRINTQUANTITY).toString();
+        data.printed       = query.value(DATABASEDEF::REGPRINTED).toString();
+        data.createTime    = query.value(DATABASEDEF::REGCREATETIME).toString();
 
         registerInfo.append(data);
 
@@ -153,12 +147,12 @@ int RegisterData::selectBLData(QString blNumber)
     {
         RegisterInfo data;
 
-        data.id            = query.value(DAtABASEDEF::REGID).toString();
-        data.pCode         = query.value(DAtABASEDEF::REGPCODE).toString();
-        data.sn            = query.value(DAtABASEDEF::REGSN).toString();
-        data.printQuantity = query.value(DAtABASEDEF::REGPRINTQUANTITY).toString();
-        data.printed       = query.value(DAtABASEDEF::REGPRINTED).toString();
-        data.createTime    = query.value(DAtABASEDEF::REGCREATETIME).toString();
+        data.id            = query.value(DATABASEDEF::REGID).toString();
+        data.pCode         = query.value(DATABASEDEF::REGPCODE).toString();
+        data.sn            = query.value(DATABASEDEF::REGSN).toString();
+        data.printQuantity = query.value(DATABASEDEF::REGPRINTQUANTITY).toString();
+        data.printed       = query.value(DATABASEDEF::REGPRINTED).toString();
+        data.createTime    = query.value(DATABASEDEF::REGCREATETIME).toString();
 
         registerInfo << data;
 
@@ -170,7 +164,7 @@ int RegisterData::selectBLData(QString blNumber)
     return count;
 }
 
-/********************         更改数据       ******************/
+/********************         更改数据                ******************/
 bool RegisterData::updateBLData(QString printed, QString id)
 {
     if(!db.isOpen()) db.open();
@@ -186,7 +180,7 @@ bool RegisterData::updateBLData(QString printed, QString id)
     return success;
 }
 
-/********************         删除数据       ******************/
+/********************         删除数据                ******************/
 bool RegisterData::deleteAllData()
 {
     if(!db.isOpen()) db.open();
@@ -202,12 +196,11 @@ bool RegisterData::deleteAllData()
     return success;
 }
 
+/********************         删除数据                ******************/
 bool RegisterData::deleteRowData(QString id)
 {
-    if(!db.isOpen())
-    {
-        db.open();
-    }
+    if(!db.isOpen()) db.open();
+
     QSqlQuery query;
     QString Str = QString("delete from Reg where Id = '%1'").arg(id);
     bool success = query.exec(Str);  //执行sql语句

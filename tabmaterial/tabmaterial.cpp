@@ -11,20 +11,22 @@
 
 /*******************   构造函数            ***********************/
 TabMaterial::TabMaterial(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabmaterial)
+    QMainWindow(parent)
+  ,ui(new Ui::tabmaterial)
+  ,normalMaterial(NULL)
+  ,currentRow(0)
+  ,currentColume(0)
+  ,updateFlage(false)
+  ,currentItem(NULL)
+  ,templateSetUp(NULL)
+  ,movie(NULL)
+  ,timer(NULL)
+  ,menu(NULL)
+  ,print(NULL)
+  ,del(NULL)
+  ,refresh(NULL)
 {
     ui->setupUi(this);
-
-    currentItem = NULL;
-    normalMaterial= NULL;
-    templateSetUp = NULL;
-    movie = NULL;
-    timer = NULL;
-    menu = NULL;
-    print = NULL;
-    del = NULL;
-    refresh = NULL;
 
     this->initControl();
     this->initData();
@@ -129,7 +131,6 @@ void TabMaterial::initData()
 {
     normalMaterial = new NormalMaterial(this);               //常规取材
     templateSetUp = new TemplateSetUp(SECONDWIDGET, this);   //打印模板
-    updateFlage = false;
 }
 
 /*******************   初始化信号与槽       ***********************/
@@ -825,7 +826,6 @@ void TabMaterial::on_actionExtendExcel_triggered()
         excelOperate->start();
     }
 }
-
 
 /*******************   显示菜单            ***********************/
 void TabMaterial::extendTxt(QString fileName)

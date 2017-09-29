@@ -99,13 +99,13 @@ void PrintSet::dataSelect()
 
     for(int i = 0; i < dataCount; i ++)
     {
-        ui->tableWidget->setItem(i, DAtABASEDEF::COMPUTERID,   DATA(dataList.at(i).computerID));
-        ui->tableWidget->setItem(i, DAtABASEDEF::COMPUTERNAME, DATA(dataList.at(i).computerName));
-        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERMODEL, DATA(dataList.at(i).printerModel));
-        ui->tableWidget->setItem(i, DAtABASEDEF::CINKMODEl,    DATA(dataList.at(i).cinkModel));
-        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERIP,    DATA(dataList.at(i).printerIP));
-        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTERPORT,  DATA(dataList.at(i).printerPort));
-        ui->tableWidget->setItem(i, DAtABASEDEF::PRINTREMARK,  DATA(dataList.at(i).remark));
+        ui->tableWidget->setItem(i, DATABASEDEF::COMPUTERID,   DATA(dataList.at(i).computerID));
+        ui->tableWidget->setItem(i, DATABASEDEF::COMPUTERNAME, DATA(dataList.at(i).computerName));
+        ui->tableWidget->setItem(i, DATABASEDEF::PRINTERMODEL, DATA(dataList.at(i).printerModel));
+        ui->tableWidget->setItem(i, DATABASEDEF::CINKMODEl,    DATA(dataList.at(i).cinkModel));
+        ui->tableWidget->setItem(i, DATABASEDEF::PRINTERIP,    DATA(dataList.at(i).printerIP));
+        ui->tableWidget->setItem(i, DATABASEDEF::PRINTERPORT,  DATA(dataList.at(i).printerPort));
+        ui->tableWidget->setItem(i, DATABASEDEF::PRINTREMARK,  DATA(dataList.at(i).remark));
     }
 }
 
@@ -116,13 +116,13 @@ void PrintSet::on_pushButtonOk_clicked()
     {
         PrintData data;
 
-        data.computerID   = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERID)->text();
-        data.computerName = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERNAME)->text();
-        data.cinkModel    = ui->tableWidget->item(row, DAtABASEDEF::PRINTERMODEL)->text();
-        data.printerIP    = ui->tableWidget->item(row, DAtABASEDEF::CINKMODEl)->text();
-        data.printerPort  = ui->tableWidget->item(row, DAtABASEDEF::PRINTERIP)->text();
-        data.printerModel = ui->tableWidget->item(row, DAtABASEDEF::PRINTERPORT)->text();
-        data.remark       = ui->tableWidget->item(row, DAtABASEDEF::PRINTREMARK)->text();
+        data.computerID   = ui->tableWidget->item(row, DATABASEDEF::COMPUTERID)->text();
+        data.computerName = ui->tableWidget->item(row, DATABASEDEF::COMPUTERNAME)->text();
+        data.cinkModel    = ui->tableWidget->item(row, DATABASEDEF::PRINTERMODEL)->text();
+        data.printerIP    = ui->tableWidget->item(row, DATABASEDEF::CINKMODEl)->text();
+        data.printerPort  = ui->tableWidget->item(row, DATABASEDEF::PRINTERIP)->text();
+        data.printerModel = ui->tableWidget->item(row, DATABASEDEF::PRINTERPORT)->text();
+        data.remark       = ui->tableWidget->item(row, DATABASEDEF::PRINTREMARK)->text();
 
         SYSTEMDATA->printUpdateData(data);
     }
@@ -139,7 +139,7 @@ void PrintSet::on_pushButtonCancel_clicked()
 /****************     双击列表  **********************/
 void PrintSet::on_tableWidget_doubleClicked(const QModelIndex &index)
 {
-    if(index.column() == DAtABASEDEF::PRINTERIP || index.column() == DAtABASEDEF::PRINTERPORT || index.column() == DAtABASEDEF::PRINTREMARK)
+    if(index.column() == DATABASEDEF::PRINTERIP || index.column() == DATABASEDEF::PRINTERPORT || index.column() == DATABASEDEF::PRINTREMARK)
     {
         ui->tableWidget->editItem(ui->tableWidget->currentItem());
     }
@@ -152,8 +152,8 @@ void PrintSet::on_pushButtonDelete_clicked()
 
     int row = ui->tableWidget->currentRow();
 
-    QString computerId  = ui->tableWidget->item(row, DAtABASEDEF::COMPUTERID)->text();
-    QString printerName = ui->tableWidget->item(row, DAtABASEDEF::PRINTERMODEL)->text();
+    QString computerId  = ui->tableWidget->item(row, DATABASEDEF::COMPUTERID)->text();
+    QString printerName = ui->tableWidget->item(row, DATABASEDEF::PRINTERMODEL)->text();
 
     SYSTEMDATA->printDeleteData(computerId, printerName);
 

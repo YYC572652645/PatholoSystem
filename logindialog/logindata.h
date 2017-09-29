@@ -9,13 +9,12 @@
 #include<QIODevice>
 #include<QDebug>
 
-
 /***************************************************************
-   功能:登录框
+   功能:读取User表数据
 
    创建人:殷宇辰
 
-   创建时间:2017-7-29
+   创建时间:2017-9-22
 **************************************************************/
 
 typedef struct UserInfo
@@ -31,24 +30,19 @@ typedef struct UserInfo
 class LoginData
 {
 public:
-    /************构造函数*************/
+    /************    构造函数       *************/
     LoginData();
 
-    /************连接数据库*************/
+    /************    连接数据库     *************/
     bool dataCnn();
 
-    /************插入数据*************/
-    bool insertData();
-
-    /************查询数据*************/
+    /************    查询数据       *************/
     bool selectData(QString userName, QString passWord);
 
-    /************更改数据*************/
+    /************    更改数据       *************/
     bool updateData(QString userName, QString passWord);
 
-    /************删除数据*************/
-    bool deleteData();
-
+    /************    获取用户信息    *************/
     UserInfo getUserInfo() const;
 
 private:

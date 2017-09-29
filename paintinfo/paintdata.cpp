@@ -3,7 +3,20 @@
 
 PaintData * PaintData::instance = NULL;
 
-/***************************构造函数***********************/
+/****************          单例模式              ***************/
+PaintData *PaintData::getInstance()
+{
+    {
+        if(NULL == instance)
+        {
+            instance = new PaintData();
+        }
+
+        return instance;
+    }
+}
+
+/****************          构造函数              ***************/
 PaintData::PaintData()
 {   
     if(!dataCnn())
@@ -12,7 +25,7 @@ PaintData::PaintData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库             ***************/
 bool PaintData::dataCnn()
 {
     //是否为默认连接
@@ -30,15 +43,13 @@ bool PaintData::dataCnn()
     db.setDatabaseName(DATACONFIG.dataBaseName);                          //设置数据库名
     db.setUserName(DATACONFIG.userName);                                  //设置用户名
     db.setPassword(DATACONFIG.passWord);                                  //设置密码
-    //如果数据库处于打开状态，则关闭
-    if(db.isOpen())
-    {
-        db.close();
-    }
+
+    if(db.isOpen()) db.close();                                           //如果是打开状态，则关闭
+
     return db.open();
 }
 
-/***************************插入数据***********************/
+/****************          插入数据               ***************/
 bool PaintData::insertData(DataPaint data)
 {
     if(!db.isOpen())  db.open();
@@ -132,7 +143,7 @@ bool PaintData::insertData(DataPaint data)
     return success;
 }
 
-/***************************查询数据***********************/
+/****************          查询数据               ***************/
 int PaintData::selectData(QString regId, QString patientID)
 {
     int count = 0;
@@ -200,7 +211,7 @@ int PaintData::selectData(QString regId, QString patientID)
     return count;
 }
 
-/***************************更改数据***********************/
+/****************          更改数据               ***************/
 bool PaintData::updateData(DataPaint data)
 {
     if(!db.isOpen()) db.open();
@@ -294,7 +305,7 @@ bool PaintData::updateData(DataPaint data)
     return success;
 }
 
-/***************************删除数据***********************/
+/****************          删除数据               ***************/
 bool PaintData::deleteData(QString regId, QString patientID)
 {
     if(!db.isOpen()) db.open();
@@ -316,7 +327,7 @@ bool PaintData::deleteData(QString regId, QString patientID)
     return success;
 }
 
-/***************************获取数据***********************/
+/****************          获取数据               ***************/
 DataPaint PaintData::getDataPaint() const
 {
     return dataPaint;

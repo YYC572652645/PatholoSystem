@@ -32,50 +32,38 @@ class MessageDialog : public QDialog
     Q_OBJECT
 
 public:
+    /*************      构造函数           *************/
     explicit MessageDialog(QWidget *parent = 0);
+
+    /*************      析构函数           *************/
     ~MessageDialog();
 
-    /****************************************静态函数*******************************/
-    static MessageDialog *getInstance()
-    {
-        if(m_staticInstance==NULL)
-        {
-            m_staticInstance = new MessageDialog();
-        }
-        return m_staticInstance;
-    }
+    /*************      单例模式           *************/
+    static MessageDialog *getInstance();
 
-    /****************************************设置函数*******************************/
-    int setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget * parent = 0);
+    /*************      设置函数           *************/
+    int setInfo(QString titleInfo, QString info, QPixmap pixmap, bool isOkHidden, QWidget *parent = 0);
 
 public slots:
-    void okOperate();    //确定
-    void cancelOperate();//取消
-
+    void okOperate();                         //确定操作
+    void cancelOperate();                     //取消操作
 
 private:
     Ui::MessageDialog *ui;
-    static MessageDialog *m_staticInstance; //静态对象
-    bool mousePress;                        //按钮是否被点击
-    QPoint movePoint;                       //鼠标移动
-    QToolButton *closeButton;               //关闭按钮
-    QLabel *titleLabel;                     //标题框
-    QLabel *imgLabel;                       //图片框
-    QLabel *msgLabel;                       //消息框
-    QPushButton*cancelButton;               //取消按钮
-    QPushButton*okButton;                   //确定按钮
+    static MessageDialog *instance;            //静态对象
+    bool mousePress;                           //按钮是否被点击
+    QPoint movePoint;                          //鼠标移动
+    QToolButton *closeButton;                  //关闭按钮
+    QLabel *titleLabel;                        //标题框
+    QLabel *imgLabel;                          //图片框
+    QLabel *msgLabel;                          //消息框
+    QPushButton*cancelButton;                  //取消按钮
+    QPushButton*okButton;                      //确定按钮
 
-    /****************************************画图函数*******************************/
-    void paintEvent(QPaintEvent *event);
-
-    /****************************************鼠标点击*******************************/
-    void mousePressEvent(QMouseEvent*event);
-
-    /****************************************鼠标释放*******************************/
-    void mouseReleaseEvent(QMouseEvent *event);
-
-    /****************************************鼠标移动*******************************/
-    void mouseMoveEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *event);       //画图函数
+    void mousePressEvent(QMouseEvent*event);   //鼠标点击
+    void mouseReleaseEvent(QMouseEvent *event);//鼠标释放
+    void mouseMoveEvent(QMouseEvent *event);   //鼠标移动
 };
 
 #endif // MESSAGEDIALOG_H

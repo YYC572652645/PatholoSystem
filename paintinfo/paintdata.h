@@ -9,6 +9,14 @@
 #include<QIODevice>
 #include<QDebug>
 
+/***************************************************************
+   功能:病人信息
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-21
+**************************************************************/
+
 #define PAINTDATA  PaintData::getInstance()
 
 typedef struct DataPaint
@@ -54,15 +62,8 @@ class PaintData
 {
 public:
 
-    static PaintData * getInstance()
-    {
-        if(NULL == instance)
-        {
-            instance = new PaintData();
-        }
-
-        return instance;
-    }
+    /************         单例模式         *************/
+    static PaintData * getInstance();
 
     /************         构造函数         *************/
     PaintData();
@@ -82,6 +83,7 @@ public:
     /************         删除数据         *************/
     bool deleteData(QString regId, QString patientID);
 
+    /************         获取数据         *************/
     DataPaint getDataPaint() const;
 
 private:

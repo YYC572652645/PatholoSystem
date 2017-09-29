@@ -7,21 +7,19 @@
 
 /*******************   构造函数    ***********************/
 TabNormalSlice::TabNormalSlice(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::tabnormalslice)
+    QMainWindow(parent)
+  ,ui(new Ui::tabnormalslice)
+  ,newNormalSlice(NULL)
+  ,newMoreSlice(NULL)
+  ,templateSetUp(NULL)
+  ,movie(NULL)
+  ,timer(NULL)
+  ,menu(NULL)
+  ,print(NULL)
+  ,del(NULL)
+  ,refresh(NULL)
 {
     ui->setupUi(this);
-
-    newNormalSlice = NULL;
-    newMoreSlice   = NULL;
-    templateSetUp  = NULL;
-    movie   = NULL;
-    timer   = NULL;
-    menu    = NULL;
-    print   = NULL;
-    del     = NULL;
-    refresh = NULL;
-
 
     this->initControl();
     this->initData();

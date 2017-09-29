@@ -1,6 +1,14 @@
 #ifndef TEMPLATESETUP_H
 #define TEMPLATESETUP_H
 
+/***************************************************************
+   功能:打印模版界面
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-21
+**************************************************************/
+
 #include <QMainWindow>
 #include <QLabel>
 #include "QRcode/qrencode.h"
@@ -12,22 +20,22 @@
 #include "../tabspecialslice/specialslicedata.h"
 #include "templatedata/templatedata.h"
 
-
 namespace Ui {
 class templatesetup;
 }
 
 typedef struct LabelData
 {
-    QLabel * label;        //控件
-    QString labelType;     //控件类型
-    QString labelText;     //控件文本
-    QString fontType;      //字体类型
-    QString fontSize;      //字体大小
-    QString labelWidth;    //控件宽度
-    QString labelHeight;   //控件高度
-    QString gemoryX;       //控件位置X
-    QString gemoryY;       //控件位置Y
+    LabelData() : label(NULL){} //构造函数
+    QLabel * label;             //控件
+    QString labelType;          //控件类型
+    QString labelText;          //控件文本
+    QString fontType;           //字体类型
+    QString fontSize;           //字体大小
+    QString labelWidth;         //控件宽度
+    QString labelHeight;        //控件高度
+    QString gemoryX;            //控件位置X
+    QString gemoryY;            //控件位置Y
 }LabelData;
 
 class TemplateSetUp : public QMainWindow

@@ -103,7 +103,7 @@ void NewMoreSpecialSlice::on_pushButtonCancel_clicked()
     this->close();
 }
 
-/*******************   去字母    ***********************/
+/*******************   去字母              ***********************/
 QString NewMoreSpecialSlice::subFinger(QString number)
 {
     int  count = 0;
@@ -122,7 +122,7 @@ QString NewMoreSpecialSlice::subFinger(QString number)
     return number.right(count);
 }
 
-
+/*******************   设置信息            ***********************/
 void NewMoreSpecialSlice::setComboBoxInfo()
 {
     ui->comboBoxColorType->clear();

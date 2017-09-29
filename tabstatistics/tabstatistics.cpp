@@ -5,7 +5,7 @@
 #include "exceloperate/exceloperate.h"
 #include "QFileDialog"
 
-/*******************       构造函数              ***********************/
+/*******************       构造函数             ***********************/
 TabsSatistics::TabsSatistics(QWidget *parent) :
     QMainWindow(parent)
   ,ui(new Ui::tabstatistics)
@@ -19,13 +19,13 @@ TabsSatistics::TabsSatistics(QWidget *parent) :
     this->initData();
 }
 
-/*******************       析构函数              ***********************/
+/*******************       析构函数             ***********************/
 TabsSatistics::~TabsSatistics()
 {
     delete ui;
 }
 
-/*******************       初始化控件              ***********************/
+/*******************       初始化控件            ***********************/
 void TabsSatistics::initControl()
 {
     //设置单行选中
@@ -56,7 +56,7 @@ void TabsSatistics::initControl()
     this->createActions();
 }
 
-/*******************       初始化数据                ***********************/
+/*******************       初始化数据            ***********************/
 void TabsSatistics::initData()
 {
     ui->dateTimeEditBeginTime->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
@@ -67,7 +67,7 @@ void TabsSatistics::initData()
     ui->dateTimeEditEndTime->setDateTime(QDateTime::currentDateTime());
 }
 
-/*******************       创建菜单                ***********************/
+/*******************       创建菜单              ***********************/
 void TabsSatistics::createActions()
 {
     menu    = new QMenu(this);
@@ -78,7 +78,7 @@ void TabsSatistics::createActions()
     connect(extend,  SIGNAL(triggered(bool)), this,SLOT(on_actionExtend_triggered()));
 }
 
-/*******************       显示菜单                ***********************/
+/*******************       显示菜单              ***********************/
 void TabsSatistics::contextMenuEvent(QContextMenuEvent *event)
 {
     menu->clear();
@@ -91,13 +91,13 @@ void TabsSatistics::contextMenuEvent(QContextMenuEvent *event)
     event->accept();
 }
 
-/*******************   刷新数据            ***********************/
+/*******************       刷新数据              ***********************/
 void TabsSatistics::on_actionReferesh_triggered()
 {
     dataSelect(ALLDATA);
 }
 
-/*******************   导出Excel            ***********************/
+/*******************       导出Excel            ***********************/
 void TabsSatistics::on_actionExtend_triggered()
 {
     QList<QString>itemName;
@@ -124,13 +124,13 @@ void TabsSatistics::on_actionExtend_triggered()
     excelOperate->start();
 }
 
-/*******************   统计数据            ***********************/
+/*******************       统计数据              ***********************/
 void TabsSatistics::on_pushButtonSum_clicked()
 {
     dataSelect(BLDATA);
 }
 
-/*******************   查询并显示数据            ***********************/
+/*******************       查询并显示数据         ***********************/
 void TabsSatistics::dataSelect(int type)
 {
     int dataCount = 0;
@@ -154,12 +154,12 @@ void TabsSatistics::dataSelect(int type)
 
     for(int i = 0; i < dataCount; i ++)
     {
-        ui->tableWidget->setItem(i, DAtABASEDEF::DATE,           DATA(dataList.at(i).date));
-        ui->tableWidget->setItem(i, DAtABASEDEF::MATERIALTOTAL,  DATA(dataList.at(i).materialTotal));
-        ui->tableWidget->setItem(i, DAtABASEDEF::EMBEDDINGTOTAL, DATA(dataList.at(i).embeddingTotal));
-        ui->tableWidget->setItem(i, DAtABASEDEF::NORMALMTLTOTAL, DATA(dataList.at(i).normalMtlTotal));
-        ui->tableWidget->setItem(i, DAtABASEDEF::NORMALEDDTOTAL, DATA(dataList.at(i).normalEddTotal));
-        ui->tableWidget->setItem(i, DAtABASEDEF::FROZENMTLTOTAL, DATA(dataList.at(i).frozenMtlTotal));
-        ui->tableWidget->setItem(i, DAtABASEDEF::FROZENEDDTOTAL, DATA(dataList.at(i).frozenEddTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::DATE,           DATA(dataList.at(i).date));
+        ui->tableWidget->setItem(i, DATABASEDEF::MATERIALTOTAL,  DATA(dataList.at(i).materialTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::EMBEDDINGTOTAL, DATA(dataList.at(i).embeddingTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::NORMALMTLTOTAL, DATA(dataList.at(i).normalMtlTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::NORMALEDDTOTAL, DATA(dataList.at(i).normalEddTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::FROZENMTLTOTAL, DATA(dataList.at(i).frozenMtlTotal));
+        ui->tableWidget->setItem(i, DATABASEDEF::FROZENEDDTOTAL, DATA(dataList.at(i).frozenEddTotal));
     }
 }

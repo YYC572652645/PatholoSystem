@@ -5,7 +5,7 @@
 
 SpecialSliceData * SpecialSliceData::instance = NULL;
 
-/***************************构造函数***********************/
+/****************          构造函数               ***************/
 SpecialSliceData::SpecialSliceData()
 {
     if(!dataCnn())
@@ -14,7 +14,7 @@ SpecialSliceData::SpecialSliceData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库             ***************/
 bool SpecialSliceData::dataCnn()
 {
     //是否为默认连接
@@ -40,7 +40,7 @@ bool SpecialSliceData::dataCnn()
     return db.open();
 }
 
-/***************************插入数据***********************/
+/****************          插入数据               ***************/
 bool SpecialSliceData::insertData(DataSpecialSlice data)
 {
     if(!db.isOpen()) db.open();
@@ -78,7 +78,7 @@ bool SpecialSliceData::insertData(DataSpecialSlice data)
     return success;
 }
 
-/***************************查询数据***********************/
+/****************          查询数据               ***************/
 int SpecialSliceData::selectData(int type, QString text)
 {
     int count = 0;
@@ -108,18 +108,18 @@ int SpecialSliceData::selectData(int type, QString text)
     {
         DataSpecialSlice data;
 
-        data.sectionId     = query.value(DAtABASEDEF::SSSECTIONID).toString();
-        data.sectionCode   = query.value(DAtABASEDEF::SSSECTIONCODE).toString();
-        data.embedCode     = query.value(DAtABASEDEF::SSEMBEDCODE).toString();
-        data.stainTypeName = query.value(DAtABASEDEF::SSSTAINTYPENAME).toString();
-        data.staining      = query.value(DAtABASEDEF::SSSTAINING).toString();
-        data.sectionTime   = query.value(DAtABASEDEF::SSSECTIONTIME).toString();
-        data.sectioner     = query.value(DAtABASEDEF::SSSECTIONER).toString();
-        data.stainTime     = query.value(DAtABASEDEF::SSSTAINTIME).toString();
-        data.stainer       = query.value(DAtABASEDEF::SSSTAINER).toString();
-        data.printNum      = query.value(DAtABASEDEF::SSPRINTNUM).toString();
-        data.printed       = query.value(DAtABASEDEF::SSPRINTED).toString();
-        data.cloneNumber   = query.value(DAtABASEDEF::SSCLONENO).toString();
+        data.sectionId     = query.value(DATABASEDEF::SSSECTIONID).toString();
+        data.sectionCode   = query.value(DATABASEDEF::SSSECTIONCODE).toString();
+        data.embedCode     = query.value(DATABASEDEF::SSEMBEDCODE).toString();
+        data.stainTypeName = query.value(DATABASEDEF::SSSTAINTYPENAME).toString();
+        data.staining      = query.value(DATABASEDEF::SSSTAINING).toString();
+        data.sectionTime   = query.value(DATABASEDEF::SSSECTIONTIME).toString();
+        data.sectioner     = query.value(DATABASEDEF::SSSECTIONER).toString();
+        data.stainTime     = query.value(DATABASEDEF::SSSTAINTIME).toString();
+        data.stainer       = query.value(DATABASEDEF::SSSTAINER).toString();
+        data.printNum      = query.value(DATABASEDEF::SSPRINTNUM).toString();
+        data.printed       = query.value(DATABASEDEF::SSPRINTED).toString();
+        data.cloneNumber   = query.value(DATABASEDEF::SSCLONENO).toString();
 
         dataList.append(data);
 
@@ -131,7 +131,7 @@ int SpecialSliceData::selectData(int type, QString text)
     return count;
 }
 
-/***************************更改数据***********************/
+/****************          更改数据               ***************/
 bool SpecialSliceData::updateData(DataSpecialSlice data)
 {
     if(!db.isOpen()) db.open();
@@ -172,7 +172,7 @@ bool SpecialSliceData::updateData(DataSpecialSlice data)
     return success;
 }
 
-/***************************删除数据***********************/
+/****************          删除数据               ***************/
 bool SpecialSliceData::deleteData(int type, QString id)
 {
     if(!db.isOpen()) db.open();
@@ -197,6 +197,7 @@ bool SpecialSliceData::deleteData(int type, QString id)
     return success;
 }
 
+/****************          获取数据               ***************/
 QList<DataSpecialSlice> SpecialSliceData::getDataList() const
 {
     return dataList;

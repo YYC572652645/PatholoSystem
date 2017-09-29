@@ -1,6 +1,14 @@
 #ifndef TABSTATISTICS_H
 #define TABSTATISTICS_H
 
+/***************************************************************
+   功能:统计数据
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QMenu>
 #include <QContextMenuEvent>
@@ -20,9 +28,9 @@ public:
     ~TabsSatistics();
 
 private slots:
-    void on_actionReferesh_triggered();
-    void on_actionExtend_triggered();
-    void on_pushButtonSum_clicked();
+    void on_actionReferesh_triggered();              //刷新
+    void on_actionExtend_triggered();                //导出
+    void on_pushButtonSum_clicked();                 //统计
 
 private:
     Ui::tabstatistics *ui;

@@ -2,8 +2,10 @@
 #include <QDebug>
 #include "globaldef.h"
 #include <QTextCodec>
+
 QReadIni *QReadIni::instance = NULL;
 
+/****************          单例模式              ***************/
 QReadIni *QReadIni::getInstance()
 {
     if(instance == NULL)
@@ -13,36 +15,13 @@ QReadIni *QReadIni::getInstance()
     return instance;
 }
 
+/****************          构造函数              ***************/
 QReadIni::QReadIni()
 {
     this->readIni();
 }
 
-void QReadIni::setTemplateList(const QList<QString> &value)
-{
-    templateList = value;
-}
-
-QList<QString> QReadIni::getTemplateList() const
-{
-    return templateList;
-}
-
-QString QReadIni::getRecentNumber() const
-{
-    return recentNumber;
-}
-
-QString QReadIni::getStartNumber() const
-{
-    return startNumber;
-}
-
-LoginConfig QReadIni::getLoginConfig() const
-{
-    return loginConfig;
-}
-
+/****************          读取配置文件           ***************/
 void QReadIni::readIni()
 {
     QSettings * configIniRead  = new QSettings("config.ini",QSettings::IniFormat);          //初始化读取Ini文件对象
@@ -58,53 +37,63 @@ void QReadIni::readIni()
     loginConfig.passWord       = configIniRead->value("login/password").toString();         //登录密码
     startNumber                = configIniRead->value("init/startNumber").toString();       //开始编号
     recentNumber               = configIniRead->value("init/recentNumber").toString();      //最近编号
-    startNumber                = configIniRead->value("init/startNumber").toString();       //开始编号
-    recentNumber               = configIniRead->value("init/recentNumber").toString();      //最近编号
-    templateList.append(configIniRead->value("template/templateFirst").toString());
-    templateList.append(configIniRead->value("template/templateSecond").toString());
-    templateList.append(configIniRead->value("template/templateThird").toString());
-    templateList.append(configIniRead->value("template/templateFourth").toString());
-    templateList.append(configIniRead->value("template/templateFiveth").toString());
-    templateList.append(configIniRead->value("template/templateSixth").toString());
-    templateList.append(configIniRead->value("template/templateSeventh").toString());
+    templateList.append(configIniRead->value("template/templateFirst").toString());         //登记模板
+    templateList.append(configIniRead->value("template/templateSecond").toString());        //取材模板
+    templateList.append(configIniRead->value("template/templateThird").toString());         //常规切片模板
+    templateList.append(configIniRead->value("template/templateFourth").toString());        //免疫组化切片模板
+    templateList.append(configIniRead->value("template/templateFiveth").toString());        //特染切片模板
+    templateList.append(configIniRead->value("template/templateSixth").toString());         //免疫组化指标模板
+    templateList.append(configIniRead->value("template/templateSeventh").toString());       //特染染色指标模板
 
     SAFEDELETE(configIniRead);
 }
 
-/****************          写入配置文件          ***************/
+/****************          写入用户信息           ***************/
 void QReadIni::writeIni(QString userName, QString passWord)
 {
-    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);
+
     configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
-    configIniWrite->setValue("login/username", userName);                         //用户名
-    configIniWrite->setValue("login/password", passWord);                         //密码
+
+    configIniWrite->setValue("login/username", userName);
+    configIniWrite->setValue("login/password", passWord);
+
     SAFEDELETE(configIniWrite);
 }
 
-/****************          写入配置文件          ***************/
+/****************          写入开始病理号          ***************/
 void QReadIni::writeIni(QString startNumber)
 {
-    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);
+
     configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
-    configIniWrite->setValue("init/startNumber", startNumber);                  //用户名
+
+    configIniWrite->setValue("init/startNumber", startNumber);
+
     this->startNumber = startNumber;
+
     SAFEDELETE(configIniWrite);
 }
 
-/****************          写入配置文件           ***************/
+/****************          写入最新病理号          ***************/
 void QReadIni::writeQCIni(QString recentNumber)
 {
-    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);
+
     configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
-    configIniWrite->setValue("init/recentNumber", recentNumber);                  //用户名
+
+    configIniWrite->setValue("init/recentNumber", recentNumber);
+
     this->recentNumber = recentNumber;
+
     SAFEDELETE(configIniWrite);
 }
 
-/****************          写入模板配置文件           ***************/
+/****************          写入模板信息            ***************/
 void QReadIni::writeTemplateIni()
 {
-    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);//初始化写入Ini文件对象
+    QSettings * configIniWrite = new QSettings("config.ini",QSettings::IniFormat);
+
     configIniWrite->setIniCodec(QTextCodec::codecForName("GB2312"));
 
     if(templateList.size() < 7) return;
@@ -120,9 +109,38 @@ void QReadIni::writeTemplateIni()
     SAFEDELETE(configIniWrite);
 }
 
+/****************          获取数据库配置信息       ***************/
 const DataConfig &QReadIni::getDataConfig()
 {
     return dataConfig;
 }
 
+/****************          设置模板信息            ***************/
+void QReadIni::setTemplateList(const QList<QString> &value)
+{
+    templateList = value;
+}
 
+/****************          获取模板信息            ***************/
+QList<QString> QReadIni::getTemplateList() const
+{
+    return templateList;
+}
+
+/****************          获取最新病理号          ***************/
+QString QReadIni::getRecentNumber() const
+{
+    return recentNumber;
+}
+
+/****************          获取开始病理号          ***************/
+QString QReadIni::getStartNumber() const
+{
+    return startNumber;
+}
+
+/****************          获取用户信息            ***************/
+LoginConfig QReadIni::getLoginConfig() const
+{
+    return loginConfig;
+}

@@ -5,7 +5,7 @@
 
 TabSystemData * TabSystemData::instance = NULL;
 
-/***************************构造函数***********************/
+/****************          构造函数                     ***************/
 TabSystemData::TabSystemData()
 {   
     if(!dataCnn())
@@ -14,7 +14,7 @@ TabSystemData::TabSystemData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库                    ***************/
 bool TabSystemData::dataCnn()
 {
     //是否为默认连接
@@ -40,13 +40,11 @@ bool TabSystemData::dataCnn()
     return db.open();
 }
 
-/***************************    插入数据                        ***********************/
+/****************          插入数据                      ***************/
 bool TabSystemData::insertData()
 {
-    if(!db.isOpen())
-    {
-        db.open();
-    }
+    if(!db.isOpen()) db.open();
+
     QSqlQuery query;
     QString Str = QString("insert into table values('','');");
     bool success = query.exec(Str);  //执行sql语句
@@ -56,7 +54,7 @@ bool TabSystemData::insertData()
     return success;
 }
 
-/************     插入免疫组化染色类型数据            *************/
+/****************          插入免疫组化染色类型数据         ***************/
 bool TabSystemData::insertStainTypeData(QString typeName, int type)
 {
     if(!db.isOpen()) db.open();
@@ -72,7 +70,7 @@ bool TabSystemData::insertStainTypeData(QString typeName, int type)
     return success;
 }
 
-/************     查询免疫组化染色类型数据            *************/
+/****************          查询免疫组化染色类型数据         ***************/
 int TabSystemData::selectStainTypeData(int type)
 {
     int count = 0;
@@ -113,7 +111,7 @@ int TabSystemData::selectStainTypeData(int type)
     return count;
 }
 
-/************     更改免疫组化染色类型数据            *************/
+/****************          更改免疫组化染色类型数据         ***************/
 bool TabSystemData::updateStainTypeData(QString stainTypeName, QString stainTypeID)
 {
     if(!db.isOpen())  db.open();
@@ -129,7 +127,7 @@ bool TabSystemData::updateStainTypeData(QString stainTypeName, QString stainType
     return success;
 }
 
-/************     删除免疫组化染色类型数据            *************/
+/****************          删除免疫组化染色类型数据         ***************/
 bool TabSystemData::deleteStainTypeData(QString stainTypeID)
 {
     if(!db.isOpen())  db.open();
@@ -145,7 +143,7 @@ bool TabSystemData::deleteStainTypeData(QString stainTypeID)
     return success;
 }
 
-/************     插入免疫组化染色指标数据            *************/
+/****************          插入免疫组化染色指标数据         ***************/
 bool TabSystemData::insertStainingData(QString typeName, int type)
 {
     if(!db.isOpen()) db.open();
@@ -161,7 +159,7 @@ bool TabSystemData::insertStainingData(QString typeName, int type)
     return success;
 }
 
-/************     查询免疫组化染色指标数据            *************/
+/****************          查询免疫组化染色指标数据         ***************/
 int TabSystemData::selectStainingData(int type)
 {
     int count = 0;
@@ -202,7 +200,7 @@ int TabSystemData::selectStainingData(int type)
     return count;
 }
 
-/************     更改免疫组化染色指标数据            *************/
+/****************          更改免疫组化染色指标数据         ***************/
 bool TabSystemData::updateStainingData(QString stainingName, QString stainingID)
 {
     if(!db.isOpen())  db.open();
@@ -218,7 +216,7 @@ bool TabSystemData::updateStainingData(QString stainingName, QString stainingID)
     return success;
 }
 
-/************     删除免疫组化染色指标数据            *************/
+/****************          删除免疫组化染色指标数据         ***************/
 bool TabSystemData::deleteStainingData(QString stainingID)
 {
     if(!db.isOpen())  db.open();
@@ -234,7 +232,7 @@ bool TabSystemData::deleteStainingData(QString stainingID)
     return success;
 }
 
-/***************************    起始病理号设置指标数据            ***********************/
+/****************          起始病理号设置指标数据           ***************/
 bool TabSystemData::codeBeginSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -249,7 +247,7 @@ bool TabSystemData::codeBeginSelectData()
 
     while(query.next())        //挨个遍历数据
     {
-        codeBeginSnSetInfo[query.value(DAtABASEDEF::CODEBEGINNAME).toString()] = query.value(DAtABASEDEF::CODEBEGINVALUE).toString();
+        codeBeginSnSetInfo[query.value(DATABASEDEF::CODEBEGINNAME).toString()] = query.value(DATABASEDEF::CODEBEGINVALUE).toString();
     }
 
     db.close();
@@ -257,7 +255,7 @@ bool TabSystemData::codeBeginSelectData()
     return true;
 }
 
-/***************************    起始病理号设置更改数据            ***********************/
+/****************          起始病理号设置更改数据           ***************/
 bool TabSystemData::codeBeginUpdateData(QString name, QString value)
 {
     if(!db.isOpen()) db.open();
@@ -273,7 +271,7 @@ bool TabSystemData::codeBeginUpdateData(QString name, QString value)
     return success;
 }
 
-/***************************    标本类别设置查询数据              ***********************/
+/****************          标本类别设置查询数据            ***************/
 bool TabSystemData::codeTypeSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -291,9 +289,9 @@ bool TabSystemData::codeTypeSelectData()
     {
         CodeTypeInfo codeData;
 
-        codeData.codeTypeID = query.value(DAtABASEDEF::CODETYPEID).toString();
-        codeData.codeTypeAbbr = query.value(DAtABASEDEF::CODETYPEABBR).toString();
-        codeData.codeTypeName = query.value(DAtABASEDEF::CODETYPENAME).toString();
+        codeData.codeTypeID = query.value(DATABASEDEF::CODETYPEID).toString();
+        codeData.codeTypeAbbr = query.value(DATABASEDEF::CODETYPEABBR).toString();
+        codeData.codeTypeName = query.value(DATABASEDEF::CODETYPENAME).toString();
 
         codeTypeInfo.append(codeData);
     }
@@ -303,7 +301,7 @@ bool TabSystemData::codeTypeSelectData()
     return true;
 }
 
-/***************************    标本类别设置更改数据              ***********************/
+/****************          标本类别设置更改数据            ***************/
 bool TabSystemData::codeTypeUpdateData(QString typeAbbreviation, QString typeName, QString typeId)
 {
     if(!db.isOpen())  db.open();
@@ -319,7 +317,7 @@ bool TabSystemData::codeTypeUpdateData(QString typeAbbreviation, QString typeNam
     return success;
 }
 
-/***************************    标本类别设置删除数据              ***********************/
+/****************          标本类别设置删除数据            ***************/
 bool TabSystemData::codeTypeDeleteData(QString id)
 {
     if(id.isEmpty()) return false;
@@ -337,7 +335,7 @@ bool TabSystemData::codeTypeDeleteData(QString id)
     return success;
 }
 
-/***************************    标本类别设置插入数据              ***********************/
+/****************          标本类别设置插入数据            ***************/
 bool TabSystemData::codeTypeInsertData(QString typeAbbreviation, QString typeName)
 {
     if(typeAbbreviation.isEmpty() || typeName.isEmpty()) return false;
@@ -354,7 +352,7 @@ bool TabSystemData::codeTypeInsertData(QString typeAbbreviation, QString typeNam
     return success;
 }
 
-/************     打印机设置插入数据              *************/
+/****************          打印机设置插入数据              ***************/
 bool TabSystemData::printInsertData(PrintData data)
 {
     if(!db.isOpen()) db.open();
@@ -384,7 +382,7 @@ bool TabSystemData::printInsertData(PrintData data)
     return success;
 }
 
-/************     打印机设置更新数据              *************/
+/****************          打印机设置更新数据              ***************/
 bool TabSystemData::printUpdateData(PrintData data)
 {
     if(!db.isOpen()) db.open();
@@ -414,7 +412,7 @@ bool TabSystemData::printUpdateData(PrintData data)
     return success;
 }
 
-/************     打印机设置删除数据              *************/
+/****************          打印机设置删除数据              ***************/
 bool TabSystemData::printDeleteData(QString id, QString printerName)
 {
     if(!db.isOpen()) db.open();
@@ -430,7 +428,7 @@ bool TabSystemData::printDeleteData(QString id, QString printerName)
     return true;
 }
 
-/************     打印机设置查询数据              *************/
+/****************          打印机设置查询数据              ***************/
 int TabSystemData::printSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -450,13 +448,13 @@ int TabSystemData::printSelectData()
     {
         PrintData data;
 
-        data.computerID   = query.value(DAtABASEDEF::COMPUTERID).toString();
-        data.computerName = query.value(DAtABASEDEF::COMPUTERNAME).toString();
-        data.printerModel = query.value(DAtABASEDEF::PRINTERMODEL).toString();
-        data.cinkModel    = query.value(DAtABASEDEF::CINKMODEl).toString();
-        data.printerIP    = query.value(DAtABASEDEF::PRINTERIP).toString();
-        data.printerPort  = query.value(DAtABASEDEF::PRINTERPORT).toString();
-        data.remark       = query.value(DAtABASEDEF::PRINTREMARK).toString();
+        data.computerID   = query.value(DATABASEDEF::COMPUTERID).toString();
+        data.computerName = query.value(DATABASEDEF::COMPUTERNAME).toString();
+        data.printerModel = query.value(DATABASEDEF::PRINTERMODEL).toString();
+        data.cinkModel    = query.value(DATABASEDEF::CINKMODEl).toString();
+        data.printerIP    = query.value(DATABASEDEF::PRINTERIP).toString();
+        data.printerPort  = query.value(DATABASEDEF::PRINTERPORT).toString();
+        data.remark       = query.value(DATABASEDEF::PRINTREMARK).toString();
 
         count ++;
 
@@ -468,7 +466,7 @@ int TabSystemData::printSelectData()
     return count;
 }
 
-/************     用户设置插入数据                *************/
+/****************          用户设置插入数据               ***************/
 bool TabSystemData::userInsertData(UserData data)
 {
     if(!db.isOpen()) db.open();
@@ -494,7 +492,7 @@ bool TabSystemData::userInsertData(UserData data)
     return success;
 }
 
-/************     用户设置更新数据                *************/
+/****************          用户设置更新数据               ***************/
 bool TabSystemData::userUpdateData(UserData data)
 {
     if(!db.isOpen()) db.open();
@@ -520,7 +518,7 @@ bool TabSystemData::userUpdateData(UserData data)
     return success;
 }
 
-/************     用户设置删除数据                *************/
+/****************          用户设置删除数据               ***************/
 bool TabSystemData::userDeleteData(QString userName)
 {
     if(!db.isOpen()) db.open();
@@ -536,7 +534,7 @@ bool TabSystemData::userDeleteData(QString userName)
     return true;
 }
 
-/************     用户设置查询数据                *************/
+/****************          用户设置查询数据               ***************/
 int TabSystemData::userSelectData()
 {
     if(!db.isOpen()) db.open();
@@ -555,11 +553,11 @@ int TabSystemData::userSelectData()
     {
         UserData data;
 
-        data.userName        = query.value(DAtABASEDEF::USERNAME).toString();
-        data.passWord        = query.value(DAtABASEDEF::PASSWORD).toString();
-        data.isAdministrator = query.value(DAtABASEDEF::ISADMINISTRATOR).toString();
-        data.authority       = query.value(DAtABASEDEF::AUTHORITY).toString();
-        data.remark          = query.value(DAtABASEDEF::REMARK).toString();
+        data.userName        = query.value(DATABASEDEF::USERNAME).toString();
+        data.passWord        = query.value(DATABASEDEF::PASSWORD).toString();
+        data.isAdministrator = query.value(DATABASEDEF::ISADMINISTRATOR).toString();
+        data.authority       = query.value(DATABASEDEF::AUTHORITY).toString();
+        data.remark          = query.value(DATABASEDEF::REMARK).toString();
         count ++;
 
         userList.append(data);
@@ -570,41 +568,49 @@ int TabSystemData::userSelectData()
     return count;
 }
 
+/****************          获取开始信息                  ***************/
 QMap<QString, QString> TabSystemData::getCodeBeginSnSetInfo() const
 {
     return codeBeginSnSetInfo;
 }
 
+/****************          获取编码规则                  ***************/
 QList<CodeTypeInfo> TabSystemData::getCodeTypeInfo() const
 {
     return codeTypeInfo;
 }
 
+/****************          获取免疫组化类型               ***************/
 QMap<QString, QString> TabSystemData::getStainTypeName() const
 {
     return StainTypeName;
 }
 
+/****************          获取免疫组化指标               ***************/
 QMap<QString, QString> TabSystemData::getStainingName() const
 {
     return StainingName;
 }
 
+/****************          获取打印数据                  ***************/
 QList<PrintData> TabSystemData::getPrintList() const
 {
     return printList;
 }
 
+/****************          获取用户数据                  ***************/
 QList<UserData> TabSystemData::getUserList() const
 {
     return userList;
 }
 
+/****************          获取特染指标                  ***************/
 QMap<QString, QString> TabSystemData::getSpecialingName() const
 {
     return SpecialingName;
 }
 
+/****************          获取特染类型                  ***************/
 QMap<QString, QString> TabSystemData::getSpecialTypeName() const
 {
     return SpecialTypeName;

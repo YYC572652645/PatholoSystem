@@ -1,5 +1,16 @@
 ﻿#ifndef TABSYSTEMDATA_H
 #define TABSYSTEMDATA_H
+
+
+/***************************************************************
+   功能:系统设置数据库信息
+
+   创建人:殷宇辰
+
+   创建时间:2017-7-29
+**************************************************************/
+
+
 #include<QString>
 #include<QSqlDriver>
 #include<QSqlRecord>
@@ -18,14 +29,6 @@ typedef struct UserData
     QString remark;
 
 }UserData;
-
-/***************************************************************
-   功能:登录框
-
-   创建人:殷宇辰
-
-   创建时间:2017-7-29
-**************************************************************/
 
 #define SYSTEMDATA TabSystemData::getInstance()
 
@@ -53,6 +56,7 @@ typedef struct PrintData
 class TabSystemData
 {
 public:
+    /************     单例模式                      *************/
     static TabSystemData * getInstance()
     {
         if(NULL == instance)

@@ -4,6 +4,7 @@
 #include "messagebox/messagedialog.h"
 #include "globaldef.h"
 
+/****************          构造函数          ***************/
 AlterPassword::AlterPassword(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::alterpassword)
@@ -15,11 +16,13 @@ AlterPassword::AlterPassword(QWidget *parent) :
     this->setWindowTitle("修改密码");
 }
 
+/****************          析构函数          ***************/
 AlterPassword::~AlterPassword()
 {
     delete ui;
 }
 
+/****************          确定按钮          ***************/
 void AlterPassword::on_pushButtonOk_clicked()
 {
     if(ui->lineEditPsdMore->text().isEmpty()) return;
@@ -46,6 +49,7 @@ void AlterPassword::on_pushButtonOk_clicked()
     }
 }
 
+/****************          取消按钮          ***************/
 void AlterPassword::on_pushButtonCancel_clicked()
 {
     this->close();

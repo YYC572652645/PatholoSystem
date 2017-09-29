@@ -6,7 +6,7 @@
 #include "tabsystemset/tabsystemdata.h"
 #include "globaldef.h"
 
-/****************      构造函数               *******************/
+/****************      构造函数                *******************/
 CodeRole::CodeRole(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::coderole)
@@ -21,13 +21,13 @@ CodeRole::CodeRole(QWidget *parent) :
     changQuCaiCodeRule();
 }
 
-/****************      析构函数               *******************/
+/****************      析构函数                *******************/
 CodeRole::~CodeRole()
 {
     delete ui;
 }
 
-/****************      改变编码样例内容         *******************/
+/****************      改变编码样例内容          *******************/
 void CodeRole::changeBingLiCodeRule()
 {
     const static int HUNDREDTIME = 100;
@@ -78,19 +78,19 @@ void CodeRole::changeBingLiCodeRule()
     ui->lineEditBingLiCodeDemo->setText(str);
 }
 
-/****************       前缀                  *******************/
+/****************       前缀                   *******************/
 void CodeRole::on_lineEditPrefix_textChanged(const QString &arg1)
 {
     changeBingLiCodeRule();
 }
 
-/****************       类别                  *******************/
+/****************       类别                   *******************/
 void CodeRole::on_checkBoxType_clicked()
 {
     changeBingLiCodeRule();
 }
 
-/****************       年份                  *******************/
+/****************       年份                   *******************/
 void CodeRole::on_checkBoxYear_clicked()
 {
     if(!ui->checkBoxYear->isChecked())
@@ -106,61 +106,61 @@ void CodeRole::on_checkBoxYear_clicked()
     changeBingLiCodeRule();
 }
 
-/****************       两位年份               *******************/
+/****************       两位年份                *******************/
 void CodeRole::on_radioButtonTwo_clicked()
 {
     changeBingLiCodeRule();
 }
 
-/****************       四位年份               *******************/
+/****************       四位年份                *******************/
 void CodeRole::on_radioButtonFour_clicked()
 {
     changeBingLiCodeRule();
 }
 
-/****************       月份                  *******************/
+/****************       月份                   *******************/
 void CodeRole::on_checkBoxMonth_clicked()
 {
     changeBingLiCodeRule();
 }
 
-/****************       日                    *******************/
+/****************       日                     *******************/
 void CodeRole::on_checkBoxDay_clicked()
 {
     changeBingLiCodeRule();
 }
 
-/****************       间隔符                 *******************/
+/****************       间隔符                  *******************/
 void CodeRole::on_spinBoxLength_valueChanged(const QString &arg1)
 {
     changeBingLiCodeRule();
 }
 
-/****************       流水号长度              *******************/
+/****************       流水号长度               *******************/
 void CodeRole::on_lineEditSpin_textChanged(const QString &arg1)
 {
     changeBingLiCodeRule();
 }
 
-/****************       病理号                 *******************/
+/****************       病理号                  *******************/
 void CodeRole::on_checkBoxBingLiNumber_clicked()
 {
     changQuCaiCodeRule();
 }
 
-/****************       连字符                 *******************/
+/****************       连字符                  *******************/
 void CodeRole::on_checkBoxHyphen_clicked()
 {
     changQuCaiCodeRule();
 }
 
-/****************       流水号类型              *******************/
+/****************       流水号类型               *******************/
 void CodeRole::on_comboBoxNumberType_activated(const QString &arg1)
 {
     changQuCaiCodeRule();
 }
 
-/****************       取材编码规则            *******************/
+/****************       取材编码规则             *******************/
 void CodeRole::changQuCaiCodeRule()
 {
     QString str;
@@ -185,7 +185,7 @@ void CodeRole::changQuCaiCodeRule()
     ui->lineEditQuCaiCodeDemo->setText(str);
 }
 
-/****************       初始化数据                *******************/
+/****************       初始化数据               *******************/
 void CodeRole::initCodeRule()
 {
     SYSTEMDATA->codeBeginSelectData();
@@ -213,7 +213,7 @@ void CodeRole::initCodeRule()
     ui->comboBoxNumberType->setCurrentIndex(mapData[NUMBERTYPE].toInt());
 }
 
-/****************       确定按钮                *******************/
+/****************       确定按钮                 *******************/
 void CodeRole::on_pushButtonOk_clicked()
 {
     this->close();
@@ -237,13 +237,13 @@ void CodeRole::on_pushButtonOk_clicked()
     connect(insertThread, SIGNAL(finished()), insertThread, SLOT(deleteLater()));
 }
 
-/****************       取消按钮                *******************/
+/****************       取消按钮                 *******************/
 void CodeRole::on_pushButtonCancel_clicked()
 {
     this->close();
 }
 
-/****************       线程构造函数             *******************/
+/****************       线程构造函数              *******************/
 InsertThread::InsertThread()
 {
 

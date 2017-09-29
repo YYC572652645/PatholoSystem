@@ -1,6 +1,14 @@
 #ifndef TABREGISTER_H
 #define TABREGISTER_H
 
+/***************************************************************
+   功能:登记
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QStyleOptionViewItem>

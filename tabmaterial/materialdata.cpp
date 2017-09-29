@@ -4,7 +4,7 @@
 
 MaterialData * MaterialData::instance = NULL;
 
-/***************************构造函数***********************/
+/****************          构造函数                 ***************/
 MaterialData::MaterialData()
 {   
     if(!dataCnn())
@@ -13,7 +13,7 @@ MaterialData::MaterialData()
     }
 }
 
-/***************************连接数据库*********************/
+/****************          连接数据库                ***************/
 bool MaterialData::dataCnn()
 {
     //是否为默认连接
@@ -38,8 +38,7 @@ bool MaterialData::dataCnn()
     return db.open();
 }
 
-
-/***************************    插入父类数据     ***********************/
+/****************          插入父类数据              ***************/
 bool MaterialData::insertParentData(DataParent data)
 {
     if(!db.isOpen())  db.open();
@@ -77,7 +76,7 @@ bool MaterialData::insertParentData(DataParent data)
     return success;
 }
 
-/***************************     插入子类数据     ***********************/
+/****************          插入子类数据              ***************/
 bool MaterialData::insertChildData(DataChild data)
 {
     if(!db.isOpen())  db.open();
@@ -111,7 +110,7 @@ bool MaterialData::insertChildData(DataChild data)
     return success;
 }
 
-/***************************查询数据***********************/
+/****************          查询数据                 ***************/
 bool MaterialData::selectData(int type, QString number)
 { 
     if(!db.isOpen()) db.open();
@@ -191,8 +190,7 @@ bool MaterialData::selectData(int type, QString number)
     return success;
 }
 
-
-/***************************查询病理号***********************/
+/****************          查询病理号                ***************/
 QString MaterialData::selectCode(QString blNumber)
 {
     QString pCode;
@@ -217,7 +215,7 @@ QString MaterialData::selectCode(QString blNumber)
     return pCode;
 }
 
-/***************************查询包埋数***********************/
+/****************          查询包埋数                ***************/
 int MaterialData::selectBaoMai(QString blNumber)
 {
     int count = 0;
@@ -242,6 +240,7 @@ int MaterialData::selectBaoMai(QString blNumber)
     return count;
 }
 
+/****************          查询统计数据               ***************/
 int MaterialData::selectStatistics(QString beginTime, QString endTime)
 {
     if(!db.isOpen()) db.open();
@@ -271,11 +270,11 @@ int MaterialData::selectStatistics(QString beginTime, QString endTime)
     {
         DataStatistics data;
 
-        data.date           = query.value(DAtABASEDEF::DATE).toString();              //日期
-        data.materialTotal  = query.value(DAtABASEDEF::MATERIALTOTAL).toString();     //取材总例数
-        data.embeddingTotal = query.value(DAtABASEDEF::EMBEDDINGTOTAL).toString();    //包埋总数
-        data.normalMtlTotal = query.value(DAtABASEDEF::NORMALMTLTOTAL).toString();    //常规取材例数
-        data.normalEddTotal = query.value(DAtABASEDEF::NORMALEDDTOTAL).toString();    //常规包埋数
+        data.date           = query.value(DATABASEDEF::DATE).toString();              //日期
+        data.materialTotal  = query.value(DATABASEDEF::MATERIALTOTAL).toString();     //取材总例数
+        data.embeddingTotal = query.value(DATABASEDEF::EMBEDDINGTOTAL).toString();    //包埋总数
+        data.normalMtlTotal = query.value(DATABASEDEF::NORMALMTLTOTAL).toString();    //常规取材例数
+        data.normalEddTotal = query.value(DATABASEDEF::NORMALEDDTOTAL).toString();    //常规包埋数
 
         statisticsList.append(data);
 
@@ -287,7 +286,7 @@ int MaterialData::selectStatistics(QString beginTime, QString endTime)
     return count;
 }
 
-/***************************更改子类数据***********************/
+/****************          更改子类数据               ***************/
 bool MaterialData::updateChildData(DataChild data)
 {
     if(!db.isOpen()) db.open();
@@ -317,7 +316,7 @@ bool MaterialData::updateChildData(DataChild data)
     return success;
 }
 
-/***************************更改父类数据***********************/
+/****************          更改父类数据               ***************/
 bool MaterialData::updateParentData(DataParent data)
 {
     if(!db.isOpen()) db.open();
@@ -354,7 +353,7 @@ bool MaterialData::updateParentData(DataParent data)
     return success;
 }
 
-/***************************删除所有数据***********************/
+/****************          删除所有数据               ***************/
 bool MaterialData::deleteData(int type, QString id, QString embedCode)
 {
     if(!db.isOpen()) db.open();
@@ -399,16 +398,19 @@ bool MaterialData::deleteData(int type, QString id, QString embedCode)
     return success;
 }
 
+/****************          获取子节点数据             ***************/
 QList<DataChild> MaterialData::getChildList() const
 {
     return childList;
 }
 
+/****************          获取父节点数据             ***************/
 QList<DataParent> MaterialData::getParentList() const
 {
     return parentList;
 }
 
+/****************          获取统计数据               ***************/
 QList<DataStatistics> MaterialData::getStatisticsList() const
 {
     return statisticsList;

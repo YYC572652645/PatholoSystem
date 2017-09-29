@@ -81,7 +81,7 @@ void NewNormalSlice::on_pushButtonCancel_clicked()
     this->close();
 }
 
-/*******************   按钮点击            ***********************/
+/*******************   按钮点击    ***********************/
 void NewNormalSlice::keyPressEvent(QKeyEvent * event)
 {
     static QString strNumber;

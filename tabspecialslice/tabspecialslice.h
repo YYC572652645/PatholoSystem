@@ -1,6 +1,14 @@
 #ifndef TABSPECIASLICE_H
 #define TABSPECIASLICE_H
 
+/***************************************************************
+   功能:特染切片
+
+   创建人:殷宇辰
+
+   创建时间:2017-9-22
+**************************************************************/
+
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include "newmorespecialslice.h"
