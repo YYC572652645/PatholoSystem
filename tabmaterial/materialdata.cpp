@@ -347,7 +347,6 @@ bool MaterialData::updateParentData(DataParent data)
 
     bool success = query.exec(str);  //执行sql语句
 
-    qDebug()<<str;
     db.close();
 
     return success;
@@ -390,8 +389,6 @@ bool MaterialData::deleteData(int type, QString id, QString embedCode)
 
         success = query.exec(str);
     }
-
-    qDebug()<<str;
 
     db.close();
 

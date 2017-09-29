@@ -21,18 +21,18 @@ public:
     void showDialog();
 
 private slots:
-    void receiveData(UserData data);
-    void on_pushButtonNew_clicked();
-    void on_pushButtonDelete_clicked();
-    void on_pushButtonUpdate_clicked();
-    void on_pushButtonExit_clicked();
+    void receiveData(UserData data);     //接收数据
+    void on_pushButtonNew_clicked();     //新建
+    void on_pushButtonDelete_clicked();  //删除
+    void on_pushButtonUpdate_clicked();  //更新
+    void on_pushButtonExit_clicked();    //退出
 
 private:
     Ui::userset *ui;
 
-    void initControl();            //初始化控件
-    void initValue();              //初始化值
-    void dataSelect();             //数据查询
+    void initControl();                 //初始化控件
+    void initValue();                   //初始化值
+    void dataSelect();                  //数据查询
 
 private:
     UserWidget *userWidget;

@@ -16,18 +16,18 @@ public:
     explicit UserWidget(QWidget *parent = 0);
     ~UserWidget();
 
-    void showWidget(UserData data);
+    void showWidget(UserData data);        //显示界面
 
 signals:
-    void sendData(UserData data);
+    void sendData(UserData data);         //发送数据
 
 private slots:
-    void on_pushButtonOk_clicked();
-    void on_pushButtonCancel_clicked();
+    void on_pushButtonOk_clicked();       //确定按钮
+    void on_pushButtonCancel_clicked();   //取消按钮
 
 private:
     Ui::userwidget *ui;
-    void clearInfo();
+    void clearInfo();                     //清空信息
 };
 
 #endif // USERWIDGET_H

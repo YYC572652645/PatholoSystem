@@ -2,6 +2,8 @@
 #include "ui_typesetdialog.h"
 #include "messagebox/messagedialog.h"
 #include "globaldef.h"
+
+/****************     构造函数        **********************/
 TypeSetDialog::TypeSetDialog(QWidget *parent) :
     QMainWindow(parent)
   ,ui(new Ui::typesetdialog)
@@ -14,11 +16,14 @@ TypeSetDialog::TypeSetDialog(QWidget *parent) :
     this->setWindowFlags(this->windowFlags()&~Qt::WindowMaximizeButtonHint&~Qt::WindowMinimizeButtonHint);
 }
 
+
+/****************     析构函数        **********************/
 TypeSetDialog::~TypeSetDialog()
 {
     delete ui;
 }
 
+/****************     确定按钮        **********************/
 void TypeSetDialog::on_pushButtonOk_clicked()
 {
     if(ui->lineEditTypeName->text().isEmpty())
@@ -40,11 +45,13 @@ void TypeSetDialog::on_pushButtonOk_clicked()
     this->close();
 }
 
+/****************     取消按钮        **********************/
 void TypeSetDialog::on_pushButtonCancel_clicked()
 {
     this->close();
 }
 
+/****************     显示更新窗口    **********************/
 void TypeSetDialog::showUpdateDialog(QString typeAbbreviation, QString typeName)
 {
     dataType = GLOBALDEF::TYPEUPDATE;
@@ -54,6 +61,7 @@ void TypeSetDialog::showUpdateDialog(QString typeAbbreviation, QString typeName)
     this->show();
 }
 
+/****************     显示窗口        **********************/
 void TypeSetDialog::showNewDialog()
 {
     dataType = GLOBALDEF::TYPEINSERT;
@@ -64,6 +72,7 @@ void TypeSetDialog::showNewDialog()
     this->show();
 }
 
+/****************     设置信息        **********************/
 void TypeSetDialog::setInfo()
 {
     ui->label->hide();

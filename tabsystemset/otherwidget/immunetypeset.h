@@ -14,18 +14,17 @@ class ImmuneTypeSet : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImmuneTypeSet(QWidget *parent = 0);
-    ~ImmuneTypeSet();
-
-    void showDialog();             //显示窗口
+    explicit ImmuneTypeSet(QWidget *parent = 0);            //构造函数
+    ~ImmuneTypeSet();                                       //析构函数
+    void showDialog();                                      //显示窗口
 
 private slots:
-    void receiveData(QString typeName, int type);
-    void on_pushButtonNew_clicked();
-    void on_pushButtonDelete_clicked();
-    void on_pushButtonUpdate_clicked();
-    void on_pushButtonExit_clicked();
-    void on_tableWidget_clicked(const QModelIndex &index);
+    void receiveData(QString typeName, int type);           //接收数据
+    void on_pushButtonNew_clicked();                        //新建
+    void on_pushButtonDelete_clicked();                     //删除
+    void on_pushButtonUpdate_clicked();                     //更改
+    void on_pushButtonExit_clicked();                       //退出
+    void on_tableWidget_clicked(const QModelIndex &index);  //点击列表
 
 private:
     Ui::immunetypeset *ui;

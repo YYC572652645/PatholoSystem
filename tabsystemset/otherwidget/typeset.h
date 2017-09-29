@@ -20,23 +20,17 @@ public:
     void showDialog();
 
 private slots:
-    void receiveData(QString typeAbbreviation, QString typeName, int type);
-
-    void on_pushButtonNew_clicked();
-
-    void on_pushButtonDelete_clicked();
-
-    void on_pushButtonUpdate_clicked();
-
-    void on_pushButtonExit_clicked();
-
-    void on_tableWidget_clicked(const QModelIndex &index);
+    void receiveData(QString typeAbbreviation, QString typeName, int type); //接收数据
+    void on_pushButtonNew_clicked();                                        //新建
+    void on_pushButtonDelete_clicked();                                     //删除
+    void on_pushButtonUpdate_clicked();                                     //更改
+    void on_pushButtonExit_clicked();                                       //退出
+    void on_tableWidget_clicked(const QModelIndex &index);                  //点击列表
 
 private:
     Ui::typeset *ui;
 
     void initControl();            //初始化控件
-
     void initValue();              //初始化值
 
 private:

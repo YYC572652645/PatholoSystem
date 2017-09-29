@@ -156,7 +156,7 @@ void SpeciaIndexSet::on_tableWidget_clicked(const QModelIndex &index)
     nowRow = index.row();
 }
 
-/****************     打印标签  **********************/
+/****************     打印标签     **********************/
 void SpeciaIndexSet::on_pushButtonPrint_clicked()
 {
     if(NULL == ui->tableWidget->currentItem()) return;
@@ -166,7 +166,7 @@ void SpeciaIndexSet::on_pushButtonPrint_clicked()
     templateSetUp->printImage(mapData.value(mapData.keys().at(nowRow)));
 }
 
-/****************     全部打印  **********************/
+/****************     全部打印     **********************/
 void SpeciaIndexSet::on_pushButtonPrintAll_clicked()
 {
     QMap<QString , QString> mapData =  SYSTEMDATA->getSpecialingName();
@@ -177,7 +177,7 @@ void SpeciaIndexSet::on_pushButtonPrintAll_clicked()
     }
 }
 
-/****************     设置模板  **********************/
+/****************     设置模板     **********************/
 void SpeciaIndexSet::on_pushButtonTemplateSet_clicked()
 {
     QMap<QString, QString> mapData =  SYSTEMDATA->getSpecialingName();

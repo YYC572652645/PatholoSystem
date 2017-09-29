@@ -14,23 +14,17 @@ class SpeciaTypeSet : public QWidget
     Q_OBJECT
 
 public:
-    explicit SpeciaTypeSet(QWidget *parent = 0);
-    ~SpeciaTypeSet();
-
-    void showDialog();
+    explicit SpeciaTypeSet(QWidget *parent = 0);           //构造函数
+    ~SpeciaTypeSet();                                      //析构函数
+    void showDialog();                                     //显示界面
 
 private slots:
-    void receiveData(QString typeName, int type);
-
-    void on_pushButtonNew_clicked();
-
-    void on_pushButtonDelete_clicked();
-
-    void on_pushButtonUpdate_clicked();
-
-    void on_pushButtonExit_clicked();
-
-    void on_tableWidget_clicked(const QModelIndex &index);
+    void receiveData(QString typeName, int type);           //接收数据
+    void on_pushButtonNew_clicked();                        //新建
+    void on_pushButtonDelete_clicked();                     //删除
+    void on_pushButtonUpdate_clicked();                     //更改
+    void on_pushButtonExit_clicked();                       //退出
+    void on_tableWidget_clicked(const QModelIndex &index);  //列表点击
 
 private:
     Ui::speciatypeset *ui;

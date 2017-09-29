@@ -5,8 +5,8 @@
 
 /****************     构造函数      **********************/
 UserSet::UserSet(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::userset)
+    QWidget(parent)
+  ,ui(new Ui::userset)
   ,userWidget(NULL)
 {
     ui->setupUi(this);
