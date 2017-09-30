@@ -1,6 +1,14 @@
 #ifndef TYPESET_H
 #define TYPESET_H
 
+/***************************************************************
+   功能:标本类别设置
+
+   创建人:殷宇辰
+
+   创建时间:2017-7-29
+**************************************************************/
+
 #include <QWidget>
 #include "tabsystemset/tabsystemdata.h"
 #include "tabsystemset/otherwidget/typesetdialog.h"

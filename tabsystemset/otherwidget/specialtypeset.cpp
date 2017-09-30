@@ -77,7 +77,7 @@ void SpeciaTypeSet::initValue()
 {
     int count = SYSTEMDATA->selectStainTypeData(GLOBALDEF::SECONDTYPE);  //查询标本类别信息
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     ui->tableWidget->setRowCount(count);
 

@@ -144,7 +144,7 @@ void TabsSatistics::dataSelect(int type)
         dataCount = MATERIALDATA->selectStatistics(ui->dateTimeEditBeginTime->text(),ui->dateTimeEditEndTime->text());
     }
 
-    if(dataCount == GLOBALDEF::ERROR) return;
+    if(dataCount == GLOBALDEF::DATAERROR) return;
 
     ui->tableWidget->setRowCount(dataCount);
 

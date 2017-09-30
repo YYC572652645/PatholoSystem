@@ -1,6 +1,8 @@
 #ifndef GLOBALDEF_HPP
 #define GLOBALDEF_HPP
 #include <QString>
+#include <windows.h>
+
 
 #define  DATA(str)          new QTableWidgetItem(str)
 #define  TREEDATA(widget)   new QTreeWidgetItem(widget)
@@ -10,20 +12,20 @@
 #define SETCENTRALWIDGET(widget)               \
 {                                              \
     if(this->centralWidget())                  \
-    {                                          \
-        this->centralWidget()->setParent(NULL);\
+{                                          \
+    this->centralWidget()->setParent(NULL);\
     }                                          \
     this->setCentralWidget(widget);            \
-}
+    }
 
 #define SAFEDELETE(pointer) \
 {                           \
     if(pointer)             \
-    {                       \
-        delete pointer;     \
+{                       \
+    delete pointer;     \
     }                       \
     pointer = NULL;         \
-}
+    }
 
 #define LOADQSS(qssFile)                      \
 {                                             \
@@ -31,12 +33,12 @@
     QFile file(qssFile);                      \
     file.open(QFile::ReadOnly);               \
     if(file.isOpen())                         \
-    {                                         \
-        strQss=QLatin1String(file.readAll()); \
-        qApp->setStyleSheet(strQss);          \
-        file.close();                         \
+{                                         \
+    strQss=QLatin1String(file.readAll()); \
+    qApp->setStyleSheet(strQss);          \
+    file.close();                         \
     }                                         \
-}
+    }
 
 enum TYPE
 {
@@ -136,17 +138,26 @@ const static QString PCODEBEGINSN  = "PCodeBeginSn";
 
 namespace GLOBALDEF
 {
-const static int     ERROR        = -1;                           //数据库查询失败
-const static QString UNUSED       = "1";                          //不用使用密码登录
-const static QString PRINTFLAGE   = "1";                          //已经打印
-const static QString SUCCESSIMAGE = ":/image/image/ok.png";       //成功图片
-const static QString FAILIMAGE    = ":/image/image/fail.png";     //失败图片
-const static QString PRINTICON    = ":/image/image/print.jpg";    //打印图片
-const static QString REFRESHICON  = ":/image/image/refresh.png";  //刷新图片
-const static QString DELETEICON   = ":/image/image/critical.png"; //删除图片
-const static QString EXCELICON    = ":/image/image/excel.png";    //Excel图片
-const static QString SYSTEMINFO   = "系统提示";                    //系统提示
-const static int     REFRESHTIME  = 3500;                         //刷新时间
+const static int     DATAERROR        = -1;                           //数据库查询失败
+const static QString UNUSED           = "1";                          //不用使用密码登录
+const static QString PRINTFLAGE       = "1";                          //已经打印
+const static QString SUCCESSIMAGE     = ":/image/image/ok.png";       //成功图片
+const static QString FAILIMAGE        = ":/image/image/fail.png";     //失败图片
+const static QString PRINTICON        = ":/image/image/print.jpg";    //打印图片
+const static QString REFRESHICON      = ":/image/image/refresh.png";  //刷新图片
+const static QString DELETEICON       = ":/image/image/critical.png"; //删除图片
+const static QString EXCELICON        = ":/image/image/excel.png";    //Excel图片
+const static QString SYSTEMINFO       = "系统提示";                    //系统提示
+const static int     REFRESHTIME      = 3500;                         //刷新时间
+const static BYTE    SHOWALL          = 0XFF;                         //显示所有窗口
+const static BYTE    SHOWREG          = 0X01;                         //显示登记窗口
+const static BYTE    SHOWMATERIAL     = 0X02;                         //显示取材窗口
+const static BYTE    SHOWNORMALSLICE  = 0X04;                         //显示常规切片窗口
+const static BYTE    SHOWIMMUNESLICE  = 0X08;                         //显示免疫组化切片窗口
+const static BYTE    SHOWSPECIALSLICE = 0X10;                         //显示特染切片窗口
+const static BYTE    SHOWSATISTICS    = 0X20;                         //显示统计数据窗口
+const static BYTE    SHOWSYSTEMSET    = 0X40;                         //显示系统设置
+
 
 //数据操作
 enum DATATYPE

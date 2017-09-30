@@ -65,6 +65,7 @@ void TabSystemSet::listWidgetClicked(const QModelIndex &index)
     }
 }
 
+/***************************               确定按钮                    ***********************/
 void TabSystemSet::on_pushButtonOk_clicked()
 {
     INICONFIG->writeIni(QString::number(ui->spinBox->value()));
@@ -73,7 +74,7 @@ void TabSystemSet::on_pushButtonOk_clicked()
     ui->centralwidget->hide();                                                                //将该界面隐藏
 }
 
-/***************************               取消                        ***********************/
+/***************************               取消按钮                    ***********************/
 void TabSystemSet::on_pushButtonCancel_clicked()
 {
     ui->centralwidget->hide();

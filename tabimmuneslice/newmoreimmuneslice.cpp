@@ -130,7 +130,7 @@ void NewMoreImmuneSlice::setComboBoxInfo()
 
     int count = SYSTEMDATA->selectStainTypeData(GLOBALDEF::FIRSTTYPE);
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     QMap<QString, QString> mapData =  SYSTEMDATA->getStainTypeName();
 
@@ -143,7 +143,7 @@ void NewMoreImmuneSlice::setComboBoxInfo()
 
     count = SYSTEMDATA->selectStainingData(GLOBALDEF::FIRSTTYPE);
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     mapData =  SYSTEMDATA->getStainingName();
 

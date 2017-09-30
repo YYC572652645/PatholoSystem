@@ -124,7 +124,7 @@ void UserSet::dataSelect()
 {
     int dataCount = SYSTEMDATA->userSelectData();
 
-    if(dataCount == GLOBALDEF::ERROR) return;
+    if(dataCount == GLOBALDEF::DATAERROR) return;
 
     QList<UserData> dataList = SYSTEMDATA->getUserList();
 

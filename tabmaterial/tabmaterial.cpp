@@ -541,6 +541,26 @@ void TabMaterial::on_treeWidget_clicked(const QModelIndex &index)
         }
     }
 
+
+    static int nowRow = index.row();
+    static QTreeWidgetItem *nowItem = NULL;
+
+    if(nowRow != index.row())
+    {
+        if(NULL != nowItem && NULL == nowItem->parent())
+        {
+            //如果是自动保存，则保存
+            if(patientInfo.getIsAutoSaveFlage())
+            {
+                patientInfo.on_actionSavePatientInfo_triggered();
+            }
+        }
+
+        nowRow = index.row();
+    }
+
+    nowItem =  ui->treeWidget->currentItem();
+
     if(NULL == ui->treeWidget->currentItem()->parent())
     {
         patientInfo.setPaintId(getIndexNumber(BLDATA, ui->treeWidget->currentItem()->text(0)));

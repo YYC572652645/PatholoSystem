@@ -77,5 +77,4 @@ private:
     QAction *refresh;                                //刷新
 };
 
-
 #endif // TABREGISTER_H

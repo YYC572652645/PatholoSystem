@@ -77,7 +77,7 @@ int RegisterData::selectMaxId()
 
     bool success = query.exec(str);  //执行sql语句
 
-    if(!success)  return GLOBALDEF::ERROR;
+    if(!success)  return GLOBALDEF::DATAERROR;
 
     if(query.next()) maxId = query.value(0).toInt();
 
@@ -100,7 +100,7 @@ int RegisterData::selectData()
 
     bool success = query.exec(str);  //执行sql语句
 
-    if(!success)  return GLOBALDEF::ERROR;
+    if(!success)  return GLOBALDEF::DATAERROR;
 
     registerInfo.clear();
 
@@ -139,7 +139,7 @@ int RegisterData::selectBLData(QString blNumber)
 
     bool success = query.exec(str);  //执行sql语句
 
-    if(!success)  return GLOBALDEF::ERROR;
+    if(!success)  return GLOBALDEF::DATAERROR;
 
     registerInfo.clear();
 

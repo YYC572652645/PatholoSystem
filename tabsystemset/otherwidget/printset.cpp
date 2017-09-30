@@ -91,7 +91,7 @@ void PrintSet::dataSelect()
 {
     int dataCount = SYSTEMDATA->printSelectData();
 
-    if(dataCount == GLOBALDEF::ERROR) return;
+    if(dataCount == GLOBALDEF::DATAERROR) return;
 
     QList<PrintData> dataList = SYSTEMDATA->getPrintList();
 

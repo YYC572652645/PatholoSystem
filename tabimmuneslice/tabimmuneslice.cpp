@@ -162,7 +162,7 @@ void TabImmuneSlice::dataSelect(int type)
         dataCount = IMMUNESLICEDATA->selectData(type, ui->lineEditNumber->text());
     }
 
-    if(dataCount == GLOBALDEF::ERROR) return;
+    if(dataCount == GLOBALDEF::DATAERROR) return;
 
     ui->tableWidget->setRowCount(dataCount);           //设置表格行数
 

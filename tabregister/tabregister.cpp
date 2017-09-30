@@ -90,7 +90,7 @@ void TabRegister::selectData(int type, int scrollFlage)
         dataCount = registerData.selectBLData(ui->lineEdit->text());
     }
 
-    if(dataCount == GLOBALDEF::ERROR) return;
+    if(dataCount == GLOBALDEF::DATAERROR) return;
 
     ui->tableWidget->setRowCount(dataCount);     //设置表格行数
 
@@ -312,6 +312,19 @@ void TabRegister::on_pushButtonFind_clicked()
 /*******************       选中一行                 ***********************/
 void TabRegister::on_tableWidget_clicked(const QModelIndex &currentIndex)
 {
+    static int currentRow = ui->tableWidget->currentRow();
+
+    if(currentRow != ui->tableWidget->currentRow())
+    {
+        //如果是自动保存，则保存
+        if(patientInfo.getIsAutoSaveFlage())
+        {
+            patientInfo.on_actionSavePatientInfo_triggered();
+        }
+
+        currentRow = ui->tableWidget->currentRow();
+    }
+
     QAbstractItemModel *model = ui->tableWidget->model();
     QModelIndex index = model->index(currentIndex.row(), 0);
 
@@ -320,12 +333,6 @@ void TabRegister::on_tableWidget_clicked(const QModelIndex &currentIndex)
     index = model->index(currentIndex.row(), 1);
 
     patientInfo.setRegId(model->data(index).toString());
-
-    //如果是自动保存，则保存
-    if(patientInfo.getIsAutoSaveFlage())
-    {
-        patientInfo.on_actionSavePatientInfo_triggered();
-    }
 
     patientInfo.setSelect();
 }
@@ -391,3 +398,4 @@ void TabRegister::on_actionPrintMoreLabel_triggered()
         selectData(ALLDATA, false);
     }
 }
+

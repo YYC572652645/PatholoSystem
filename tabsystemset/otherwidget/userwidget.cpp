@@ -1,5 +1,6 @@
 #include "userwidget.h"
 #include "ui_userwidget.h"
+#include "globaldef.h"
 
 /****************     构造函数      **********************/
 UserWidget::UserWidget(QWidget *parent) :
@@ -34,17 +35,17 @@ void UserWidget::showWidget(UserData data)
 
     int authority = data.authority.toInt();
 
-    if(authority & 0X01) ui->checkBoxReg->setChecked(true);
+    if(authority & GLOBALDEF::SHOWREG)          ui->checkBoxReg->setChecked(true);
 
-    if(authority & 0X02) ui->checkBoxMateral->setChecked(true);
+    if(authority & GLOBALDEF::SHOWMATERIAL)     ui->checkBoxMateral->setChecked(true);
 
-    if(authority & 0X04) ui->checkBoxNormal->setChecked(true);
+    if(authority & GLOBALDEF::SHOWNORMALSLICE)  ui->checkBoxNormal->setChecked(true);
 
-    if(authority & 0X08) ui->checkBoxImmune->setChecked(true);
+    if(authority & GLOBALDEF::SHOWIMMUNESLICE)  ui->checkBoxImmune->setChecked(true);
 
-    if(authority & 0X10) ui->checkBoxSpecial->setChecked(true);
+    if(authority & GLOBALDEF::SHOWSPECIALSLICE) ui->checkBoxSpecial->setChecked(true);
 
-    if(authority & 0X20) ui->checkBoxSelect->setChecked(true);
+    if(authority & GLOBALDEF::SHOWSATISTICS)    ui->checkBoxSelect->setChecked(true);
 
     this->show();
 }
@@ -70,27 +71,27 @@ void UserWidget::on_pushButtonOk_clicked()
 
     if(ui->checkBoxReg->isChecked())
     {
-        authority |= 0X01;
+        authority |= GLOBALDEF::SHOWREG;
     }
     if(ui->checkBoxMateral->isChecked())
     {
-        authority |= 0X02;
+        authority |= GLOBALDEF::SHOWMATERIAL;
     }
     if(ui->checkBoxNormal->isChecked())
     {
-        authority |= 0X04;
+        authority |= GLOBALDEF::SHOWNORMALSLICE;
     }
     if(ui->checkBoxImmune->isChecked())
     {
-        authority |= 0X08;
+        authority |= GLOBALDEF::SHOWIMMUNESLICE;
     }
     if(ui->checkBoxSpecial->isChecked())
     {
-        authority |= 0X10;
+        authority |= GLOBALDEF::SHOWSPECIALSLICE;
     }
     if(ui->checkBoxSelect->isChecked())
     {
-        authority |= 0X20;
+        authority |= GLOBALDEF::SHOWSATISTICS;
     }
 
     data.authority = QString::number(authority);

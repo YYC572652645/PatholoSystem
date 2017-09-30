@@ -130,7 +130,7 @@ void NewMoreSpecialSlice::setComboBoxInfo()
 
     int count = SYSTEMDATA->selectStainTypeData(GLOBALDEF::SECONDTYPE);
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     QMap<QString, QString> mapData =  SYSTEMDATA->getStainTypeName();
 
@@ -143,7 +143,7 @@ void NewMoreSpecialSlice::setComboBoxInfo()
 
     count = SYSTEMDATA->selectStainingData(GLOBALDEF::SECONDTYPE);
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     mapData =  SYSTEMDATA->getStainingName();
 

@@ -81,7 +81,7 @@ void SpeciaIndexSet::initValue()
 {
     int count = SYSTEMDATA->selectStainingData(GLOBALDEF::SECONDTYPE);  //查询标本类别信息
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     ui->tableWidget->setRowCount(count);
 

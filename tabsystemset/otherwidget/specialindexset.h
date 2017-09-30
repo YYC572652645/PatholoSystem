@@ -1,6 +1,14 @@
 #ifndef SPECIALINDEXSETSET_H
 #define SPECIALINDEXSETSET_H
 
+/***************************************************************
+   功能:特染切片指标设置
+
+   创建人:殷宇辰
+
+   创建时间:2017-7-29
+**************************************************************/
+
 #include <QWidget>
 #include "tabsystemset/tabsystemdata.h"
 #include "tabsystemset/otherwidget/typesetdialog.h"

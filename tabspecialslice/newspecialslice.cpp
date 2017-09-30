@@ -95,7 +95,7 @@ void NewSpecialSlice::setComboBoxInfo()
 
     int count = SYSTEMDATA->selectStainTypeData(GLOBALDEF::SECONDTYPE);  //查询标本类别信息
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     QMap<QString, QString> mapData =  SYSTEMDATA->getStainTypeName();
 
@@ -108,7 +108,7 @@ void NewSpecialSlice::setComboBoxInfo()
 
     count = SYSTEMDATA->selectStainingData(GLOBALDEF::SECONDTYPE);
 
-    if(count == GLOBALDEF::ERROR) return;
+    if(count == GLOBALDEF::DATAERROR) return;
 
     mapData =  SYSTEMDATA->getStainingName();
 

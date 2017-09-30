@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPixmap>
+#include "globaldef.h"
 
 /*******************   构造函数       ***********************/
 MainWindow::MainWindow(QWidget *parent) :
@@ -47,53 +48,53 @@ void MainWindow::receiveNumber(QString number, QString id)
 
 /*******************   初始化控件      ***********************/
 void MainWindow::initControl()
-{
+{        
     //如果是管理员则全部显示
-    if(adminster) authority = 0XFF;
+    if(adminster) authority = GLOBALDEF::SHOWALL;
 
-    if(authority & 0X01)
+    if(authority & GLOBALDEF::SHOWREG)
     {
-        tabRegister     = new TabRegister(this);     //登记
+        tabRegister     = new TabRegister(this);
         ui->tabWidgetTotal->addTab(tabRegister,    "登记");
 
         connect(tabRegister, SIGNAL(sendNumber(QString, QString)), this, SLOT(receiveNumber(QString, QString)));
     }
 
-    if(authority & 0X02)
+    if(authority & GLOBALDEF::SHOWMATERIAL)
     {
-        tabMaterial     = new TabMaterial(this);     //取材
+        tabMaterial     = new TabMaterial(this);
         ui->tabWidgetTotal->addTab(tabMaterial,    "取材");
 
         connect(this, SIGNAL(sendNumber(QString, QString)), tabMaterial, SLOT(receiveNumber(QString, QString)));
     }
 
-    if(authority & 0X04)
+    if(authority & GLOBALDEF::SHOWNORMALSLICE)
     {
-        tabNormalSlice  = new TabNormalSlice(this);  //常规切片
+        tabNormalSlice  = new TabNormalSlice(this);
         ui->tabWidgetTotal->addTab(tabNormalSlice, "常规切片");
     }
 
-    if(authority & 0X08)
+    if(authority & GLOBALDEF::SHOWIMMUNESLICE)
     {
-        tabImmuneSlice  = new TabImmuneSlice(this);  //免疫组化切片
+        tabImmuneSlice  = new TabImmuneSlice(this);
         ui->tabWidgetTotal->addTab(tabImmuneSlice, "免疫组化切片");
     }
 
-    if(authority & 0X10)
+    if(authority & GLOBALDEF::SHOWSPECIALSLICE)
     {
         tabSpecialSlice = new TabSpeciaSlice(this);  //特染切片
         ui->tabWidgetTotal->addTab(tabSpecialSlice,"特染切片");
     }
 
-    if(authority & 0X20)
+    if(authority & GLOBALDEF::SHOWSATISTICS)
     {
-        tabsSatistics   = new TabsSatistics(this);   //取材统计
+        tabsSatistics   = new TabsSatistics(this);
         ui->tabWidgetTotal->addTab(tabsSatistics,  "取材统计");
     }
 
-    if(authority & 0X40)
+    if(authority & GLOBALDEF::SHOWSYSTEMSET)
     {
-        tabSystemSet    = new TabSystemSet(this);    //系统设置
+        tabSystemSet    = new TabSystemSet(this);
         ui->tabWidgetTotal->addTab(tabSystemSet,   "系统设置");
     }
 }
