@@ -19,8 +19,16 @@ UserWidget::~UserWidget()
     delete ui;
 }
 
-/****************     显示窗口      **********************/
-void UserWidget::showWidget(UserData data)
+/****************     显示窗口窗口      **********************/
+void UserWidget::showWidget()
+{
+    this->clearInfo();
+
+    this->show();
+}
+
+/****************     显示更新窗口      **********************/
+void UserWidget::showUpdateWidget(UserData data)
 {
     clearInfo();
 

@@ -1,6 +1,7 @@
 #include "userset.h"
 #include "ui_userset.h"
 #include "globaldef.h"
+#include <QCheckBox>
 
 
 /****************     构造函数      **********************/
@@ -8,6 +9,7 @@ UserSet::UserSet(QWidget *parent) :
     QWidget(parent)
   ,ui(new Ui::userset)
   ,userWidget(NULL)
+  ,nowRow(-1)
 {
     ui->setupUi(this);
 
@@ -82,7 +84,7 @@ void UserSet::initValue()
 /****************     新建         **********************/
 void UserSet::on_pushButtonNew_clicked()
 {
-    userWidget->show();
+    userWidget->showWidget();
 }
 
 /****************     删除         **********************/
@@ -106,11 +108,11 @@ void UserSet::on_pushButtonDelete_clicked()
 /****************     更新         **********************/
 void UserSet::on_pushButtonUpdate_clicked()
 {
-    if(NULL == ui->tableWidget->currentItem()) return;
+    if(nowRow < 0) return;
 
-    if(ui->tableWidget->currentRow() >= SYSTEMDATA->getUserList().size()) return;
+    if(nowRow >= SYSTEMDATA->getUserList().size()) return;
 
-    userWidget->showWidget(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()));
+    userWidget->showUpdateWidget(SYSTEMDATA->getUserList().at(ui->tableWidget->currentRow()));
 }
 
 /****************     退出         **********************/
@@ -135,13 +137,42 @@ void UserSet::dataSelect()
         int authority = dataList.at(i).authority.toInt();
 
         ui->tableWidget->setItem(i, 0,   DATA(dataList.at(i).userName));
-        ui->tableWidget->setItem(i, 1,   DATA(dataList.at(i).isAdministrator));
-        ui->tableWidget->setItem(i, 2,   DATA(QString::number((authority & 0X01) > 0)));
-        ui->tableWidget->setItem(i, 3,   DATA(QString::number((authority & 0X02) > 0)));
-        ui->tableWidget->setItem(i, 4,   DATA(QString::number((authority & 0X04) > 0)));
-        ui->tableWidget->setItem(i, 5,   DATA(QString::number((authority & 0X08) > 0)));
-        ui->tableWidget->setItem(i, 6,   DATA(QString::number((authority & 0X10) > 0)));
-        ui->tableWidget->setItem(i, 7,   DATA(QString::number((authority & 0X20) > 0)));
+
+        int commond = dataList.at(i).isAdministrator.toInt();
+
+        ui->tableWidget->setCellWidget(i, 1, setWidget(commond,   commond));
+        ui->tableWidget->setCellWidget(i, 2, setWidget(authority, GLOBALDEF::SHOWREG));
+        ui->tableWidget->setCellWidget(i, 3, setWidget(authority, GLOBALDEF::SHOWMATERIAL));
+        ui->tableWidget->setCellWidget(i, 4, setWidget(authority, GLOBALDEF::SHOWNORMALSLICE));
+        ui->tableWidget->setCellWidget(i, 5, setWidget(authority, GLOBALDEF::SHOWIMMUNESLICE));
+        ui->tableWidget->setCellWidget(i, 6, setWidget(authority, GLOBALDEF::SHOWSPECIALSLICE));
+        ui->tableWidget->setCellWidget(i, 7, setWidget(authority, GLOBALDEF::SHOWSATISTICS));
         ui->tableWidget->setItem(i, 8,   DATA(dataList.at(i).remark));
     }
+}
+
+/****************     设置Check  **********************/
+QWidget *UserSet::setWidget(int authority, int type)
+{
+    QWidget     *widget     = new QWidget(this);
+    QCheckBox   *checkBox   = new QCheckBox(this);
+    QHBoxLayout *hboxLayout = new QHBoxLayout(this);
+    checkBox->setMinimumHeight(16);
+    hboxLayout->addWidget(checkBox);
+    hboxLayout->setAlignment(checkBox, Qt::AlignCenter);
+    widget->setLayout(hboxLayout);
+
+    if(authority & type)
+    {
+        checkBox->setChecked(true);
+    }
+    checkBox->setEnabled(false);
+
+    return widget;
+}
+
+/****************     点击列表  **********************/
+void UserSet::on_tableWidget_clicked(const QModelIndex &index)
+{
+    nowRow = index.row();
 }

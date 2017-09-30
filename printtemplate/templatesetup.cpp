@@ -423,7 +423,14 @@ void TemplateSetUp::writeAll()
 
         label->installEventFilter(this);                  //注册监听事件
 
-        label->setText(dataLabel.at(i).labelText);        //设置内容
+        if(BINGLITYPE == dataLabel.at(i).labelType.toInt())
+        {
+            label->setText(qrCodeNumber);                 //设置内容
+        }
+        else
+        {
+            label->setText(dataLabel.at(i).labelText);    //设置内容
+        }
 
         int x = dataLabel.at(i).gemoryX.toInt();          //x坐标
 
@@ -469,8 +476,6 @@ void TemplateSetUp::setInfo()
     for(int i = 0; i < bingLiLabel.size(); i ++)
     {
         bingLiLabel[i]->setText(qrCodeNumber);
-
-        qDebug()<<i<<qrCodeNumber;
     }
 
     if(widgetType == THIRDWIDGET)

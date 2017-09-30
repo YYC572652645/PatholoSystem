@@ -29,21 +29,24 @@ public:
     void showDialog();
 
 private slots:
-    void receiveData(UserData data);     //接收数据
-    void on_pushButtonNew_clicked();     //新建
-    void on_pushButtonDelete_clicked();  //删除
-    void on_pushButtonUpdate_clicked();  //更新
-    void on_pushButtonExit_clicked();    //退出
+    void receiveData(UserData data);                        //接收数据
+    void on_pushButtonNew_clicked();                        //新建
+    void on_pushButtonDelete_clicked();                     //删除
+    void on_pushButtonUpdate_clicked();                     //更新
+    void on_pushButtonExit_clicked();                       //退出
+    void on_tableWidget_clicked(const QModelIndex &index);  //点击列表
 
 private:
     Ui::userset *ui;
 
-    void initControl();                 //初始化控件
-    void initValue();                   //初始化值
-    void dataSelect();                  //数据查询
+    void initControl();                            //初始化控件
+    void initValue();                              //初始化值
+    void dataSelect();                             //数据查询
+    QWidget * setWidget(int authority, int type);  //设置Check
 
 private:
     UserWidget *userWidget;
+    int nowRow;                                    //当前选中行
 };
 
 #endif // TYPESET_H

@@ -146,11 +146,11 @@ void TabsSatistics::dataSelect(int type)
 
     if(dataCount == GLOBALDEF::DATAERROR) return;
 
-    ui->tableWidget->setRowCount(dataCount);
-
     QList<DataStatistics> dataList = MATERIALDATA->getStatisticsList();
 
     if(dataCount != 0 && dataList.first().date.isEmpty()) return;
+
+    ui->tableWidget->setRowCount(dataCount);
 
     for(int i = 0; i < dataCount; i ++)
     {

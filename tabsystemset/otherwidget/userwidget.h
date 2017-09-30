@@ -24,8 +24,8 @@ class UserWidget : public QMainWindow
 public:
     explicit UserWidget(QWidget *parent = 0); //构造函数
     ~UserWidget();                            //析构函数
-
-    void showWidget(UserData data);           //显示界面
+    void showWidget();                        //显示窗口
+    void showUpdateWidget(UserData data);     //显示更新界面
 
 signals:
     void sendData(UserData data);             //发送数据
