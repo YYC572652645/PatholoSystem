@@ -469,6 +469,8 @@ void TemplateSetUp::setInfo()
     for(int i = 0; i < bingLiLabel.size(); i ++)
     {
         bingLiLabel[i]->setText(qrCodeNumber);
+
+        qDebug()<<i<<qrCodeNumber;
     }
 
     if(widgetType == THIRDWIDGET)
@@ -784,6 +786,8 @@ void TemplateSetUp::printQrCode(QPixmap & pixmap)
 void TemplateSetUp::printImage(QString number)
 {
     if(QPrinterInfo::availablePrinters().size() == 0) return;
+
+    qrCodeNumber = number;
 
     this->setInfo();
 
