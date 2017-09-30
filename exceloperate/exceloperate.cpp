@@ -63,8 +63,14 @@ void ExcelOperate::extendExcel()
         cell->clear();
     }
 
+    int totalSize = 0;
+
+    if(extendType == GLOBALDEF::REGTYPE)        totalSize = registerInfo.size();
+    if(extendType == GLOBALDEF::MATERIALTYPE)   totalSize = childInfo.size();
+    if(extendType == GLOBALDEF::STATISTICSTYPE) totalSize = statisticsList.size();
+
     //写入单元格数据
-    for(int i = STARTROW; i < statisticsList.size() + STARTROW; i ++)
+    for(int i = STARTROW; i < totalSize + STARTROW; i ++)
     {
         for(int j = 1; j < itemName.size() + 1; j ++)
         {
@@ -98,8 +104,8 @@ void ExcelOperate::extendExcel()
                 case ISPRINTED:        cell->setProperty("Value", childInfo.at(dataCount).printed);       break;
                 case PRINTTIME:        cell->setProperty("Value", childInfo.at(dataCount).printTime);     break;
                 case ISMATERIAL:       cell->setProperty("Value", childInfo.at(dataCount).sampled);       break;
-                case MATERIALTIME:     cell->setProperty("Value", childInfo.at(dataCount).sampler);       break;
-                case MATERIALPEOPLE:   cell->setProperty("Value", childInfo.at(dataCount).samplingTime);  break;
+                case MATERIALTIME:     cell->setProperty("Value", childInfo.at(dataCount).samplingTime);  break;
+                case MATERIALPEOPLE:   cell->setProperty("Value", childInfo.at(dataCount).sampler);       break;
                 }
             }
 
