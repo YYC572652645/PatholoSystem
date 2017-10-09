@@ -15,6 +15,9 @@ PatientInfo::PatientInfo(QWidget *parent) :
 
     this->initControl();
     this->initConnect();
+
+    ui->dateTimeEditJieShou->setCalendarPopup(true);
+    ui->dateTimeEditSongJian->setCalendarPopup(true);
 }
 
 /********************       析构函数         ***********************/

@@ -17,6 +17,9 @@ TabsSatistics::TabsSatistics(QWidget *parent) :
 
     this->initControl();
     this->initData();
+
+    ui->dateTimeEditBeginTime->setCalendarPopup(true);
+    ui->dateTimeEditEndTime->setCalendarPopup(true);
 }
 
 /*******************       析构函数             ***********************/
