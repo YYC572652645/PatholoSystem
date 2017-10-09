@@ -197,6 +197,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(9, __qtablewidgetitem9);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setStyleSheet(QStringLiteral("*{outline:0px;}"));
 
         verticalLayout_2->addWidget(tableWidget);
 

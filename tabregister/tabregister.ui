@@ -140,6 +140,9 @@ background-color:transparent;
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="styleSheet">
+             <string notr="true">*{outline:0px;}</string>
+            </property>
             <column>
              <property name="text">
               <string>序号</string>

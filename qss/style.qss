@@ -130,3 +130,6 @@ font-size:14px;
 font-weight:bold;
 }
 
+
+*{outline:0px;}
+

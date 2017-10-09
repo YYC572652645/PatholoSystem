@@ -195,6 +195,7 @@ public:
         __qtreewidgetitem->setForeground(2, brush);
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
+        treeWidget->setStyleSheet(QStringLiteral("*{outline:0px;}"));
 
         verticalLayout_2->addWidget(treeWidget);
 

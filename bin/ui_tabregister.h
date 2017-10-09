@@ -194,6 +194,7 @@ public:
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy);
+        tableWidget->setStyleSheet(QStringLiteral("*{outline:0px;}"));
 
         verticalLayout_2->addWidget(tableWidget);
 

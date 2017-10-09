@@ -70,6 +70,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem2);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setStyleSheet(QStringLiteral("*{outline:0px;}"));
 
         verticalLayout->addWidget(tableWidget);
 
