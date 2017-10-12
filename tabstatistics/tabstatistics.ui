@@ -20,20 +20,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QDateTimeEdit" name="dateTimeEditBeginTime">
-          <property name="contextMenuPolicy">
-           <enum>Qt::DefaultContextMenu</enum>
-          </property>
-          <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::UpDownArrows</enum>
-          </property>
-          <property name="accelerated">
-           <bool>false</bool>
-          </property>
-          <property name="correctionMode">
-           <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-          </property>
-         </widget>
+         <widget class="QDateEdit" name="dateTimeEditBeginTime"/>
         </item>
         <item>
          <widget class="QLabel" name="label">
@@ -43,7 +30,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="dateTimeEditEndTime"/>
+         <widget class="QDateEdit" name="dateTimeEditEndTime"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonSum">
@@ -167,8 +154,6 @@
  </widget>
  <tabstops>
   <tabstop>pushButtonSum</tabstop>
-  <tabstop>dateTimeEditEndTime</tabstop>
-  <tabstop>dateTimeEditBeginTime</tabstop>
   <tabstop>tableWidget</tabstop>
  </tabstops>
  <resources>

@@ -13,7 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -37,9 +37,9 @@ public:
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
-    QDateTimeEdit *dateTimeEditBeginTime;
+    QDateEdit *dateTimeEditBeginTime;
     QLabel *label;
-    QDateTimeEdit *dateTimeEditEndTime;
+    QDateEdit *dateTimeEditEndTime;
     QPushButton *pushButtonSum;
     QSpacerItem *horizontalSpacer;
     QTableWidget *tableWidget;
@@ -69,12 +69,8 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        dateTimeEditBeginTime = new QDateTimeEdit(centralwidget);
+        dateTimeEditBeginTime = new QDateEdit(centralwidget);
         dateTimeEditBeginTime->setObjectName(QStringLiteral("dateTimeEditBeginTime"));
-        dateTimeEditBeginTime->setContextMenuPolicy(Qt::DefaultContextMenu);
-        dateTimeEditBeginTime->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
-        dateTimeEditBeginTime->setAccelerated(false);
-        dateTimeEditBeginTime->setCorrectionMode(QAbstractSpinBox::CorrectToPreviousValue);
 
         horizontalLayout->addWidget(dateTimeEditBeginTime);
 
@@ -83,7 +79,7 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        dateTimeEditEndTime = new QDateTimeEdit(centralwidget);
+        dateTimeEditEndTime = new QDateEdit(centralwidget);
         dateTimeEditEndTime->setObjectName(QStringLiteral("dateTimeEditEndTime"));
 
         horizontalLayout->addWidget(dateTimeEditEndTime);
@@ -137,9 +133,7 @@ public:
         toolBar->setObjectName(QStringLiteral("toolBar"));
         toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         tabstatistics->addToolBar(Qt::TopToolBarArea, toolBar);
-        QWidget::setTabOrder(pushButtonSum, dateTimeEditEndTime);
-        QWidget::setTabOrder(dateTimeEditEndTime, dateTimeEditBeginTime);
-        QWidget::setTabOrder(dateTimeEditBeginTime, tableWidget);
+        QWidget::setTabOrder(pushButtonSum, tableWidget);
 
         toolBar->addAction(actionReferesh);
         toolBar->addAction(actionExtend);

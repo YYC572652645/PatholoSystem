@@ -62,11 +62,11 @@ void TabsSatistics::initControl()
 /*******************       初始化数据            ***********************/
 void TabsSatistics::initData()
 {
-    ui->dateTimeEditBeginTime->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
+    ui->dateTimeEditBeginTime->setDisplayFormat("yyyy-MM-dd");
     unsigned int dateTime = QDateTime::currentDateTime().toTime_t() - 86400;
     ui->dateTimeEditBeginTime->setDateTime(QDateTime::fromTime_t(dateTime));
 
-    ui->dateTimeEditEndTime->setDisplayFormat("yyyy-MM-dd HH:mm:ss");
+    ui->dateTimeEditEndTime->setDisplayFormat("yyyy-MM-dd");
     ui->dateTimeEditEndTime->setDateTime(QDateTime::currentDateTime());
 }
 
