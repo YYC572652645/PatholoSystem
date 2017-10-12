@@ -445,6 +445,11 @@ public:
         toolBar->setMovable(false);
         toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
         templatesetup->addToolBar(Qt::TopToolBarArea, toolBar);
+        QWidget::setTabOrder(pushButtonSave, tableWidget);
+        QWidget::setTabOrder(tableWidget, pushButtonAdd);
+        QWidget::setTabOrder(pushButtonAdd, pushButtonSub);
+        QWidget::setTabOrder(pushButtonSub, listWidgetControl);
+        QWidget::setTabOrder(listWidgetControl, listWidgetTemplate);
 
         toolBar->addAction(actionDelete);
 

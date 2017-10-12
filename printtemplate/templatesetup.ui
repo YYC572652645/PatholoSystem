@@ -586,6 +586,14 @@ QLabel
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>pushButtonSave</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonSub</tabstop>
+  <tabstop>listWidgetControl</tabstop>
+  <tabstop>listWidgetTemplate</tabstop>
+ </tabstops>
  <resources>
   <include location="../res.qrc"/>
  </resources>

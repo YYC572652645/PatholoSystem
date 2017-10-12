@@ -4,7 +4,7 @@
 #include <QTreeWidgetItem>
 #include "materialdata.h"
 #include "config/qreadini.h"
-#include "../../tabsystemset/tabsystemdata.h"
+#include "tabsystemset/tabsystemdata.h"
 #include "messagebox/messagedialog.h"
 #include <QFileDialog>
 #include <QDateTime>
@@ -307,9 +307,9 @@ void TabMaterial::on_actionAddBaoMai_triggered()
 
     dataChild.printed = "0";                              //是否打印
     dataChild.sampled = "0";                              //是否取材
-    dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");;             //取材时间
+    dataChild.samplingTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");;   //取材时间
 
-    MATERIALDATA->insertChildData(dataChild);
+    if(!MATERIALDATA->insertChildData(dataChild)) return;
 
     QTreeWidgetItem* childItem = TREEITEM();
 
@@ -475,12 +475,12 @@ void TabMaterial::on_actionAddBingLiNumber_triggered()
     {
         dataChild.embedCode = data.pCode;                 //病理号子序号
 
-        if(mapData[HYPHEN] != "0")
+        if(mapData.value(HYPHEN) != "0")
         {
             dataChild.embedCode +=  "-";                 //病理号子序号
         }
 
-        switch(mapData[NUMBERTYPE].toInt())
+        switch(mapData.value(NUMBERTYPE).toInt())
         {
         case 0: dataChild.embedCode +=  "1"; break;      //病理号子序号
         case 1: dataChild.embedCode +=  "a"; break;      //病理号子序号
@@ -856,11 +856,14 @@ void TabMaterial::extendTxt(QString fileName)
 
     QTextStream txtOutput(&file);
 
-    QList<DataChild> childList = MATERIALDATA->getChildList();
+    QList<DataChild> childList    = MATERIALDATA->getChildList();
+    SYSTEMDATA->codeBeginSelectData();
+
+    QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
 
     for(int i = 0; i < childList.size(); i ++)
     {
-        txtOutput << childList.at(i).embedCode << "$$HE" << "\n";
+        txtOutput << childList.at(i).embedCode <<mapData.value(ITEMSPLIT) << "HE" << "\n";
     }
 
     file.close();

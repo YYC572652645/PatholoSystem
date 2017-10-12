@@ -15,9 +15,10 @@
 #include <QFontComboBox>
 #include <QPushButton>
 #include <QSpinBox>
-#include "../tabnormalslice/normalslicedata.h"
-#include "../tabimmuneslice/immuneslicedata.h"
-#include "../tabspecialslice/specialslicedata.h"
+#include "tabnormalslice/normalslicedata.h"
+#include "tabimmuneslice/immuneslicedata.h"
+#include "tabspecialslice/specialslicedata.h"
+#include <QEvent>
 #include "templatedata/templatedata.h"
 
 namespace Ui {
@@ -111,6 +112,7 @@ private:
     void writeAll();                                               //写入控件
     void setInfo();                                                //设置控件信息
     bool eventFilter(QObject *watched, QEvent *event);             //事件过滤
+    bool event(QEvent *event);                                     //事件函数
     void writeJson();                                              //组合JSON
     bool readJson(QString arrayData, QString name);                //读取JSON
 };

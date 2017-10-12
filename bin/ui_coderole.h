@@ -89,6 +89,15 @@ public:
     QSpacerItem *horizontalSpacer_16;
     QSpacerItem *horizontalSpacer_18;
     QSpacerItem *horizontalSpacer_19;
+    QSpacerItem *horizontalSpacer_21;
+    QGroupBox *groupBoxImport;
+    QVBoxLayout *verticalLayout_9;
+    QHBoxLayout *horizontalLayout_13;
+    QLineEdit *lineEditSpilt;
+    QRadioButton *radioButtonUseMaterial;
+    QRadioButton *radioButtonUseSlice;
+    QSpacerItem *horizontalSpacer_22;
+    QSpacerItem *horizontalSpacer_20;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_6;
     QPushButton *pushButtonOk;
@@ -102,7 +111,7 @@ public:
     {
         if (coderole->objectName().isEmpty())
             coderole->setObjectName(QStringLiteral("coderole"));
-        coderole->resize(1062, 643);
+        coderole->resize(1068, 801);
         verticalLayout_8 = new QVBoxLayout(coderole);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         horizontalLayout_12 = new QHBoxLayout();
@@ -374,6 +383,47 @@ public:
 
         verticalLayout_7->addItem(horizontalSpacer_19);
 
+        horizontalSpacer_21 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_7->addItem(horizontalSpacer_21);
+
+        groupBoxImport = new QGroupBox(coderole);
+        groupBoxImport->setObjectName(QStringLiteral("groupBoxImport"));
+        groupBoxImport->setMinimumSize(QSize(0, 100));
+        verticalLayout_9 = new QVBoxLayout(groupBoxImport);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
+        lineEditSpilt = new QLineEdit(groupBoxImport);
+        lineEditSpilt->setObjectName(QStringLiteral("lineEditSpilt"));
+
+        horizontalLayout_13->addWidget(lineEditSpilt);
+
+        radioButtonUseMaterial = new QRadioButton(groupBoxImport);
+        radioButtonUseMaterial->setObjectName(QStringLiteral("radioButtonUseMaterial"));
+        radioButtonUseMaterial->setChecked(true);
+
+        horizontalLayout_13->addWidget(radioButtonUseMaterial);
+
+        radioButtonUseSlice = new QRadioButton(groupBoxImport);
+        radioButtonUseSlice->setObjectName(QStringLiteral("radioButtonUseSlice"));
+
+        horizontalLayout_13->addWidget(radioButtonUseSlice);
+
+        horizontalSpacer_22 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_22);
+
+
+        verticalLayout_9->addLayout(horizontalLayout_13);
+
+
+        verticalLayout_7->addWidget(groupBoxImport);
+
+        horizontalSpacer_20 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_7->addItem(horizontalSpacer_20);
+
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -495,6 +545,9 @@ public:
          << QApplication::translate("coderole", "2 \345\244\247\345\206\231\345\255\227\346\257\215", 0)
         );
         label_6->setText(QApplication::translate("coderole", "\347\274\226\347\240\201\346\240\267\344\276\213\357\274\232", 0));
+        groupBoxImport->setTitle(QApplication::translate("coderole", "\350\207\252\345\212\250\345\257\274\345\205\245\350\256\276\347\275\256", 0));
+        radioButtonUseMaterial->setText(QApplication::translate("coderole", "\347\224\250\344\272\216\345\217\226\346\235\220", 0));
+        radioButtonUseSlice->setText(QApplication::translate("coderole", "\347\224\250\344\272\216\345\210\207\347\211\207", 0));
         pushButtonOk->setText(QApplication::translate("coderole", "\347\241\256\345\256\232", 0));
         pushButtonCancel->setText(QApplication::translate("coderole", "\345\217\226\346\266\210", 0));
     } // retranslateUi

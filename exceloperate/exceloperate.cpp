@@ -3,6 +3,7 @@
 #include "messagebox/messagedialog.h"
 #include "../databasedef.h"
 #include "../globaldef.h"
+#include <QMessageBox>
 
 /****************          构造函数                ***************/
 ExcelOperate::ExcelOperate()
@@ -79,7 +80,6 @@ void ExcelOperate::extendExcel()
 
             int dataCount = i - STARTROW;
 
-
             //登记信息
             if(extendType == GLOBALDEF::REGTYPE)
             {
@@ -123,8 +123,6 @@ void ExcelOperate::extendExcel()
                 case DATABASEDEF::FROZENEDDTOTAL: cell->setProperty("Value", statisticsList.at(dataCount).frozenEddTotal);  break;
                 }
             }
-
-
         }
     }
 

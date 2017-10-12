@@ -134,6 +134,7 @@ const static QString BLNUMBER      = "BLNumber"    ;
 const static QString HYPHEN        = "Hyphen"      ;
 const static QString NUMBERTYPE    = "NumberType"  ;
 const static QString PCODEBEGINSN  = "PCodeBeginSn";
+const static QString ITEMSPLIT     = "ItemSplit"   ;
 
 
 namespace GLOBALDEF

@@ -144,6 +144,7 @@ void TabsSatistics::dataSelect(int type)
     }
     else
     {
+        ui->tableWidget->setRowCount(0);
         dataCount = MATERIALDATA->selectStatistics(ui->dateTimeEditBeginTime->text(),ui->dateTimeEditEndTime->text());
     }
 

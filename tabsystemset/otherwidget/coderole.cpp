@@ -13,8 +13,9 @@ CodeRole::CodeRole(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->groupBoxBingLi->setFont(QFont("ZYSong", 12)); //设置字体大小
-    ui->groupBoxQuCai->setFont(QFont("ZYSong", 12));  //设置字体大小
+    ui->groupBoxBingLi->setFont(QFont("ZYSong", 12));  //设置字体大小
+    ui->groupBoxQuCai->setFont(QFont("ZYSong", 12));   //设置字体大小
+    ui->groupBoxImport->setFont(QFont("ZYSong", 12));  //设置字体大小
 
     initCodeRule();
     changeBingLiCodeRule();
@@ -211,6 +212,7 @@ void CodeRole::initCodeRule()
     ui->checkBoxBingLiNumber->setChecked(mapData[BLNUMBER].toInt());
     ui->checkBoxHyphen->setChecked(mapData[HYPHEN].toInt());
     ui->comboBoxNumberType->setCurrentIndex(mapData[NUMBERTYPE].toInt());
+    ui->lineEditSpilt->setText(mapData.value(ITEMSPLIT));
 }
 
 /****************       确定按钮                 *******************/
@@ -222,7 +224,7 @@ void CodeRole::on_pushButtonOk_clicked()
 
     insertThread->customPrefix = ui->lineEditPrefix->text();
     insertThread->usePrefix    = QString::number(ui->checkBoxType->isChecked());
-    insertThread->useYear      =  QString::number(ui->checkBoxYear->isChecked());
+    insertThread->useYear      = QString::number(ui->checkBoxYear->isChecked());
     insertThread->yearType     = ui->radioButtonTwo->isChecked() ? "2" : "4";
     insertThread->useMonth     = QString::number(ui->checkBoxMonth->isChecked());
     insertThread->useDay       = QString::number(ui->checkBoxDay->isChecked());
@@ -231,6 +233,7 @@ void CodeRole::on_pushButtonOk_clicked()
     insertThread->bLNumber     = QString::number(ui->checkBoxBingLiNumber->isChecked());
     insertThread->hyphen       = QString::number(ui->checkBoxHyphen->isChecked());
     insertThread->numberType   = QString::number(ui->comboBoxNumberType->currentIndex());
+    insertThread->itemSplit    = ui->lineEditSpilt->text();
 
     insertThread->start();
 
@@ -265,5 +268,7 @@ void InsertThread::run()
     SYSTEMDATA->codeBeginUpdateData(BLNUMBER    , bLNumber);
     SYSTEMDATA->codeBeginUpdateData(HYPHEN      , hyphen);
     SYSTEMDATA->codeBeginUpdateData(NUMBERTYPE  , numberType);
+    SYSTEMDATA->codeBeginUpdateData(ITEMSPLIT   , itemSplit);
+
     mutex.unlock();
 }

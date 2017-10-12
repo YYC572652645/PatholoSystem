@@ -63,7 +63,6 @@ public:
     InsertThread();
 
     void run();
-
 public:
     QString customPrefix;
     QString usePrefix;
@@ -76,6 +75,7 @@ public:
     QString bLNumber;
     QString hyphen;
     QString numberType;
+    QString itemSplit;
     QMutex mutex;
 };
 

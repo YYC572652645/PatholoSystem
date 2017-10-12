@@ -34,6 +34,8 @@ TemplateSetUp::TemplateSetUp(int type, QWidget *parent) :
     ui->setupUi(this);
     widgetType = type;
 
+    ui->widgetControl->installEventFilter(this);
+
     this->setWindowTitle("打印模板");
 
     this->initControl();     //初始化属性页
@@ -695,6 +697,8 @@ bool TemplateSetUp::eventFilter(QObject *watched, QEvent *event)
                     {
                         textEdit->setEnabled(true);
                     }
+
+                    ui->widgetControl->setFocus();
                 }
                 else if(event->type() == QEvent::MouseMove)
                 {
@@ -1100,4 +1104,49 @@ void TemplateSetUp::setDataNormalSlice(const DataNormalSlice &value)
 void TemplateSetUp::setQrCodeNumber(const QString &value)
 {
     qrCodeNumber = value;
+}
+
+/*******************   按钮点击            ***********************/
+bool TemplateSetUp::event(QEvent *event)
+{
+    QKeyEvent* e = static_cast<QKeyEvent*>(event);
+
+    if(e->key() == Qt::Key_Right || e->key() == Qt::Key_Left || e->key() == Qt::Key_Up || e->key() == Qt::Key_Down)
+    {
+        if(selectLabelIndex == INVALIDVALUE) return false;
+
+        ui->widgetControl->setFocus();
+
+        QLabel * label = NULL;
+
+        switch(typeFlage)
+        {
+        case TEXTTYPE:    if(selectLabelIndex >= textLabel.size())    return false; label = textLabel[selectLabelIndex];      break;
+        case BINGLITYPE:  if(selectLabelIndex >= bingLiLabel.size())  return false; label = bingLiLabel[selectLabelIndex];    break;
+        case QRCODETYPE:  if(selectLabelIndex >= qrCodeLabel.size())  return false; label = qrCodeLabel[selectLabelIndex];    break;
+        case LABELFOUR:   if(selectLabelIndex >= fourLabel.size())    return false; label = fourLabel[selectLabelIndex];      break;
+        case LABELFIVE:   if(selectLabelIndex >= fiveLabel.size())    return false; label = fiveLabel[selectLabelIndex];      break;
+        case LABELSIX:    if(selectLabelIndex >= sixLabel.size())     return false; label = sixLabel[selectLabelIndex];       break;
+        case LABELSEVEN:  if(selectLabelIndex >= sevenLabel.size())   return false; label = sevenLabel[selectLabelIndex];     break;
+        case LABELEIGHT:  if(selectLabelIndex >= eightLabel.size())   return false; label = eightLabel[selectLabelIndex];     break;
+        case LABELNINE:   if(selectLabelIndex >= nineLabel.size())    return false; label = nineLabel[selectLabelIndex];      break;
+        case LABELTEN:    if(selectLabelIndex >= tenLabel.size())     return false; label = tenLabel[selectLabelIndex];       break;
+        case LABELELEVEN: if(selectLabelIndex >= elevenLabel.size())  return false; label = elevenLabel[selectLabelIndex];    break;
+        case LABELTWELVE: if(selectLabelIndex >= twelveLabel.size())  return false; label = twelveLabel[selectLabelIndex];    break;
+        }
+
+        if(NULL == label) return false;
+
+        const static int MOVELENGTH = 2;
+
+        switch(e->key())
+        {
+        case Qt::Key_Left:  label->move(label->geometry().x() - MOVELENGTH,label->geometry().y()); break;
+        case Qt::Key_Up:    label->move(label->geometry().x(),label->geometry().y() - MOVELENGTH); break;
+        case Qt::Key_Right: label->move(label->geometry().x() + MOVELENGTH,label->geometry().y()); break;
+        case Qt::Key_Down:  label->move(label->geometry().x(),label->geometry().y() + MOVELENGTH); break;
+        }
+    }
+
+    return QWidget::event(event);
 }

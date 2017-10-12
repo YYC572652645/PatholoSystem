@@ -224,7 +224,7 @@ int MaterialData::selectBaoMai(QString blNumber)
 
     QSqlQuery query;
 
-    QString str = QString("select count(*) from SamplingRow where SamplingId = '%1';").arg(blNumber);
+    QString str = QString("select max(sn) from SamplingRow where SamplingId = '%1';").arg(blNumber);
 
     bool success = query.exec(str);
 
@@ -255,8 +255,10 @@ int MaterialData::selectStatistics(QString beginTime, QString endTime)
     }
     else
     {
-        str = QString("select strftime('%Y-%m-%d',CreateTime), count(*), sum(SamplingCount), count(*),sum(SamplingCount) from Sampling where CreateTime >= '%1' and CreateTime <= '%2'").arg(beginTime, endTime);
+        str = QString("select strftime('%Y-%m-%d',CreateTime), count(*), sum(SamplingCount), count(*),sum(SamplingCount) from Sampling where CreateTime >= '%1' and CreateTime <= '%2' group by strftime('%Y-%m-%d',CreateTime)").arg(beginTime, endTime);
     }
+
+    qDebug()<<str;
 
     bool success = query.exec(str);
 

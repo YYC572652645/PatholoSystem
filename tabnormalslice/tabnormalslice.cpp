@@ -4,6 +4,7 @@
 #include "messagebox/messagedialog.h"
 #include <QFileDialog>
 #include <QDateTime>
+#include "tabsystemset/tabsystemdata.h"
 
 /*******************   构造函数    ***********************/
 TabNormalSlice::TabNormalSlice(QWidget *parent) :
@@ -360,7 +361,11 @@ void TabNormalSlice::on_actionImportTxt_triggered()
     {
         DataNormalSlice data;
 
-        QStringList stringList = textRead.readLine().split("$$");
+        SYSTEMDATA->codeBeginSelectData();
+
+        QMap<QString, QString>mapData = SYSTEMDATA->getCodeBeginSnSetInfo();
+
+        QStringList stringList = textRead.readLine().split(mapData.value(ITEMSPLIT));
 
         if(stringList.size() < 2) continue;
 
