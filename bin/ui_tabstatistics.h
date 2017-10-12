@@ -133,7 +133,9 @@ public:
         toolBar->setObjectName(QStringLiteral("toolBar"));
         toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         tabstatistics->addToolBar(Qt::TopToolBarArea, toolBar);
-        QWidget::setTabOrder(pushButtonSum, tableWidget);
+        QWidget::setTabOrder(tableWidget, dateTimeEditBeginTime);
+        QWidget::setTabOrder(dateTimeEditBeginTime, dateTimeEditEndTime);
+        QWidget::setTabOrder(dateTimeEditEndTime, pushButtonSum);
 
         toolBar->addAction(actionReferesh);
         toolBar->addAction(actionExtend);

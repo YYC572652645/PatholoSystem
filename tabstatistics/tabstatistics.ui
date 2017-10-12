@@ -153,8 +153,10 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>pushButtonSum</tabstop>
   <tabstop>tableWidget</tabstop>
+  <tabstop>dateTimeEditBeginTime</tabstop>
+  <tabstop>dateTimeEditEndTime</tabstop>
+  <tabstop>pushButtonSum</tabstop>
  </tabstops>
  <resources>
   <include location="../res.qrc"/>
